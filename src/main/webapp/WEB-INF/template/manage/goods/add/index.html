@@ -1,0 +1,33 @@
+<!--# layout("/manage/include/layout.html") { -->
+<div class="container" data-module="goods.add" id="goods">
+    <div class="row">
+        <div class="col-xs-1" style="position: relative">
+            <div style="position: fixed; top:71px; width: 53px">
+                <a href="${ctxPath}/manage/goods" class="btn btn-default btn-sm btn-block">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-11">
+            <form action="${ctxPath}/manage/goods/save" role="form" class="form-horizontal">
+                <input type="hidden" name="id" value="${goods.id!}">
+                <input type="hidden" name="production" value="${goods.production!production!''}">
+                <!--# include("/manage/goods/add/form.part1.html") {} -->
+                <!--# include("/manage/goods/add/form.part2.html") {} -->
+                <!--# include("/manage/goods/add/form.part3.html") {} -->
+                <!--# include("/manage/goods/add/form.part4.html") {} -->
+                <button type="button" class="btn btn-primary btn-block save" style="margin: 20px 0">保存</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>window.baseUrl = '${ctxPath}';</script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script>
+    UE.getEditor('note');
+    UE.getEditor('feature');
+</script>
+<!--# } -->

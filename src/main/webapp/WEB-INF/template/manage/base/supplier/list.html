@@ -1,0 +1,27 @@
+<div class="panel panel-default list">
+    <div class="panel-heading clearfix">
+        <!--# include("/manage/base/supplier/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(supplier in supplierPage.list![]) { -->
+        <div class="item clearfix" data-id="${supplier.id}">
+            <ul class="list-inline pull-left" style="line-height: 30px">
+                <li class="name">${supplier.name}</li>
+            </ul>
+            <ul class="list-inline pull-right">
+                <li>
+                    <button type="button" class="btn btn-default btn-sm edit">编辑</button>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm remove">删除</button>
+                </li>
+            </ul>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer clearfix">
+        <!--# include("/manage/base/supplier/list.action.html") {} -->
+    </div>
+</div>

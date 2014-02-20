@@ -1,0 +1,19 @@
+<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal">新增</button>
+<ul class="pagination pagination-sm pull-right" style="margin-left: 20px;">
+    <!--# if(servicePage.pageNumber!1 > 1) {-->
+    <li class="previous"><a href="${ctxPath}/manage/base/service?production=${production!}&pageNumber=${servicePage.pageNumber - 1}">上一页</a></li>
+    <!--# } else { -->
+    <li class="previous disabled"><span>上一页</span></li>
+    <!--# } -->
+    <!--# if(servicePage.pageNumber < servicePage.totalPage) { -->
+    <li class="next"><a href="${ctxPath}/manage/base/service?production=${production!}&pageNumber=${servicePage.pageNumber + 1}">下一页</a></li>
+    <!--# } else { -->
+    <li class="next disabled"><span>下一页</span></li>
+    <!--# } -->
+</ul>
+<div class="btn-group btn-group-sm pull-right">
+    <a href="${ctxPath}/manage/base/service?production=line" class="btn ${decode(production!'', 'line', 'btn-success', 'btn-default')}">线路</a>
+    <a href="${ctxPath}/manage/base/service?production=hotel" class="btn ${decode(production!'', 'hotel', 'btn-success', 'btn-default')}">酒店</a>
+    <a href="${ctxPath}/manage/base/service?production=car" class="btn ${decode(production!'', 'car', 'btn-success', 'btn-default')}">租车</a>
+    <a href="${ctxPath}/manage/base/service?production=ticket" class="btn ${decode(production!'', 'ticket', 'btn-success', 'btn-default')}">门票</a>
+</div>

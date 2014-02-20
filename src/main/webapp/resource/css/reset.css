@@ -1,0 +1,128 @@
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100.01%; /*The font-size percentage is of 16px. (0.75 * 16px = 12px) */
+}
+
+body {
+    font: 62.5%/1em Microsoft YaHei, Tahoma, Geneva, sans-serif;
+    background: white;
+    color: #333;
+}
+
+body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1.2em;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* This helps to make newer HTML5 elements behave like DIVs in older browers */
+article, aside, details, figcaption, figure, dialog,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+table, th, td {
+    vertical-align: middle;
+}
+
+input {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2em;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    blr: expression(this.onFocus=this.blur());
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+a img {
+    border: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+/* Clear Fix */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+/* Hide from IE Mac */
+.clearfix {
+    display: block;
+}
+
+/* End hide from IE Mac */
+/* end of clearfix */
+.clearmod {
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.block5 {
+    height: 5px;
+    font-size: 5px;
+    -webkit-text-size-adjust: none;
+    clear: both
+}
+
+.block10 {
+    height: 10px;
+    font-size: 10px;
+    -webkit-text-size-adjust: none;
+    clear: both
+}
+
+.block20 {
+    height: 20px;
+    font-size: 20px;
+    clear: both
+}
+
+.block30 {
+    height: 30px;
+    font-size: 30px;
+    clear: both
+}

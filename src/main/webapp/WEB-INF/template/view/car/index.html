@@ -1,0 +1,195 @@
+<!--# layout("/view/include/layout.html", {cur:"car"}) { -->
+<div id="main">
+    <div id="adsCatTop" class="clearfix">
+        <div class="adsCatTR fr">
+            <ul>
+                <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/312190.jpg"/></a></li>
+            </ul>
+            <span></span>
+
+            <h2><a href="#" target="_blank">林帝浣：人文摄影的悲悯与温情</a></h2>
+        </div>
+        <div class="focusCatSlide f1">
+            <div class="hd">
+                <ul>
+                </ul>
+            </div>
+            <div class="bd">
+                <ul>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/3.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/4.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/3.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/4.jpg"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="closeAdsCatTop"></div>
+    </div>
+    <div id="conditionsWrap">
+        <div class="statistics">
+            <h3>全部自由行<span>(共记${count!0}个)</span></h3>
+        </div>
+        <div id="conditionsList">
+            <!--# for(label in labelPage.list![]) { -->
+            <div class="conditionsItem clearfix">
+                <h3>${label.name}：</h3>
+                <ul class="clearfix">
+                    <!--# for(child in label.children![]){ -->
+                    <li class="<!--# if(child.name == queryLabel!'') {print('allCat');} -->"><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
+                    <!--# }-->
+                </ul>
+            </div>
+            <!--# } -->
+            <div class="conditionsItem clearfix">
+                <h3>价格：</h3>
+                <ul class="clearfix" id="price">
+                    <li><a href="">200-500</a></li>
+                    <li><a href="">500-800</a></li>
+                    <li><a href="">800-1100</a></li>
+                    <li><a href="">1100-1400</a></li>
+                    <li><a href="">1500-5000</a></li>
+                    <li><a href="">5000-8000</a></li>
+                    <li><a href="">8000-12000</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="statisticsSearchRes clearfix">
+            <h6>共搜索到${goodsPage.totalRow!0}个符合条件的商品。</h6>
+            <ul class="clearfix">
+                <form action="${ctxPath}/catTourGroupGrid">
+                    <li>关键字：</li>
+                    <li>
+                        <input type="text">
+                    </li>
+                    <input type="hidden" name="price" id="hid_price"/>
+                    <input type="hidden" name="address" id="hid_address"/>
+                    <input type="hidden" name="type" id="hid_type"/>
+                    <li>
+                        <input type="submit" value="搜索" class="btnSearch">
+                    </li>
+                </form>
+            </ul>
+        </div>
+        <div id="closeOpenConditionsWrap"><a href="javascript:void(0)"></a></div>
+    </div>
+    <div class="productsListBar clearfix">
+        <div class="pagesTop fr"><span class="disable">&lt;</span><!--<a class="prev" href="#">上一页</a>--><span
+                class="pagesNumber">1/4</span><a class="next" href="#">下一页</a><!--<span class="disable">&gt;</span>--></div>
+        <div class="btnListStyle fr">
+            <ul class="clearfix">
+                <!--            <li class="gridOn">图片式</li>-->
+                <!--            <li class="listOn">图文式</li>-->
+                <!--            <li class="grid">图片式</li>-->
+                <!--            <li class="list">图文式</li> -->
+            </ul>
+        </div>
+        <div class="orderStyle f1">
+            <ul class="clearfix">
+                <h3>默认排序</h3>
+                <li class="default">默认</li>
+                <li class="descOn">销量</li>
+                <li class="asc">价格</li>
+                <li class="asc">时间</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="catListGrid clearfix" id="catListGrid">
+        <!--# for(goods in goodsPage.list![]) {-->
+        <div class="catListGridItem"><a href="${ctxPath}/detail/${goods.id}"><img class="proPic" src="${ctxPath}/rest/image/${goods.master!}"/></a>
+
+            <h2><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
+            <ul class="clearfix">
+                <h6>￥${goods.minPrice!0 / 100}<i>起</i></h6>
+                <li>推荐指数：<img src="${ctxPath}/resource/images/starOrg3.gif"/></li>
+            </ul>
+        </div>
+        <!--# } -->
+    </div>
+
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".focusCatSlide").slide({titCell: ".hd ul", mainCell: ".bd ul", effect: "fold", autoPlay: true, autoPage: true, delayTime: 1000});
+        $(".hd").find("li").each(function (i) {
+            var focusBarW = 21 * (i + 1),
+                    hdPosW = (680 - focusBarW) / 2;
+            $(this).parents(".hd").css("left", hdPosW);
+        });
+        $("#closeAdsCatTop").click(function () {
+            $("#adsCatTop").slideUp("slow");
+        });
+        $("#closeOpenConditionsWrap").toggle(function () {
+            $(this).siblings(":not(:first)").hide();
+            $(this).children().addClass("close")
+        }, function () {
+            $(this).siblings(":not(:first)").show();
+            $(this).children().removeClass("close")
+        });
+        var conditionsList = $("#conditionsList"),
+                conditionsItem = $(conditionsList).children();
+        if ($(conditionsItem).length > 2) {
+            var conditionsItemHide = $(conditionsList).children(":gt(2)");
+            $(conditionsList).after("<div id='closeOpenConditionsItem'><a href='javascript:void(0)'>更多</a></div>");
+            $(conditionsItemHide).hide();
+            $("#closeOpenConditionsItem").toggle(function () {
+                $(conditionsItemHide).show();
+                $(this).children().addClass("close")
+            }, function () {
+                $(conditionsItemHide).hide();
+                $(this).children().removeClass("close")
+            });
+            $(conditionsItem).each(function () {
+                var conditionsItemChild = $(this).find("li");
+                if ($(conditionsItemChild).length > 32) {
+                    var conditionsItemChildHide = $(this).find("li:gt(32)");
+                    $(this).append("<div class='closeOpenConditionsItemContent'><a href='javascript:void(0)'>更多</a></div>");
+                    $(conditionsItemChildHide).hide();
+                    $(".closeOpenConditionsItemContent").toggle(function () {
+                        $(conditionsItemChildHide).show();
+                        $(this).children().addClass("close")
+                    }, function () {
+                        $(conditionsItemChildHide).hide();
+                        $(this).children().removeClass("close")
+                    });
+                }
+            });
+        }
+        ;
+        $("#catListGrid").children().each(function (i) {
+            if ((i + 1) % 3 == 0) {
+                $(this).addClass("catListGridItemNoMg");
+            }
+        }).hover(function () {
+            $(this).addClass("catListGridItemHov");
+        }, function () {
+            $(this).removeClass("catListGridItemHov");
+        });
+        //选择目的地、价格和商品类型时样式控制
+        $('#address').children().click(function (e) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $('#hid_address').val($(this).children().data('target'));
+            e.preventDefault();
+        });
+        $('#price').children().click(function (e) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $('#hid_price').val($(this).children().text());
+            e.preventDefault();
+        });
+        $('#type').children().click(function (e) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $('#hid_type').val($(this).children().text());
+            e.preventDefault();
+        });
+//        $('.btnSearch').click(function(e){
+//            alert('type:'+ $('#hid_type').val() + ',\naddress:'+$('#hid_address').val() + ',\nprice'+$('#hid_price').val());
+//            e.preventDefault();
+//        })
+    });
+</script>

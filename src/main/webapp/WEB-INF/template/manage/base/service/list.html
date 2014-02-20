@@ -1,0 +1,27 @@
+<div class="panel panel-default list">
+    <div class="panel-heading">
+        <!--# include("/manage/base/service/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(service in servicePage.list![]) { -->
+        <div class="item clearfix" data-id="${service.id}" data-production="${production!'line'}">
+            <ul class="list-inline pull-left" style="line-height: 30px">
+                <li class="name">${service.name}</li>
+            </ul>
+            <ul class="list-inline pull-right">
+                <li>
+                    <button type="button" class="btn btn-default btn-sm edit">编辑</button>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm remove">删除</button>
+                </li>
+            </ul>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer">
+        <!--# include("/manage/base/service/list.action.html") {} -->
+    </div>
+</div>

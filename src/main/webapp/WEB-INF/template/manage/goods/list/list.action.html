@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-xs-2" style="width: 118px">
+        <input type="checkbox"<!--# if(goodsPage.totalRow!0 == 0) {print(" disabled");} -->>
+        <button class="btn btn-default btn-sm disabled" style="margin-left: 16px">下架</button>
+    </div>
+    <div class="col-xs-4" style="width: 348px">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+        </div>
+    </div>
+    <div class="col-xs-6" style="width: 391px">
+        <ul class="pagination pagination-sm pull-right" style="margin-left: 20px;">
+            <!--# if(goodsPage.pageNumber!1 > 1) {-->
+            <li class="previous"><a href="${ctxPath}/manage/goods?production=${production!}&pageNumber=${goodsPage.pageNumber - 1}">上一页</a></li>
+            <!--# } else { -->
+            <li class="previous disabled"><span>上一页</span></li>
+            <!--# } -->
+            <!--# if(goodsPage.pageNumber < goodsPage.totalPage) { -->
+            <li class="next"><a href="${ctxPath}/manage/goods?production=${production!}&pageNumber=${goodsPage.pageNumber + 1}">下一页</a></li>
+            <!--# } else { -->
+            <li class="next disabled"><span>下一页</span></li>
+            <!--# } -->
+        </ul>
+        <div class="btn-group btn-group-sm pull-right">
+            <a href="${ctxPath}/manage/goods" class="btn ${decode(production!'', '', 'btn-success', 'btn-default')}">全部</a>
+            <a href="${ctxPath}/manage/goods?production=line" class="btn ${decode(production!'', 'line', 'btn-success', 'btn-default')}">线路</a>
+            <a href="${ctxPath}/manage/goods?production=hotel" class="btn ${decode(production!'', 'hotel', 'btn-success', 'btn-default')}">酒店</a>
+            <a href="${ctxPath}/manage/goods?production=car" class="btn ${decode(production!'', 'car', 'btn-success', 'btn-default')}">租车</a>
+            <a href="${ctxPath}/manage/goods?production=ticket" class="btn ${decode(production!'', 'ticket', 'btn-success', 'btn-default')}">门票</a>
+        </div>
+    </div>
+</div>

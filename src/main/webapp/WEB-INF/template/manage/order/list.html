@@ -1,0 +1,37 @@
+<div class="panel panel-default list">
+    <div class="panel-heading">
+        <!--# include("/manage/order/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(order in orderPage.list![]) { -->
+        <div class="item clearfix" data-id="${order.id}">
+            <div class="col-xs-1" style="margin-left: -15px; line-height: 90px; width: 42px;"><input type="checkbox"></div>
+            <div class="col-xs-2" style="width: 135px; padding-right: 0;"><img src="${ctxPath}/rest/image/${order.goodsObject.master!}" class="img-thumbnail" style="width: 120px; height: 90px"></div>
+            <div class="col-xs-6" style="width: 516px;">
+                <ul class="list-unstyled" style="line-height: 20px;">
+                    <li style="margin-bottom: 10px;">
+                        <!--# if(order.status == -1) { -->
+                        <span class="label label-default"><a href="${ctxPath}/manage/order?status=-1&member=${member.id!}">订单关闭</a></span>
+                        <!--# } -->
+                        <!--# if(order.status == 1) { -->
+                        <span class="label label-primary"><a href="${ctxPath}/manage/order?status=1&member=${member.id!}">等待付款</a></span>
+                        <!--# } -->
+                        <!--# if(order.status == 2) { -->
+                        <span class="label label-success"><a href="${ctxPath}/manage/order?status=2&member=${member.id!}">等待计调</a></span>
+                        <!--# } -->
+                    </li>
+                    <li>${order.goodsObject.name!}</li>
+                </ul>
+            </div>
+            <div class="col-xs-3" style="line-height: 90px; width: 149px; padding-right: 0; text-align: right">
+                <a href="${ctxPath}/manage/order/info/${order.id}" class="btn btn-default btn-sm">详情</a>
+            </div>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer">
+        <!--# include("/manage/order/list.action.html") {} -->
+    </div>
+</div>

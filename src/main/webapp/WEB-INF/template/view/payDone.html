@@ -1,0 +1,35 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <div class="orderCrumbs orderStep3"></div>
+    <div class="blank"></div>
+    <div class="payDoneWrap">
+        <ul>
+            <!--# if(order.payMethod == 1) { -->
+            <li>您选择的是普通预定，参加旅行时需支付剩余费用。</li>
+            <!--# } -->
+            <!--# if(order.payMethod == 2) { -->
+            <h3>您已成功支付<span>${order.payPrice / 100}</span>元定金！</h3>
+            <li>您选择的是定金预定，参加旅行时需支付剩余费用。</li>
+            <!--# } -->
+            <!--# if(order.payMethod == 4) { -->
+            <h3>您已成功支付<span>${order.payPrice / 100}</span>元！</h3>
+            <li>您选择的是全额支付。</li>
+            <!--# } -->
+            <li>云美网会在24小时内与你取得联系，与您确认出游信息。<a href="${ctxPath}/user/order/${order.id}">查看订单详情</a></li>
+        </ul>
+    </div>
+    <div class="blank"></div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="resource/js/plugin/slide.js"></script>
+<script src="resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".payDoneRecommend").slide({titCell: ".payDoneRecommendTitle ul", mainCell: ".payDoneRecommendScreen", effect: "leftLoop", autoPage: true, autoPlay: true});
+    });
+</script>
+</body>
+</html>

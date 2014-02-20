@@ -1,0 +1,38 @@
+<div class="panel panel-default list">
+    <div class="panel-heading">
+        <!--# include("/manage/ad/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(ad in adPage.list![]) { -->
+        <div class="item clearfix" data-id="${ad.id}">
+            <ul class="list-inline pull-left">
+                <li><img src="${ctxPath}/rest/image/${ad.image!}" class="img-thumbnail" style="width: 480px; height: 120px"></li>
+                <li>
+                    <button class="btn btn-default btn-sm position">${ad.position}</button>
+                </li>
+                <!--# if(strutil.startWith(ad.url, "/")) { -->
+                <li><a href="${ctxPath}${ad.url}" target="_blank" class="url">${ctxPath}${ad.url}</a></li>
+                <!--# } else { -->
+                <li><a href="${ad.url}" target="_blank">${ad.url}</a></li>
+                <!--# } -->
+            </ul>
+            <ul class="list-inline pull-right" style="line-height: 120px">
+                <li>
+                    <button type="button" class="btn btn-success btn-sm status">正常</button>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm edit">编辑</button>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm remove">删除</button>
+                </li>
+            </ul>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer">
+        <!--# include("/manage/ad/list.action.html") {} -->
+    </div>
+</div>

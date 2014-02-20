@@ -1,0 +1,133 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <div class="uhereUser"><a href="home.html">我的假日阳光</a></div>
+    <!--# include("/view/include/left.html"){}-->
+    <div class="userCenterMain fr">
+        <div class="userOrderListAll">
+            <div class="userCenterWhere clearfix"><a href="#" class="servicesSun">阳光客服</a><a href="#" class="orderRecycle">订单回收站</a> <span class="bold">交易管理</span> &gt; 我的订单</div>
+            <div class="userOrderListTitle clearfix">
+                <ul class="clearfix">
+                    <li class="hasArrow">全部订单</li>
+                </ul>
+                <ol>
+                    <input type="text" class="searchOrder" value="商品名称、商品编号、订单编号">
+                    <input type="button" value="查询" class="searchOrderBtn">
+                </ol>
+            </div>
+            <div class="userOrderListGrid">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th width="13%">订单编号</th>
+                        <th width="35%">订单商品</th>
+                        <th width="13%">订单金额</th>
+                        <th width="13%">下单时间</th>
+                        <th width="13%">订单状态</th>
+                        <th width="13%">操作</th>
+                    </tr>
+                    <!--# for(order in orderPage.list) { -->
+                    <tr>
+                        <td>${order.no}</td>
+                        <td class="title"><img width="160" height="50" src="${ctxPath}/rest/image/${order.goodsObject.master!}"/>${order.goodsObject.name}</td>
+                        <td><span class="fntRedBold">￥${(order.price!0 - order.discount!0) / 100}</span><br>
+                            <!--# if(order.payMethod == 1) { print("普通预定"); } -->
+                            <!--# if(order.payMethod == 2) { print("定金预定"); } -->
+                            <!--# if(order.payMethod == 4) { print("支付全款"); } -->
+                        </td>
+                        <td>${order.createTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+                        <!--# if (order.status == -1) {
+                            print('<td>已取消</td><td><a href="#">查看</a></td>');
+                        }
+                        if (order.status == 1) {
+                            print('<td class="holdon">等待付款</td><td><a href="' + ctxPath + '/pay/' + order.id + '" class="btnPay">付款</a><a href="#">查看</a><br><a href="' + ctxPath + '/order/close/' + order.id + '">取消订单</a></td>');
+                        }
+                        if (order.status == 2) {
+                            print('<td>已完成</td><td><a href="#">评价</a><span class="fntBlue">|</span><a href="#">查看</a><span class="fntBlue">|</span><a href="' + ctxPath + '/order/remove/' + order.id + '">删除</a><a href="' + ctxPath + '/detail/' + order.goodsObject.id + '" class="btnReBuy">还要买</a></td>');
+                        } -->
+                    </tr>
+                    <!--# } -->
+                </table>
+            </div>
+
+            <div class="pagesBottom pagesPadding20 clearmod">
+                <!--# if(orderPage.pageNumber == 1) { -->
+                <a class="disable">&lt;</a>
+                <!--# } else { -->
+                <a class="prev" href="javascript:void(0)">上一页</a>
+                <!--# } -->
+                <!--# var index = 1; -->
+                <!--# while(index < orderPage.totalPage) { -->
+                <!--# if(orderPage.pageNumber == index) { -->
+                <a class="current" href="javascript:void(0)">${index + 1}</a>
+                <!--# } else { -->
+                <a class="pNum" href="javascript:void(0)">${index + 1}</a>
+                <!--# } -->
+                <!--# index = index + 1; -->
+                <!--# } -->
+                <!--# if(orderPage.pageNumber == orderPage.totalPage || orderPage.totalPage == 0) { -->
+                <a class="disable">&gt;</a>
+                <!--# } else { -->
+                <a class="next" href="javascript:void(0)">下一页</a>
+                <!--# } -->
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <div class="listBottom clearfix">
+        <!--# if(goodPage.totalRow!0 > 0) { -->
+        <div class="uLikeWhat fr">
+            <h5>根据浏览猜你喜欢</h5>
+            <!--# if(goodPage.totalRow!0 > 5) { -->
+            <div class="uLikeWhatTitle">
+                <ul>
+                </ul>
+            </div>
+            <!--# } -->
+            <div class="uLikeWhatScreen">
+                <!--# for(goods in goodsPage.list![]) { -->
+                <!--# if(goods_index % 5 == 0) { -->
+                <ul class="clearfix">
+                    <!--# } -->
+                    <li><a href="#"><img class="proPic" src="${ctxPath}/image/goods.master!"/></a> <span><i>已有<b>${goods.sales!0}</b>人购买</i>￥${goods.minPrice}</span>
+
+                        <h3><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h3>
+                    </li>
+                    <!--# if(goods_index % 5 == 4 || (goods_index + 1) == goodsPage.totalRow!goodsPage.list.~size!0) { -->
+                </ul>
+                <!--# } -->
+                <!--# } -->
+            </div>
+        </div>
+        <!--# } -->
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var userCenterSiderNavLinks = $("div.userCenterSider").find("a");
+        $(userCenterSiderNavLinks).each(function (i) {
+            var links = $(userCenterSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(userCenterSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+        $(".uLikeWhat").slide({titCell: ".uLikeWhatTitle ul", mainCell: ".uLikeWhatScreen", effect: "leftLoop", autoPage: true, autoPlay: true});
+        var searchOrder = $("input.searchOrder");
+        $(searchOrder).focus(function () {
+            if ($(this).val() == this.defaultValue) {
+                $(this).val("").css("color", "#000")
+            }
+        }).blur(function () {
+            if ($(this).val() == '') {
+                $(this).val(this.defaultValue).css("color", "#000")
+            }
+        });
+    });
+</script>
+</body>
+</html>

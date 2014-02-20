@@ -1,0 +1,94 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">宝贝标题</label>
+
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="name" value="${goods.name!}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">标题下描述</label>
+
+            <div class="col-xs-10">
+                <textarea class="form-control" rows="3" name="caption">${goods.caption!}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">商品编号</label>
+
+            <div class="col-xs-4">
+                <input type="text" class="form-control" name="code" value="${goods.code!}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">销售时间</label>
+
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="startTime" value="${goods.startTime!}">
+                    <span class="input-group-addon">至</span>
+                    <input type="text" class="form-control" name="endTime" value="${goods.endTime!}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">最晚提前</label>
+
+            <div class="col-xs-4">
+                <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        </span>
+                    <input type="text" class="form-control" name="preSale" value="${goods.preSale!}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">消费类型</label>
+
+            <div class="col-xs-10">
+                <label class="radio-inline" style="padding-left: 0">
+                    <input class="square" type="radio" value="1" name="saleType"<!--# if(goods.saleType!1 != 2) { print(" checked"); } -->> 按次消费
+                </label>
+                <label class="radio-inline" style="padding-left: 0">
+                    <input class="square" type="radio" value="2" name="saleType"<!--# if(goods.saleType!1 == 2) { print(" checked"); } -->> 按天消费
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">产品提供商</label>
+
+            <div class="col-xs-10">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="name">${goods.supplier.name!"请选择"}</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <!--# for(supplier in supplierPage.list![]) { -->
+                        <li><a href="#" class="selectSupplier" data-id="${supplier.id}">${supplier.name}</a></li>
+                        <!--# } -->
+                    </ul>
+                    <input type="hidden" name="supplier" value="${goods.supplier.id!}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">服务保障</label>
+
+            <div class="col-xs-10 service">
+                <!--# for(service in servicePage.list![]) { -->
+                <span class="label label-default" data-id="${service.id}">${service.name}</span>
+                <!--# } -->
+                <!--# var serviceIds; -->
+                <!--# for(service in goods.services![]) {
+                    serviceIds = serviceIds + service.id + ",";
+                } -->
+                <input type="hidden" name="service" value="${serviceIds!}">
+            </div>
+        </div>
+    </div>
+</div>

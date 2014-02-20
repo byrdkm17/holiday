@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">支付类型</label>
+
+            <div class="col-xs-10">
+                <label class="radio-inline" style="padding-left: 0">
+                    <input class="square" type="radio" value="1" name="payType"<!--# if(goods.payType!1 != 2) { print(" checked"); } -->> 货币支付
+                </label>
+                <label class="radio-inline" style="padding-left: 0">
+                    <input class="square" type="radio" value="2" name="payType"<!--# if(goods.payType!1 == 2) { print(" checked"); } -->> 积分支付
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">设价类型</label>
+
+            <div class="col-xs-10">
+                <label class="radio-inline" style="padding-left: 0">
+                    <input class="square" type="radio" value="1" name="priceType"<!--# if(goods.priceType!1 != 2) { print(" checked"); } -->> 非时间变动
+                </label>
+                <label class="radio-inline" style="padding-left: 0">
+                    <input class="square" type="radio" value="2" name="priceType"<!--# if(goods.priceType!1 == 2) { print(" checked"); } -->> 时间变动
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">宝贝规格</label>
+
+            <div class="col-xs-10">
+                <div class="panel panel-default price" style="display: none">
+                    <div class="panel-heading" style="padding: 5px 10px;">
+                        <a href="#" class="editTitle">
+                            <span class="title">未命名</span>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                        <div class="input-group input-group-sm" style="display: none">
+                            <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary saveTitle" type="button">保存</button>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <!--# var index = 1; -->
+                        <!--# while(index < 9) { -->
+                        <div class="col-xs-3 item">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon"><input type="checkbox"></span>
+                                <input type="text" class="form-control" placeholder="${index} 号选项">
+                            </div>
+                        </div>
+                        <!--# index = index + 1; -->
+                        <!--# } -->
+                    </div>
+                    <div class="panel-footer text-center" style="padding: 5px 10px;">删除</div>
+                </div>
+
+                <div class="input-group priceSet hide" style="margin-bottom: 5px">
+                    <span class="input-group-btn" style="width: 507px"><button class="btn btn-success btn-block"></button></span>
+                    <button class="btn btn-info hide" style="width: 100px; border-radius: 0">设置</button>
+                    <input type="text" class="form-control text-center price" style="width: 100px" placeholder="价格">
+                    <input type="text" class="form-control text-center number" style="width: 100px" placeholder="限购数量">
+                </div>
+
+                <button type="button" class="btn btn-default addPrice" style="margin-bottom: 20px">新增规格</button>
+
+            </div>
+            <script type="text/plain" id="priceGroupPlain">${goods.priceGroup!}</script>
+            <script type="text/plain" id="priceSetPlain">${goods.priceSet!}</script>
+            <input type="hidden" name="priceGroup">
+            <input type="hidden" name="priceSet">
+            <input type="hidden" name="minPrice">
+        </div>
+    </div>
+</div>

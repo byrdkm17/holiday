@@ -1,0 +1,44 @@
+<div class="panel panel-default list">
+    <div class="panel-heading">
+        <!--# include("/manage/goods/list/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(goods in goodsPage.list![]) { -->
+        <div class="item clearfix" data-id="${goods.id}">
+            <div class="col-xs-1" style="margin-left: -15px; line-height: 90px; width: 42px;"><input type="checkbox"></div>
+            <div class="col-xs-2" style="width: 135px; padding-right: 0;"><img src="${ctxPath}/rest/image/${goods.master!}" class="img-thumbnail" style="width: 120px; height: 90px"></div>
+            <div class="col-xs-6" style="width: 516px;">
+                <ul class="list-unstyled" style="line-height: 20px;">
+                    <li style="margin-bottom: 10px;">
+                        <!--# if(goods.production == 'line') { -->
+                        <span class="label label-primary"><a href="${ctxPath}/manage/goods?production=line">线路</a></span>
+                        <!--# } -->
+                        <!--# if(goods.production == 'hotel') { -->
+                        <span class="label label-success"><a href="${ctxPath}/manage/goods?production=hotel">酒店</a></span>
+                        <!--# } -->
+                        <!--# if(goods.production == 'car') { -->
+                        <span class="label label-warning"><a href="${ctxPath}/manage/goods?production=car">租车</a></span>
+                        <!--# } -->
+                        <!--# if(goods.production == 'ticket') { -->
+                        <span class="label label-danger"><a href="${ctxPath}/manage/goods?production=ticket">门票</a></span>
+                        <!--# } -->
+                    </li>
+                    <li>${goods.name!}</li>
+                </ul>
+            </div>
+            <div class="col-xs-3" style="line-height: 90px; width: 149px; padding-right: 0;">
+                <button type="button" class="btn btn-default btn-sm hot<!--# if(goods.hot!0 == 1) {print(' btn-danger');} -->" data-hot="${decode(goods.hot!0, 0, 1, 0)}">
+                    <span class="glyphicon glyphicon-fire"></span>
+                </button>
+                <a href="${ctxPath}/manage/goods/edit/${goods.id}" class="btn btn-default btn-sm">编辑</a>
+                <button type="button" class="btn btn-default btn-sm store">下架</button>
+            </div>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer">
+        <!--# include("/manage/goods/list/list.action.html") {} -->
+    </div>
+</div>

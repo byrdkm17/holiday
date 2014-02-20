@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-xs-2" style="width: 42px">
+        <input type="checkbox"<!--# if(orderPage.totalRow!0 == 0) {print(" disabled");} -->>
+    </div>
+    <div class="col-xs-4" style="width: 478px">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+        </div>
+    </div>
+    <div class="col-xs-6" style="width: 418px">
+        <ul class="pagination pagination-sm pull-right" style="margin-left: 20px;">
+            <!--# if(orderPage.pageNumber!1 > 1) {-->
+            <li class="previous"><a href="${ctxPath}/manage/order?status=${status}&pageNumber=${goodsPage.pageNumber - 1}&member=${member.id!}">上一页</a></li>
+            <!--# } else { -->
+            <li class="previous disabled"><span>上一页</span></li>
+            <!--# } -->
+            <!--# if(orderPage.pageNumber < orderPage.totalPage) { -->
+            <li class="next"><a href="${ctxPath}/manage/order?status=${status}&pageNumber=${goodsPage.pageNumber + 1}&member=${member.id!}">下一页</a></li>
+            <!--# } else { -->
+            <li class="next disabled"><span>下一页</span></li>
+            <!--# } -->
+        </ul>
+        <div class="btn-group btn-group-sm pull-right">
+            <a href="${ctxPath}/manage/order?&member=${member.id!}" class="btn ${decode(status!0, 0, 'btn-success', 'btn-default')}">全部</a>
+            <a href="${ctxPath}/manage/order?status=1&member=${member.id!}" class="btn ${decode(status!0, 1, 'btn-success', 'btn-default')}">等待付款</a>
+            <a href="${ctxPath}/manage/order?status=2&member=${member.id!}" class="btn ${decode(status!0, 2, 'btn-success', 'btn-default')}">等待计调</a>
+            <a href="${ctxPath}/manage/order?status=-1&member=${member.id!}" class="btn ${decode(status!0, -1, 'btn-success', 'btn-default')}">交易关闭</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,469 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix" data-type="${goods.production}">
+<div class="uhere dib"><a href="/">首页</a> &gt; <a href="#">云南跟团游</a> &gt; ${goods.name!}</div>
+<div class="detailMain fl">
+<div class="goodsBaseInfo clearfix">
+    <h1>${goods.name!}</h1>
+
+    <div class="goodsIntro">${goods.caption!}</div>
+    <div class="goodsThumb fl">
+        <div class="bd">
+            <ul>
+                <!--# for(img in goods.pics![]) { -->
+                <li><a href="#" target="_blank"><img src="${ctxPath}/rest/image/${img.id!}"/></a></li>
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="hd">
+            <ul>
+                <!--# for(img in goods.pics![]) { -->
+                <li><a href="#" target="_blank"><img src="${ctxPath}/rest/image/${img.id!}"/></a></li>
+                <!--# } -->
+            </ul>
+            <ol>
+                <a class="more" href="#" target="_blank">查看全部</a>
+            </ol>
+        </div>
+    </div>
+    <div class="goodsInfo fl">
+        <div class="goodsInfoContent">
+            <div class="goodsPrice"><i class="symbol">￥</i><span class="price" data-price="${goods.minPrice!0 / 100}">${goods.minPrice!0 / 100}</span><i>元<span class="qi">起</span></i></div>
+            <div class="propertyChoice clearfix">
+                <!--# if(goods.saleType == 1) { -->
+                <h6>消费时间：</h6>
+                <ul class="clearfix">
+                    <li class="date">
+                        <input type="text" id="date" value="点击选择日历">
+                    </li>
+                </ul>
+                <!--# } -->
+                <!--# if(goods.saleType == 2) { -->
+                <h6>消费时间：</h6>
+                <ul class="clearfix" style="margin-top: 10px">
+                    <li>从</li>
+                    <li class="date">
+                        <input type="text" id="dateBegin" value="点击选择日历">
+                    </li>
+                    <li>到</li>
+                    <li class="date">
+                        <input type="text" id="dateEnd" value="点击选择日历">
+                    </li>
+                </ul>
+                <!--# } -->
+                <!--# for(priceGroup in goods.priceGroupObject) { -->
+                <h6>${priceGroup.name}：</h6>
+                <ul class="multi clearfix">
+                    <!--# for(sub in priceGroup.names) { -->
+                    <li data-title="${sub}">${sub}</li>
+                    <!--# } -->
+                </ul>
+                <!--# } -->
+                <h6>购买数量：</h6>
+                <ul class="multi clearfix">
+                    <span><i class="reduce">-</i><i class="numberInput"><input type="text" class="number" value="1"></i><i class="plus">+</i></span>
+                </ul>
+                <script type="text/plain" id="priceSet">${goods.priceSet}</script>
+            </div>
+            <div class="goodsHandle">
+                <div class="btnGoodsSales clearfix">
+                    <ul>
+                        <li style="text-align: center">
+                            <input type="button" class="btnGotoCart" value="立即购买">
+                        </li>
+                    </ul>
+                </div>
+                <div class="goodsHandleIntro clearfix">
+                    <ul class="fl">
+                        <span class="saliedNumber">${goods.sales!0}</span>人已购买<br>
+                        <span class="saliedNumber">${commonPage.totalRow!0}</span>人已评论
+                    </ul>
+                    <ul class="last fr">
+                        <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0}</span>)</li>
+                        <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0}</span>)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="goodsInfoPlus clearfix">
+            <h3>本产品由${goods.supplier.name!}为您服务</h3>
+            <ul class="clearfix">
+                <!--# for(service in goods.services![]) { -->
+                <li class="ico1">${service.name}</li>
+                <!--# } -->
+            </ul>
+            <dl class="clearfix">
+                <dt>支付方式：</dt>
+                <!--# for(supper in goods.paySupper![]) { -->
+                <!--# if(supper == 1) { -->
+                <dd class="ico1">支付宝</dd>
+                <!--# } -->
+                <!--# if(supper == 2) { -->
+                <dd class="ico2">在线支付</dd>
+                <!--# } -->
+                <!--# if(supper == 4) { -->
+                <dd class="ico3">信用卡电话支付</dd>
+                <!--# } -->
+                <!--# } -->
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="blank"></div>
+<!--
+<div class="groupGoods clearfix">
+    <h3>一起预定更优惠！</h3>
+    <a class="closeGroupGoods" href="javascript:void(0)" id="closeGroupGoods"></a>
+    <ul class="clearfix fl">
+        <li><a href="#"><img class="proPic" src="${ctxPath}/resource/images/demo/236188.jpg"/></a> <span
+                class="price"><i>已有<b>10</b>人购买</i>¥899</span>
+
+            <h2><a href="#" target="_blank">北京至韩国济州岛4晚5天度假...</a></h2>
+        </li>
+        <li><a href="#"><img class="proPic" src="${ctxPath}/resource/images/demo/236188.jpg"/></a> <span
+                class="price"><i>已有<b>10</b>人购买</i>¥899</span>
+
+            <h2><a href="#" target="_blank">北京至韩国济州岛4晚5天度假...</a></h2>
+        </li>
+        <li><a href="#"><img class="proPic" src="${ctxPath}/resource/images/demo/236188.jpg"/></a> <span
+                class="price"><i>已有<b>10</b>人购买</i>¥899</span>
+
+            <h2><a href="#" target="_blank">北京至韩国济州岛4晚5天度假...</a></h2>
+        </li>
+    </ul>
+    <ol class="fl">
+        <span class="fntBold">套餐价格：<i class="fntRed">￥1200.00</i></span> <span>节省:<i>￥240.00</i></span> <a href="#"
+                                                                                                           target="_blank">查看套餐</a>
+    </ol>
+</div>
+-->
+<div class="blank"></div>
+<div class="featureIntro">
+    <h3>必选理由</h3>
+    ${goods.feature!}
+</div>
+<a id="proDetailInfoMainMd"></a>
+
+<div class="blank"></div>
+<div class="proDetailInfoTitle clearfix">
+    <div class="proDetailInfoTitleMain fl">
+        <ul class="clearfix">
+            <li class="on"><a href="#proDetailInfoMainMd">产品详情</a></li>
+            <li><a href="#commentsGoodsPages2Md">访者咨询</a></li>
+        </ul>
+    </div>
+</div>
+<div class="proDetailInfoMain">
+    <div class="proDetailInfoMainTable">
+        <ul class="clearfix">
+            <!--# for(arg in goods.args![]) { -->
+            <li>
+                ${arg.father.name}：<span>${arg.name}</span>
+            </li>
+            <!--# } -->
+        </ul>
+    </div>
+    <div class="note" style="padding: 10px">${goods.note}</div>
+</div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="commentsGoodsPages">
+    <div class="commentsGoodsPagesTitle">访者咨询</div>
+    <div class="commentsGoodsMain">
+        <!--# for(comment in commentPage.list![]) { -->
+        <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/rest/image/"/>
+            <ul class="userInfo clearfix">
+                <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
+                <h5>访客</h5>
+            </ul>
+            <div class="blank"></div>
+            <ul class="userComments"><i></i>${comment.content}</ul>
+            <div class="blank"></div>
+            <!--# if(comment.reply != null) { -->
+            <h6 class="userCommentsReply">客服回复</h6>
+            <ul class="userCommentsReply"><i></i>${comment.reply.content!}</ul>
+            <!--# } -->
+        </div>
+        <!--# } -->
+
+        <div class="pagesBottom pagesNomal">
+            <!--# if(commentPage.pageNumber == 1) { -->
+            <a class="disable">&lt;</a>
+            <!--# } else { -->
+            <a class="prev" href="javascript:void(0)">上一页</a>
+            <!--# } -->
+            <!--# var index = 1; -->
+            <!--# while(index < commentPage.totalPage) { -->
+            <!--# if(commentPage.pageNumber == index) { -->
+            <a class="current" href="javascript:void(0)">${index}</a>
+            <!--# } else { -->
+            <a class="pNum" href="javascript:void(0)">${index}</a>
+            <!--# } -->
+            <!--# index = index + 1; -->
+            <!--# } -->
+            <!--# if(commentPage.pageNumber == commentPage.totalPage || commentPage.totalPage == 0) { -->
+            <a class="disable">&gt;</a>
+            <!--# } else { -->
+            <a class="next" href="javascript:void(0)">下一页</a>
+            <!--# } -->
+        </div>
+    </div>
+</div>
+<div class="commentsPostWrap">
+    <h6>发表咨询</h6>
+    <ul>
+        <li>联系电话
+            <input type="text" class="commentPhone">
+            （非必填）
+        </li>
+        <li>咨询内容</li>
+        <li>
+            <textarea></textarea>
+        </li>
+        <li>
+            <input type="button" class="btnSubmit" value="提交">
+        </li>
+    </ul>
+</div>
+</div>
+<div class="detailSider fr">
+    <div class="banner218240">
+        <a href="#" target="_blank">
+            <img src="${ctxPath}/resource/images/demo/banner218240.jpg" width="216" height="238" alt=""/>
+        </a>
+    </div>
+    <div class="blank"></div>
+    <div class="detailSiderItem">
+        <h3>同类线路排行</h3>
+
+        <div class="lineSimilarRank">
+            <!--# for(hotGoods in hotGoodsPage.list![]) { -->
+            <!--# if(hotGoods_index < 5) { -->
+            <ul class="clearfix">
+                <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
+
+                <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
+                <li>￥${hotGoods.minPrice}</li>
+                <i>${hotGoods_index + 1}</i>
+            </ul>
+            <!--# } -->
+            <!--# } -->
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="detailSiderItem">
+        <h3>同类线路推荐</h3>
+
+        <div class="lineSimilarRec">
+            <!--# for(hotGoods in hotGoodsPage.list![]) { -->
+            <!--# if(hotGoods_index > 4) { -->
+            <ul class="clearfix">
+                <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
+
+                <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
+                <li><span>原价:<i class="delLine">￥${hotGoods.minPrice / 100}</i></span><span>现价:<i class="fntRed">￥${(hotGoods.minPrice - hotGoods.discount) / 100}</i></span></li>
+                <li class="last"><span>折扣:${(hotGoods.discount / hotGoods.minPrice) / 10}折</span><span><i class="fntRed"><b>${hotGoods.sales!0}</b></i>人已购买</span></li>
+                <a class="btnView" href="${ctxPath}/detail/${hotGoods.id}" target="_blank">去看看</a>
+            </ul>
+            <!--# } -->
+            <!--# } -->
+        </div>
+    </div>
+</div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<script src="${ctxPath}/resource/js/juimin.js"></script>
+<script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".goodsThumb").slide({mainCell: ".bd ul", effect: "leftLoop", delayTime: 500});
+        var dateInput = $("#dateBegin,#dateEnd");
+        $(dateInput).focus(function () {
+            if ($(this).val() == this.defaultValue) {
+                $(this).val("").css("color", "#333")
+            }
+        }).blur(function () {
+            if ($(this).val() == '') {
+                $(this).val(this.defaultValue).css("color", "#D8D8D8")
+            }
+        });
+        $("#dateBegin").datepicker({
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                $("#dateEnd").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#dateEnd").datepicker({
+            defaultDate: "+3d",
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                $("#dateBegin").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+        var groupGoodsItem = $(".groupGoods>ul>li");
+        $(groupGoodsItem).not(":first").append("<i class='icoPlus'></i>");
+        $(groupGoodsItem).first().addClass("first");
+        $("#closeGroupGoods").click(function () {
+            $(this).toggleClass("openGroupGoods").nextAll().toggle();
+
+        });
+        $("#progressbarItem1").progressbar({
+            value: 94
+        });
+        $("#progressbarItem2").progressbar({
+            value: 6
+        });
+        $("#progressbarItem3").progressbar({
+            value: 0
+        });
+        var goodsBaseInfoHt = $(".goodsBaseInfo").height(),
+                groupGoodsHt = $(".groupGoods").height(),
+                featureIntroHt = $(".featureIntro").height(),
+                posHeight = goodsBaseInfoHt + groupGoodsHt + featureIntroHt + 266;
+        $.fn.smartFloat = function () {
+            var position = function (element) {
+                var top = element.position().top, pos = element.css("position");
+                $(window).scroll(function () {
+                    var scrolls = $(this).scrollTop();
+                    if (scrolls > posHeight) { //如果滚动到页面超出了当前元素element的相对页面顶部的高度
+                        if (window.XMLHttpRequest) { //如果不是ie6
+                            element.css({
+                                position: "fixed",
+                                top: 0
+                            });
+                        } else { //如果是ie6
+                            element.css({
+                                top: scrolls
+                            });
+                        }
+                    } else {
+                        element.css({
+                            position: pos,
+                            top: top
+                        });
+                    }
+                });
+            };
+            return $(this).each(function () {
+                position($(this));
+            });
+        };
+        $(".proDetailInfoTitleMain").find("li").click(function () {
+            $(this).addClass("on").siblings().removeClass("on")
+        });
+    });
+</script>
+<script>
+    $(function () {
+        var priceSet = $('#priceSet').html();
+        priceSet = JSON.parse(priceSet);
+
+        var ps;
+
+        var countPrice = function () {
+            var input = $('input.number');
+            var title = [];
+            var priceBox = $('.goodsPrice .price');
+            $('[data-title].selected').each(function () {
+                title.push($(this).data('title'));
+                var value = findMaxNum(title.join(','));
+                if (value < +input.val()) {
+                    input.val(value);
+                }
+            });
+            if (+input.val() == 0) {
+                ps = null;
+                priceBox.text(priceBox.data('price'));
+                $('.qi').show();
+            } else {
+                priceBox.text(findPrice(title.join(',')) * +input.val());
+                $('.qi').hide();
+            }
+        };
+
+        var findMaxNum = function (title) {
+            var max = 0;
+            $.each(priceSet, function () {
+                if (this.title == title) {
+                    max = +this.num;
+                }
+            });
+            return max;
+        };
+
+        var findPrice = function (title) {
+            var price = 0;
+            $.each(priceSet, function () {
+                if (this.title == title) {
+                    ps = this;
+                    price = +this.price / 100;
+                }
+            });
+            return price;
+        };
+
+        $('.multi .plus').click(function () {
+            var input = $('input.number');
+            var value = +input.val();
+            input.val(value + 1);
+            countPrice();
+        });
+        $('.multi .reduce').click(function () {
+            var input = $('input.number');
+            var value = +input.val();
+            input.val(value - 1 < 0 ? 0 : (value - 1));
+            countPrice();
+        });
+
+        $('.multi li').click(function () {
+            $(this).closest('ul').find('li').removeClass('selected');
+            $(this).toggleClass('selected');
+            countPrice();
+        });
+
+        $('.btnGotoCart').click(function () {
+            if (ps) {
+                $.post('${ctxPath}/rest/order/save', {
+                    goodsID: '${goods.id}',
+                    priceSet: JSON.stringify(ps),
+                    number: +$('.number').val()
+                }, function (res) {
+                    location.href = '${ctxPath}/order/' + res.order.id;
+                });
+            }
+        });
+
+        $('.btnSubmit').click(function () {
+            var message = $('textarea').val();
+            if (message) {
+                $.post('${ctxPath}/rest/comment/save', {
+                    goods: '${goods.id}',
+                    message: message,
+                    phone: $('.commentPhone').val()
+                }, function () {
+                    location.reload();
+                });
+            }
+        });
+
+        $('a.collect').click(function () {
+            $.post('${ctxPath}/rest/goods/collect/${goods.id}', {
+                collect: 1
+            }, function () {
+                location.reload();
+            });
+        });
+        $('a.like').click(function () {
+            $.post('${ctxPath}/rest/goods/like/${goods.id}', {
+                like: 1
+            }, function () {
+                location.reload();
+            });
+        });
+    });
+</script>
+</body>
+</html>

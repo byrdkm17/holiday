@@ -1,0 +1,26 @@
+<div class="panel panel-default list">
+    <div class="panel-heading">
+        <!--# include("/manage/goods/store/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(goods in goodsPage.list![]) { -->
+        <div class="item clearfix" data-id="${goods.id}">
+            <ul class="list-inline pull-left">
+                <li><input type="checkbox"></li>
+                <li><img src="${ctxPath}/rest/image/${goods.master!}" class="img-thumbnail" style="width: 120px; height: 90px"></li>
+                <li>${goods.name!}</li>
+            </ul>
+            <ul class="list-inline pull-right" style="line-height: 90px">
+                <li>
+                    <button type="button" class="btn btn-default btn-sm store">上架</button>
+                </li>
+            </ul>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer">
+        <!--# include("/manage/goods/store/list.action.html") {} -->
+    </div>
+</div>
