@@ -1,6 +1,7 @@
 package cc.aliza.production.holiday.controller.view;
 
 import cc.aliza.production.holiday.dao.OrderDao;
+import cc.aliza.production.holiday.dao.SettingDao;
 import cc.aliza.production.holiday.entity.Order;
 import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
 import cc.aliza.production.holiday.interceptor.view.LoginInterceptor;
@@ -38,6 +39,9 @@ public class OrderController extends Controller {
         if (order.getStatus() == 2) {
             redirect("/user/order");
         }
+
+        setAttr("allAmountDiscount", SettingDao.dao.findOne("key", "pay.allAmountDiscount"));
+        setAttr("preAmountDiscount", SettingDao.dao.findOne("key", "pay.preAmountDiscount"));
     }
 
     public void close() {

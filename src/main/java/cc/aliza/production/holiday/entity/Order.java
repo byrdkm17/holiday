@@ -32,6 +32,9 @@ public class Order extends SimpleEntity {
     // 数量
     private Integer number;
 
+    // 单价
+    private Integer amount;
+
     // 下单用户
     @Ref
     private Member member;
@@ -177,6 +180,14 @@ public class Order extends SimpleEntity {
 
     public void setGoods(Goods goods) {
         this.goods = goods;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public Integer getStatus() {

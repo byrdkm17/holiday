@@ -1,7 +1,6 @@
 package cc.aliza.production.holiday.interceptor.view;
 
-import cc.aliza.production.holiday.dao.LabelDao;
-import cc.aliza.production.holiday.dao.MemberDao;
+import cc.aliza.production.holiday.dao.*;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.core.ActionInvocation;
 import com.jfinal.core.Controller;
@@ -34,5 +33,12 @@ public class DataInterceptor implements Interceptor {
         params.clear();
         params.put("other", true);
         controller.setAttr("otherLabelPage", LabelDao.dao.findBy(params));
+
+        controller.setAttr("ui400", SettingDao.dao.findOne("key", "ui.400"));
+
+        controller.setAttr("helps", HelpDao.dao.findAll());
+
+        params.clear();
+        controller.setAttr("targetPage", TargetDao.dao.findBy(params));
     }
 }

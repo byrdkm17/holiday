@@ -102,7 +102,7 @@
     <div class="hotLineWrapItem">
         <a href="${ctxPath}/detail/${goods.id}"><img class="proPic autoZoom" src="${ctxPath}/rest/image/${goods.master!}"/></a>
 
-        <h2><i>${!(goods.labels[0].name)}</i><a href="${ctxPath}/detail/${goods.id}" target="_blank" style="height: 20px; width: 216px" title="${goods.name}">${goods.name}</a></h2>
+        <h2><i>${!(goods.labels[0].name)}</i><a href="${ctxPath}/detail/${goods.id}" target="_blank" style="height: 20px; width: 190px;" title="${goods.name}">${goods.name}</a></h2>
         <ul class="clearfix">
             <h6>￥${(goods.minPrice!0 - goods.discount!0) / 100}<i>起</i></h6>
             <li>推荐指数：<img src="${ctxPath}/resource/images/starRed5.gif"/></li>
@@ -112,7 +112,20 @@
 </div>
 <div class="hotelWrap clearfix">
     <div class="floorTitle clearfix">
-        <div class="floorTitleRtLinks fr"><a href="#">五星/豪华</a>|<a href="#">四星/高档</a>|<a href="#">三星/舒适</a>|<a href="#">二星/标准</a> <a href="#">更多&gt;&gt;</a></div>
+        <div class="floorTitleRtLinks fr">
+            <!--# var totalHotHotelLabel = 0; -->
+            <!--# for(label in hotHotelLabelPage.list![]) { -->
+            <!--# for(child in label.children![]) { -->
+            <!--# if(totalHotHotelLabel < 4) { -->
+            <a href="${ctxPath}/hotel?label=${child.name}">${child.name}</a>
+            <!--# totalHotHotelLabel = totalHotHotelLabel + 1; -->
+            <!--# } -->
+            <!--# } -->
+            <!--# } -->
+            <!--# if(totalHotHotelLabel!0 > 0) { -->
+            <a href="${ctxPath}/hotel">更多&gt;&gt;</a>
+            <!--# } -->
+        </div>
         <h3 class="f3">特价酒店推荐</h3>
     </div>
     <!--# if(hotHotelGoodsPage.list.~size!0 > 4) { -->
@@ -127,7 +140,6 @@
                 <a href="${ctxPath}/detail/${goods.id}" target="_blank"><img class="miniPic autoZoom" src="${ctxPath}/rest/image/${goods.master!}" width="60" height="40"/></a>
 
                 <h2><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
-                <li>四星级 <img src="${ctxPath}/resource/images/starBlue4.gif"/></li>
             </ol>
         </div>
         <!--# } -->
@@ -141,7 +153,7 @@
             <!--# if(goods_index < 4) { -->
             <li><a href="${ctxPath}/detail/${goods.id}" target="_blank"><img src="${ctxPath}/rest/image/${goods.master!}" class="autoZoom"/></a><span></span>
 
-                <h2><i>￥${(goods.minPrice!0 - goods.discount!0) / 100}<font>起</font></i><a href="#" target="_blank">${goods.name}</a></h2>
+                <h2><i>￥${(goods.minPrice!0 - goods.discount!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
             </li>
             <!--# } -->
             <!--# } -->
@@ -157,7 +169,21 @@
 <div class="blank"></div>
 <div class="ticketWrap clearfix">
     <div class="floorTitle clearfix">
-        <div class="floorTitleRtLinks fr"><a href="#">热门景区门票排行</a>|<a href="#">束河古镇</a>|<a href="#">丽江古城</a>|<a href="#">世博园</a>|<a href="#">崇明寺三塔</a>|<a href="#">石林风景区</a> <a href="#">更多&gt;&gt;</a></div>
+        <div class="floorTitleRtLinks fr">
+            <a href="${ctxPath}/ticket">热门景区门票排行</a>
+            <!--# var totalHotTicketLabel = 0; -->
+            <!--# for(label in hotTicketLabelPage.list![]) { -->
+            <!--# for(child in label.children![]) { -->
+            <!--# if(totalHotTicketLabel < 4) { -->
+            <a href="${ctxPath}/ticket?label=${child.name}">${child.name}</a>
+            <!--# totalHotTicketLabel = totalHotTicketLabel + 1; -->
+            <!--# } -->
+            <!--# } -->
+            <!--# } -->
+            <!--# if(totalHotTicketLabel!0 > 0) { -->
+            <a href="${ctxPath}/ticket">更多&gt;&gt;</a>
+            <!--# } -->
+        </div>
         <h3 class="f4">景区门票推荐</h3>
     </div>
     <!--# if(hotTicketGoodsPage.list.~size!0 > 0) { -->
@@ -197,7 +223,20 @@
 </div>
 <div class="carWrap clearfix">
     <div class="floorTitle clearfix">
-        <div class="floorTitleRtLinks fr"><a href="#">越野车</a>|<a href="#">轿车</a>|<a href="#">跑车</a>|<a href="#">商务车</a>|<a href="#">大客车</a> <a href="#">更多&gt;&gt;</a></div>
+        <div class="floorTitleRtLinks fr">
+            <!--# var totalHotCarLabel = 0; -->
+            <!--# for(label in hotCarLabelPage.list![]) { -->
+            <!--# for(child in label.children![]) { -->
+            <!--# if(totalHotCarLabel < 5) { -->
+            <a href="${ctxPath}/car?label=${child.name}">${child.name}</a>
+            <!--# totalHotCarLabel = totalHotCarLabel + 1; -->
+            <!--# } -->
+            <!--# } -->
+            <!--# } -->
+            <!--# if(totalHotCarLabel!0 > 0) { -->
+            <a href="${ctxPath}/car">更多&gt;&gt;</a>
+            <!--# } -->
+        </div>
         <h3 class="f5">特价租车</h3>
     </div>
     <!--# if(hotCarGoodsPage.list.~size!0 > 4) { -->

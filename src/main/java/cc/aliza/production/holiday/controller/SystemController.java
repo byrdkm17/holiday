@@ -5,6 +5,7 @@ import cc.aliza.production.holiday.dao.*;
 import cc.aliza.production.holiday.entity.Arg;
 import cc.aliza.production.holiday.entity.Group;
 import cc.aliza.production.holiday.entity.Member;
+import cc.aliza.production.holiday.entity.Setting;
 import com.jfinal.core.Controller;
 import com.jfinal.log.Logger;
 
@@ -63,6 +64,29 @@ public class SystemController extends Controller {
             MemberDao.dao.save(member);
 
             logger.info("创建初始用户 ... [完成]");
+
+            logger.info("创建初始配置 ... [开始]");
+            SettingDao.dao.drop();
+
+            Setting setting = new Setting();
+            setting.setName("全额支付折扣");
+            setting.setKey("pay.allAmountDiscount");
+            setting.setValue("0.07");
+            SettingDao.dao.save(setting);
+
+            setting = new Setting();
+            setting.setName("部分支付折扣");
+            setting.setKey("pay.preAmountDiscount");
+            setting.setValue("0.05");
+            SettingDao.dao.save(setting);
+
+            setting = new Setting();
+            setting.setName("400电话");
+            setting.setKey("ui.400");
+            setting.setValue("400-848-8099");
+            SettingDao.dao.save(setting);
+
+            logger.info("创建初始配置 ... [完成]");
 
             logger.info("创建初始属性 ... [开始]");
             ArgDao.dao.drop();

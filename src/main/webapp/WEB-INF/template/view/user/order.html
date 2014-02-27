@@ -53,21 +53,21 @@
                 <!--# if(orderPage.pageNumber == 1) { -->
                 <a class="disable">&lt;</a>
                 <!--# } else { -->
-                <a class="prev" href="javascript:void(0)">上一页</a>
+                <a class="prev" href="${ctxPath}/user/order?pageNumber=${orderPage.pageNumber - 1}">上一页</a>
                 <!--# } -->
                 <!--# var index = 1; -->
                 <!--# while(index < orderPage.totalPage) { -->
                 <!--# if(orderPage.pageNumber == index) { -->
-                <a class="current" href="javascript:void(0)">${index + 1}</a>
+                <a class="current" href="javascript:void(0)">${index}</a>
                 <!--# } else { -->
-                <a class="pNum" href="javascript:void(0)">${index + 1}</a>
+                <a class="pNum" href="javascript:void(0)">${index}</a>
                 <!--# } -->
                 <!--# index = index + 1; -->
                 <!--# } -->
                 <!--# if(orderPage.pageNumber == orderPage.totalPage || orderPage.totalPage == 0) { -->
                 <a class="disable">&gt;</a>
                 <!--# } else { -->
-                <a class="next" href="javascript:void(0)">下一页</a>
+                <a class="next" href="${ctxPath}/user/order?pageNumber=${orderPage.pageNumber + 1}">下一页</a>
                 <!--# } -->
             </div>
         </div>

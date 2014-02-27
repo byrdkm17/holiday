@@ -75,6 +75,9 @@ public class GoodsController extends Controller {
         setAttr("argPage", ArgDao.dao.findBy(params));
         setAttr("labelPage", LabelDao.dao.findBy(params));
 
+        params.clear();
+        setAttr("targetPage", TargetDao.dao.findBy(params));
+
         render("/manage/goods/add/index.html");
     }
 
@@ -179,6 +182,15 @@ public class GoodsController extends Controller {
             labelList.add(a);
         }
         goods.setLabels(labelList);
+
+        String target = getPara("target");
+        String[] targets = StringUtils.split(target, ",");
+        List<Target> targetList = new ArrayList<Target>();
+        for (String id : targets) {
+            Target a = TargetDao.dao.findOne(id);
+            targetList.add(a);
+        }
+        goods.setTarget(targetList);
 
         String code = getPara("code");
         goods.setCode(code);

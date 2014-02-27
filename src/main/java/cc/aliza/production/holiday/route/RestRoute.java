@@ -1,5 +1,6 @@
 package cc.aliza.production.holiday.route;
 
+import cc.aliza.production.holiday.controller.rest.CommentRest;
 import cc.aliza.production.holiday.controller.rest.ImageRest;
 import cc.aliza.production.holiday.controller.rest.OrderRest;
 import com.jfinal.config.Routes;
@@ -13,5 +14,7 @@ public class RestRoute extends Routes {
         add("/rest/image", ImageRest.class);
 
         add("/rest/order", OrderRest.class);
+
+        add("/rest/comment", CommentRest.class);
     }
 }

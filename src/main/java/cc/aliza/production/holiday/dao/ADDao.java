@@ -41,8 +41,8 @@ public class ADDao extends BuguDao<AD> {
 
         int totalRow = (int) query.count();
         int totalPage = (int) Math.ceil((double) totalRow / 10);
-        List<AD> argList = query.results();
+        List<AD> adList = query.results();
 
-        return new Page<AD>(argList, pageNumber, pageSize, totalPage, totalRow);
+        return new Page<AD>(adList, pageNumber, pageSize, totalPage, totalRow);
     }
 }

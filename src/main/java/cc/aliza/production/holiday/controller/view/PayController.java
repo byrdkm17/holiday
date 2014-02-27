@@ -28,6 +28,7 @@ public class PayController extends Controller {
                 return;
             }
         }
+
         setAttr("order", order);
         render("/view/pay.html");
     }

@@ -21,8 +21,13 @@ public class LineController extends Controller {
         params.put("production", "line");
         setAttr("labelPage", LabelDao.dao.findBy(params));
 
+
+        params.put("label", getPara("label"));
+        params.put("target", getPara("target"));
+        setAttr("queryLabel", getPara("label"));
+        setAttr("queryTarget", getPara("target"));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
-        setAttr("count", GoodsDao.dao.count());
+        setAttr("count", GoodsDao.dao.query().is("status", 1).is("production", "line").count());
         render("/view/line/index.html");
     }
 

@@ -18,8 +18,12 @@ public class ManageRoute extends Routes {
         add("/manage/base/service", ServiceController.class);
         add("/manage/base/arg", ArgController.class);
         add("/manage/base/label", LabelController.class);
+        add("/manage/base/target", TargetController.class);
 
         add("/manage/ad", ADController.class);
+        add("/manage/system/manager", ManagerController.class);
+        add("/manage/system/setting", SettingController.class);
+        add("/manage/system/help", HelpController.class);
 
         add("/manage/auth", AuthController.class);
         add("/manage", HomeController.class);

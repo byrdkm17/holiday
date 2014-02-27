@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>假日风光 - 首页</title>
+    <title>假日风光</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <link href="${ctxPath}/resource/css/main.css" rel="stylesheet" type="text/css">
@@ -24,7 +24,7 @@
             <li class="item1">关注我们：</li>
             <li class="item2" id="btnOpenWx"><a href="javascript:void(0)">加微信</a>
                 <ul>
-                    <li><img src="${ctxPath}/resource/images/erw.gif" width="128" height="128" alt="假日风光微信二维码"/></li>
+                    <li><img src="${ctxPath}/resource/images/erwSml.png" width="128" height="128" alt="假日风光微信二维码"/></li>
                     <h6>扫描关注我们</h6>
                 </ul>
             </li>
@@ -34,7 +34,7 @@
     <div class="topBarMid fl">
         <ul>
             <li class="item1">热线电话</li>
-            <li class="item2">400-848-8099</li>
+            <li class="item2">${ui400.value!}</li>
         </ul>
     </div>
     <div class="topBarRight fr">
@@ -93,7 +93,11 @@
             <div class="siderCatItem">
                 <h3>云南跟团游</h3>
                 <ol>
-                    <a href="#">按天数</a> <a href="#">按价格</a> <a href="#">按出发地址</a>
+                    <!--# for(lineLabel in lineLabelPage.list![]) { -->
+                    <!--# if(lineLabel_index < 3) { -->
+                    <a href="${ctxPath}/line">${lineLabel.name!}</a>
+                    <!--# } -->
+                    <!--# } -->
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
@@ -113,7 +117,7 @@
                                 <h4>${lineLabel.name}</h4>
                                 <li class="allCat"><a href="#">全部</a></li>
                                 <!--# for(child in lineLabel.children![]) { -->
-                                <li><a href="#">${child.name}</a></li>
+                                <li><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
                                 <!--# } -->
                             </ul>
                             <!--# showLine = showLine + 1; -->
@@ -146,7 +150,7 @@
             <div class="siderCatItem">
                 <h3>云南自由行</h3>
                 <ol>
-                    <a href="#">酒店</a> <a href="#">客栈</a> <a href="#">门票</a> <a href="#">租车</a>
+                    <a href="${ctxPath}/hotel">酒店</a> <a href="${ctxPath}/hotel">客栈</a> <a href="${ctxPath}/ticket">门票</a> <a href="${ctxPath}/car">租车</a>
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
@@ -161,12 +165,12 @@
                         <div class="catListWrap">
                             <!--# var showOther = 0; -->
                             <!--# for(otherLabel in otherLabelPage.list![]) { -->
-                            <!--# if(otherLabel.children.~size!0 > 0 && showLine < 6) { -->
+                            <!--# if(otherLabel.children.~size!0 > 0 && showOther < 6) { -->
                             <ul class="clearfix">
-                                <h4>${lineLabel.name}</h4>
+                                <h4>${otherLabel.name}</h4>
                                 <li class="allCat"><a href="#">全部</a></li>
                                 <!--# for(child in otherLabel.children![]) { -->
-                                <li><a href="#">${child.name}</a></li>
+                                <li><a href="${ctxPath}/${child.production}/${child.name}">${child.name}</a></li>
                                 <!--# } -->
                             </ul>
                             <!--# showOther = showOther + 1; -->
@@ -199,7 +203,9 @@
             <div class="siderCatItem">
                 <h3>旅行目的地</h3>
                 <ol>
-                    <a href="#">丽江</a> <a href="#">大理</a> <a href="#">香格里拉</a> <a href="#">版纳</a>
+                    <!--# for(target in targetPage.list![]) { -->
+                    <a href="${ctxPath}/line?target=${target.name}">${target.name}</a>
+                    <!--# } -->
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
@@ -211,7 +217,21 @@
                                 <li><a href="#">双“蛋”优惠行动</a></li>
                             </ul>
                         </div>
-                        <div class="catListWrap"></div>
+                        <div class="catListWrap">
+                            <!--# var showTarget = 0; -->
+                            <!--# for(target in targetPage.list![]) { -->
+                            <!--# if(target.children.~size!0 > 0 && showTarget < 6) { -->
+                            <ul class="clearfix">
+                                <h4>${target.name}</h4>
+                                <li class="allCat"><a href="#">全部</a></li>
+                                <!--# for(child in target.children![]) { -->
+                                <li><a href="${ctxPath}/line?target=${child.name}">${child.name}</a></li>
+                                <!--# } -->
+                            </ul>
+                            <!--# showTarget = showTarget + 1; -->
+                            <!--# } -->
+                            <!--# } -->
+                        </div>
                     </div>
                     <div class="siderCatItemMainRight fr">
                         <div class="specialRecommend">

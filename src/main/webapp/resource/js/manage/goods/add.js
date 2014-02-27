@@ -16,6 +16,114 @@ define(function (require, exports) {
 
     var base = $('body').data('base');
 
+    $('.reduce').click(function () {
+        var value = +$('[name="preSale"]').val() || 0;
+        if (value > 0) {
+            $('[name="preSale"]').val(value - 1);
+        }
+    });
+    $('.plus').click(function () {
+        var value = +$('[name="preSale"]').val() || 0;
+        $('[name="preSale"]').val(value + 1);
+    });
+    $('.editTitle').click(function (e) {
+        e.preventDefault();
+        $(this).hide().next().show().find('input').val($(this).find('.title').text());
+    });
+    $('.saveTitle').click(function () {
+        var title = $.trim($(this).parent().prev().val());
+        if (title) {
+            $(this).closest('div').hide().prev().show().find('.title').text(title);
+        }
+    });
+
+    $('[name="priceType"]').on('ifChecked', function () {
+        var priceType = +$(this).val();
+        if (priceType == 1) {
+            $('.priceSet').find('.set').hide().end().find('.price').show();
+        } else {
+            $('.priceSet').find('.set').show().end().find('.price').hide();
+        }
+    });
+
+    var $modal = $('#modal');
+
+    $modal.find('form').submit(function () {
+        return false;
+    });
+
+    $modal.on('hidden.bs.modal', function () {
+        $modal.find('tbody').empty();
+        $('.set').removeClass('cur');
+    });
+
+    $modal.on('show.bs.modal', function (e) {
+        var priceList = $(e.relatedTarget).closest('.priceSet').data('priceList') || {};
+        $(e.relatedTarget).addClass('cur');
+        var tbody = $modal.find('tbody');
+        var startTime = new Date($('[name="startTime"]').val()),
+            endTime = new Date($('[name="endTime"]').val());
+        if (!startTime || startTime < new Date()) {
+            startTime = new Date();
+        }
+        if (!endTime || (endTime.getMonth() - startTime.getMonth() > 1)) {
+            endTime.setMonth(startTime.getMonth() + 1);
+        }
+        var startDay = startTime.getDay();
+        var tr = $('<tr>');
+        var curTime = startTime.valueOf();
+        for (var i = 0; i < 7; i++) {
+            if (i < startDay) {
+                tr.append('<td><input type="text" class="form-control input-sm" disabled></td>');
+            } else {
+                tr.append('<td><input type="text" class="form-control input-sm" title="' + formatDate(curTime + 60 * 60 * 24 * 1000 * (i - startDay)) + '" value="' + (priceList[formatDate(curTime + 60 * 60 * 24 * 1000 * (i - startDay))] || 0) + '"></td>');
+            }
+        }
+        tbody.append(tr);
+        curTime = startTime.setDate(startTime.getDate() + 7 - startDay);
+        var loop = 0;
+        var s = '';
+        while (curTime < endTime) {
+            if (loop % 7 == 0) {
+                s = '<tr>';
+            }
+            s = s + '<td><input type="text" class="form-control input-sm" title="' + formatDate(curTime) + '" value="' + (priceList[formatDate(curTime)] || 0) + '"></td>';
+            if (loop % 7 == 6) {
+                s = s + '</tr>';
+                tbody.append(s);
+            }
+            loop = loop + 1;
+            curTime = curTime + 60 * 60 * 24 * 1000;
+        }
+        if (s.indexOf('</tr>') == -1) {
+            for (i = loop % 7; i < 7; i++) {
+                s = s + '<td><input type="text" class="form-control input-sm" disabled></td>';
+            }
+            s = s + '</tr>';
+            tbody.append(s);
+        }
+    });
+
+    var formatDate = function (date) {
+        date = new Date(date);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = date.getDate();
+        d = d < 10 ? '0' + d : d;
+
+        return y + '-' + m + '-' + d;
+    };
+
+    $('.saveSet').click(function () {
+        var priceList = $('.set.cur').closest('.priceSet').data('priceList') || {};
+        $modal.find('input[title]').each(function () {
+            priceList[$(this).attr('title')] = ($(this).val() || 0) * 100;
+        });
+        $('.set.cur').closest('.priceSet').data('priceList', priceList);
+        $modal.modal('hide');
+    });
+
 
     $('.panel.price .panel-footer').click(function () {
         $(this).closest('.panel').remove();
@@ -113,6 +221,7 @@ define(function (require, exports) {
                 if (t == this.title) {
                     ps.find('input:eq(0)').val(+this.price / 100);
                     ps.find('input:eq(1)').val(this.number);
+                    ps.data('priceList', this.priceList);
                 }
             });
 
@@ -238,6 +347,12 @@ define(function (require, exports) {
         });
         $('[name="label"]').val(label.join(','));
 
+        var target = [];
+        $('.target .label.selected').each(function () {
+            target.push($(this).data('id'));
+        });
+        $('[name="target"]').val(target.join(','));
+
         var discount = $('[name="discount"]');
         discount.val(+discount.val() * 100);
 
@@ -270,6 +385,12 @@ define(function (require, exports) {
 
         renderPriceSet(priceSet);
 
+        if ($('[name="priceType"]:checked').val() == 1) {
+            $('.priceSet').find('.set').hide().end().find('.price').show();
+        } else {
+            $('.priceSet').find('.set').show().end().find('.price').hide();
+        }
+
         var services = $('[name="service"]').val();
         services = services.split(',');
         $.each(services, function () {
@@ -285,6 +406,12 @@ define(function (require, exports) {
         var labels = $('[name="label"]').val();
         labels = labels.split(',');
         $.each(labels, function () {
+            $('[data-id="' + this + '"]').addClass('selected label-success').remove('label-default');
+        });
+
+        var target = $('[name="target"]').val();
+        target = target.split(',');
+        $.each(target, function () {
             $('[data-id="' + this + '"]').addClass('selected label-success').remove('label-default');
         });
 

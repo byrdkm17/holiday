@@ -1,0 +1,41 @@
+<!--# layout("/manage/include/layout.html") { -->
+<div class="container" data-module="system.help" id="system">
+    <div class="row" data-help="${help.id!}">
+        <div class="col-xs-1" style="position: relative">
+            <div style="position: fixed; top:71px; width: 53px">
+                <a href="${ctxPath}/manage/system/help" class="btn btn-default btn-sm btn-block">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-11">
+            <div class="row" style="margin-bottom: 20px">
+                <div class="col-xs-2">
+                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">
+                        <span class="tag">${help.tag!"请选择"}</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" class="selectTag">关于</a></li>
+                        <li><a href="#" class="selectTag">消费者保障</a></li>
+                        <li><a href="#" class="selectTag">支付方式</a></li>
+                        <li><a href="#" class="selectTag">旅游合同签署</a></li>
+                        <li><a href="#" class="selectTag">假日风光会员</a></li>
+                        <li><a href="#" class="selectTag">业务合作</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-10"><input class="form-control title" value="${help.title!}" placeholder="文章标题"></div>
+            </div>
+            <script id="edit" type="text/plain" style="height:300px"></script>
+            <button type="button" class="btn btn-primary btn-block save" style="margin: 20px 0">保存</button>
+        </div>
+    </div>
+    <script>window.baseUrl = '${ctxPath}';</script>
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/plain" id="content">${help.content!}</script>
+    <script>
+        UE.getEditor('edit');
+    </script>
+</div>
+<!--# } -->

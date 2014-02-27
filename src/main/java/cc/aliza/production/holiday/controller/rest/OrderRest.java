@@ -1,11 +1,14 @@
 package cc.aliza.production.holiday.controller.rest;
 
+import cc.aliza.production.holiday.commons.HolidayConstants;
 import cc.aliza.production.holiday.commons.Result;
 import cc.aliza.production.holiday.dao.GoodsDao;
 import cc.aliza.production.holiday.dao.MemberDao;
 import cc.aliza.production.holiday.dao.OrderDao;
+import cc.aliza.production.holiday.dao.SettingDao;
 import cc.aliza.production.holiday.entity.Goods;
 import cc.aliza.production.holiday.entity.Order;
+import cc.aliza.production.holiday.entity.Setting;
 import cc.aliza.production.holiday.entity.Traveler;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,6 +18,10 @@ import com.jfinal.ext.interceptor.POST;
 import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +39,9 @@ public class OrderRest extends Controller {
 
         String priceSet = getPara("priceSet");
         Integer number = getParaToInt("number");
+        String beginDate = getPara("beginDate");
+        String endDate = getPara("endDate");
+        Integer price = getParaToInt("price");
 
         Order order = new Order();
         order.setGoodsJson(new Gson().toJson(goods));
@@ -39,6 +49,9 @@ public class OrderRest extends Controller {
         order.setPriceSet(priceSet);
         order.setNumber(number);
         order.setStatus(0);
+        order.setBeginDate(beginDate);
+        order.setEndDate(endDate);
+        order.setPrice(price);
 
         String id = getSessionAttr("member");
 
@@ -76,7 +89,43 @@ public class OrderRest extends Controller {
 
         Map priceSet = order.getPriceSetObject();
 
-        Double price = ((Double) priceSet.get("price")) * order.getNumber();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String beginDate = order.getBeginDate();
+        String endDate = order.getEndDate();
+        Date begin, end;
+        try {
+            begin = sdf.parse(beginDate);
+        } catch (ParseException e) {
+            begin = new Date();
+        }
+        try {
+            end = sdf.parse(endDate);
+        } catch (ParseException e) {
+            end = new Date();
+        }
+
+        int day = HolidayConstants.getDaysBetween(begin, end) + 1;
+        Double price = 0.0;
+        if (order.getGoodsObject().getPriceType().equals(1)) {
+            price = ((Double) priceSet.get("price")) * day;
+            order.setAmount(price.intValue());
+            price = price * order.getNumber();
+        } else {
+            Map<String, Double> list = (Map<String, Double>) priceSet.get("priceList");
+            if (list == null) {
+                price = 0.0;
+            } else {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(begin);
+                for (int i = 0; i < day; i++) {
+                    Calendar cur = (Calendar) calendar.clone();
+                    cur.add(Calendar.DATE, i);
+                    price = price + list.get(sdf.format(cur.getTime()));
+                }
+                order.setAmount(price.intValue());
+                price = price * order.getNumber();
+            }
+        }
         order.setPrice(price.intValue());
         order.setStatus(1);
         if (order.getPayMethod() == 1) {
@@ -84,11 +133,21 @@ public class OrderRest extends Controller {
             order.setPayPrice(0);
         }
         if (order.getPayMethod() == 2) {
-            order.setDiscount((int) (order.getPrice() * 0.05));
-            order.setPayPrice((int) ((order.getPrice() - order.getDiscount()) * 0.2));
+            Setting s = SettingDao.dao.findOne("key", "pay.preAmountDiscount");
+            double discount = 0;
+            if (s != null) {
+                discount = Double.valueOf(s.getValue().toString());
+            }
+            order.setDiscount((int) Math.round(order.getPrice() * discount / 100) * 100);
+            order.setPayPrice((int) Math.round((order.getPrice() - order.getDiscount()) * 0.2 / 100) * 100);
         }
         if (order.getPayMethod() == 4) {
-            order.setDiscount((int) (order.getPrice() * 0.07));
+            Setting s = SettingDao.dao.findOne("key", "pay.allAmountDiscount");
+            double discount = 0;
+            if (s != null) {
+                discount = Double.valueOf(s.getValue().toString());
+            }
+            order.setDiscount((int) Math.round(order.getPrice() * discount / 100) * 100);
             order.setPayPrice(order.getPrice() - order.getDiscount());
         }
 

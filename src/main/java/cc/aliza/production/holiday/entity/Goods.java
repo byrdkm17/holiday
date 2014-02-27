@@ -74,6 +74,10 @@ public class Goods extends SimpleEntity {
     @RefList
     private List<Label> labels;
 
+    // 目的地
+    @RefList
+    private List<Target> target;
+
     // 产品编码
     private String code;
 
@@ -117,6 +121,14 @@ public class Goods extends SimpleEntity {
 
     // 喜欢
     private Integer like;
+
+    public List<Target> getTarget() {
+        return target;
+    }
+
+    public void setTarget(List<Target> target) {
+        this.target = target;
+    }
 
     public String getSource() {
         return source;

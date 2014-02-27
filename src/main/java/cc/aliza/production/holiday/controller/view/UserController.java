@@ -19,6 +19,7 @@ public class UserController extends Controller {
     public void order() {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("member", getAttr("member"));
+        params.put("pageNumber", getAttr("pageNumber"));
         setAttr("orderPage", OrderDao.dao.findBy(params));
         params.clear();
         params.put("hot", 1);

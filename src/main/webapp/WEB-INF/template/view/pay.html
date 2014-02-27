@@ -33,7 +33,7 @@
                     <span class="numberCosPay">${order.priceSetObject.title}</span>
                 </dd>
                 <dd>
-                    <span class="numberCosPay">${order.priceSetObject.price / 100}</span>
+                    <span class="numberCosPay">${order.amount / 100}</span>
                 </dd>
                 <dd>
                     <span class="numberCosPay">${order.number}</span>
@@ -56,7 +56,7 @@
                     <span class="numberCos"></span><span class="numberCos"><i>0元</i></span>
                     <!--# } -->
                     <!--# if(order.payMethod == 2) { -->
-                    <span class="numberCos">定金:</span><span class="numberCos">${(order.price - order.discount) / 100}x20%=<i>${order.payPrice}元</i></span>
+                    <span class="numberCos">定金:</span><span class="numberCos">${(order.price - order.discount) / 100}x20%=<i>${order.payPrice / 100}元</i></span>
                     <!--# } -->
                     <!--# if(order.payMethod == 4) { -->
                     <span class="numberCos">全款:</span><span class="numberCos"><i>${order.payPrice / 100}元</i></span>
@@ -149,6 +149,8 @@
         $('.btnSubmit').click(function () {
             location.href = '${ctxPath}/pay/doPay/${order.id}';
         });
+
+
     });
 </script>
 </body>

@@ -21,9 +21,11 @@ public class HotelController extends Controller {
         params.put("production", "hotel");
         setAttr("labelPage", LabelDao.dao.findBy(params));
 
+        params.put("label", getPara("label"));
+        setAttr("queryLabel", getPara("label"));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
-        setAttr("count", GoodsDao.dao.count());
-        render("/view/line/index.html");
+        setAttr("count", GoodsDao.dao.query().is("status", 1).is("production", "hotel").count());
+        render("/view/hotel/index.html");
     }
 
 }

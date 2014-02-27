@@ -46,6 +46,18 @@ public class HomeController extends Controller {
         setAttr("hotLineLabelPage", LabelDao.dao.findBy(params));
 
         params.clear();
+        params.put("production", "hotel");
+        setAttr("hotHotelLabelPage", LabelDao.dao.findBy(params));
+
+        params.clear();
+        params.put("production", "ticket");
+        setAttr("hotTicketLabelPage", LabelDao.dao.findBy(params));
+
+        params.clear();
+        params.put("production", "car");
+        setAttr("hotCarLabelPage", LabelDao.dao.findBy(params));
+
+        params.clear();
         params.put("time", sdf.format(new Date()));
         params.put("pageSize", 15);
         params.put("production", "hotel");

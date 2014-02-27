@@ -30,7 +30,7 @@ public class MemberDao extends BuguDao<Member> {
             query = query.in("group", groups);
         }
 
-        Integer pageNumber = 0;
+        Integer pageNumber = 1;
         if (params.get("pageNumber") != null) {
             pageNumber = (Integer) params.get("pageNumber");
         }

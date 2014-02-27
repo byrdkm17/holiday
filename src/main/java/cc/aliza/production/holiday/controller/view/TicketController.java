@@ -21,8 +21,10 @@ public class TicketController extends Controller {
         params.put("production", "ticket");
         setAttr("labelPage", LabelDao.dao.findBy(params));
 
+        params.put("label", getPara("label"));
+        setAttr("queryLabel", getPara("label"));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
-        setAttr("count", GoodsDao.dao.count());
+        setAttr("count", GoodsDao.dao.query().is("status", 1).is("production", "ticket").count());
         render("/view/ticket/index.html");
     }
 

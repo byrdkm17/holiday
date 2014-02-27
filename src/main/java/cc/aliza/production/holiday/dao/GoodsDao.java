@@ -51,6 +51,14 @@ public class GoodsDao extends BuguDao<Goods> {
             query.or(query1, query2);
         }
 
+        if (params.get("label") != null) {
+            query.in("labels", LabelDao.dao.findOne("name", params.get("label")));
+        }
+
+        if (params.get("target") != null) {
+            query.in("target", TargetDao.dao.findOne("name", params.get("target")));
+        }
+
         query.sort("{id: -1}");
     }
 

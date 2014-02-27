@@ -19,11 +19,11 @@
                     <h3 style="overflow: hidden;height: 35px;">${order.goodsObject.name}</h3>
                 </dd>
                 <dd><span class="title">出发时间：</span>
-                    <input type="text" id="dateBegin" class="dateInput" value="点击选择日历">
+                    <input type="text" id="dateBegin" class="dateInput" value="${order.beginDate!'点击选择日历'}">
                 </dd>
                 <dd>
                     <span class="numberCos">
-                        <i>${order.priceSetObject.title} 单价:</i><i class="price">￥${order.priceSetObject.price!0 / 100}元</i>
+                        <i>${order.priceSetObject.title} 单价:</i><i class="price dj">￥<span>${order.priceSetObject.price!0 / 100}</span>元</i>
                         <br>
                         <i style="line-height: 32px;margin-right: 15px;">数量:</i><span class="reduce">-</span><input type="text" class="number" value="${order.number}"><span class="plus">+</span>
                     </span>
@@ -92,12 +92,12 @@
                 <!--# } -->
                 <!--# if(payMethod == 2) { -->
                 <li data-method="2">(支付金额20%定金,我们为您预留行程，保证铁定出游)<br>
-                    即日起选择定金预定，立返全款的5%现金
+                    即日起选择定金预定，立返全款的${preAmountDiscount.value!0 * 100}%现金
                 </li>
                 <!--# } -->
                 <!--# if(payMethod == 4) { -->
                 <li data-method="4">(支付全部费用，我们为您预留行程，保证铁定出游)<br>
-                    即日起选择定金预定，立返全款的7%现金
+                    即日起选择定金预定，立返全款的${allAmountDiscount.value!0 * 100}%现金
                 </li>
                 <!--# } -->
                 <!--# } -->
@@ -117,7 +117,7 @@
         <ul>
             <img src="${ctxPath}/rest/image/${order.goodsObject.master!}"/>
             <li>旅游团费</li>
-            <li class="orderHotelItem"><i class="price zj">￥<span>${(order.priceSetObject.price!0 / 100) * order.number!0}</span>元</i><span class="sl">${order.number!0}</span>${order.priceSetObject.title!}x￥${order.priceSetObject.price!0 / 100}
+            <li class="orderHotelItem"><i class="price zj">￥<span>${(order.priceSetObject.price!0 / 100) * order.number!0}</span>元</i><span class="sl">${order.number!0}</span>${order.priceSetObject.title!}x￥<span class="dj">${order.priceSetObject.price!0 / 100}</span>
             </li>
             <li class="orderHotelItem dj"></li>
             <li class="totalTxt">总价：</li>
@@ -264,18 +264,40 @@
         <dd><input type="text" class="departureCardId"></dd>
     </dl>
 
-
 </script>
-
+<script type="text/plain" id="priceSet">${order.priceSet}</script>
 <script>
     $(function () {
-
-        var price = +'${order.priceSetObject.price!0 / 100}';
-        var maxNumber = +'${order.priceSetObject.number!0}';
+        var priceSet = JSON.parse($('#priceSet').html());
+        var price = priceSet.price / 100;
+        var priceList = priceSet.priceList;
+        var maxNumber = priceSet.number;
         var curPayMethod;
+        var allDiscount = +'${allAmountDiscount.value!0}';
+        var preDiscount = +'${preAmountDiscount.value!0}';
+
+        var getPrice = function () {
+            var p = 0;
+            var begin = new XDate($('#dateBegin').val());
+            if (begin.toString() == 'Invalid Date') {
+                begin = new XDate();
+            }
+            var end = new XDate($('#dateEnd').val() || '');
+            if (end.toString() == 'Invalid Date') {
+                end = new XDate();
+            }
+            if (+'${order.goodsObject.priceType}' == 1) {
+                p = price * (begin.diffDays(end) + 1);
+            } else {
+                for (var i = 0, l = begin.diffDays(end) + 1; i < l; i++) {
+                    p = p + (priceList[begin.clone().addDays(i).toString('yyyy-MM-dd')] || 0) / 100;
+                }
+            }
+            return p;
+        };
 
         var getTotal = function () {
-            return price * +$('.number').val();
+            return getPrice() * +$('.number').val();
         };
 
         $('.plus').click(function () {
@@ -297,6 +319,7 @@
             $('.zj span').text(getTotal());
             $('span.sl').text($('input.number').val());
             $('.total span').text(getTotal());
+            $('.priceTotal span').text(getTotal());
             if (curPayMethod == 1) {
                 $('.orderVerifyInfoTxt').html('你选择普通预定方式:请您支付 <span>0</span> 元');
                 $('.orderHotelItem.dj').html('');
@@ -306,19 +329,19 @@
                 $('.totalLine').html('出行支付<span>' + getTotal() + '元</span>');
             }
             if (curPayMethod == 2) {
-                $('.orderVerifyInfoTxt').html('你选择定金预定方式:可减免 <span>' + getTotal() + 'X5%=' + Math.floor(getTotal() * 0.05) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.floor(getTotal() * 0.05) + '=' + (getTotal() - Math.floor(getTotal() * 0.05)) + '</span> 元<br>' +
-                        '请您支付 <span>' + (getTotal() * 0.95) + 'x20%=' + Math.floor(getTotal() * 0.95 * 0.2) + '</span> 元定金，出行再支付剩余 <span>' + (getTotal() - Math.floor(getTotal() * 0.95 * 0.2)) + '</span> 元');
-                $('.orderHotelItem.dj').html('<i class="price">-￥' + Math.floor(getTotal() * 0.05) + '元</i>定金预定优惠');
-                $('.totalLine').html('定金=' + (getTotal() * 0.95) + 'x20%=<span>' + Math.floor(getTotal() * 0.95 * 0.2) + '元</span><br>出行支付<span>' + (getTotal() - Math.floor(getTotal() * 0.95 * 0.2)) + '元</span>');
-                $('.total span').text(getTotal() - Math.floor(getTotal() * 0.05));
+                $('.orderVerifyInfoTxt').html('你选择定金预定方式:可减免 <span>' + getTotal() + 'X' + Math.floor(preDiscount * 100) + '%=' + Math.floor(getTotal() * preDiscount) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.floor(getTotal() * preDiscount) + '=' + (getTotal() - Math.floor(getTotal() * preDiscount)) + '</span> 元<br>' +
+                        '请您支付 <span>' + (getTotal() * (1 - preDiscount)) + 'x20%=' + Math.floor(getTotal() * (1 - preDiscount) * 0.2) + '</span> 元定金，出行再支付剩余 <span>' + (getTotal() - Math.floor(getTotal() * preDiscount) - Math.floor(getTotal() * (1 - preDiscount) * 0.2)) + '</span> 元');
+                $('.orderHotelItem.dj').html('<i class="price">-￥' + Math.floor(getTotal() * preDiscount) + '元</i>定金预定优惠');
+                $('.totalLine').html('定金=' + (getTotal() * (1 - preDiscount)) + 'x20%=<span>' + Math.floor(getTotal() * (1 - preDiscount) * 0.2) + '元</span><br>出行支付<span>' + (getTotal() - Math.floor(getTotal() * preDiscount) - Math.floor(getTotal() * (1 - preDiscount) * 0.2)) + '元</span>');
+                $('.total span').text(getTotal() - Math.floor(getTotal() * preDiscount));
                 $('.priceTotal span').text(getTotal());
             }
             if (curPayMethod == 4) {
-                $('.orderVerifyInfoTxt').html('你选择支付全款方式:可减免 <span>' + getTotal() + 'X7%=' + Math.floor(getTotal() * 0.07) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.floor(getTotal() * 0.07) + '=' + (getTotal() - Math.floor(getTotal() * 0.07)) + '</span> 元<br>' +
-                        '请您支付 <span>' + (getTotal() - Math.floor(getTotal() * 0.07)) + '</span> 元');
-                $('.orderHotelItem.dj').html('')
-                $('.totalLine').html('支付=<span>' + (getTotal() - Math.floor(getTotal() * 0.07)) + '元</span><br>出行支付<span>0元</span>');
-                $('.total span').text(getTotal() - Math.floor(getTotal() * 0.07));
+                $('.orderVerifyInfoTxt').html('你选择支付全款方式:可减免 <span>' + getTotal() + 'X' + Math.floor(allDiscount * 100) + '%=' + Math.floor(getTotal() * allDiscount) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.floor(getTotal() * allDiscount) + '=' + (getTotal() - Math.floor(getTotal() * allDiscount)) + '</span> 元<br>' +
+                        '请您支付 <span>' + (getTotal() - Math.floor(getTotal() * allDiscount)) + '</span> 元');
+                $('.orderHotelItem.dj').html('');
+                $('.totalLine').html('支付=<span>' + (getTotal() - Math.floor(getTotal() * allDiscount)) + '元</span><br>出行支付<span>0元</span>');
+                $('.total span').text(getTotal() - Math.floor(getTotal() * allDiscount));
                 $('.priceTotal span').text(getTotal());
             }
         };
@@ -367,6 +390,9 @@
                 }
             });
         });
+
+        $('.dj span, span.dj').text(getPrice());
+        $('.priceTotal span').text(getTotal());
     });
 </script>
 </body>

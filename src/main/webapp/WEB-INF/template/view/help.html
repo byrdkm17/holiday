@@ -1,0 +1,95 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix">
+    <div class="uhere dib"><a href="${ctxPath}">首页</a> &gt; ${help.tag} &gt; ${help.title}</div>
+    <div class="singlePageMain fr">
+        <h1>${help.title}</h1>
+
+        <div class="singlePageMainContent">${help.content}</div>
+    </div>
+    <div class="singlePageSider fl">
+        <div class="singlePageSiderNavItem">
+            <h3><i></i>关于</h3>
+            <ul>
+                <!--# for(helpLink in helps![]) { -->
+                <!--# if(helpLink.tag == '关于') { -->
+                <li><a href="${ctxPath}/help/${helpLink.id}">${helpLink.title}</a></li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="singlePageSiderNavItem">
+            <h3><i></i>消费者保障</h3>
+            <ul>
+                <!--# for(helpLink in helps![]) { -->
+                <!--# if(helpLink.tag == '消费者保障') { -->
+                <li><a href="${ctxPath}/help/${helpLink.id}">${helpLink.title}</a></li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="singlePageSiderNavItem">
+            <h3><i></i>支付方式</h3>
+            <ul>
+                <!--# for(helpLink in helps![]) { -->
+                <!--# if(helpLink.tag == '支付方式') { -->
+                <li><a href="${ctxPath}/help/${helpLink.id}">${helpLink.title}</a></li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="singlePageSiderNavItem">
+            <h3><i></i>旅游合同签署</h3>
+            <ul>
+                <!--# for(helpLink in helps![]) { -->
+                <!--# if(helpLink.tag == '旅游合同签署') { -->
+                <li><a href="${ctxPath}/help/${helpLink.id}">${helpLink.title}</a></li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="singlePageSiderNavItem">
+            <h3><i></i>云美旅游会员</h3>
+            <ul>
+                <!--# for(helpLink in helps![]) { -->
+                <!--# if(helpLink.tag == '云美旅游会员') { -->
+                <li><a href="${ctxPath}/help/${helpLink.id}">${helpLink.title}</a></li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="singlePageSiderNavItem">
+            <h3><i></i>业务合作</h3>
+            <ul>
+                <!--# for(helpLink in helps![]) { -->
+                <!--# if(helpLink.tag == '业务合作') { -->
+                <li><a href="${ctxPath}/help/${helpLink.id}">${helpLink.title}</a></li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="../resource/js/plugin/slide.js"></script>
+<script src="../resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var btnClose = $("div.singlePageSiderNavItem").children("h3");
+        $(btnClose).each(function (i) {
+            $(this).addClass("item" + (i + 1)).click(function () {
+                $(this).toggleClass("close").next().toggle();
+            });
+        });
+        var singlePageSiderNavLinks = $("div.singlePageSiderNavItem").find("a");
+        $(singlePageSiderNavLinks).each(function (i) {
+            var links = $(singlePageSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(singlePageSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+    });
+</script>
+</body>
+</html>

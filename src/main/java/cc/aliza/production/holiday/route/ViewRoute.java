@@ -20,6 +20,8 @@ public class ViewRoute extends Routes {
         add("/hotel", HotelController.class);
         add("/ticket", TicketController.class);
 
+        add("/help", HelpController.class);
+
         add("/", HomeController.class);
     }
 }

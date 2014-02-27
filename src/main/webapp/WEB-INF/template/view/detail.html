@@ -242,7 +242,7 @@
                 <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
 
                 <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
-                <li>￥${hotGoods.minPrice}</li>
+                <li>￥${hotGoods.minPrice / 100}</li>
                 <i>${hotGoods_index + 1}</i>
             </ul>
             <!--# } -->
@@ -278,192 +278,213 @@
 <script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
 <!--js pages part-->
 <script>
-    $(function () {
-        $(".goodsThumb").slide({mainCell: ".bd ul", effect: "leftLoop", delayTime: 500});
-        var dateInput = $("#dateBegin,#dateEnd");
-        $(dateInput).focus(function () {
-            if ($(this).val() == this.defaultValue) {
-                $(this).val("").css("color", "#333")
-            }
-        }).blur(function () {
-            if ($(this).val() == '') {
-                $(this).val(this.defaultValue).css("color", "#D8D8D8")
-            }
-        });
-        $("#dateBegin").datepicker({
-            changeMonth: true,
-            onClose: function (selectedDate) {
-                $("#dateEnd").datepicker("option", "minDate", selectedDate);
-            }
-        });
-        $("#dateEnd").datepicker({
-            defaultDate: "+3d",
-            changeMonth: true,
-            onClose: function (selectedDate) {
-                $("#dateBegin").datepicker("option", "maxDate", selectedDate);
-            }
-        });
-        var groupGoodsItem = $(".groupGoods>ul>li");
-        $(groupGoodsItem).not(":first").append("<i class='icoPlus'></i>");
-        $(groupGoodsItem).first().addClass("first");
-        $("#closeGroupGoods").click(function () {
-            $(this).toggleClass("openGroupGoods").nextAll().toggle();
+$(function () {
+    $(".goodsThumb").slide({mainCell: ".bd ul", effect: "leftLoop", delayTime: 500});
+    var dateInput = $("#dateBegin,#dateEnd");
+    $(dateInput).focus(function () {
+        if ($(this).val() == this.defaultValue) {
+            $(this).val("").css("color", "#333")
+        }
+    }).blur(function () {
+        if ($(this).val() == '') {
+            $(this).val(this.defaultValue).css("color", "#D8D8D8")
+        }
+    });
+    $("#dateBegin").datepicker({
+        changeMonth: true,
+        onClose: function (selectedDate) {
+            $("#dateEnd").datepicker("option", "minDate", selectedDate);
+        },
+        onSelect: function () {
+            countPrice();
+        }
+    });
+    $("#dateEnd").datepicker({
+        defaultDate: "+1d",
+        changeMonth: true,
+        onClose: function (selectedDate) {
+            $("#dateBegin").datepicker("option", "maxDate", selectedDate);
+        },
+        onSelect: function () {
+            countPrice();
+        }
+    });
+    var groupGoodsItem = $(".groupGoods>ul>li");
+    $(groupGoodsItem).not(":first").append("<i class='icoPlus'></i>");
+    $(groupGoodsItem).first().addClass("first");
+    $("#closeGroupGoods").click(function () {
+        $(this).toggleClass("openGroupGoods").nextAll().toggle();
 
-        });
-        $("#progressbarItem1").progressbar({
-            value: 94
-        });
-        $("#progressbarItem2").progressbar({
-            value: 6
-        });
-        $("#progressbarItem3").progressbar({
-            value: 0
-        });
-        var goodsBaseInfoHt = $(".goodsBaseInfo").height(),
-                groupGoodsHt = $(".groupGoods").height(),
-                featureIntroHt = $(".featureIntro").height(),
-                posHeight = goodsBaseInfoHt + groupGoodsHt + featureIntroHt + 266;
-        $.fn.smartFloat = function () {
-            var position = function (element) {
-                var top = element.position().top, pos = element.css("position");
-                $(window).scroll(function () {
-                    var scrolls = $(this).scrollTop();
-                    if (scrolls > posHeight) { //如果滚动到页面超出了当前元素element的相对页面顶部的高度
-                        if (window.XMLHttpRequest) { //如果不是ie6
-                            element.css({
-                                position: "fixed",
-                                top: 0
-                            });
-                        } else { //如果是ie6
-                            element.css({
-                                top: scrolls
-                            });
-                        }
-                    } else {
+    });
+    $("#progressbarItem1").progressbar({
+        value: 94
+    });
+    $("#progressbarItem2").progressbar({
+        value: 6
+    });
+    $("#progressbarItem3").progressbar({
+        value: 0
+    });
+    var goodsBaseInfoHt = $(".goodsBaseInfo").height(),
+            groupGoodsHt = $(".groupGoods").height(),
+            featureIntroHt = $(".featureIntro").height(),
+            posHeight = goodsBaseInfoHt + groupGoodsHt + featureIntroHt + 266;
+    $.fn.smartFloat = function () {
+        var position = function (element) {
+            var top = element.position().top, pos = element.css("position");
+            $(window).scroll(function () {
+                var scrolls = $(this).scrollTop();
+                if (scrolls > posHeight) { //如果滚动到页面超出了当前元素element的相对页面顶部的高度
+                    if (window.XMLHttpRequest) { //如果不是ie6
                         element.css({
-                            position: pos,
-                            top: top
+                            position: "fixed",
+                            top: 0
+                        });
+                    } else { //如果是ie6
+                        element.css({
+                            top: scrolls
                         });
                     }
-                });
-            };
-            return $(this).each(function () {
-                position($(this));
+                } else {
+                    element.css({
+                        position: pos,
+                        top: top
+                    });
+                }
             });
         };
-        $(".proDetailInfoTitleMain").find("li").click(function () {
-            $(this).addClass("on").siblings().removeClass("on")
+        return $(this).each(function () {
+            position($(this));
         });
+    };
+    $(".proDetailInfoTitleMain").find("li").click(function () {
+        $(this).addClass("on").siblings().removeClass("on")
     });
-</script>
-<script>
-    $(function () {
-        var priceSet = $('#priceSet').html();
-        priceSet = JSON.parse(priceSet);
 
-        var ps;
+    var priceSet = $('#priceSet').html();
+    priceSet = JSON.parse(priceSet);
 
-        var countPrice = function () {
-            var input = $('input.number');
-            var title = [];
-            var priceBox = $('.goodsPrice .price');
-            $('[data-title].selected').each(function () {
-                title.push($(this).data('title'));
-                var value = findMaxNum(title.join(','));
-                if (value < +input.val()) {
-                    input.val(value);
-                }
-            });
-            if (+input.val() == 0) {
-                ps = null;
-                priceBox.text(priceBox.data('price'));
-                $('.qi').show();
-            } else {
-                priceBox.text(findPrice(title.join(',')) * +input.val());
-                $('.qi').hide();
-            }
-        };
+    var ps;
 
-        var findMaxNum = function (title) {
-            var max = 0;
-            $.each(priceSet, function () {
-                if (this.title == title) {
-                    max = +this.num;
-                }
-            });
-            return max;
-        };
-
-        var findPrice = function (title) {
-            var price = 0;
-            $.each(priceSet, function () {
-                if (this.title == title) {
-                    ps = this;
-                    price = +this.price / 100;
-                }
-            });
-            return price;
-        };
-
-        $('.multi .plus').click(function () {
-            var input = $('input.number');
-            var value = +input.val();
-            input.val(value + 1);
-            countPrice();
-        });
-        $('.multi .reduce').click(function () {
-            var input = $('input.number');
-            var value = +input.val();
-            input.val(value - 1 < 0 ? 0 : (value - 1));
-            countPrice();
-        });
-
-        $('.multi li').click(function () {
-            $(this).closest('ul').find('li').removeClass('selected');
-            $(this).toggleClass('selected');
-            countPrice();
-        });
-
-        $('.btnGotoCart').click(function () {
-            if (ps) {
-                $.post('${ctxPath}/rest/order/save', {
-                    goodsID: '${goods.id}',
-                    priceSet: JSON.stringify(ps),
-                    number: +$('.number').val()
-                }, function (res) {
-                    location.href = '${ctxPath}/order/' + res.order.id;
-                });
+    var countPrice = function () {
+        var input = $('input.number');
+        var title = [];
+        var priceBox = $('.goodsPrice .price');
+        $('[data-title].selected').each(function () {
+            title.push($(this).data('title'));
+            var value = findMaxNum(title.join(','));
+            if (value < +input.val()) {
+                input.val(value);
             }
         });
+        if (+input.val() == 0) {
+            ps = null;
+            priceBox.text(priceBox.data('price'));
+            $('.qi').show();
+        } else {
+            priceBox.text(findPrice(title.join(','), $('#dateBegin').val(), $('#dateEnd').val()) * +input.val());
+            $('.qi').hide();
+        }
+    };
 
-        $('.btnSubmit').click(function () {
-            var message = $('textarea').val();
-            if (message) {
-                $.post('${ctxPath}/rest/comment/save', {
-                    goods: '${goods.id}',
-                    message: message,
-                    phone: $('.commentPhone').val()
-                }, function () {
-                    location.reload();
-                });
+    var findMaxNum = function (title) {
+        var max = 0;
+        $.each(priceSet, function () {
+            if (this.title == title) {
+                max = +this.num;
             }
         });
+        return max;
+    };
 
-        $('a.collect').click(function () {
-            $.post('${ctxPath}/rest/goods/collect/${goods.id}', {
-                collect: 1
+    var findPrice = function (title, begin, end) {
+        var price = 0;
+        begin = new XDate(begin);
+        if (begin.toString() == 'Invalid Date') {
+            begin = new XDate();
+        }
+        end = new XDate(end);
+        if (end.toString() == 'Invalid Date') {
+            end = begin;
+        }
+        $.each(priceSet, function () {
+            if (this.title == title) {
+                ps = this;
+                if (+'${goods.priceType}' == 1) {
+                    price = (+this.price / 100) * (begin.diffDays(end) + 1);
+                } else {
+                    var list = this.priceList || {};
+                    for (var i = 0, l = begin.diffDays(end) + 1; i < l; i++) {
+                        price = price + (list[begin.clone().addDays(i).toString('yyyy-MM-dd')] || 0) / 100;
+                    }
+                }
+            }
+        });
+        return price;
+    };
+
+    $('.multi .plus').click(function () {
+        var input = $('input.number');
+        var value = +input.val();
+        input.val(value + 1);
+        countPrice();
+    });
+    $('.multi .reduce').click(function () {
+        var input = $('input.number');
+        var value = +input.val();
+        input.val(value - 1 < 0 ? 0 : (value - 1));
+        countPrice();
+    });
+
+    $('.multi li').click(function () {
+        $(this).closest('ul').find('li').removeClass('selected');
+        $(this).toggleClass('selected');
+        countPrice();
+    });
+
+    $('.btnGotoCart').click(function () {
+        if (ps) {
+            $.post('${ctxPath}/rest/order/save', {
+                goodsID: '${goods.id}',
+                priceSet: JSON.stringify(ps),
+                number: +$('.number').val(),
+                beginDate: $('#dateBegin').val() || (new XDate()).toString('yyyy-MM-dd'),
+                endDate: $('#dateEnd').val() || $('#dateBegin').val() || (new XDate()).toString('yyyy-MM-dd'),
+                price: +$('.goodsPrice .price').text() * 100
+            }, function (res) {
+                location.href = '${ctxPath}/order/' + res.order.id;
+            });
+        }
+    });
+
+    $('.btnSubmit').click(function () {
+        var message = $('textarea').val();
+        if (message) {
+            $.post('${ctxPath}/rest/comment/save', {
+                goods: '${goods.id}',
+                message: message,
+                phone: $('.commentPhone').val()
             }, function () {
                 location.reload();
             });
-        });
-        $('a.like').click(function () {
-            $.post('${ctxPath}/rest/goods/like/${goods.id}', {
-                like: 1
-            }, function () {
-                location.reload();
-            });
+        }
+    });
+
+    $('a.collect').click(function () {
+        $.post('${ctxPath}/rest/goods/collect/${goods.id}', {
+            collect: 1
+        }, function () {
+            location.reload();
         });
     });
+    $('a.like').click(function () {
+        $.post('${ctxPath}/rest/goods/like/${goods.id}', {
+            like: 1
+        }, function () {
+            location.reload();
+        });
+    });
+});
 </script>
 </body>
 </html>
