@@ -33,7 +33,7 @@
                 <h6>消费时间：</h6>
                 <ul class="clearfix">
                     <li class="date">
-                        <input type="text" id="date" value="点击选择日历">
+                        <input type="text" id="dateBegin" value="点击选择日历">
                     </li>
                 </ul>
                 <!--# } -->
@@ -293,22 +293,26 @@ $(function () {
     $("#dateBegin").datepicker({
         changeMonth: true,
         onClose: function (selectedDate) {
-            $("#dateEnd").datepicker("option", "minDate", selectedDate);
+            if ($("#dateEnd").length) {
+                $("#dateEnd").datepicker("option", "minDate", selectedDate);
+            }
         },
         onSelect: function () {
             countPrice();
         }
     });
-    $("#dateEnd").datepicker({
-        defaultDate: "+1d",
-        changeMonth: true,
-        onClose: function (selectedDate) {
-            $("#dateBegin").datepicker("option", "maxDate", selectedDate);
-        },
-        onSelect: function () {
-            countPrice();
-        }
-    });
+    if ($("#dateEnd").length) {
+        $("#dateEnd").datepicker({
+            defaultDate: "+1d",
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                $("#dateBegin").datepicker("option", "maxDate", selectedDate);
+            },
+            onSelect: function () {
+                countPrice();
+            }
+        });
+    }
     var groupGoodsItem = $(".groupGoods>ul>li");
     $(groupGoodsItem).not(":first").append("<i class='icoPlus'></i>");
     $(groupGoodsItem).first().addClass("first");
@@ -403,8 +407,12 @@ $(function () {
         if (begin.toString() == 'Invalid Date') {
             begin = new XDate();
         }
-        end = new XDate(end);
-        if (end.toString() == 'Invalid Date') {
+        if (end) {
+            end = new XDate(end);
+            if (end.toString() == 'Invalid Date') {
+                end = begin;
+            }
+        } else {
             end = begin;
         }
         $.each(priceSet, function () {

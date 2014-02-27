@@ -6,6 +6,7 @@ import com.bugull.mongo.annotations.Entity;
 import com.bugull.mongo.annotations.Ref;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Jing on 14-2-15.
@@ -34,6 +35,17 @@ public class Member extends SimpleEntity {
     private String headImgUrl;
 
     private String city;
+
+    @Ref
+    private List<Goods> collect;
+
+    public List<Goods> getCollect() {
+        return collect;
+    }
+
+    public void setCollect(List<Goods> collect) {
+        this.collect = collect;
+    }
 
     public String getCity() {
         return city;
