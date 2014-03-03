@@ -18,24 +18,27 @@ import java.util.Map;
 public class DetailController extends Controller {
     public void index() {
         String id = getPara(0);
+        try {
+            Goods goods = GoodsDao.dao.findOne(id);
 
-        Goods goods = GoodsDao.dao.findOne(id);
+            BuguMapper.fetchCascade(goods, "args.father", "supplier");
 
-        BuguMapper.fetchCascade(goods, "args.father", "supplier");
+            setAttr("goods", goods);
 
-        setAttr("goods", goods);
+            Map<String, Object> params = new HashMap<String, Object>();
 
-        Map<String, Object> params = new HashMap<String, Object>();
+            params.put("goods", goods);
+            setAttr("commentPage", CommentDao.dao.findBy(params));
 
-        params.put("goods", goods);
-        setAttr("commentPage", CommentDao.dao.findBy(params));
+            params.clear();
+            params.put("production", goods.getProduction());
+            params.put("hot", 1);
+            params.put("status", 1);
+            setAttr("hotGoodsPage", GoodsDao.dao.findBy(params));
 
-        params.clear();
-        params.put("production", goods.getProduction());
-        params.put("hot", 1);
-        params.put("status", 1);
-        setAttr("hotGoodsPage", GoodsDao.dao.findBy(params));
-
-        render("/view/detail.html");
+            render("/view/detail.html");
+        } catch (Exception e) {
+            redirect("/");
+        }
     }
 }

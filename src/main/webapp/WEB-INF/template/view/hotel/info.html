@@ -264,6 +264,9 @@
         <dd><input type="text" class="departureCardId"></dd>
     </dl>
 
+
+
+
 </script>
 <script type="text/plain" id="priceSet">${order.priceSet}</script>
 <script>
@@ -278,13 +281,13 @@
 
         var getPrice = function () {
             var p = 0;
-            var begin = new XDate($('#dateBegin').val());
+            var begin = new XDate($('#dateBegin').val() || '');
             if (begin.toString() == 'Invalid Date') {
-                begin = new XDate();
+                begin = new XDate().clearTime();
             }
-            var end = new XDate($('#dateEnd').val() || '');
+            var end = new XDate($('#dateEnd') && $('#dateEnd').val() || '');
             if (end.toString() == 'Invalid Date') {
-                end = new XDate();
+                end = begin;
             }
             if (+'${order.goodsObject.priceType}' == 1) {
                 p = price * (begin.diffDays(end) + 1);

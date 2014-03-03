@@ -56,10 +56,19 @@ public class GoodsDao extends BuguDao<Goods> {
         }
 
         if (params.get("target") != null) {
-            query.in("target", TargetDao.dao.findOne("name", params.get("target")));
+            BuguQuery<Goods> query1 = query();
+            BuguQuery<Goods> query2 = query();
+            query1.in("target", TargetDao.dao.findOne("name", params.get("target")));
+            query2.in("target", TargetDao.dao.findOne("name", params.get("target")).getChildren());
+            query.or(query1, query2);
         }
 
-        query.sort("{id: -1}");
+        if (params.get("order") != null) {
+            query.sort("{" + params.get("order") + ": " + ("on".equals(params.get("desc")) ? "-1" : "1") + "}");
+        } else {
+            query.sort("{id: -1}");
+        }
+
     }
 
     public Page<Goods> findBy(Map<String, Object> params) {

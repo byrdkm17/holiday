@@ -308,6 +308,7 @@ a img {
 
 .searchFormInputTxt ul.hover {
     border-top: #E3E3E3 1px solid;
+    z-index: 99;
 }
 
 .searchFormInputTxt ul li {
@@ -939,20 +940,19 @@ a img {
 }
 
 .fiveCommitment ul li {
-    height: 62px;
-    width: 100px;
+    height: 100px;
+    width: 66px;
     float: left;
 }
 
 .fiveCommitment ul li.last {
     width: 100px;
-    float: none;
-    clear: both;
+    float: left;
 }
 
 .fiveCommitment ul li a {
     display: block;
-    height: 62px;
+    height: 100px;
     text-indent: -1000px;
     overflow: hidden;
 }
@@ -1118,7 +1118,7 @@ a img {
     padding: 6px 0 0 0;
 }
 
-.privilegeList ul li {
+.privilegeList ul li, .privilegeList ul a {
     width: 244px;
     height: 83px;
     padding: 17px 70px 12px 10px;
@@ -1129,13 +1129,14 @@ a img {
     _overflow: hidden
 }
 
-.privilegeList ul li h2 {
+.privilegeList ul li h2, .privilegeList ul a h2 {
     height: 44px;
     line-height: 22px;
     font-size: 14px;
+    overflow: hidden;
 }
 
-.privilegeList ul li h6 {
+.privilegeList ul li h6, .privilegeList ul a h6 {
     font-size: 20px;
     font-weight: bold;
     font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
@@ -1143,18 +1144,18 @@ a img {
     padding: 10px 0 0 0
 }
 
-.privilegeList ul li h6 span {
+.privilegeList ul li h6 span, .privilegeList ul a h6 span {
     font-weight: normal;
     font-size: 12px;
     font-family: "SimSun", Tahoma, Geneva, sans-serif;
     padding: 0 0 5px 5px;
 }
 
-.privilegeList ul li.mid {
+.privilegeList ul li.mid, .privilegeList ul a.mid {
     margin: 0 15px;
 }
 
-.privilegeList ul li.hover {
+.privilegeList ul li.hover, .privilegeList ul a.hover {
     background: url(../images/bgPrivilegeItem.png) no-repeat 0px -120px
 }
 
@@ -1985,14 +1986,15 @@ a img {
 }
 
 #floatServiceWrap ul li.goTop {
-    height: 41px;
-    background: url(../images/bgBtnGoTop.gif) no-repeat 45px 14px;
+    padding-top: 10px;
+    height: 51px;
+    background: url(../images/bgBtnGoTop.gif) no-repeat 45px 34px;
     cursor: pointer;
     display: none
 }
 
 #floatServiceWrap ul li.goTopHov {
-    background: url(../images/bgBtnGoTop.gif) no-repeat -255px 14px;
+    background: url(../images/bgBtnGoTop.gif) no-repeat -255px 34px;
 }
 
 #adsCatTop {
@@ -3971,7 +3973,7 @@ a img {
 .loginFocus {
     width: 400px;
     height: 340px;
-    margin: 40px 20px 0 0
+    margin-top: -10px;
 }
 
 .loginForm {

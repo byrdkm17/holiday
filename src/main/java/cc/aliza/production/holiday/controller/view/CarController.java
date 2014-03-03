@@ -21,7 +21,13 @@ public class CarController extends Controller {
         params.put("production", "car");
         setAttr("labelPage", LabelDao.dao.findBy(params));
 
-        params.put("label", getPara("label"));
+        params.put("label", getPara("label", null));
+        params.put("order", getPara("order", null));
+        params.put("desc", getPara("desc", null));
+        params.put("status", 1);
+
+        setAttr("order", getPara("order", null));
+        setAttr("desc", getPara("desc", null));
         setAttr("queryLabel", getPara("label"));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
         setAttr("count", GoodsDao.dao.query().is("status", 1).is("production", "car").count());

@@ -3,7 +3,9 @@ package cc.aliza.production.holiday.controller.manage;
 import cc.aliza.production.holiday.dao.MemberDao;
 import cc.aliza.production.holiday.dao.OrderDao;
 import cc.aliza.production.holiday.entity.Member;
+import cc.aliza.production.holiday.entity.Order;
 import cc.aliza.production.holiday.interceptor.manage.AuthInterceptor;
+import com.bugull.mongo.BuguMapper;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import org.apache.commons.lang.StringUtils;
@@ -35,7 +37,9 @@ public class OrderController extends Controller {
     }
 
     public void info() {
-        setAttr("order", OrderDao.dao.findOne(getPara(0)));
+        Order order = OrderDao.dao.findOne(getPara(0));
+        BuguMapper.fetchCascade(order, "member");
+        setAttr("order", order);
         render("/manage/order/info.html");
     }
 

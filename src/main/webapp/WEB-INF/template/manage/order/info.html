@@ -1,7 +1,109 @@
 <!--# layout("/manage/include/layout.html") { -->
 <div class="container" data-module="order.info" id="order">
     <div class="panel panel-default info">
-
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>商品名称</td>
+                <td><a href="${ctxPath}/detail/${order.goodsObject.id}" target="_blank">${order.goodsObject.name!}</a></td>
+            </tr>
+            <tr>
+                <td>订单状态</td>
+                <td>
+                    <!--# if(order.status == -1) { -->
+                    <span class="label label-default"><a href="${ctxPath}/manage/order?status=-1&member=${member.id!}">订单关闭</a></span>
+                    <!--# } -->
+                    <!--# if(order.status == 1) { -->
+                    <span class="label label-primary"><a href="${ctxPath}/manage/order?status=1&member=${member.id!}">等待付款</a></span>
+                    <!--# } -->
+                    <!--# if(order.status == 2) { -->
+                    <span class="label label-success"><a href="${ctxPath}/manage/order?status=2&member=${member.id!}">等待计调</a></span>
+                    <!--# } -->
+                </td>
+            </tr>
+            <tr>
+                <td>商品规格</td>
+                <td>${order.priceSetObject.title!}</td>
+            </tr>
+            <tr>
+                <td>销售数量</td>
+                <td>${order.number}</td>
+            </tr>
+            <tr>
+                <td>单价</td>
+                <td>${order.amount!0 / 100}</td>
+            </tr>
+            <tr>
+                <td>用户</td>
+                <td>${order.member.username!}</td>
+            </tr>
+            <tr>
+                <td>旅客信息</td>
+                <td>
+                    <ul>
+                        <!--# for(traveler in order.travelers![]) { -->
+                        <li>${traveler.name!}【${traveler.code!}】</li>
+                        <!--# } -->
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>联系人</td>
+                <td>
+                    <ul>
+                        <li>${order.contactName!}</li>
+                        <li>${order.contactPhone!}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>留言</td>
+                <td>${order.message!}</td>
+            </tr>
+            <tr>
+                <td>支付方式</td>
+                <td>
+                    <!--# if(order.payMethod == 1) { -->
+                    普通预定
+                    <!--# } -->
+                    <!--# if(order.payMethod == 2) { -->
+                    定金预定
+                    <!--# } -->
+                    <!--# if(order.payMethod == 4) { -->
+                    全款支付
+                    <!--# } -->
+                </td>
+            </tr>
+            <tr>
+                <td>原价</td>
+                <td>${order.price!0 / 100}</td>
+            </tr>
+            <tr>
+                <td>优惠</td>
+                <td>${order.discount!0 / 100}</td>
+            </tr>
+            <tr>
+                <td>需支付</td>
+                <td>${order.payPrice!0 / 100}<!--# if(order.status!0 == 2) { -->【已支付】<!--# } --></td>
+            </tr>
+            <tr>
+                <td>日期</td>
+                <td>${order.beginDate!}<!--# if(order.endDate!'' != '') { --> 至 ${order.endDate!}<!--# } --></td>
+            </tr>
+            <tr>
+                <td>支付记录</td>
+                <td>
+                    <!--# for(trade in order.trades![]) { -->
+                    <ul>
+                        <li>支付宝交易号：${trade.trade_no}</li>
+                        <li>交易状态：${trade.trade_status}</li>
+                        <li>状态说明：${trade.trade_status_message}</li>
+                    </ul>
+                    <!--# } -->
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <!--# } -->

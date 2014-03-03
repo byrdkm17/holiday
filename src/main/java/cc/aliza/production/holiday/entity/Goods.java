@@ -93,6 +93,7 @@ public class Goods extends SimpleEntity {
     private Image master;
 
     // 服务
+    @RefList
     private List<Service> services;
 
     // 设价类型
@@ -121,6 +122,17 @@ public class Goods extends SimpleEntity {
 
     // 喜欢
     private Integer like;
+
+    // 推荐指数
+    private Integer recommend;
+
+    public Integer getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(Integer recommend) {
+        this.recommend = recommend;
+    }
 
     public List<Target> getTarget() {
         return target;

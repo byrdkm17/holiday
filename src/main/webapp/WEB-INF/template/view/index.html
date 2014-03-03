@@ -16,7 +16,7 @@
     </div>
     <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a></div>
 <div class="blank"></div>
-<div class="banner218240 fl"><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/banner218240.jpg" width="216" height="238" alt=""/></a></div>
+<div class="banner218240 fl"><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/banner20140303.jpg" width="216" height="238" alt=""/></a></div>
 <div class="bannerAdClound fl">
     <div class="announcementWrap">
         <ul class="clearfix">
@@ -27,10 +27,10 @@
     </div>
     <div class="bannerAdCloundPic">
         <ul class="clearfix">
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/bannerAdCloundPic1.gif" width="271" height="98" alt=""/></a></li>
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/bannerAdCloundPic2.gif" width="271" height="98" alt=""/></a></li>
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/bannerAdCloundPic3.gif" width="271" height="98" alt=""/></a></li>
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/bannerAdCloundPic4.gif" width="271" height="98" alt=""/></a></li>
+            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic1.jpg" width="271" height="98" alt=""/></a></li>
+            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic2.jpg" width="271" height="98" alt=""/></a></li>
+            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic3.jpg" width="271" height="98" alt=""/></a></li>
+            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic4.jpg" width="271" height="98" alt=""/></a></li>
         </ul>
     </div>
 </div>
@@ -72,10 +72,10 @@
     <div class="privilegeList">
         <ul class="clearfix">
             <!--# for(goods in discountGoodsPage.list![]) { -->
-            <li>
-                <h2><a href="${ctxPath}/detail/${goods.id}">${goods.name}</a></h2>
+            <a href="${ctxPath}/detail/${goods.id}">
+                <h2>${goods.name}</h2>
                 <h6>${(goods.minPrice!0 - goods.discount!0) / 100}<span>起</span></h6>
-            </li>
+            </a>
             <!--# } -->
         </ul>
     </div>
@@ -105,7 +105,9 @@
         <h2><i>${!(goods.labels[0].name)}</i><a href="${ctxPath}/detail/${goods.id}" target="_blank" style="height: 20px; width: 190px;" title="${goods.name}">${goods.name}</a></h2>
         <ul class="clearfix">
             <h6>￥${(goods.minPrice!0 - goods.discount!0) / 100}<i>起</i></h6>
-            <li>推荐指数：<img src="${ctxPath}/resource/images/starRed5.gif"/></li>
+            <!--# if(goods.recommend!0 > 0) { -->
+            <li>推荐指数：<img src="${ctxPath}/resource/images/starOrg${goods.recommend!0}.gif"/></li>
+            <!--# } -->
         </ul>
     </div>
     <!--# } -->
@@ -116,7 +118,7 @@
             <!--# var totalHotHotelLabel = 0; -->
             <!--# for(label in hotHotelLabelPage.list![]) { -->
             <!--# for(child in label.children![]) { -->
-            <!--# if(totalHotHotelLabel < 4) { -->
+            <!--# if(totalHotHotelLabel < 11) { -->
             <a href="${ctxPath}/hotel?label=${child.name}">${child.name}</a>
             <!--# totalHotHotelLabel = totalHotHotelLabel + 1; -->
             <!--# } -->
@@ -134,7 +136,7 @@
         <!--# if(goods_index > 3) { -->
         <div class="hotelListTxtItem">
             <ul>
-                <h2><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a> <img src="${ctxPath}/resource/images/starBlue4.gif"/></h2>
+                <h2><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a> <img src="${ctxPath}/resource/images/starBlue${goods.recommend!0}.gif"/></h2>
             </ul>
             <ol>
                 <a href="${ctxPath}/detail/${goods.id}" target="_blank"><img class="miniPic autoZoom" src="${ctxPath}/rest/image/${goods.master!}" width="60" height="40"/></a>
@@ -298,8 +300,8 @@
     $(function () {
         $("#siderCat").show();
         $(".focus").slide({titCell: ".hd ul", mainCell: ".bd ul", effect: "fold", autoPlay: true, autoPage: true, delayTime: 1000});
-        var privilegeListItem = $("div.privilegeList").find("li"),
-                privilegeListItemMid = $("div.privilegeList").find("li:eq(1),li:eq(4),li:eq(7)");
+        var privilegeListItem = $("div.privilegeList").find("a"),
+                privilegeListItemMid = $("div.privilegeList").find("a:eq(1),a:eq(4),a:eq(7)");
         $(privilegeListItemMid).addClass("mid");
         $(privilegeListItem).hover(function () {
             $(this).addClass("hover");

@@ -70,6 +70,18 @@ public class Order extends SimpleEntity {
     // 结束日期
     private String endDate;
 
+    // 交易记录
+    @EmbedList
+    private List<Map<String, String>> trades;
+
+    public List<Map<String, String>> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(List<Map<String, String>> trades) {
+        this.trades = trades;
+    }
+
     public String getBeginDate() {
         return beginDate;
     }

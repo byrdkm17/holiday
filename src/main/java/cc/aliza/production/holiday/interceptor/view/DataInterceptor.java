@@ -40,5 +40,7 @@ public class DataInterceptor implements Interceptor {
 
         params.clear();
         controller.setAttr("targetPage", TargetDao.dao.findBy(params));
+
+        controller.setAttr("ctxHash", controller.getRequest().getQueryString());
     }
 }

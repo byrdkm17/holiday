@@ -74,10 +74,18 @@
         <div class="orderStyle f1">
             <ul class="clearfix">
                 <h3>默认排序</h3>
-                <li class="default">默认</li>
-                <li class="descOn">销量</li>
-                <li class="asc">价格</li>
-                <li class="asc">时间</li>
+                <li class="default">
+                    <a href="${ctxPath}/car?label=${queryLabel!''}">默认</a>
+                </li>
+                <li class="<!--# if(order!'' == 'sales') { print(decode(desc!'', 'on', 'descOn', 'ascOn')); } else { print('asc'); } -->">
+                    <a href="${ctxPath}/car?label=${queryLabel!''}&order=sales&desc=${decode(desc!'', 'on', '', 'on')}">销量</a>
+                </li>
+                <li class="<!--# if(order!'' == 'minPrice') { print(decode(desc!'', 'on', 'descOn', 'ascOn')); } else { print('asc'); } -->">
+                    <a href="${ctxPath}/car?label=${queryLabel!''}&order=minPrice&desc=${decode(desc!'', 'on', '', 'on')}">价格</a>
+                </li>
+                <li class="<!--# if(order!'' == 'startTime') { print(decode(desc!'', 'on', 'descOn', 'ascOn')); } else { print('asc'); } -->">
+                    <a href="${ctxPath}/car?label=${queryLabel!''}&order=startTime&desc=${decode(desc!'', 'on', '', 'on')}">时间</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -89,7 +97,9 @@
             <h2><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
             <ul class="clearfix">
                 <h6>￥${goods.minPrice!0 / 100}<i>起</i></h6>
-                <li>推荐指数：<img src="${ctxPath}/resource/images/starOrg3.gif"/></li>
+                <!--# if(goods.recommend!0 > 0) { -->
+                <li>推荐指数：<img src="${ctxPath}/resource/images/starOrg${goods.recommend!0}.gif"/></li>
+                <!--# } -->
             </ul>
         </div>
         <!--# } -->

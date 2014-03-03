@@ -156,6 +156,9 @@ public class GoodsController extends Controller {
         String note = getPara("note");
         goods.setNote(note);
 
+        Integer recommend = getParaToInt("recommend");
+        goods.setRecommend(recommend);
+
         String priceGroup = getPara("priceGroup");
         goods.setPriceGroup(priceGroup);
 

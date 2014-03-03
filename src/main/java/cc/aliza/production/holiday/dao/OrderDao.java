@@ -40,9 +40,9 @@ public class OrderDao extends BuguDao<Order> {
         }
         if (params.get("status") != null) {
             query.is("status", params.get("status"));
+        } else {
+            query.notEquals("status", 0);
         }
-
-        query.notEquals("status", 0);
 
         int totalRow = (int) query.count();
         int totalPage = (int) Math.ceil((double) totalRow / 10);
