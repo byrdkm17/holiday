@@ -10,7 +10,6 @@ $("img.autoZoom").load(function () {
 });
 
 var resize = function () {
-    console.log('12555');
     var img = new Image();
     img.src = $(this).attr('src');
     var ow = img.width, oh = img.height, w = $(this).width(), h = $(this).height(), nw, nh;
