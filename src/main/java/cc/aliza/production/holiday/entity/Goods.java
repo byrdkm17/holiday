@@ -108,6 +108,9 @@ public class Goods extends SimpleEntity {
     // 最低价格
     private Integer minPrice;
 
+    // 最低折扣价
+    private Integer minRealPrice;
+
     // 热门线路
     private Integer hot;
 
@@ -403,5 +406,9 @@ public class Goods extends SimpleEntity {
 
     public void setLike(Integer like) {
         this.like = like;
+    }
+
+    public Integer getMinRealPrice() {
+        return (this.minPrice - this.discount) < 0 ? this.minPrice : (this.minPrice - this.discount);
     }
 }

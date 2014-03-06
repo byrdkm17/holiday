@@ -9,7 +9,7 @@ public class LogoutController extends Controller {
 
     public void index() {
         getSession().invalidate();
-        render("/");
+        redirect("/");
     }
 
 }

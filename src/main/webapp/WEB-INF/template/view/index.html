@@ -20,17 +20,17 @@
 <div class="bannerAdClound fl">
     <div class="announcementWrap">
         <ul class="clearfix">
-            <li><a href="#" target="_blank">双"蛋"特惠行动</a><i></i></li>
-            <li><a href="#" target="_blank">2013芝加哥，佛罗里达及东加勒比海</a><i></i></li>
-            <li><a href="#" target="_blank">双"蛋"特惠行动</a><i></i></li>
+            <li>双"蛋"特惠行动<i></i></li>
+            <li>2013芝加哥，佛罗里达及东加勒比海<i></i></li>
+            <li>双"蛋"特惠行动<i></i></li>
         </ul>
     </div>
     <div class="bannerAdCloundPic">
         <ul class="clearfix">
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic1.jpg" width="271" height="98" alt=""/></a></li>
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic2.jpg" width="271" height="98" alt=""/></a></li>
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic3.jpg" width="271" height="98" alt=""/></a></li>
-            <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/bannerAdCloundPic4.jpg" width="271" height="98" alt=""/></a></li>
+            <li><img src="${ctxPath}/resource/images/bannerAdCloundPic1.jpg" width="271" height="98" alt=""/></li>
+            <li><img src="${ctxPath}/resource/images/bannerAdCloundPic2.jpg" width="271" height="98" alt=""/></a></li>
+            <li><img src="${ctxPath}/resource/images/bannerAdCloundPic3.jpg" width="271" height="98" alt=""/></a></li>
+            <li><img src="${ctxPath}/resource/images/bannerAdCloundPic4.jpg" width="271" height="98" alt=""/></a></li>
         </ul>
     </div>
 </div>
@@ -40,7 +40,7 @@
         <li><a href="javascript:void(0)" title="铁定出游">铁定出游</a></li>
         <li><a href="javascript:void(0)" title="全程无忧">全程无忧</a></li>
         <li><a href="javascript:void(0)" title="超值价格">超值价格</a></li>
-        <li><a href="javascript:void(0)" title="管理服务">管理服务</a></li>
+        <li class="last"><a href="javascript:void(0)" title="管理服务">管理服务</a></li>
         <li class="last"><a href="javascript:void(0)" title="透明行程">透明行程</a></li>
     </ul>
 </div>
@@ -74,7 +74,7 @@
             <!--# for(goods in discountGoodsPage.list![]) { -->
             <a href="${ctxPath}/detail/${goods.id}">
                 <h2>${goods.name}</h2>
-                <h6>${(goods.minPrice!0 - goods.discount!0) / 100}<span>起</span></h6>
+                <h6>${(goods.minRealPrice!0) / 100}<span>起</span></h6>
             </a>
             <!--# } -->
         </ul>
@@ -102,9 +102,9 @@
     <div class="hotLineWrapItem">
         <a href="${ctxPath}/detail/${goods.id}"><img class="proPic autoZoom" src="${ctxPath}/rest/image/${goods.master!}"/></a>
 
-        <h2><i>${!(goods.labels[0].name)}</i><a href="${ctxPath}/detail/${goods.id}" target="_blank" style="height: 20px; width: 190px;" title="${goods.name}">${goods.name}</a></h2>
+        <h2><i>${!(goods.labels[0].name)}</i><a href="${ctxPath}/detail/${goods.id}" target="_blank" style="height: 20px; width: 150px;" title="${goods.name}">${goods.name}</a></h2>
         <ul class="clearfix">
-            <h6>￥${(goods.minPrice!0 - goods.discount!0) / 100}<i>起</i></h6>
+            <h6>￥${(goods.minRealPrice!0) / 100}<i>起</i></h6>
             <!--# if(goods.recommend!0 > 0) { -->
             <li>推荐指数：<img src="${ctxPath}/resource/images/starOrg${goods.recommend!0}.gif"/></li>
             <!--# } -->
@@ -155,7 +155,7 @@
             <!--# if(goods_index < 4) { -->
             <li><a href="${ctxPath}/detail/${goods.id}" target="_blank"><img src="${ctxPath}/rest/image/${goods.master!}" class="autoZoom"/></a><span></span>
 
-                <h2><i>￥${(goods.minPrice!0 - goods.discount!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
+                <h2><i>￥${(goods.minRealPrice!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
             </li>
             <!--# } -->
             <!--# } -->
@@ -202,7 +202,7 @@
 
                         <div class="ticketListChildItemDetail"><a href="javascript:void(0)"><img class="big autoZoom" src="${ctxPath}/rest/image/${goods.master!}"/></a> <i class="bg"></i>
 
-                            <h2><i>￥${(goods.minPrice!0 - goods.discount!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}">${goods.name}</a></h2>
+                            <h2><i>￥${(goods.minRealPrice!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}">${goods.name}</a></h2>
                             <ol class="intro">${goods.caption}</ol>
                         </div>
                     </li>
@@ -270,7 +270,7 @@
             <!--# if(goods_index < 4) { -->
             <li><a href="${ctxPath}/detail/${goods.id}" target="_blank"><img src="${ctxPath}/rest/image/${goods.master!}" class="autoZoom"/></a><span></span>
 
-                <h2><i>￥${(goods.minPrice!0 - goods.discount!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
+                <h2><i>￥${(goods.minRealPrice!0) / 100}<font>起</font></i><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
             </li>
             <!--# } -->
             <!--# } -->

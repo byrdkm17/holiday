@@ -27,11 +27,11 @@
     </div>
     <div class="goodsInfo fl">
         <div class="goodsInfoContent">
-            <div class="goodsPrice"><i class="symbol">￥</i><span class="price" data-price="${goods.minPrice!0 / 100}">${goods.minPrice!0 / 100}</span><i>元<span class="qi">起</span></i></div>
+            <div class="goodsPrice"><i class="symbol">￥</i><span class="price" data-price="${goods.minRealPrice!0 / 100}">${goods.minRealPrice!0 / 100}</span><i>元<span class="qi">起</span></i></div>
             <div class="propertyChoice clearfix">
                 <!--# if(goods.saleType == 1) { -->
                 <h6>消费时间：</h6>
-                <ul class="clearfix">
+                <ul class="clearfix multi">
                     <li class="date">
                         <input type="text" id="dateBegin" value="点击选择日历">
                     </li>
@@ -39,7 +39,7 @@
                 <!--# } -->
                 <!--# if(goods.saleType == 2) { -->
                 <h6>消费时间：</h6>
-                <ul class="clearfix" style="margin-top: 10px">
+                <ul class="clearfix multi">
                     <li>从</li>
                     <li class="date">
                         <input type="text" id="dateBegin" value="点击选择日历">
@@ -52,13 +52,13 @@
                 <!--# } -->
                 <!--# for(priceGroup in goods.priceGroupObject) { -->
                 <h6>${priceGroup.name}：</h6>
-                <ul class="multi clearfix">
+                <ul class="multi clearfix pg">
                     <!--# for(sub in priceGroup.names) { -->
-                    <li data-title="${sub}">${sub}</li>
+                    <li data-title="${sub}" class="sub">${sub}</li>
                     <!--# } -->
                 </ul>
                 <!--# } -->
-                <h6>购买数量：</h6>
+                <h6 style="padding-top: 3px;">购买数量：</h6>
                 <ul class="multi clearfix">
                     <span><i class="reduce">-</i><i class="numberInput"><input type="text" class="number" value="1"></i><i class="plus">+</i></span>
                 </ul>
@@ -78,7 +78,9 @@
                         <span class="saliedNumber">${commonPage.totalRow!0}</span>人已评论
                     </ul>
                     <ul class="last fr">
+                        <!--# if(!empty('member') ){ -->
                         <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0}</span>)</li>
+                        <!--# } -->
                         <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0}</span>)</li>
                     </ul>
                 </div>
@@ -242,7 +244,7 @@
                 <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
 
                 <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
-                <li>￥${hotGoods.minPrice / 100}</li>
+                <li>￥${hotGoods.minRealPrice / 100}</li>
                 <i>${hotGoods_index + 1}</i>
             </ul>
             <!--# } -->
@@ -260,8 +262,8 @@
                 <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
 
                 <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
-                <li><span>原价:<i class="delLine">￥${hotGoods.minPrice / 100}</i></span><span>现价:<i class="fntRed">￥${(hotGoods.minPrice - hotGoods.discount) / 100}</i></span></li>
-                <li class="last"><span>折扣:${(hotGoods.discount / hotGoods.minPrice) / 10}折</span><span><i class="fntRed"><b>${hotGoods.sales!0}</b></i>人已购买</span></li>
+                <li><span>原价:<i class="delLine">￥${hotGoods.minPrice!0 / 100}</i></span><span>现价:<i class="fntRed">￥${(hotGoods.minRealPrice!0) / 100}</i></span></li>
+                <li class="last"><span>折扣:${(hotGoods.discount!0 / hotGoods.minPrice!0) / 10}折</span><span><i class="fntRed"><b>${hotGoods.sales!0}</b></i>人已购买</span></li>
                 <a class="btnView" href="${ctxPath}/detail/${hotGoods.id}" target="_blank">去看看</a>
             </ul>
             <!--# } -->
@@ -283,11 +285,11 @@ $(function () {
     var dateInput = $("#dateBegin,#dateEnd");
     $(dateInput).focus(function () {
         if ($(this).val() == this.defaultValue) {
-            $(this).val("").css("color", "#333")
+            $(this).val("").css("color", "#999")
         }
     }).blur(function () {
         if ($(this).val() == '') {
-            $(this).val(this.defaultValue).css("color", "#D8D8D8")
+            $(this).val(this.defaultValue).css("color", "#999")
         }
     });
     $("#dateBegin").datepicker({
@@ -382,10 +384,8 @@ $(function () {
                 input.val(value);
             }
         });
-        if (+input.val() == 0) {
-            ps = null;
-            priceBox.text(priceBox.data('price'));
-            $('.qi').show();
+        if (+input.val() < 1) {
+            input.val(1);
         } else {
             priceBox.text(findPrice(title.join(','), $('#dateBegin').val(), $('#dateEnd').val()) * +input.val());
             $('.qi').hide();
@@ -420,11 +420,19 @@ $(function () {
             if (this.title == title) {
                 ps = this;
                 if (+'${goods.priceType}' == 1) {
-                    price = (+this.price / 100) * (begin.diffDays(end) + 1);
+                    var pp = +this.price - +'${goods.discount!0}';
+                    if (pp < 0) {
+                        pp = +this.price;
+                    }
+                    price = (pp / 100) * (begin.diffDays(end) + 1);
                 } else {
                     var list = this.priceList || {};
                     for (var i = 0, l = begin.diffDays(end) + 1; i < l; i++) {
-                        price = price + (list[begin.clone().addDays(i).toString('yyyy-MM-dd')] || 0) / 100;
+                        var pp = (list[begin.clone().addDays(i).toString('yyyy-MM-dd')] || 0) - +'${goods.discount!0}';
+                        if (pp < 0) {
+                            pp = (list[begin.clone().addDays(i).toString('yyyy-MM-dd')] || 0);
+                        }
+                        price = price + pp / 100;
                     }
                 }
             }
@@ -441,17 +449,31 @@ $(function () {
     $('.multi .reduce').click(function () {
         var input = $('input.number');
         var value = +input.val();
-        input.val(value - 1 < 0 ? 0 : (value - 1));
+        input.val(value - 1 < 1 ? 1 : (value - 1));
         countPrice();
     });
 
-    $('.multi li').click(function () {
+    $('.multi li.sub').click(function () {
         $(this).closest('ul').find('li').removeClass('selected');
         $(this).toggleClass('selected');
         countPrice();
     });
 
     $('.btnGotoCart').click(function () {
+        if ($('#dateBegin').val() == '点击选择日历' || !$('#dateBegin').val()) {
+            alert('请选择消费时间');
+            return;
+        }
+        if ($('#dateEnd').length) {
+            if ($('#dateEnd').val() == '点击选择日历' || !$('#dateEnd').val()) {
+                alert('请选择消费时间');
+                return;
+            }
+        }
+        if ($('.pg').length > $('.sub.selected').length) {
+            alert('请选择商品规格');
+            return;
+        }
         if (ps) {
             $.post('${ctxPath}/rest/order/save', {
                 goodsID: '${goods.id}',

@@ -2,50 +2,50 @@
     <div class="helpCenter clearfix">
         <dl>
             <dt>消费者保障</dt>
-            <!--# for(help in helps![]) { -->
-            <!--# if(help.tag == '消费者保障') { -->
-            <dd><a href="${ctxPath}/help/${help.id}">${help.title}</a></dd>
+            <!--# for(helpPage in helps![]) { -->
+            <!--# if(helpPage.tag == '消费者保障') { -->
+            <dd><a href="${ctxPath}/help/${helpPage.id}">${helpPage.title}</a></dd>
             <!--# } -->
             <!--# } -->
         </dl>
         <dl>
             <dt>支付方式</dt>
-            <!--# for(help in helps![]) { -->
-            <!--# if(help.tag == '支付方式') { -->
-            <dd><a href="${ctxPath}/help/${help.id}">${help.title}</a></dd>
+            <!--# for(helpPage in helps![]) { -->
+            <!--# if(helpPage.tag == '支付方式') { -->
+            <dd><a href="${ctxPath}/help/${helpPage.id}">${helpPage.title}</a></dd>
             <!--# } -->
             <!--# } -->
         </dl>
         <dl>
             <dt>旅游合同签署</dt>
-            <!--# for(help in helps![]) { -->
-            <!--# if(help.tag == '旅游合同签署') { -->
-            <dd><a href="${ctxPath}/help/${help.id}">${help.title}</a></dd>
+            <!--# for(helpPage in helps![]) { -->
+            <!--# if(helpPage.tag == '旅游合同签署') { -->
+            <dd><a href="${ctxPath}/help/${helpPage.id}">${helpPage.title}</a></dd>
             <!--# } -->
             <!--# } -->
         </dl>
         <dl>
             <dt>假日风光会员</dt>
-            <!--# for(help in helps![]) { -->
-            <!--# if(help.tag == '假日风光会员') { -->
-            <dd><a href="${ctxPath}/help/${help.id}">${help.title}</a></dd>
+            <!--# for(helpPage in helps![]) { -->
+            <!--# if(helpPage.tag == '假日风光会员') { -->
+            <dd><a href="${ctxPath}/help/${helpPage.id}">${helpPage.title}</a></dd>
             <!--# } -->
             <!--# } -->
         </dl>
         <dl>
             <dt>业务合作</dt>
-            <!--# for(help in helps![]) { -->
-            <!--# if(help.tag == '业务合作') { -->
-            <dd><a href="${ctxPath}/help/${help.id}">${help.title}</a></dd>
+            <!--# for(helpPage in helps![]) { -->
+            <!--# if(helpPage.tag == '业务合作') { -->
+            <dd><a href="${ctxPath}/help/${helpPage.id}">${helpPage.title}</a></dd>
             <!--# } -->
             <!--# } -->
         </dl>
     </div>
     <div class="copyRight">
         <div class="bottomNav">
-            <!--# for(help in helps![]) { -->
-            <!--# if(help.tag == '关于') { -->
-            <a href="${ctxPath}/help/${help.id}">${help.title}</a>
+            <!--# for(helpPage in helps![]) { -->
+            <!--# if(helpPage.tag == '关于') { -->
+            <a href="${ctxPath}/help/${helpPage.id}">${helpPage.title}</a>
             <!--# } -->
             <!--# } -->
         </div>
@@ -86,5 +86,8 @@
 <script>
     $(function () {
         $('a').attr('target', '_blank');
+        $('.searchFormInputTxt li').click(function () {
+            $('#queryInput').attr('action', '${ctxPath}/' + $(this).data('target'));
+        });
     });
 </script>

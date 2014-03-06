@@ -35,6 +35,11 @@ public class HelpController extends Controller {
         render("/manage/system/help/edit.html");
     }
 
+    public void delete() {
+        HelpDao.dao.remove(getPara());
+        redirect("/manage/system/help");
+    }
+
     @Before(POST.class)
     public void save() {
         String id = getPara("id");

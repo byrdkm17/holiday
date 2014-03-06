@@ -27,6 +27,7 @@ public class LineController extends Controller {
         params.put("target", getPara("target", null));
         params.put("order", getPara("order", null));
         params.put("desc", getPara("desc", null));
+        params.put("key", getPara("key", null));
         params.put("status", 1);
 
         setAttr("order", getPara("order", null));

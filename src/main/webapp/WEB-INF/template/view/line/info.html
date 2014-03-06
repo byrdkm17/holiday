@@ -272,7 +272,8 @@
 <script>
     $(function () {
         var priceSet = JSON.parse($('#priceSet').html());
-        var price = priceSet.price / 100;
+        var discount = +'${order.GoodsObject.discount!0}';
+        var price = ((priceSet.price - discount) < 0 ? priceSet.price : (priceSet.price - discount)) / 100;
         var priceList = priceSet.priceList;
         var maxNumber = priceSet.number;
         var curPayMethod;
@@ -300,6 +301,9 @@
         };
 
         var getTotal = function () {
+            if (+$('.number').val() < 1) {
+                $('.number').val(1);
+            }
             return getPrice() * +$('.number').val();
         };
 
@@ -314,7 +318,7 @@
         $('.reduce').click(function () {
             var input = $('input.number');
             var value = +input.val();
-            input.val(value - 1 < 0 ? 0 : (value - 1));
+            input.val(value - 1 < 1 ? 1 : (value - 1));
             countPrice();
         });
 
@@ -332,19 +336,19 @@
                 $('.totalLine').html('出行支付<span>' + getTotal() + '元</span>');
             }
             if (curPayMethod == 2) {
-                $('.orderVerifyInfoTxt').html('你选择定金预定方式:可减免 <span>' + getTotal() + 'X' + Math.floor(preDiscount * 100) + '%=' + Math.floor(getTotal() * preDiscount) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.floor(getTotal() * preDiscount) + '=' + (getTotal() - Math.floor(getTotal() * preDiscount)) + '</span> 元<br>' +
-                        '请您支付 <span>' + (getTotal() * (1 - preDiscount)) + 'x20%=' + Math.floor(getTotal() * (1 - preDiscount) * 0.2) + '</span> 元定金，出行再支付剩余 <span>' + (getTotal() - Math.floor(getTotal() * preDiscount) - Math.floor(getTotal() * (1 - preDiscount) * 0.2)) + '</span> 元');
-                $('.orderHotelItem.dj').html('<i class="price">-￥' + Math.floor(getTotal() * preDiscount) + '元</i>定金预定优惠');
-                $('.totalLine').html('定金=' + (getTotal() * (1 - preDiscount)) + 'x20%=<span>' + Math.floor(getTotal() * (1 - preDiscount) * 0.2) + '元</span><br>出行支付<span>' + (getTotal() - Math.floor(getTotal() * preDiscount) - Math.floor(getTotal() * (1 - preDiscount) * 0.2)) + '元</span>');
-                $('.total span').text(getTotal() - Math.floor(getTotal() * preDiscount));
+                $('.orderVerifyInfoTxt').html('你选择定金预定方式:可减免 <span>' + getTotal() + 'X' + Math.round(preDiscount * 100) + '%=' + Math.round(getTotal() * preDiscount) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.round(getTotal() * preDiscount) + '=' + (getTotal() - Math.round(getTotal() * preDiscount)) + '</span> 元<br>' +
+                        '请您支付 <span>' + (getTotal() * (1 - preDiscount)) + 'x20%=' + Math.round(getTotal() * (1 - preDiscount) * 0.2) + '</span> 元定金，出行再支付剩余 <span>' + (getTotal() - Math.round(getTotal() * preDiscount) - Math.round(getTotal() * (1 - preDiscount) * 0.2)) + '</span> 元');
+                $('.orderHotelItem.dj').html('<i class="price">-￥' + Math.round(getTotal() * preDiscount) + '元</i>定金预定优惠');
+                $('.totalLine').html('定金=' + Math.round(getTotal() * (1 - preDiscount)) + 'x20%=<span>' + Math.round(getTotal() * (1 - preDiscount) * 0.2) + '元</span><br>出行支付<span>' + (getTotal() - Math.round(getTotal() * preDiscount) - Math.round(getTotal() * (1 - preDiscount) * 0.2)) + '元</span>');
+                $('.total span').text(getTotal() - Math.round(getTotal() * preDiscount));
                 $('.priceTotal span').text(getTotal());
             }
             if (curPayMethod == 4) {
-                $('.orderVerifyInfoTxt').html('你选择支付全款方式:可减免 <span>' + getTotal() + 'X' + Math.floor(allDiscount * 100) + '%=' + Math.floor(getTotal() * allDiscount) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.floor(getTotal() * allDiscount) + '=' + (getTotal() - Math.floor(getTotal() * allDiscount)) + '</span> 元<br>' +
-                        '请您支付 <span>' + (getTotal() - Math.floor(getTotal() * allDiscount)) + '</span> 元');
+                $('.orderVerifyInfoTxt').html('你选择支付全款方式:可减免 <span>' + getTotal() + 'X' + Math.round(allDiscount * 100) + '%=' + Math.round(getTotal() * allDiscount) + '</span> 元，优惠后总价为: <span>' + getTotal() + '-' + Math.round(getTotal() * allDiscount) + '=' + (getTotal() - Math.round(getTotal() * allDiscount)) + '</span> 元<br>' +
+                        '请您支付 <span>' + (getTotal() - Math.round(getTotal() * allDiscount)) + '</span> 元');
                 $('.orderHotelItem.dj').html('');
-                $('.totalLine').html('支付=<span>' + (getTotal() - Math.floor(getTotal() * allDiscount)) + '元</span><br>出行支付<span>0元</span>');
-                $('.total span').text(getTotal() - Math.floor(getTotal() * allDiscount));
+                $('.totalLine').html('支付=<span>' + (getTotal() - Math.round(getTotal() * allDiscount)) + '元</span><br>出行支付<span>0元</span>');
+                $('.total span').text(getTotal() - Math.round(getTotal() * allDiscount));
                 $('.priceTotal span').text(getTotal());
             }
         };
@@ -364,6 +368,16 @@
 
         $('.btnSubmit').click(function () {
             if (curPayMethod == 0) {
+                alert('请选择支付方式');
+                return;
+            }
+
+            if (!$.trim($('#contactName').val())) {
+                alert('请填写联系人姓名');
+                return;
+            }
+            if (!$.trim($('#contactPhone').val()) || $.trim($('#contactPhone').val()).length != 11) {
+                alert('请填写正确的联系人电话');
                 return;
             }
 
@@ -394,6 +408,7 @@
             });
         });
 
+        $('.zj span, .total span').text(getTotal());
         $('.dj span, span.dj').text(getPrice());
         $('.priceTotal span').text(getTotal());
     });

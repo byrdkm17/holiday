@@ -30,16 +30,6 @@
             <h3>全部跟团游<span>(共记${count!0}个)</span></h3>
         </div>
         <div id="conditionsList">
-            <!--# for(label in labelPage.list![]) { -->
-            <div class="conditionsItem clearfix">
-                <h3>${label.name}：</h3>
-                <ul class="clearfix">
-                    <!--# for(child in label.children![]){ -->
-                    <li class="<!--# if(child.name == queryLabel!'') {print('selectBox');} -->"><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
-                    <!--# }-->
-                </ul>
-            </div>
-            <!--# } -->
             <!--# for(target in targetPage.list![]) { -->
             <div class="conditionsItem clearfix">
                 <h3>${target.name}：</h3>
@@ -50,18 +40,25 @@
                 </ul>
             </div>
             <!--# } -->
+            <!--# for(label in labelPage.list![]) { -->
+            <div class="conditionsItem clearfix">
+                <h3>${label.name}：</h3>
+                <ul class="clearfix">
+                    <!--# for(child in label.children![]){ -->
+                    <li class="<!--# if(child.name == queryLabel!'') {print('selectBox');} -->"><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
+                    <!--# }-->
+                </ul>
+            </div>
+            <!--# } -->
         </div>
         <div class="statisticsSearchRes clearfix">
             <h6>共搜索到${goodsPage.totalRow!0}个符合条件的商品。<a href="${ctxPath}/line">清除</a></h6>
             <ul class="clearfix">
-                <form action="${ctxPath}/catTourGroupGrid">
+                <form action="${ctxPath}/line">
                     <li>关键字：</li>
                     <li>
-                        <input type="text">
+                        <input type="text" name="key">
                     </li>
-                    <input type="hidden" name="price" id="hid_price"/>
-                    <input type="hidden" name="address" id="hid_address"/>
-                    <input type="hidden" name="type" id="hid_type"/>
                     <li>
                         <input type="submit" value="搜索" class="btnSearch">
                     </li>

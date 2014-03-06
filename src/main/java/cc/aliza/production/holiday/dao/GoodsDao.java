@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.Page;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Created by Jing on 14-1-29.
@@ -60,6 +61,15 @@ public class GoodsDao extends BuguDao<Goods> {
             BuguQuery<Goods> query2 = query();
             query1.in("target", TargetDao.dao.findOne("name", params.get("target")));
             query2.in("target", TargetDao.dao.findOne("name", params.get("target")).getChildren());
+            query.or(query1, query2);
+        }
+
+        if (params.get("key") != null) {
+            BuguQuery<Goods> query1 = query();
+            BuguQuery<Goods> query2 = query();
+            Pattern pattern = Pattern.compile("^.*" + params.get("key") + ".*$", Pattern.MULTILINE);
+            query1.regex("name", pattern.pattern());
+            query2.regex("caption", pattern.pattern());
             query.or(query1, query2);
         }
 

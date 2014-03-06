@@ -1125,7 +1125,6 @@ a img {
     _padding-bottom: 7px;
     float: left;
     background: url(../images/bgPrivilegeItem.png) no-repeat 0px 0px;
-    cursor: default;
     _overflow: hidden
 }
 
@@ -2837,7 +2836,7 @@ a img {
 
 .propertyChoice h6 {
     margin-top: 10px;
-    width: 65px;
+    width: 100px;
     font-size: 12px;
     height: 22px;
     line-height: 22px;
@@ -2846,7 +2845,7 @@ a img {
 }
 
 .propertyChoice ul {
-    width: 248px;
+    width: 213px;
     float: left;
     line-height: 22px;
 }
@@ -2877,13 +2876,16 @@ a img {
 }
 
 .propertyChoice ul.multi li {
-    margin: 0 5px;
-    padding: 2px 7px;
     overflow: hidden;
     cursor: pointer;
 }
 
-.propertyChoice ul.multi li:hover, .propertyChoice ul.multi li.selected {
+.propertyChoice ul.multi li.sub {
+    padding: 2px 6px;
+    margin: 0 4px 0 0;
+}
+
+.propertyChoice ul.multi li.sub:hover, .propertyChoice ul.multi li.sub.selected {
     background-color: orange;
     color: #fff;
 }
@@ -5732,7 +5734,7 @@ a img {
     background: url(../images/bgProDetailIco.png) no-repeat 0px -30px;
     _background: url(../images/bgProDetailIco.gif) no-repeat 0px -30px;
     cursor: pointer;
-    color: #D8D8D8;
+    color: #999;
     font-size: 12px;
 }
 

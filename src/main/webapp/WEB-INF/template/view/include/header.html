@@ -43,7 +43,7 @@
                 <!--# if(empty('member') ){ -->
                 <a href="${ctxPath}/login">[登陆]</a> <a href="${ctxPath}/sign">[注册]</a>
                 <!--# } else { -->
-                <a href="#">${member.username}</a> | <a href="${ctxPath}/user/order" class="fntGray">查询订单</a>| <a
+                <a href="${ctxPath}/user/order">${member.username}</a> | <a href="${ctxPath}/user/order" class="fntGray">查询订单</a>| <a
                     href="${ctxPath}/logout">[退出]</a>
                 <!--#  }-->
             </li>
@@ -54,15 +54,16 @@
 
 <div class="search fl">
     <div class="searchForm clearfix">
-        <form>
+        <form id="queryInput">
             <div class="searchFormInputTxt">
                 <ul>
-                    <li>景点</li>
-                    <li>线路</li>
-                    <li>目的地</li>
-                    <li>酒店</li>
+                    <li data-target="ticket">景点</li>
+                    <li data-target="line">线路</li>
+                    <li data-target="line">目的地</li>
+                    <li data-target="hotel">酒店</li>
                 </ul>
-                <input type="text" value="请输入目的地名称或关键字" class="inputSearch">
+                <input type="text" value="请输入目的地名称或关键字" class="inputSearch" name="key">
+
             </div>
             <input type="submit" value="搜索" class="btnSearch">
         </form>
@@ -103,10 +104,10 @@
                     <div class="siderCatItemMainLeft fl">
                         <div class="topRecommend">
                             <ul class="clearfix">
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
                             </ul>
                         </div>
                         <div class="catListWrap">
@@ -156,10 +157,10 @@
                     <div class="siderCatItemMainLeft fl">
                         <div class="topRecommend">
                             <ul class="clearfix">
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
                             </ul>
                         </div>
                         <div class="catListWrap">
@@ -204,17 +205,19 @@
                 <h3>旅行目的地</h3>
                 <ol>
                     <!--# for(target in targetPage.list![]) { -->
+                    <!--# if(target_index < 3) { -->
                     <a href="${ctxPath}/line?target=${target.name}">${target.name}</a>
+                    <!--# } -->
                     <!--# } -->
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
                         <div class="topRecommend">
                             <ul class="clearfix">
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
-                                <li><a>双“蛋”优惠行动</a></li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
+                                <li>双“蛋”优惠行动</li>
                             </ul>
                         </div>
                         <div class="catListWrap">
@@ -258,7 +261,7 @@
             <div class="siderCatItem">
                 <h3>包团&amp;定制</h3>
                 <ol>
-                    <a>个性定制</a> <a>商务旅游</a> <a>集体旅游</a>
+                    个性定制 商务旅游 集体旅游
                 </ol>
             </div>
         </div>
