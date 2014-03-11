@@ -4,7 +4,7 @@ jQuery.fn.scrollTo = function (speed) {
     return this;
 };
 $(document).ready(function () {
-    $("#btnOpenWx").hover(function () {
+    $("#btnOpenWx, #btnOpenWb").hover(function () {
         $(this).addClass("item2Hov");
         $(this).children("ul").show();
     }, function () {

@@ -1,0 +1,12 @@
+<!--# layout("/manage/system/layout.html", {module: 'clause'}) { -->
+<script>window.baseUrl = '${ctxPath}';</script>
+<script id="edit" type="text/plain" style="height:300px"></script>
+<button type="button" class="btn btn-primary btn-block save" style="margin: 20px 0">保存</button>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/plain" id="content">${clause.content!}</script>
+<script>
+    UE.getEditor('edit');
+</script>
+<!--# } -->

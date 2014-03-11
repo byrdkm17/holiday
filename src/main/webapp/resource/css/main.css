@@ -189,7 +189,7 @@ a img {
     border-bottom: none
 }
 
-.topBarLeft ul li.item2 ul {
+.topBarLeft ul li.item2 ul, .topBarLeft ul li.item3 ul {
     width: 128px;
     height: 158px;
     padding: 12px 43px 28px 44px;
@@ -199,10 +199,11 @@ a img {
     background: url(../images/bgWeixin.png) no-repeat;
     *background: url(../images/bgWeixin.png) no-repeat;
     _background: url(../images/bgWeixin.gif) no-repeat;
-    display: none
+    display: none;
+    z-index: 999;
 }
 
-.topBarLeft ul li.item2 ul li {
+.topBarLeft ul li.item2 ul li, .topBarLeft ul li.item3 ul li {
     width: 128px;
     height: 128px;
     overflow: hidden;
@@ -210,13 +211,13 @@ a img {
     background: none;
 }
 
-.topBarLeft ul li.item2 ul li img {
+.topBarLeft ul li.item2 ul li img, .topBarLeft ul li.item3 ul li img {
     width: 128px;
     height: 128px;
     border: none;
 }
 
-.topBarLeft ul li.item2 ul h6 {
+.topBarLeft ul li.item2 ul h6, .topBarLeft ul li.item3 ul h6 {
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -549,7 +550,7 @@ a img {
 
 .siderCatItemBg1 {
     background-position: 6px -260px;
-    z-index: 100
+    z-index: 98
 }
 
 .siderCatItemBg2 {
@@ -2838,8 +2839,8 @@ a img {
     margin-top: 10px;
     width: 100px;
     font-size: 12px;
-    height: 22px;
-    line-height: 22px;
+    height: 24px;
+    line-height: 24px;
     float: left;
     clear: both
 }
@@ -2860,15 +2861,12 @@ a img {
 }
 
 .propertyChoice ul li.date input {
-    width: 80px;
-    height: 22px;
-    line-height: 22px;
+    border: 1px solid #ccc;
+    width: 69px;
+    height: 24px;
+    line-height: 24px;
     padding: 0 20px 0 5px;
-    border: none;
-    background: url(../images/bgProDetailIco.png) no-repeat 0px -30px;
-    _background: url(../images/bgProDetailIco.gif) no-repeat 0px -30px;
     cursor: pointer;
-    color: #D8D8D8
 }
 
 .propertyChoice ul.multi {

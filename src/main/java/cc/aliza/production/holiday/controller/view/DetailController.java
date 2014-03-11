@@ -21,7 +21,7 @@ public class DetailController extends Controller {
         try {
             Goods goods = GoodsDao.dao.findOne(id);
 
-            BuguMapper.fetchCascade(goods, "args.father", "supplier");
+            BuguMapper.fetchCascade(goods, "args.father", "supplier", "services");
 
             setAttr("goods", goods);
 

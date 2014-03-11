@@ -27,7 +27,9 @@ define(function (require) {
         $modal.find('#image').val('');
         $modal.find('#url').val('');
         $modal.find('#id').val('');
-        $modal.find(':radio').iCheck('uncheck');
+        $modal.find('#name').val('');
+        $modal.find('[name="position"]').val('');
+        $modal.find('.name').text('请选择');
     });
 
     $('[type="file"]').on('change', function () {
@@ -61,15 +63,16 @@ define(function (require) {
     });
 
     $('.save').click(function () {
-        var position = $modal.find(':radio:checked').val();
+        var position = $modal.find('[name="position"]').val();
         var image = $modal.find('#image').val();
         var id = $modal.find('#id').val();
         var url = $modal.find('#url').val();
+        var name = $modal.find('#name').val();
         if (position) {
             $.ajax({
                 url: base + '/manage/ad/save',
                 type: "POST",
-                data: {position: position, image: image, id: id, url: url},
+                data: {position: position, image: image, id: id, url: url, name: name},
                 success: function (res) {
                     if (res.success) {
                         location.reload();
@@ -91,17 +94,27 @@ define(function (require) {
         });
     });
 
+    $('.selectAD').click(function (e) {
+        e.preventDefault();
+        $modal.find('.name').text($(this).text());
+        $modal.find('[name="position"]').val($(this).data('position'));
+    });
+
     $('.edit').click(function () {
         var id = $(this).closest('div').data('id');
-        var url = $(this).closest('div').find('.url').text();
+        var url = $(this).closest('div').data('url');
+        var name = $(this).closest('div').data('name');
         var position = $(this).closest('div').find('.position').text();
+        var position_text = $(this).closest('div').find('.position').data('text');
         var img = $(this).closest('div').find('img').attr('src');
 
         $modal.find('#id').val(id);
         $modal.find('img').attr('src', img);
         $modal.find('#image').val(img.split('/')[img.split('/').length - 1]);
         $modal.find('#url').val(url);
-        $modal.find(':radio[value="' + position + '"]').iCheck('check');
+        $modal.find('#name').val(name);
+        $modal.find('.name').text(position);
+        $modal.find('[name="position"]').val(position_text);
         $modal.modal('show');
     });
 });

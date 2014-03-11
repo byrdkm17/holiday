@@ -1,5 +1,6 @@
 package cc.aliza.production.holiday.entity;
 
+import cc.aliza.production.holiday.dao.CommentDao;
 import com.bugull.mongo.SimpleEntity;
 import com.bugull.mongo.annotations.Entity;
 import com.bugull.mongo.annotations.Ref;
@@ -410,5 +411,9 @@ public class Goods extends SimpleEntity {
 
     public Integer getMinRealPrice() {
         return (this.minPrice - this.discount) < 0 ? this.minPrice : (this.minPrice - this.discount);
+    }
+
+    public long getCommentsSize() {
+        return CommentDao.dao.count("goods", this);
     }
 }

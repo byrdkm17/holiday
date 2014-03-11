@@ -4,6 +4,7 @@ import com.bugull.mongo.SimpleEntity;
 import com.bugull.mongo.annotations.EnsureIndex;
 import com.bugull.mongo.annotations.Entity;
 import com.bugull.mongo.annotations.Ref;
+import com.bugull.mongo.annotations.RefList;
 
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Member extends SimpleEntity {
 
     private String city;
 
-    @Ref
+    @RefList
     private List<Goods> collect;
 
     public List<Goods> getCollect() {

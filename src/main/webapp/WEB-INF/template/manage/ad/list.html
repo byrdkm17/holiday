@@ -4,17 +4,12 @@
     </div>
     <div class="panel-body">
         <!--# for(ad in adPage.list![]) { -->
-        <div class="item clearfix" data-id="${ad.id}">
+        <div class="item clearfix" data-id="${ad.id}" data-name="${ad.name}" data-url="${ad.url}">
             <ul class="list-inline pull-left">
                 <li><img src="${ctxPath}/rest/image/${ad.image!}" class="img-thumbnail" style="width: 480px; height: 120px"></li>
                 <li>
-                    <button class="btn btn-default btn-sm position">${ad.position}</button>
+                    <button class="btn btn-default btn-sm position" data-text="${ad.position}">${ad.position_text}</button>
                 </li>
-                <!--# if(strutil.startWith(ad.url, "/")) { -->
-                <li><a href="${ctxPath}${ad.url}" target="_blank" class="url">${ctxPath}${ad.url}</a></li>
-                <!--# } else { -->
-                <li><a href="${ad.url}" target="_blank">${ad.url}</a></li>
-                <!--# } -->
             </ul>
             <ul class="list-inline pull-right" style="line-height: 120px">
                 <li>

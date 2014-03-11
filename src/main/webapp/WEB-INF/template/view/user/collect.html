@@ -1,7 +1,6 @@
 <!--# layout("/view/include/layout.html", {cur: "collect"}) { -->
 <div id="main" class="clearfix">
     <div class="blank"></div>
-    <div class="uhereUser"><a href="home.html">我的假日阳光</a></div>
     <!--# include("/view/include/left.html"){}-->
     <div class="userCenterMain fr">
         <div class="userOrderListAll">
@@ -27,120 +26,37 @@
                         <th width="17%">参考价</th>
                         <th width="13%">操作</th>
                     </tr>
+                    <!--# for(goods in collect![]) { -->
+                    <tr class="page-index">
+                        <td class="collectTitle"><img src="${ctxPath}/rest/image/${goods.master!}"/>
+
+                            <div class="collectTitleDetail">
+                                <ul>
+                                    <h3>${goods.name}</h3>
+                                    <li class="intro">${goods.caption!}</li>
+                                    <li>${goods.commentsSize!0} 单点评/已有 ${goods.sales!0} 人出</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="collectPrice">￥${goods.minRealPrice!0 / 100}<span class="collectPriceTxt">起</span></td>
+                        <td><a href="${ctxPath}/detail/${goods.id}" class="btnReserve">预定</a><a href="${ctxPath}/rest/goods/unCollect/${goods.id}">删除</a></td>
+                    </tr>
+                    <!--# } -->
                 </table>
             </div>
-            <div class="pagesBottom pagesPadding20 clearmod"><a class="disable">&lt;</a><!--<a class="prev" href="#">上一页</a>--><a class="current" href="javascript:void(0)">1</a><a class="pNum" href="#2">2</a><a class="pNum"
-                                                                                                                                                                                                                   href="#3">3</a><a
-                    class="pNum" href="#4">4</a><a class="pNum" href="#5">5</a><a class="next" href="#">下一页</a><!--<a class="disable">&gt;</a>--><span class="txt leftMg">跳转至</span><span class="input">
-          <input type="text">
-          </span><span class="txt">页</span><span class="btnInput">
-          <input type="submit" value="确定">
-          </span></div>
+            <div class="pagesBottom pagesPadding20 clearmod">
+                <a class="pNum current" href="javascript:void(0)" data-target="1">1</a>
+                <!--# var ppp = 9; var aaa = 2; -->
+                <!--# while (ppp < collect.~size) { -->
+                <a class="pNum" href="#" data-target="${aaa}">${aaa}</a>
+                <!--# ppp = ppp + 10; aaa = aaa + 1; -->
+                <!--# } -->
+            </div>
         </div>
     </div>
     <div class="blank"></div>
     <div class="blank"></div>
-    <div class="listBottom clearfix">
-        <div class="history fl">
-            <h5><a href="javascript:void(0)">清除</a>最近浏览</h5>
-            <ul>
-                <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a>
-
-                    <h3><a href="#" target="_blank">泸沽湖轻装之旅泸沽湖轻装之旅</a></h3>
-                    <span>￥1299</span></li>
-                <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a>
-
-                    <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    <span>￥1299</span></li>
-                <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a>
-
-                    <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    <span>￥1299</span></li>
-            </ul>
-        </div>
-        <div class="uLikeWhat fr">
-            <h5>根据浏览猜你喜欢</h5>
-
-            <div class="uLikeWhatTitle">
-                <ul>
-                </ul>
-            </div>
-            <div class="uLikeWhatScreen">
-                <ul class="clearfix">
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅泸沽湖轻装之旅泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                </ul>
-                <ul class="clearfix">
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅泸沽湖轻装之旅泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                </ul>
-                <ul class="clearfix">
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅泸沽湖轻装之旅泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                </ul>
-                <ul class="clearfix">
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅泸沽湖轻装之旅泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                    <li><a href="#"><img class="proPic" src="../resource/images/demo/236188.jpg"/></a> <span><i>已有<b>10</b>人购买</i>￥899</span>
-
-                        <h3><a href="#" target="_blank">泸沽湖轻装之旅</a></h3>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <!--# include("/view/user/bottom.html"){}-->
 </div>
 <!--# } -->
 <!--js pages load-->
@@ -188,6 +104,49 @@
             onClose: function (selectedDate) {
                 $("#dateBegin").datepicker("option", "maxDate", selectedDate);
             }
+        });
+
+        $('.page-index').each(function (index) {
+            if (index > 9) {
+                $(this).hide();
+            }
+        });
+
+        $('.pNum').click(function (e) {
+            e.preventDefault();
+            if ($(this).hasClass('current')) {
+                return;
+            }
+            var page = $(this).data('target');
+            $('.page-index').hide();
+            $('.page-index').each(function (index) {
+                if (index > (10 * page - 1) && index < (10 * page)) {
+                    $(this).show();
+                }
+            });
+        });
+
+        $.cookie.json = true;
+        $.post('${ctxPath}/rest/goods/cookie', {
+            list: ($.cookie('goodsViewList') || []).reverse().join(',')
+        }, function (res) {
+            $.each(res.list, function () {
+                $('.cookielist').append(
+                        '<li>'
+                                + '<a href="#">'
+                                + '<img class="proPic" src="${ctxPath}/rest/image/' + this.id + '"/>'
+                                + '</a>'
+                                + '<h3 style="height: 36px; overflow: hidden;">'
+                                + '<a href="#" target="_blank">' + this.name + '</a>'
+                                + '</h3>'
+                                + '<span>￥' + ((this.minPrice || 0) / 100) + '</span>'
+                                + '</li>');
+            });
+
+        });
+
+        $('.clearCookie').click(function () {
+            $.cookie.removeCookie('goodsViewList', {path: '/'});
         });
     });
 </script>

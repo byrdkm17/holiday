@@ -10,18 +10,32 @@
                     <label>位置</label>
 
                     <div class="form-group">
-                        <label class="radio-inline" style="padding-left: 0">
-                            <input type="radio" name="position" value="LB"> 轮播
-                        </label>
-                        <label class="radio-inline" style="padding-left: 0">
-                            <input type="radio" name="position" value="HF1"> 横幅 1
-                        </label>
-                        <label class="radio-inline" style="padding-left: 0">
-                            <input type="radio" name="position" value="HF2"> 横幅 2
-                        </label>
-                        <label class="radio-inline" style="padding-left: 0">
-                            <input type="radio" name="position" value="HF3"> 横幅 3
-                        </label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="name">请选择</span> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" data-position="NAV" class="selectAD">导航图</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-position="LB" class="selectAD">首页轮播</a></li>
+                                <li><a href="#" data-position="HF1" class="selectAD">首页横幅 1</a></li>
+                                <li><a href="#" data-position="HF2" class="selectAD">首页横幅 2</a></li>
+                                <li><a href="#" data-position="HF3" class="selectAD">首页横幅 3</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-position="LINELB" class="selectAD">跟团游轮播</a></li>
+                                <li><a href="#" data-position="LINEBLOCK" class="selectAD">跟团游子广告</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-position="CARLB" class="selectAD">自由行轮播</a></li>
+                                <li><a href="#" data-position="CARBLOCK" class="selectAD">自由行子广告</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-position="TICKETLB" class="selectAD">门票轮播</a></li>
+                                <li><a href="#" data-position="TICKETBLOCK" class="selectAD">门票子广告</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-position="HOTELLB" class="selectAD">酒店轮播</a></li>
+                                <li><a href="#" data-position="HOTELBLOCK" class="selectAD">酒店子广告</a></li>
+                            </ul>
+                            <input type="hidden" name="position">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>
@@ -34,6 +48,10 @@
                         <label>链接地址</label>
                         <input type="text" class="form-control" id="url" placeholder="链接地址">
                         <input type="hidden" id="id">
+                    </div>
+                    <div class="form-group">
+                        <label>广告名称</label>
+                        <input type="text" class="form-control" id="name" placeholder="广告名称">
                     </div>
                 </form>
             </div>

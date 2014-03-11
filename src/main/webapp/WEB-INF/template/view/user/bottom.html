@@ -1,0 +1,32 @@
+<div class="listBottom clearfix">
+    <div class="history fl">
+        <h5><a href="javascript:void(0)" class="clearCookie">清除</a>最近浏览</h5>
+        <ul class="cookielist">
+        </ul>
+    </div>
+    <!--# if(goodPage.totalRow!0 > 0) { -->
+    <div class="uLikeWhat fr">
+        <h5>根据浏览猜你喜欢</h5>
+        <!--# if(goodPage.totalRow!0 > 5) { -->
+        <div class="uLikeWhatTitle">
+            <ul>
+            </ul>
+        </div>
+        <!--# } -->
+        <div class="uLikeWhatScreen">
+            <!--# for(goods in goodsPage.list![]) { -->
+            <!--# if(goods_index % 5 == 0) { -->
+            <ul class="clearfix">
+                <!--# } -->
+                <li><a href="#"><img class="proPic" src="${ctxPath}/image/goods.master!"/></a> <span><i>已有<b>${goods.sales!0}</b>人购买</i>￥${goods.minPrice}</span>
+
+                    <h3><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h3>
+                </li>
+                <!--# if(goods_index % 5 == 4 || (goods_index + 1) == goodsPage.totalRow!goodsPage.list.~size!0) { -->
+            </ul>
+            <!--# } -->
+            <!--# } -->
+        </div>
+    </div>
+    <!--# } -->
+</div>

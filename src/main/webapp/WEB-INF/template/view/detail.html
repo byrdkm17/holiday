@@ -230,7 +230,7 @@
 <div class="detailSider fr">
     <div class="banner218240">
         <a href="#" target="_blank">
-            <img src="${ctxPath}/resource/images/demo/banner218240.jpg" width="216" height="238" alt=""/>
+            <img src="${ctxPath}/resource/images/demo/banner20140303.jpg" width="216" height="238" alt=""/>
         </a>
     </div>
     <div class="blank"></div>
@@ -515,6 +515,10 @@ $(function () {
             location.reload();
         });
     });
+    $.cookie.json = true;
+    var list = $.cookie('goodsViewList') || [];
+    list.push('${goods.id}');
+    $.cookie('goodsViewList', list, {path: '/'});
 });
 </script>
 </body>

@@ -42,5 +42,8 @@ public class DataInterceptor implements Interceptor {
         controller.setAttr("targetPage", TargetDao.dao.findBy(params));
 
         controller.setAttr("ctxHash", controller.getRequest().getQueryString());
+
+        params.clear();
+        controller.setAttr("navad", ADDao.dao.findOne("position", "NAV"));
     }
 }

@@ -1,0 +1,19 @@
+<div class="specialRecommend">
+    <h5>特别推荐：</h5>
+    <ul class="clearfix">
+        <!--# var tt = 0; -->
+        <!--# for(target in targetPage.list![]) { -->
+        <!--# for(child in target.children![]) { -->
+        <!--# if (tt < 10) { -->
+        <li><a href="${ctxPath}/line?target=${child.name}">${child.name}</a></li>
+        <!--# tt = tt + 1; -->
+        <!--# } -->
+        <!--# } -->
+        <!--# } -->
+    </ul>
+</div>
+<div class="closeSiderCatItemMain"></div>
+<!--# if (navad.image!'' != '') { -->
+<div class="btnSpecialRecommend"><a href="${navad.url!'#'}">${navad.name!}</a></div>
+<div class="bgElephant" style="background: url(${ctxPath}/rest/image/${navad.image!}) no-repeat; _background:  url(${ctxPath}/rest/image/${navad.image!}) no-repeat;"></div>
+<!--# } -->

@@ -32,17 +32,20 @@ public class ADController extends Controller {
         String image = getPara("image");
         String id = getPara("id");
         String url = getPara("url");
+        String name = getPara("name");
 
         if (StringUtils.isNotBlank(id)) {
             AD ad = ADDao.dao.findOne(id);
             ADDao.dao.set(id, "position", position);
             ADDao.dao.set(id, "image", ImageDao.dao.findOne(image));
             ADDao.dao.set(id, "url", url);
+            ADDao.dao.set(id, "name", name);
         } else {
             AD ad = new AD();
             ad.setImage(ImageDao.dao.findOne(image));
             ad.setUrl(url);
             ad.setPosition(position);
+            ad.setName(name);
             ADDao.dao.save(ad);
         }
 

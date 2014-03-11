@@ -1,5 +1,6 @@
 package cc.aliza.production.holiday.controller.view;
 
+import cc.aliza.production.holiday.dao.ADDao;
 import cc.aliza.production.holiday.dao.GoodsDao;
 import cc.aliza.production.holiday.dao.LabelDao;
 import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
@@ -35,6 +36,13 @@ public class LineController extends Controller {
         setAttr("queryLabel", getPara("label", null));
         setAttr("queryTarget", getPara("target", null));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
+
+        params.clear();
+        params.put("position", "LINELB");
+        setAttr("LBADPage", ADDao.dao.findBy(params));
+
+        setAttr("BLOCKAD", ADDao.dao.findOne("position", "LINEBLOCK"));
+
         setAttr("count", GoodsDao.dao.query().is("status", 1).is("production", "line").count());
         render("/view/line/index.html");
     }

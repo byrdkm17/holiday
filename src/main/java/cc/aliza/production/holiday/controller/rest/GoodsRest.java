@@ -8,6 +8,7 @@ import cc.aliza.production.holiday.entity.Member;
 import com.jfinal.core.Controller;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,10 +46,42 @@ public class GoodsRest extends Controller {
         renderJson(Result.exec());
     }
 
+    public void unCollect() {
+        String id = getPara(0);
+
+        String memberID = getSessionAttr("member");
+
+        if (StringUtils.isNotBlank(memberID)) {
+            Member member = MemberDao.dao.findOne(memberID);
+            Goods goods = GoodsDao.dao.findOne(id);
+            List<Goods> collects = member.getCollect();
+            if (collects != null) {
+                MemberDao.dao.pull(member, "collect", goods);
+                GoodsDao.dao.inc(id, "collect", -1);
+            }
+        }
+
+        redirect("/user/collect");
+    }
+
     public void like() {
         String id = getPara(0);
         Integer like = getParaToInt("like");
         GoodsDao.dao.inc(id, "like", like);
         renderJson(Result.exec());
+    }
+
+    public void cookie() {
+        String list = getPara("list");
+        String[] ids = StringUtils.split(list, ",");
+        List<Goods> goodsList = new ArrayList<Goods>();
+        for (String id : ids) {
+            if (goodsList.size() < 4) {
+                goodsList.add(GoodsDao.dao.findOne(id));
+            } else {
+                break;
+            }
+        }
+        renderJson(Result.exec(goodsList));
     }
 }

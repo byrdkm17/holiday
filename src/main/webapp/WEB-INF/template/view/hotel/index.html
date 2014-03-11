@@ -2,24 +2,27 @@
 <div id="main">
     <div id="adsCatTop" class="clearfix">
         <div class="adsCatTR fr">
+            <!--# if(!empty("BLOCKAD")) { -->
             <ul>
-                <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/312190.jpg"/></a></li>
+                <li><a href="${BLOCKAD.url!'#'}" target="_blank"><img src="${ctxPath}/rest/image/${BLOCKAD.image!}"/></a></li>
             </ul>
             <span></span>
 
-            <h2><a href="#" target="_blank">林帝浣：人文摄影的悲悯与温情</a></h2>
+            <h2><a href="${BLOCKAD.url!'#'}" target="_blank">${BLOCKAD.title!}</a></h2>
+            <!--# } -->
         </div>
         <div class="focusCatSlide f1">
+            <!--# if(LBADPage.totalRow!0 > 0) { -->
             <div class="hd">
                 <ul>
                 </ul>
             </div>
+            <!--# } -->
             <div class="bd">
                 <ul>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/3.jpg"/></a></li>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/4.jpg"/></a></li>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/3.jpg"/></a></li>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/images/demo/4.jpg"/></a></li>
+                    <!--# for(ad in LBADPage.list![]) { -->
+                    <li><a href="${ad.url!'#'}" target="_blank"><img src="${ctxPath}/rest/image/${ad.image!}"/></a></li>
+                    <!--# } -->
                 </ul>
             </div>
         </div>

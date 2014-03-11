@@ -40,6 +40,24 @@ public class HelpController extends Controller {
         redirect("/manage/system/help");
     }
 
+    public void clause() {
+        setAttr("clause", HelpDao.dao.findOne("title", "合同条款"));
+        render("/manage/system/clause.html");
+    }
+
+    @Before(POST.class)
+    public void clauseSave() {
+        String content = getPara("content");
+        Help page = HelpDao.dao.findOne("title", "合同条款");
+        if (page == null) {
+            page = new Help();
+            page.setTitle("合同条款");
+        }
+        page.setContent(content);
+        HelpDao.dao.save(page);
+        renderJson(Result.exec());
+    }
+
     @Before(POST.class)
     public void save() {
         String id = getPara("id");

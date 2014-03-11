@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.Page;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Created by Jing on 14-1-27.
@@ -42,6 +43,12 @@ public class OrderDao extends BuguDao<Order> {
             query.is("status", params.get("status"));
         } else {
             query.notEquals("status", 0);
+        }
+
+        if (params.get("orderKey") != null && !"商品名称".equals(params.get("orderKey"))) {
+
+            Pattern pattern = Pattern.compile("^.*" + params.get("orderKey") + ".*$", Pattern.MULTILINE);
+            query.regex("goodsJson", pattern.pattern());
         }
 
         int totalRow = (int) query.count();
