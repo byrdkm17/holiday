@@ -21,6 +21,8 @@ public class HelpController extends Controller {
     public void index() {
         Map<String, Object> params = new HashMap<String, Object>();
 
+        params.put("pageNumber", getPara("pageNumber"));
+
         setAttr("helpPage", HelpDao.dao.findBy(params));
 
         render("/manage/system/help/index.html");

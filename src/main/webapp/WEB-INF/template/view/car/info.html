@@ -254,21 +254,20 @@
     });
 </script>
 
-<script type="text/plain" id="info-tpl">
+<script type="text/template" id="info-tpl">
     <dl class="clearfix">
-        <dd><select name="type"><option value="成人">成人</option><option value="儿童">儿童</option></select></dd>
+        <dd><select name="type">
+            <option value="成人">成人</option>
+            <option value="儿童">儿童</option>
+        </select></dd>
         <dd><i>*</i>姓名：</dd>
         <dd><input type="text" class="departureName"></dd>
         <dd><i>*</i>证件号码：</dd>
-        <dd><select><option>身份证</option></select></dd>
+        <dd><select>
+            <option>身份证</option>
+        </select></dd>
         <dd><input type="text" class="departureCardId"></dd>
     </dl>
-
-
-
-
-
-
 </script>
 <script type="text/plain" id="priceSet">${order.priceSet}</script>
 <script>
@@ -284,11 +283,11 @@
         var getPrice = function () {
             var p = 0;
             var begin = new XDate($('#dateBegin').val() || '');
-            if (begin.toString() == 'Invalid Date') {
+            if (begin.toString() == 'Invalid Date' || isNaN(begin)) {
                 begin = new XDate().clearTime();
             }
             var end = new XDate($('#dateEnd') && $('#dateEnd').val() || '');
-            if (end.toString() == 'Invalid Date') {
+            if (end.toString() == 'Invalid Date' || isNaN(end)) {
                 end = begin;
             }
             if (+'${order.goodsObject.priceType}' == 1) {

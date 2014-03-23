@@ -25,13 +25,13 @@ public class HelpDao extends BuguDao<Help> {
 
         Integer pageNumber = 1;
         if (params.get("pageNumber") != null) {
-            pageNumber = (Integer) params.get("pageNumber");
+            pageNumber = Integer.valueOf((String) params.get("pageNumber"));
         }
         query.pageNumber(pageNumber);
 
         Integer pageSize = 10;
         if (params.get("pageSize") != null) {
-            pageSize = (Integer) params.get("pageSize");
+            pageSize = Integer.valueOf((String) params.get("pageSize"));
         }
         query.pageSize(pageSize);
 
