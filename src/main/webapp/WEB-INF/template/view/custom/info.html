@@ -1,0 +1,59 @@
+<!--# layout("/view/include/layout.html", {cur: 'custom.other'}) { -->
+<div id="main" class="clearfix">
+    <div class="meetingGroupList clearfix">
+        <div class="meetingGroupListMain fr">
+            <h3 class="meetingGroupListMainTitle fntYh">${custom.type!''}</h3>
+
+            <div class="meetingGroupContentWrap">
+                <div class="meetingGroupContentWrapTop fntYh">
+                    <h1>${custom.title!''}</h1>
+                    <ol>
+                        >${custom.createTime, dateFormat='yyyy年MM月dd日 HH:mm'} 作者：${custom.anchor}
+                    </ol>
+                    <div class="share">
+                        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a
+                                href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                    </div>
+                </div>
+                <div class="meetingGroupContentWrapMain">${custom.content}</div>
+                <div class="meetingGroupPrvNxt">
+                    <ul>
+                        <!--# if (prev.id!'' != '') { -->
+                        <li>上一篇：<a href="${ctxPath}/custom/info/${prev.id}">${prev.title!}</a></li>
+                        <!--# } -->
+                        <!--# if (next.id!'' != '') { -->
+                        <li>下一篇：<a href="${ctxPath}/custom/info/${next.id}">${next.title!}</a></li>
+                        <!--# } -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--# include("/view/custom/leftNav.html"){} -->
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var btnClose = $("div.singlePageSiderNavItem").children("h3");
+        $(btnClose).each(function (i) {
+            $(this).addClass("item" + (i + 1)).click(function () {
+                $(this).toggleClass("close").next().toggle();
+            });
+        });
+        var singlePageSiderNavLinks = $("div.singlePageSiderNavItem,div.meetingGroupListSiderNav").find("a");
+        $(singlePageSiderNavLinks).each(function (i) {
+            var links = $(singlePageSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(singlePageSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+    });
+    window._bd_share_config = {"common": {"bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16"}, "share": {}};
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+</body>
+</html>

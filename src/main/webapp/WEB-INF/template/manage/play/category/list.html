@@ -1,0 +1,114 @@
+<div class="panel panel-default list">
+    <div class="panel-heading clearfix">
+        <!--# include("/manage/play/category/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <div class="item clearfix" data-type="eat">
+            <ul class="list-inline pull-left" style="line-height: 30px;">
+                <li>美食</li>
+            </ul>
+            <ul class="list-inline pull-right" style="line-height: 10px;">
+                <li>
+                    <div style="width: 150px">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control addInput">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default add" type="button">添加</button>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="children clearfix">
+                <!--# for(category in eatPage.list![]) { -->
+                <div class="pull-left" data-id="${category.id}">
+                    <span class="label label-primary">${category.name}</span>
+                    <a href="#" style="display: none" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+                <!--# } -->
+            </div>
+        </div>
+        <div class="item clearfix" data-type="go">
+            <ul class="list-inline pull-left" style="line-height: 30px;">
+                <li>美景</li>
+            </ul>
+            <ul class="list-inline pull-right" style="line-height: 10px;">
+                <li>
+                    <div style="width: 150px">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control addInput">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default add" type="button">添加</button>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="children clearfix">
+                <!--# for(category in goPage.list![]) { -->
+                <div class="pull-left" data-id="${category.id}">
+                    <span class="label label-primary">${category.name}</span>
+                    <a href="#" style="display: none" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+                <!--# } -->
+            </div>
+        </div>
+        <div class="item clearfix" data-type="buy">
+            <ul class="list-inline pull-left" style="line-height: 30px;">
+                <li>人文</li>
+            </ul>
+            <ul class="list-inline pull-right" style="line-height: 10px;">
+                <li>
+                    <div style="width: 150px">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control addInput">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default add" type="button">添加</button>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="children clearfix">
+                <!--# for(category in buyPage.list![]) { -->
+                <div class="pull-left" data-id="${category.id}">
+                    <span class="label label-primary">${category.name}</span>
+                    <a href="#" style="display: none" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+                <!--# } -->
+            </div>
+        </div>
+        <div class="item clearfix" data-type="like">
+            <ul class="list-inline pull-left" style="line-height: 30px;">
+                <li>特产</li>
+            </ul>
+            <ul class="list-inline pull-right" style="line-height: 10px;">
+                <li>
+                    <div style="width: 150px">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control addInput">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default add" type="button">添加</button>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="children clearfix">
+                <!--# for(category in likePage.list![]) { -->
+                <div class="pull-left" data-id="${category.id}">
+                    <span class="label label-primary">${category.name}</span>
+                    <a href="#" style="display: none" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+                <!--# } -->
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer clearfix">
+        <!--# include("/manage/play/category/list.action.html") {} -->
+    </div>
+</div>

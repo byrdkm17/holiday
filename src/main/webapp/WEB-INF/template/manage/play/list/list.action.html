@@ -1,0 +1,19 @@
+<div class="btn-group btn-group-sm">
+    <a href="${ctxPath}/manage/play" class="btn ${decode(type!'', '', 'btn-success', 'btn-default')}">全部</a>
+    <a href="${ctxPath}/manage/play?type=eat" class="btn ${decode(type!'', 'eat', 'btn-success', 'btn-default')}">美食</a>
+    <a href="${ctxPath}/manage/play?type=go" class="btn ${decode(type!'', 'go', 'btn-success', 'btn-default')}">美景</a>
+    <a href="${ctxPath}/manage/play?type=buy" class="btn ${decode(type!'', 'buy', 'btn-success', 'btn-default')}">人文</a>
+    <a href="${ctxPath}/manage/play?type=like" class="btn ${decode(type!'', 'like', 'btn-success', 'btn-default')}">特产</a>
+</div>
+<ul class="pagination pagination-sm pull-right">
+    <!--# if(playPage.pageNumber!1 > 1) {-->
+    <li class="previous"><a href="${ctxPath}/manage/play?type=${type!}&pageNumber=${playPage.pageNumber - 1}">上一页</a></li>
+    <!--# } else { -->
+    <li class="previous disabled"><span>上一页</span></li>
+    <!--# } -->
+    <!--# if(playPage.pageNumber < playPage.totalPage) { -->
+    <li class="next"><a href="${ctxPath}/manage/play?type=${type!}&pageNumber=${playPage.pageNumber + 1}">下一页</a></li>
+    <!--# } else { -->
+    <li class="next disabled"><span>下一页</span></li>
+    <!--# } -->
+</ul>

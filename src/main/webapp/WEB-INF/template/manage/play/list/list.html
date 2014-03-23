@@ -1,0 +1,39 @@
+<div class="panel panel-default list">
+    <div class="panel-heading">
+        <!--# include("/manage/play/list/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(play in playPage.list![]) { -->
+        <div class="item clearfix" data-id="${play.id}">
+            <div class="col-xs-2" style="width: 135px; padding-right: 0;"><img src="${ctxPath}/rest/image/${play.image!}" class="img-thumbnail" style="width: 120px; height: 90px"></div>
+            <div class="col-xs-7" style="width: 516px;">
+                <ul class="list-unstyled" style="line-height: 20px;">
+                    <li style="margin-bottom: 10px;">
+                        <!--# if(play.type == 'eat') { -->
+                        <span class="label label-primary"><a href="${ctxPath}/manage/play?type=eat">美食</a></span>
+                        <!--# } -->
+                        <!--# if(play.type == 'go') { -->
+                        <span class="label label-success"><a href="${ctxPath}/manage/play?type=go">美景</a></span>
+                        <!--# } -->
+                        <!--# if(play.type == 'buy') { -->
+                        <span class="label label-warning"><a href="${ctxPath}/manage/play?type=buy">人文</a></span>
+                        <!--# } -->
+                        <!--# if(play.type == 'like') { -->
+                        <span class="label label-danger"><a href="${ctxPath}/manage/play?type=like">土特</a></span>
+                        <!--# } -->
+                    </li>
+                    <li>${play.name!}</li>
+                </ul>
+            </div>
+            <div class="col-xs-3" style="line-height: 90px; width: 176px; text-align: right;">
+                <a href="${ctxPath}/manage/play/edit/${play.id}" class="btn btn-default btn-sm">编辑</a>
+            </div>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer">
+        <!--# include("/manage/play/list/list.action.html") {} -->
+    </div>
+</div>

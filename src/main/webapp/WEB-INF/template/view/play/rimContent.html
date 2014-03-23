@@ -1,0 +1,129 @@
+<!--# layout("/view/include/layout.html", {cur: 'play'}) { -->
+<div id="main" class="clearfix">
+    <div class="uhere dib"><a href="${ctxPath}">首页</a> &gt; <a href="${ctxPath}/play/${type}"><!--# if (type!'' == 'eat') { -->美食<!--# } --><!--# if (type!'' == 'go') { -->美景<!--# } --><!--# if (type!'' == 'buy') { -->人文<!--# } -->
+        <!--# if (type!'' == 'like') { -->特产<!--# } --></a> &gt; ${play.category.name}
+    </div>
+    <div class="rimContentMain fl">
+        <div class="rimContentMainPro">
+            <h1><i>【${play.category.name}】</i>${play.name}</h1>
+
+            <div class="rimContentBaseInfo"><img src="${ctxPath}/rest/image/${play.image!}" class="bigPic" width="500" height="330" alt=""/>
+
+                <h2>${play.category.name}</h2>
+                <ul>
+                    <li class="goodsNum"><!--# if (type!'' == 'eat') { -->想吃<!--# } --><!--# if (type!'' == 'go') { -->想玩<!--# } --><!--# if (type!'' == 'buy') { -->想买<!--# } -->
+                        <!--# if (type!'' == 'like') { -->喜欢<!--# } --> : <i>${play.want!0}</i></li>
+                    <li>浏览量：${play.view!0}</li>
+                    <li><a href="javascript:;">我也<!--# if (type!'' == 'eat') { -->想吃<!--# } --><!--# if (type!'' == 'go') { -->想玩<!--# } --><!--# if (type!'' == 'buy') { -->想买<!--# } -->
+                        <!--# if (type!'' == 'like') { -->喜欢<!--# } --></a></li>
+                </ul>
+                <ul class="last">
+                    推荐指数 <img src="${ctxPath}/resource/images/rim/star${play.like!5}.png" width="81" height="15" alt=""/>
+                </ul>
+            </div>
+            <div class="block10"></div>
+            <div class="featureTitle clearfix">
+                <h3>特色：</h3>
+                <ul class="clearfix">
+                    <!--# for (label in play.labels![]) { -->
+                    <li>${label.name}</li>
+                    <!--# } -->
+                </ul>
+            </div>
+            <div class="shareWrap"><i>分享到：</i>
+
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#"
+                                                                                                                                                                                                                                        class="bds_tqq"
+                                                                                                                                                                                                                                        data-cmd="tqq"
+                                                                                                                                                                                                                                        title="分享到腾讯微博"></a><a
+                        href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+            </div>
+            <div class="rimContentDetail">${play.note}</div>
+        </div>
+        <div class="blank"></div>
+        <div class="commentsGoodsPages">
+            <div class="commentsGoodsPagesTitle">我来说说</div>
+            <div class="commentsGoodsMain">
+                <!--# for(comment in play.comments![]) { -->
+                <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/resource/images/demo/user.jpg"/>
+                    <ul class="userInfo clearfix">
+                        <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
+                        <h5>${comment.mobile}</h5>
+                    </ul>
+                    <div class="blank"></div>
+                    <ul class="userComments"><i></i>${comment.content}</ul>
+                </div>
+                <!--# } -->
+            </div>
+        </div>
+        <div class="commentsPostWrap">
+            <h6>发表说说</h6>
+            <ul>
+                <li>联系电话
+                    <input type="text" class="mobile">
+                    （必填）
+                </li>
+                <li>我想说</li>
+                <li>
+                    <textarea></textarea>
+                </li>
+                <li>
+                    <input type="button" class="btnSubmit" value="发表说说">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="rimContentSider fr">
+        <div class="rimContentSiderPro">
+            <h3>美食推荐</h3>
+            <ul>
+                <!--# for(plays in playPage.list![]) { -->
+                <li><a href="#"><img src="${ctxPath}/rest/image/${plays.image!}"/></a><h4><a href="${ctxPath}/play/info/${plays.id}">${plays.name!}</a></h4><span><!--# if (type!'' == 'eat') { -->想吃<!--# } --><!--# if (type!'' == 'go') { -->想玩<!--# } --><!--# if (type!'' == 'buy') { -->想买<!--# } -->
+                        <!--# if (type!'' == 'like') { -->喜欢<!--# } -->(${plays.want!0}) 浏览量：${plays.view!0}</span></li>
+                <!--# } -->
+            </ul>
+        </div>
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var btnClose = $("div.singlePageSiderNavItem").children("h3");
+        $(btnClose).each(function (i) {
+            $(this).addClass("item" + (i + 1)).click(function () {
+                $(this).toggleClass("close").next().toggle();
+            });
+        });
+        var singlePageSiderNavLinks = $("div.singlePageSiderNavItem").find("a");
+        $(singlePageSiderNavLinks).each(function (i) {
+            var links = $(singlePageSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(singlePageSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+
+        $('.btnSubmit').click(function () {
+            var content = $('textarea').val();
+            var mobile = $('.mobile').val();
+            if (content && mobile) {
+                $.post('${ctxPath}/play/commentSave', {
+                    play: '${play.id}',
+                    content: content,
+                    mobile: mobile
+                }, function () {
+                    location.reload();
+                });
+            } else {
+                alert("请填写电话号码和内容");
+            }
+        });
+    });
+    window._bd_share_config = {"common": {"bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "32"}, "share": {}};
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!--# layout("/view/include/layout.html", {cur: 'play'}) { -->
+<div id="main" class="clearfix">
+    <div class="uhere dib"><a href="${ctxPath}">首页</a> &gt; <a href="${ctxPath}/play/${type}"><!--# if (type!'' == 'eat') { -->美食<!--# } --><!--# if (type!'' == 'go') { -->美景<!--# } --><!--# if (type!'' == 'buy') { -->人文<!--# } -->
+        <!--# if (type!'' == 'like') { -->特产<!--# } --></a> <!--# if (category!'' != '') { -->&gt; ${category}<!--# } --></div>
+    <div class="rimCatTitle fntYh">
+        <ul class="clearfix">
+            <!--# for(item in categoryPage.list![]) { -->
+            <li><a href="${ctxPath}/play/${type}/${item.name}">${item.name}</a></li>
+            <!--# } -->
+        </ul>
+    </div>
+    <div class="rimCatListGrid clearfix" id="rimCatListGrid">
+        <!--# for (play in playPage.list![]) { -->
+        <div class="rimCatListGridItem"><a href="${ctxPath}/play/info/${play.id}"><img class="proPic" src="${ctxPath}/rest/image/${play.image!}"/></a>
+
+            <h2><a href="${ctxPath}/play/info/${play.id}" target="_blank">${play.name}</a></h2>
+            <ul class="clearfix heartCon">
+                <li><!--# if (type!'' == 'eat') { print('想吃：(' + play.want!0 + ')'); } -->
+                    <!--# if (type!'' == 'go') { print('想玩：(' + play.want!0 + ')'); } -->
+                    <!--# if (type!'' == 'buy') { print('想买：(' + play.want!0 + ')'); } -->
+                    <!--# if (type!'' == 'like') { print('喜欢：(' + play.want!0 + ')'); } -->浏览量：${play.view!0}
+                </li>
+            </ul>
+            <a href="javascript:;" class="bgBtnWant" data-id="${play.id}" data-name="${play.name}" data-want="${play.want!0}" data-image="${play.image!}">我<!--# if (type!'' == 'eat') { -->想吃<!--# } --><!--# if (type!'' == 'go') { -->想玩
+                <!--# } --><!--# if (type!'' == 'buy') { -->想买<!--# } -->
+                <!--# if (type!'' == 'like') { -->喜欢<!--# } --></a>
+
+            <div class="rimCatListGridItemTags">
+                <ul>
+                    <!--# for (label in play.labels![]) { -->
+                    <li>${label.name}</li>
+                    <!--# } -->
+                </ul>
+            </div>
+        </div>
+        <!--# } -->
+    </div>
+    <div class="pagesBottom"><a class="disable">&lt;</a><!--<a class="prev" href="#">上一页</a>--><a class="current" href="javascript:void(0)">1</a><a class="pNum" href="#2">2</a><a class="pNum" href="#3">3</a><a class="pNum" href="#4">4</a><a
+            class="pNum" href="#5">5</a><a class="next" href="#">下一页</a><!--<a class="disable">&gt;</a>--><span class="leftMg">跳转至</span><span class="input">
+      <input type="text">
+      </span><span>页</span><span class="btnInput">
+      <input type="button" value="确定">
+      </span></div>
+</div>
+<!--# include('/view/play/bottom.html'){} -->
+<!--# include('/view/play/order.html'){} -->
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<script src="${ctxPath}/resource/js/juimin.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        $.cookie.json = true;
+
+        var play = $.cookie('holiday.play') || {
+            eat: {_size: 0},
+            go: {_size: 0},
+            buy: {_size: 0},
+            like: {_size: 0}
+        };
+
+        $('.bgBtnWant').click(function () {
+            if (!play['${type}'][$(this).data('id')]) {
+                play['${type}'][$(this).data('id')] = {
+                    name: $(this).data('name'),
+                    want: $(this).data('want'),
+                    image: $(this).data('image')
+                };
+                play['${type}']._size++;
+                renderPlay();
+                $.cookie('holiday.play', play);
+            }
+        });
+
+        var removePlay = function (type, id) {
+            if (play[type][id]) {
+                delete  play[type][id];
+                play[type]._size--;
+            }
+            renderPlay();
+        };
+
+        var renderPlay = function () {
+            $('.play-box, .play-order').empty();
+            $.each(play, function (k, v) {
+                $.each(v, function (_k, _v) {
+                    if (_k == '_size') {
+                        $('.' + k + '-num').text(v._size || 0);
+                    } else {
+                        $('.' + k + '-box').append('<li><i><a href="javascript:;" class="remove" data-type="' + k + '" data-id="' + _k + '">删除</a></i>' + _v.name + '</li>');
+                        $('.' + k + '-order').append('<li><img src="${ctxPath}/rest/image/' + (v.image || '') + '"/><h4>' + _v.name + '</h4><span><a href="javascript:;" class="remove"   data-type="' + k + '" data-id="' + _k + '">删除</a>想吃  (' + _v.want + ')</span></li>')
+                    }
+                });
+            });
+            $('.play-box, .play-order').find('.remove').click(function () {
+                removePlay($(this).data('type'), $(this).data('id'));
+            });
+        };
+
+        renderPlay();
+        var btnClose = $("div.singlePageSiderNavItem").children("h3");
+        $(btnClose).each(function (i) {
+            $(this).addClass("item" + (i + 1)).click(function () {
+                $(this).toggleClass("close").next().toggle();
+            });
+        });
+        var singlePageSiderNavLinks = $("div.singlePageSiderNavItem,div.rimCatTitle").find("a");
+        $(singlePageSiderNavLinks).each(function (i) {
+            var links = $(singlePageSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(singlePageSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+        $("#rimCatListGrid").children().each(function (i) {
+            if ((i + 1) % 3 == 0) {
+                $(this).addClass("rimCatListGridItemNoMg");
+            }
+        });
+        var floatWantPageWrapMainItemH3 = $("div.floatWantPageWrapMainItemTitle").find("a"),
+                floatWantPageWrapMainItemOdd = $("div.floatWantPageWrapMainItem:odd");
+        $(floatWantPageWrapMainItemOdd).addClass("floatWantPageWrapMainItemOdd");
+        $(floatWantPageWrapMainItemH3).each(function (i) {
+            var links = $(floatWantPageWrapMainItemH3).eq(i).attr("rel"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(floatWantPageWrapMainItemH3).eq(i).parents("div.floatWantPageWrapMainItem").addClass("floatWantPageWrapMainItemCurrent");
+            }
+            $(this).parent().parent().toggle(function () {
+                $(this).siblings().slideDown("fast");
+            }, function () {
+                $(this).siblings().slideUp("fast");
+            });
+
+        });
+//		$("div.floatWantPageWrapMainItemContent").each(function() {
+//            var floatWantPageWrapMainItemContent = $(this).find("li");
+//			if($(floatWantPageWrapMainItemContent).length>3){
+//				var floatWantPageWrapMainItemContentHide = $(this).find("li:gt(3)"),
+//					floatWantPageWrapMainItemMore = $(this).siblings("div.floatWantPageWrapMainItemMore");	
+//				$(floatWantPageWrapMainItemContentHide).hide();
+//				$(floatWantPageWrapMainItemMore).toggle(function() {
+//        			$(floatWantPageWrapMainItemContentHide).show();
+//					$(floatWantPageWrapMainItemMore).addClass("floatWantPageWrapMainItemMoreUp");
+//    			},function() {
+//        			$(floatWantPageWrapMainItemContentHide).hide();
+//					$(floatWantPageWrapMainItemMore).removeClass("floatWantPageWrapMainItemMoreUp");
+//    			});
+//			}
+//        });
+        var tabBtn2 = $("div.wantPageOrderTabTitle>ul>li"),
+                tabCon2 = $("#wantPageOrderTabListAll>div");
+        $(tabCon2).first().show()
+        $(tabBtn2).hover(function () {
+            $(this).addClass("current").siblings().removeClass("current");
+            var index = $(tabBtn2).index(this);
+            $(tabCon2).eq(index).show().siblings().hide();
+        });
+        var btnWantPageWrapConfirm = $("#btnWantPageWrapConfirm"),
+                wantPageOrder = $("#wantPageOrder");
+        $(wantPageOrder).dialog({
+            resizable: false,
+            autoOpen: false,
+            title: "我的梦想行程单 My dream itinerary",
+            height: 680,
+            width: 710,
+            modal: true,
+            position: ["center", "center"]
+        });
+        $(btnWantPageWrapConfirm).click(function () {
+
+
+            $(wantPageOrder).dialog("open");
+        });
+        var btnWantPageWrapConfirmSubmit = $("#btnWantPageWrapConfirmSubmit"),
+                wantPageOrderSuccess = $("#wantPageOrderSuccess");
+        $(wantPageOrderSuccess).dialog({
+            resizable: false,
+            autoOpen: false,
+            title: "提交成功",
+            height: 450,
+            width: 640,
+            modal: true,
+            position: ["center", "center"]
+        });
+        $(btnWantPageWrapConfirmSubmit).click(function () {
+            var name = $.trim($('.order-name').val()), tel = $.trim($('.order-tel').val());
+            if (!name) {
+                alert('请填写您的称呼');
+                return;
+            }
+            if (!tel) {
+                alert('请填写联系方式');
+                return;
+            }
+            $.ajax({
+                url: '${ctxPath}/play/order',
+                type: "POST",
+                data: {
+                    name: name,
+                    tel: tel,
+                    ids: (function () {
+                        var ids = [];
+                        $.each(play, function (k, v) {
+                            $.each(v, function (id) {
+                                if (id != '_size') {
+                                    ids.push(id);
+                                }
+                            });
+                        });
+                        return ids.join(',');
+                    })()
+                },
+                success: function (res) {
+                    if (res.success) {
+                        $.removeCookie('holiday.play');
+                        $(wantPageOrderSuccess).dialog("open");
+                    }
+                }
+            });
+        });
+    });
+    //$(window).load(function(){
+    //	var winW = $(window).width(),
+    //		resW = (winW-1000)/2;
+    //	$("#floatWantPageWrap").css("right",resW);
+    //	$(window).resize(function(){
+    //		var winW = $(window).width(),
+    //		resW = (winW-1000)/2;
+    //		$("#floatWantPageWrap").css("right",resW);
+    //	});
+    //});
+    //$(window).scroll(function(e){
+    //	topRim = $(document).scrollTop();
+    //	if(topRim > 1){
+    //		$("#floatWantPageWrap").show();
+    //		$("#footer").css("padding","30px 0 300px 0")
+    //	}else{
+    //		$('#floatWantPageWrap').hide();
+    //		$("#footer").css("padding","30px 0 30px 0")
+    //	}
+    //
+    //});
+</script>
+</body>
+</html>

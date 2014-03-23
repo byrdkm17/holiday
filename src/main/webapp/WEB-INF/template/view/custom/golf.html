@@ -1,0 +1,46 @@
+<!--# layout("/view/include/layout.html", {cur: 'custom.other'}) { -->
+<div id="main" class="clearfix">
+    <div class="meetingGroupList clearfix">
+        <div class="meetingGroupListMain fr">
+            <h3 class="meetingGroupListMainTitle fntYh">高尔夫</h3>
+            <!--# include("/view/custom/list.html", {type: '高尔夫'}){} -->
+        </div>
+        <!--# include("/view/custom/leftNav.html"){} -->
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var btnClose = $("div.singlePageSiderNavItem").children("h3");
+        $(btnClose).each(function (i) {
+            $(this).addClass("item" + (i + 1)).click(function () {
+                $(this).toggleClass("close").next().toggle();
+            });
+        });
+        var singlePageSiderNavLinks = $("div.singlePageSiderNavItem,div.meetingGroupListSiderNav").find("a");
+        $(singlePageSiderNavLinks).each(function (i) {
+            var links = $(singlePageSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(singlePageSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+        $('.submit').click(function () {
+            $.ajax({
+                url: '${ctxPath}/custom/record',
+                type: "POST",
+                data: $('.record').serialize(),
+                success: function (res) {
+                    if (res.success) {
+                        alert("您提交的信息我们已经记录，将会尽快与您联系");
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

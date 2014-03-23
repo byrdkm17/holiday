@@ -1,0 +1,192 @@
+.meetingGroupList {
+    background: url(../images/meetingGroupBanner.jpg) no-repeat left top;
+    padding-top: 240px;
+}
+
+.meetingGroupListSider {
+    width: 250px;
+    border: #C6C6C6 1px solid;
+    border-top: #FFA800 2px solid;
+    background: url(../images/meetingGroupSiderTitle.png) no-repeat left top;
+    padding-top: 100px;
+}
+
+.meetingGroupListSiderTel {
+    color: #FC5959;
+    height: 34px;
+    line-height: 34px;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.meetingGroupListSiderNav ul li {
+    border-top: #C6C6C6 1px solid;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 10px;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+}
+
+.meetingGroupListSiderNav ul li.current {
+    font-weight: bold;
+    color: #FF8A00;
+    background: url(../images/meetingGroupSiderTitleArrow.png) no-repeat 235px 14px;
+}
+
+.meetingGroupListSiderNav ul li a:hover {
+    text-decoration: none;
+}
+
+.meetingGroupListSiderNav ul li.current a {
+    color: #FF8A00;
+}
+
+.meetingGroupListMain {
+    width: 718px;
+    border: #C6C6C6 1px solid;
+    padding: 0 10px;
+}
+
+.meetingGroupListMain h3.meetingGroupListMainTitle {
+    height: 42px;
+    line-height: 42px;
+    border-bottom: #FF8A00 1px solid;
+    color: #878787;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.meetingGroupListMainForm {
+    height: 100px;
+    padding: 0 10px;
+    background: url(../images/meetingGroupMainForm.png) no-repeat 20px 47px #FFA800;
+}
+
+.meetingGroupListMainForm h3 {
+    height: 47px;
+    line-height: 47px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #954B19;
+}
+
+.formWrap {
+    width: 235px;
+    height: 30px;
+    padding: 3px 65px 0 60px;
+}
+
+.formWrap .formWrapInputTxt {
+    width: 180px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    padding-right: 5px;
+    float: left;
+    border: none;
+    background: none
+}
+
+.formWrap .formWrapInputButton {
+    width: 50px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    float: left;
+}
+
+.formTxt {
+    padding: 11px 0 0 0;
+    color: #000
+}
+
+.meetingGroupListMainProListItem {
+    position: relative;
+    height: 240px;
+    padding: 20px 0 25px 248px;
+    border-bottom: #7B7B7B 1px solid
+}
+
+.meetingGroupListMainProListItem img.bigPic {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    left: 0;
+    top: 20px;
+}
+
+.meetingGroupListMainProListItem h2 {
+    font-size: 18px;
+    padding: 0 5px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 18px;
+}
+
+.meetingGroupListMainProListItem ol {
+    padding: 5px;
+    font-size: 14px;
+    line-height: 24px;
+    height: 72px;
+}
+
+.meetingGroupListMainProListItem ol li {
+    width: 200px;
+    float: left;
+}
+
+.meetingGroupListMainProListItem ul {
+    border-top: #FFA800 1px solid;
+    padding: 5px;
+}
+
+.meetingGroupListMainProListItem ul.fst {
+    color: #808080;
+    height: 80px;
+}
+
+.meetingGroupListMainProListItem ul.last {
+    height: 28px;
+    padding: 10px 5px;
+    line-height: 28px;
+    color: #333;
+    position: relative;
+    width: 460px;
+}
+
+.meetingGroupListMainProListItem ul.last img {
+    width: 94px;
+    height: 14px;
+    border: none;
+    position: absolute;
+    left: 55px;
+    top: 17px;
+}
+
+.meetingGroupListMainProListItem ul.last a {
+    display: block;
+    width: 111px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    letter-spacing: 2px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    background: url(../images/meetingGroupListMainProListItemBtn.gif) no-repeat
+}
+
+.meetingGroupListMainProListItem ul.last a:hover {
+    text-decoration: none;
+}
+
+.meetingGroupListMain .pagesBottom {
+    padding: 10px 0;
+}

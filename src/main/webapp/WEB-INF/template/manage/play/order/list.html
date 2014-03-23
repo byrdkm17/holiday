@@ -1,0 +1,36 @@
+<div class="panel panel-default list">
+    <div class="panel-heading clearfix">
+        <!--# include("/manage/play/order/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(order in orderPage.list![]) { -->
+        <div class="item clearfix" data-id="${order.id}">
+            <div class="row">
+                <div class="col-xs-10">
+                    <ul class="list-unstyled" style="line-height: 20px;">
+                        <li>联系人：${order.name!}</li>
+                        <li>电话号码：${order.tel!}</li>
+                        <li class="showNote">备注信息：<span class="info">${order.note!'空'}</span> <a href="#" class="doNote"><span class="glyphicon glyphicon-edit"></span></a></li>
+                        <li style="display: none" class="editNote">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="${record.note!}">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary saveNote" type="button">保存</button>
+                                        </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-2" style="line-height: 60px;">
+                    <a href="${ctxPath}/manage/play/orderInfo/${order.id}" class="btn btn-default">详情</a>
+                </div>
+            </div>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer clearfix">
+        <!--# include("/manage/play/order/list.action.html") {} -->
+    </div>
+</div>

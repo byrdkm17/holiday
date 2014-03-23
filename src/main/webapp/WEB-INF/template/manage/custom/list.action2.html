@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="pagination pagination-sm pull-right" style="margin-left: 20px;">
+            <!--# if(recordPage.pageNumber!1 > 1) {-->
+            <li class="previous"><a href="${ctxPath}/manage/custom/record?pageNumber=${recordPage.pageNumber - 1}">上一页</a></li>
+            <!--# } else { -->
+            <li class="previous disabled"><span>上一页</span></li>
+            <!--# } -->
+            <!--# if(recordPage.pageNumber < recordPage.totalPage) { -->
+            <li class="next"><a href="${ctxPath}/manage/custom/record?pageNumber=${recordPage.pageNumber + 1}">下一页</a></li>
+            <!--# } else { -->
+            <li class="next disabled"><span>下一页</span></li>
+            <!--# } -->
+        </ul>
+    </div>
+</div>

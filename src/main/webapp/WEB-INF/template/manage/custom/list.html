@@ -1,0 +1,30 @@
+<div class="panel panel-default list">
+    <div class="panel-heading clearfix">
+        <!--# include("/manage/custom/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(custom in customPage.list![]) { -->
+        <div class="item clearfix" data-id="${custom.id}">
+            <div class="col-xs-3" style="padding-right: 0;"><img src="${ctxPath}/rest/image/${custom.image!}" class="img-thumbnail" style="width: 120px; height: 120px"></div>
+            <div class="col-xs-6">
+                <ul class="list-unstyled" style="line-height: 20px;">
+                    <li style="margin-bottom: 10px;">
+                        <span class="label label-primary">${custom.type}</span>
+                    </li>
+                    <li>${custom.title!}</li>
+                    <li>${custom.info!}</li>
+                </ul>
+            </div>
+            <div class="col-xs-3" style="line-height: 120px; padding-right: 0; text-align: right">
+                <a href="${ctxPath}/manage/custom/edit/${custom.id}" class="btn btn-default btn-sm">编辑</a>
+                <a href="${ctxPath}/manage/custom/remove/${custom.id}" class="btn btn-default btn-sm">删除</a>
+            </div>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer clearfix">
+        <!--# include("/manage/custom/list.action.html") {} -->
+    </div>
+</div>

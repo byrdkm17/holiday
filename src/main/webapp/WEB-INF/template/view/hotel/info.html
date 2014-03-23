@@ -267,6 +267,8 @@
 
 
 
+
+
 </script>
 <script type="text/plain" id="priceSet">${order.priceSet}</script>
 <script>
@@ -274,7 +276,7 @@
         var priceSet = JSON.parse($('#priceSet').html());
         var price = priceSet.price / 100;
         var priceList = priceSet.priceList;
-        var maxNumber = priceSet.number;
+        var maxNumber = priceSet.number || 0;
         var curPayMethod;
         var allDiscount = +'${allAmountDiscount.value!0}';
         var preDiscount = +'${preAmountDiscount.value!0}';
@@ -306,7 +308,7 @@
         $('.plus').click(function () {
             var input = $('input.number');
             var value = +input.val();
-            if (value < maxNumber) {
+            if (value < maxNumber || maxNumber == 0) {
                 input.val(value + 1);
                 countPrice();
             }

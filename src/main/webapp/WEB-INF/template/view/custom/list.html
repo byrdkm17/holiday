@@ -1,0 +1,42 @@
+<div class="meetingGroupListMainForm fntYh clearfix">
+    <h3>假日风光，您身边的会务专家，会议中心贵宾热线：${ui400.value!}</h3>
+
+    <div class="formWrap fl">
+        <form class="record">
+            <input type="hidden" name="type" value="${type}">
+            <input type="text" class="formWrapInputTxt" name="mobile">
+            <input type="button" class="formWrapInputButton submit">
+        </form>
+    </div>
+    <div class="formTxt fl">10分钟内会有会议专员为您定制计划，并与您电话沟通。</div>
+</div>
+<div class="meetingGroupListMainProList">
+    <!--# for(custom in customPage.list![]) { -->
+    <div class="meetingGroupListMainProListItem clearfix"><a href="#"><img src="${ctxPath}/rest/image/${custom.image!}" class="bigPic" alt="${custom.title!}"/></a>
+
+        <h2 class="fntYh"><a href="${ctxPath}/custom/info/${custom.id}">${custom.title!}</a></h2>
+        <ol class="clearfix">
+            <li>时间：${custom.time!}</li>
+            <li>人数：${custom.people!}人</li>
+            <li>地点：${custom.address!}</li>
+            <li>人均消费：${custom.price!}元</li>
+            <li>服务内容：${custom.service!}</li>
+        </ol>
+        <ul class="fst">${custom.info!}</ul>
+        <ul class="last">
+            满意度：<img src="${ctxPath}/resource/images/heart${custom.like!5}.gif"/>
+            <a href="${ctxPath}/custom/info/${custom.id}">查看详细</a>
+        </ul>
+    </div>
+    <!--# } -->
+</div>
+<div class="pagesBottom">
+    <a class="disable">&lt;</a>
+    <!--<a class="prev" href="#">上一页</a>-->
+    <a class="current" href="javascript:void(0)">1</a>
+    <a class="pNum" href="#2">2</a>
+    <a class="pNum" href="#3">3</a>
+    <a class="pNum" class="pNum" href="#5">5</a>
+    <a class="next" href="#">下一页</a>
+    <!--<a class="disable">&gt;</a>-->
+</div>

@@ -47,14 +47,11 @@
         <div class="statisticsSearchRes clearfix">
             <h6>共搜索到${goodsPage.totalRow!0}个符合条件的商品。<a href="${ctxPath}/hotel">清除</a></h6>
             <ul class="clearfix">
-                <form action="${ctxPath}/catTourGroupGrid">
+                <form action="${ctxPath}/hotel">
                     <li>关键字：</li>
                     <li>
-                        <input type="text">
+                        <input type="text" name="key">
                     </li>
-                    <input type="hidden" name="price" id="hid_price"/>
-                    <input type="hidden" name="address" id="hid_address"/>
-                    <input type="hidden" name="type" id="hid_type"/>
                     <li>
                         <input type="submit" value="搜索" class="btnSearch">
                     </li>

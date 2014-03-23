@@ -25,6 +25,9 @@ public class ManageRoute extends Routes {
         add("/manage/system/setting", SettingController.class);
         add("/manage/system/help", HelpController.class);
 
+        add("/manage/custom", CustomController.class);
+        add("/manage/play", PlayController.class);
+
         add("/manage/auth", AuthController.class);
         add("/manage", HomeController.class);
     }

@@ -1,0 +1,48 @@
+<!--# layout("/manage/include/layout.html") { -->
+<div class="container" data-module="play.info" id="play">
+    <div class="row">
+        <div class="col-xs-1" style="position: relative">
+            <div style="position: fixed; top:71px; width: 53px">
+                <a href="${ctxPath}/manage/play/order" class="btn btn-default btn-sm btn-block">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-11">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul>
+                        <li>联系人：${order.name}</li>
+                        <li>联系电话：${order.tel}</li>
+                    </ul>
+                    <h6>订购产品列表</h6>
+                    <!--# for(play in order.plays![]) { -->
+                    <div class="item clearfix" data-id="${play.id}">
+                        <div class="col-xs-2" style="width: 135px; padding-right: 0;"><img src="${ctxPath}/rest/image/${play.image!}" class="img-thumbnail" style="width: 120px; height: 90px"></div>
+                        <div class="col-xs-7" style="width: 516px;">
+                            <ul class="list-unstyled" style="line-height: 20px;">
+                                <li style="margin-bottom: 10px;">
+                                    <!--# if(play.type == 'eat') { -->
+                                    <span class="label label-primary">美食</span>
+                                    <!--# } -->
+                                    <!--# if(play.type == 'go') { -->
+                                    <span class="label label-success">美景</span>
+                                    <!--# } -->
+                                    <!--# if(play.type == 'buy') { -->
+                                    <span class="label label-warning">人文</span>
+                                    <!--# } -->
+                                    <!--# if(play.type == 'like') { -->
+                                    <span class="label label-danger">土特</span>
+                                    <!--# } -->
+                                </li>
+                                <li><a href="${ctxPath}/play/info/${play.id}" target="_blank">${play.name!}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--# } -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--# } -->

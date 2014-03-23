@@ -1,0 +1,29 @@
+<!--# layout("/manage/include/layout.html") { -->
+<div class="container" data-module="play.add" id="play">
+    <div class="row">
+        <div class="col-xs-1" style="position: relative">
+            <div style="position: fixed; top:71px; width: 53px">
+                <a href="${ctxPath}/manage/play" class="btn btn-default btn-sm btn-block">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-11">
+            <form action="${ctxPath}/manage/play/save" role="form" class="form-horizontal">
+                <input type="hidden" name="id" value="${play.id!}">
+                <input type="hidden" name="type" value="${play.type!type!''}">
+                <!--# include("/manage/play/add/form.part.html") {} -->
+                <button type="button" class="btn btn-primary btn-block save" style="margin: 20px 0">保存</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>window.baseUrl = '${ctxPath}';</script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script>
+    UE.getEditor('note');
+</script>
+<!--# } -->

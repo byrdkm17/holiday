@@ -7,6 +7,15 @@
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <link href="${ctxPath}/resource/css/main.css" rel="stylesheet" type="text/css">
+    <!--# if (cur!'' == 'custom') { -->
+    <link href="${ctxPath}/resource/css/custom.css" rel="stylesheet" type="text/css">
+    <!--# } -->
+    <!--# if (cur!'' == 'custom.other') { -->
+    <link href="${ctxPath}/resource/css/meetingGroup.css" rel="stylesheet" type="text/css">
+    <!--# } -->
+    <!--# if (cur!'' == 'play') { -->
+    <link href="${ctxPath}/resource/css/rimPart.css" rel="stylesheet" type="text/css">
+    <!--# } -->
     <link href="${ctxPath}/resource/css/ui/juimin.css" rel="stylesheet" type="text/css">
     <link href="${ctxPath}/resource/css/square/orange.css" rel="stylesheet" type="text/css">
 </head>
@@ -16,7 +25,11 @@
 <!-- # } else { -->
 <body>
 <!--# } -->
+<!--# if (cur!'' == 'custom') { -->
+<div id="wrapSpc">
+<!--# } else { -->
 <div id="wrap">
+<!--# } -->
 <div id="header" class="clearfix">
 <div class="topBar">
     <div class="topBarLeft fl">
@@ -59,16 +72,9 @@
 
 <div class="search fl">
     <div class="searchForm clearfix">
-        <form id="queryInput">
+        <form id="queryInput" action="${ctxPath}/all">
             <div class="searchFormInputTxt">
-                <ul>
-                    <li data-target="ticket">景点</li>
-                    <li data-target="line">线路</li>
-                    <li data-target="line">目的地</li>
-                    <li data-target="hotel">酒店</li>
-                </ul>
                 <input type="text" value="请输入目的地名称或关键字" class="inputSearch" name="key">
-
             </div>
             <input type="submit" value="搜索" class="btnSearch">
         </form>
@@ -220,7 +226,7 @@
             <div class="siderCatItem">
                 <h3>包团&amp;定制</h3>
                 <ol>
-                    个性定制 商务旅游 集体旅游
+                    <a href="${ctxPath}/custom/meeting">个性定制</a> <a href="${ctxPath}/custom/meeting">商务旅游</a> <a href="${ctxPath}/custom/meeting">集体旅游</a>
                 </ol>
             </div>
         </div>

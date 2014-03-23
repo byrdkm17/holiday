@@ -1,0 +1,331 @@
+#wrapSpc {
+}
+
+#wrapSpc #header, #wrapSpc #footer {
+    width: 1002px;
+    margin: 0 auto;
+}
+
+#wrapSpc #footer {
+    padding: 30px 0;
+}
+
+#customTourismS1 {
+    height: 664px;
+    background: url(../images/customTourism/bg1.jpg) no-repeat center top;
+    position: relative
+}
+
+.bg1con {
+    background: url(../images/customTourism/bg1con.png) no-repeat center 110px;
+    height: 599px;
+    width: 1002px;
+    margin: 0 auto;
+}
+
+#customTourismS2 {
+    height: 1082px;
+    background: url(../images/customTourism/bg2.jpg) no-repeat center top;
+    position: relative;
+}
+
+.bg2con {
+    background: url(../images/customTourism/bg2con.png) no-repeat center 278px;
+    height: 1020px;
+    width: 1002px;
+    margin: 0 auto;
+}
+
+#customTourismS3, #customTourismS5, #customTourismS7 {
+    background: url(../images/customTourism/bg3.jpg) no-repeat center top;
+    height: 197px;
+}
+
+#customTourismS4 {
+    background: url(../images/customTourism/bg4.jpg) no-repeat center top #48A2EE;
+    height: 3721px;
+    position: relative;
+}
+
+.bg4con {
+    width: 1002px;
+    margin: 0 auto;
+    padding-top: 390px;
+    position: relative;
+}
+
+.b4t {
+    background: url(../images/customTourism/titleCase.png) no-repeat -10000px -10000px;
+}
+
+.bg4con h2 {
+    width: 566px;
+    height: 63px;
+    background-position: 0px 0px;
+    position: absolute;
+    left: 0px;
+    top: 280px;
+}
+
+.bg4con i.one {
+    display: block;
+    width: 52px;
+    height: 86px;
+    background-position: -690px 0px;
+    position: absolute;
+    left: 280px;
+    top: 220px;
+}
+
+.bg4TopR {
+    width: 345px;
+    height: 156px;
+    background: url(../images/customTourism/bg4TopR.png) no-repeat;
+    position: absolute;
+    left: 630px;
+    top: 275px;
+}
+
+.dayItem {
+    position: relative;
+    padding: 0 18px;
+}
+
+.dayItem h3 {
+    width: 510px;
+    height: 75px;
+    background: url(../images/customTourism/titleCase.png) no-repeat -10000px -10000px;
+    position: relative;
+}
+
+.dayItem h3 i.arrow {
+    display: block;
+    width: 88px;
+    height: 74px;
+    background: url(../images/customTourism/titleCase.png) no-repeat -690px -260px;
+    position: absolute;
+    top: 0px;
+}
+
+.dayItem h3.day1 {
+    background-position: 0px -90px;
+}
+
+.dayItem h3.day1 i {
+    left: 380px;
+}
+
+.dayItem h3.day2 {
+    background-position: 0px -190px;
+}
+
+.dayItem h3.day2 i {
+    left: 420px;
+}
+
+.dayItem h3.day3 {
+    background-position: 0px -290px;
+}
+
+.dayItem h3.day3 i {
+    left: 380px;
+}
+
+.dayItem h3.day4 {
+    background-position: 0px -390px;
+}
+
+.dayItem h3.day4 i {
+    left: 420px;
+}
+
+.dayItem h3.day5 {
+    background-position: 0px -490px;
+}
+
+.dayItem h3.day5 i {
+    left: 370px;
+}
+
+.dayItem h3.day6 {
+    background-position: 0px -590px;
+}
+
+.dayItem h3.day6 i {
+    left: 380px;
+}
+
+.dayItem h3.day7 {
+    background-position: 0px -690px;
+}
+
+.dayItem h3.day7 i {
+    left: 430px;
+}
+
+.bg4con ul.txt {
+    background: url(../images/customTourism/titleCase.png) no-repeat 0px -880px;
+    width: 640px;
+    height: 57px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    padding: 20px 120px 0 4px;
+    color: #FFF;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.bg4con ul.pic {
+    padding: 25px 0
+}
+
+.bg4con ul.pic li {
+    float: left;
+    margin-right: 45px;
+}
+
+.bg4con ul.grid {
+    padding-bottom: 35px;
+}
+
+.bg4con ul.grid table {
+    border: #FFF 1px solid;
+    border-right: none;
+    border-bottom: none;
+}
+
+.bg4con ul.grid table td {
+    border-right: #FFF 1px solid;
+    border-bottom: #FFF 1px solid;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 20px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    color: #FFF;
+    font-size: 16px;
+}
+
+.lastSix {
+    padding: 25px 0;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFF;
+    line-height: 40px;
+    word-spacing: 20px;
+}
+
+.lastSix span {
+    display: block;
+    font-size: 20px;
+}
+
+.dayItem5 ul.txt, .dayItem6 ul.txt {
+    line-height: 57px;
+}
+
+#customTourismS6 {
+    background: url(../images/customTourism/bg6.jpg) no-repeat center top #48A2EE;
+    height: 4601px;
+    position: relative;
+}
+
+.bg6con {
+    width: 1002px;
+    margin: 0 auto;
+    padding-top: 390px;
+    position: relative;
+}
+
+.b6t {
+    background: url(../images/customTourism/titleCase.png) no-repeat -10000px -10000px;
+}
+
+.bg6con h2 {
+    width: 566px;
+    height: 63px;
+    background-position: 0px 0px;
+    position: absolute;
+    left: 0px;
+    top: 280px;
+}
+
+.bg6con i.two {
+    display: block;
+    width: 84px;
+    height: 86px;
+    background-position: -690px -120px;
+    position: absolute;
+    left: 280px;
+    top: 220px;
+}
+
+.bg6TopR {
+    width: 332px;
+    height: 163px;
+    background: url(../images/customTourism/bg6TopR.png) no-repeat;
+    position: absolute;
+    left: 630px;
+    top: 275px;
+}
+
+.bg6con ul.txt {
+    background: url(../images/customTourism/titleCase.png) no-repeat 0px -960px;
+    width: 640px;
+    height: 57px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    padding: 20px 120px 0 4px;
+    color: #FFF;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.bg6con ul.pic {
+    padding: 25px 0
+}
+
+.bg6con ul.pic li {
+    float: left;
+    margin-right: 45px;
+}
+
+.bg6con ul.grid {
+    padding-bottom: 35px;
+}
+
+.bg6con ul.grid table {
+    border: #FFF 1px solid;
+    border-right: none;
+    border-bottom: none;
+}
+
+.bg6con ul.grid table td {
+    border-right: #FFF 1px solid;
+    border-bottom: #FFF 1px solid;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 20px;
+    font-family: "Microsoft YaHei", Tahoma, Geneva, sans-serif;
+    color: #FFF;
+    font-size: 16px;
+}
+
+#customTourismS6 .dayItem2 ul.txt, #customTourismS6 .dayItem4 ul.txt, #customTourismS6 .dayItem6 ul.txt, #customTourismS6 .dayItem7 ul.txt {
+    line-height: 57px;
+}
+
+#customTourismS6 .lastSix {
+    padding: 0;
+}
+
+#customTourismS8 {
+    height: 1044px;
+    background: url(../images/customTourism/bg7.jpg) no-repeat center top;
+    position: relative
+}
+
+.bg8con {
+    background: url(../images/customTourism/bg7con.jpg) no-repeat center top;
+    height: 1044px;
+    width: 990px;
+    margin: 0 auto;
+}

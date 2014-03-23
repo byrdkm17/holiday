@@ -1,0 +1,125 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main">
+    <div id="conditionsWrap">
+        <div class="statisticsSearchRes clearfix">
+            <h6>共搜索到${goodsPage.totalRow!0}个符合条件的商品。</h6>
+        </div>
+        <div id="closeOpenConditionsWrap"><a href="javascript:void(0)"></a></div>
+    </div>
+    <div class="productsListBar clearfix">
+        <div class="orderStyle f1">
+            <ul class="clearfix">
+                <h3>默认排序</h3>
+                <li class="default">
+                    <a href="${ctxPath}/all?key=${key!''}">默认</a>
+                </li>
+                <li class="<!--# if(order!'' == 'sales') { print(decode(desc!'', 'on', 'descOn', 'ascOn')); } else { print('asc'); } -->">
+                    <a href="${ctxPath}/all?key=${key!''}&order=sales&desc=${decode(desc!'', 'on', '', 'on')}">销量</a>
+                </li>
+                <li class="<!--# if(order!'' == 'minPrice') { print(decode(desc!'', 'on', 'descOn', 'ascOn')); } else { print('asc'); } -->">
+                    <a href="${ctxPath}/all?key=${key!''}&order=minPrice&desc=${decode(desc!'', 'on', '', 'on')}">价格</a>
+                </li>
+                <li class="<!--# if(order!'' == 'startTime') { print(decode(desc!'', 'on', 'descOn', 'ascOn')); } else { print('asc'); } -->">
+                    <a href="${ctxPath}/all?key=${key!''}&order=startTime&desc=${decode(desc!'', 'on', '', 'on')}">时间</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="catListGrid clearfix" id="catListGrid">
+        <!--# for(goods in goodsPage.list![]) {-->
+        <div class="catListGridItem"><a href="${ctxPath}/detail/${goods.id}"><img class="proPic" src="${ctxPath}/rest/image/${goods.master!}"/></a>
+
+            <h2><a href="${ctxPath}/detail/${goods.id}" target="_blank">${goods.name}</a></h2>
+            <ul class="clearfix">
+                <h6>￥${goods.minPrice!0 / 100}<i>起</i></h6>
+                <!--# if(goods.recommend!0 > 0) { -->
+                <li>推荐指数：<img src="${ctxPath}/resource/images/starOrg${goods.recommend!0}.gif"/></li>
+                <!--# } -->
+            </ul>
+        </div>
+        <!--# } -->
+    </div>
+
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".focusCatSlide").slide({titCell: ".hd ul", mainCell: ".bd ul", effect: "fold", autoPlay: true, autoPage: true, delayTime: 1000});
+        $(".hd").find("li").each(function (i) {
+            var focusBarW = 21 * (i + 1),
+                    hdPosW = (680 - focusBarW) / 2;
+            $(this).parents(".hd").css("left", hdPosW);
+        });
+        $("#closeAdsCatTop").click(function () {
+            $("#adsCatTop").slideUp("slow");
+        });
+        $("#closeOpenConditionsWrap").toggle(function () {
+            $(this).siblings(":not(:first)").hide();
+            $(this).children().addClass("close")
+        }, function () {
+            $(this).siblings(":not(:first)").show();
+            $(this).children().removeClass("close")
+        });
+        var conditionsList = $("#conditionsList"),
+                conditionsItem = $(conditionsList).children();
+        if ($(conditionsItem).length > 2) {
+            var conditionsItemHide = $(conditionsList).children(":gt(2)");
+            $(conditionsList).after("<div id='closeOpenConditionsItem'><a href='javascript:void(0)'>更多</a></div>");
+            $(conditionsItemHide).hide();
+            $("#closeOpenConditionsItem").toggle(function () {
+                $(conditionsItemHide).show();
+                $(this).children().addClass("close")
+            }, function () {
+                $(conditionsItemHide).hide();
+                $(this).children().removeClass("close")
+            });
+            $(conditionsItem).each(function () {
+                var conditionsItemChild = $(this).find("li");
+                if ($(conditionsItemChild).length > 32) {
+                    var conditionsItemChildHide = $(this).find("li:gt(32)");
+                    $(this).append("<div class='closeOpenConditionsItemContent'><a href='javascript:void(0)'>更多</a></div>");
+                    $(conditionsItemChildHide).hide();
+                    $(".closeOpenConditionsItemContent").toggle(function () {
+                        $(conditionsItemChildHide).show();
+                        $(this).children().addClass("close")
+                    }, function () {
+                        $(conditionsItemChildHide).hide();
+                        $(this).children().removeClass("close")
+                    });
+                }
+            });
+        }
+        ;
+        $("#catListGrid").children().each(function (i) {
+            if ((i + 1) % 3 == 0) {
+                $(this).addClass("catListGridItemNoMg");
+            }
+        }).hover(function () {
+            $(this).addClass("catListGridItemHov");
+        }, function () {
+            $(this).removeClass("catListGridItemHov");
+        });
+        //选择目的地、价格和商品类型时样式控制
+        $('#address').children().click(function (e) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $('#hid_address').val($(this).children().data('target'));
+            e.preventDefault();
+        });
+        $('#price').children().click(function (e) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $('#hid_price').val($(this).children().text());
+            e.preventDefault();
+        });
+        $('#type').children().click(function (e) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $('#hid_type').val($(this).children().text());
+            e.preventDefault();
+        });
+    });
+</script>

@@ -1,0 +1,89 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">标题</label>
+
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="name" value="${play.name!}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">推荐指数</label>
+
+            <div class="col-xs-10">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="name">${play.like!"请选择"}</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" class="selectLike" data-id="1">1</a></li>
+                        <li><a href="#" class="selectLike" data-id="2">2</a></li>
+                        <li><a href="#" class="selectLike" data-id="3">3</a></li>
+                        <li><a href="#" class="selectLike" data-id="4">4</a></li>
+                        <li><a href="#" class="selectLike" data-id="5">5</a></li>
+                    </ul>
+                    <input type="hidden" name="like" value="${play.like!}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">分类</label>
+
+            <div class="col-xs-10">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="name">${play.category.name!"请选择"}</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <!--# for(category in categoryPage.list![]) { -->
+                        <li><a href="#" class="selectCategory" data-id="${category.id}">${category.name}</a></li>
+                        <!--# } -->
+                    </ul>
+                    <input type="hidden" name="category" value="${play.category.id!}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">标签</label>
+
+            <div class="col-xs-10 labels">
+                <!--# for(label in labelPage.list![]) { -->
+                <span class="label label-default" data-id="${label.id}">${label.name}</span>
+                <!--# } -->
+                <!--# var labelIds; -->
+                <!--# for(label in play.labels![]) {
+                    labelIds = labelIds + label.id + ",";
+                } -->
+                <input type="hidden" name="label" value="${labelIds!}">
+            </div>
+        </div>
+        <div class="form-group normal">
+            <label class="col-xs-2 control-label">图片</label>
+
+            <div class="col-xs-10">
+                <div class="pull-left">
+                    <label>
+                        <!--# if(play.image.id!"" == "") { -->
+                        <img src="holder.js/120x90" class="img-thumbnail" style="margin: 0 10px; width: 120px; height: 90px">
+                        <!--# } else { -->
+                        <img src="${ctxPath}/rest/image/${play.image.id}" class="img-thumbnail" style="margin: 0 10px; width: 120px; height: 90px">
+                        <!--# } -->
+                        <input type="file" style="display: none">
+                    </label>
+
+                    <p class="text-center" style="font-size: 12px"><a href="#" class="clean" style="display: none">清除</a></p>
+                    <input type="hidden" name="image" value="${play.image.id!}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">描述</label>
+
+            <div class="col-xs-10">
+                <script id="note" type="text/plain" style="height:200px"></script>
+            </div>
+            <input type="hidden" name="note">
+            <script type="text/plain" id="noteText">${play.note!}</script>
+        </div>
+    </div>
+</div>

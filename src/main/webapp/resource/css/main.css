@@ -2805,7 +2805,6 @@ a img {
 .goodsInfoContent {
     border: #EAEAEA 1px solid;
     border-left: none;
-    height: 310px;
     overflow: hidden;
 }
 
@@ -2830,7 +2829,6 @@ a img {
 }
 
 .propertyChoice {
-    height: 129px;
     border-bottom: #EAEAEA 1px dashed;
     padding: 0 10px;
 }
@@ -2862,10 +2860,10 @@ a img {
 
 .propertyChoice ul li.date input {
     border: 1px solid #ccc;
-    width: 69px;
+    width: 84px;
     height: 24px;
     line-height: 24px;
-    padding: 0 20px 0 5px;
+    padding: 0 5px;
     cursor: pointer;
 }
 
@@ -3060,7 +3058,6 @@ a img {
 }
 
 .goodsInfoPlus ul {
-    height: 20px;
     line-height: 20px;
     white-space: nowrap;
 }

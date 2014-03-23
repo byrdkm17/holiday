@@ -1,5 +1,6 @@
 package cc.aliza.production.holiday.controller.view;
 
+import cc.aliza.production.holiday.dao.ADDao;
 import cc.aliza.production.holiday.dao.GoodsDao;
 import cc.aliza.production.holiday.dao.LabelDao;
 import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
@@ -21,15 +22,26 @@ public class CarController extends Controller {
         params.put("production", "car");
         setAttr("labelPage", LabelDao.dao.findBy(params));
 
+
         params.put("label", getPara("label", null));
+        params.put("target", getPara("target", null));
         params.put("order", getPara("order", null));
         params.put("desc", getPara("desc", null));
+        params.put("key", getPara("key", null));
         params.put("status", 1);
 
         setAttr("order", getPara("order", null));
         setAttr("desc", getPara("desc", null));
-        setAttr("queryLabel", getPara("label"));
+        setAttr("queryLabel", getPara("label", null));
+        setAttr("queryTarget", getPara("target", null));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
+
+        params.clear();
+        params.put("position", "CARLB");
+        setAttr("LBADPage", ADDao.dao.findBy(params));
+
+        setAttr("BLOCKAD", ADDao.dao.findOne("position", "CARBLOCK"));
+
         setAttr("count", GoodsDao.dao.query().is("status", 1).is("production", "car").count());
         render("/view/car/index.html");
     }
