@@ -39,6 +39,8 @@ public class ADDao extends BuguDao<AD> {
         }
         query.pageSize(pageSize);
 
+        query.sort("{id: -1}");
+
         int totalRow = (int) query.count();
         int totalPage = (int) Math.ceil((double) totalRow / 10);
         List<AD> adList = query.results();

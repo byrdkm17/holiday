@@ -37,8 +37,14 @@
             <h6>旅客信息<a href="#" class="add-people" style="float: right">增加旅客信息</a></h6>
             <dl class="clearfix">
                 <dd><select>
+                    <!--# if (order.priceSetObject.title!'' == '儿童') { -->
+                    <option>儿童</option>
+                    <!--# } else if (order.priceSetObject.title!'' == '成人') { -->
+                    <option>成人</option>
+                    <!--# } else { -->
                     <option>成人</option>
                     <option>儿童</option>
+                    <!--# } -->
                 </select></dd>
                 <dd><i>*</i>姓名：</dd>
                 <dd><input type="text" class="departureName"></dd>
@@ -257,8 +263,14 @@
 <script type="text/template" id="info-tpl">
     <dl class="clearfix">
         <dd><select name="type">
-            <option value="成人">成人</option>
-            <option value="儿童">儿童</option>
+            <!--# if (order.priceSetObject.title!'' == '儿童') { -->
+            <option>儿童</option>
+            <!--# } else if (order.priceSetObject.title!'' == '成人') { -->
+            <option>成人</option>
+            <!--# } else { -->
+            <option>成人</option>
+            <option>儿童</option>
+            <!--# } -->
         </select></dd>
         <dd><i>*</i>姓名：</dd>
         <dd><input type="text" class="departureName"></dd>
@@ -267,6 +279,7 @@
             <option>身份证</option>
         </select></dd>
         <dd><input type="text" class="departureCardId"></dd>
+        <dd><a href="#" class="removeDeparture">删除</a></dd>
     </dl>
 </script>
 <script type="text/plain" id="priceSet">${order.priceSet}</script>
@@ -277,7 +290,7 @@
         var price = ((priceSet.price - discount) < 0 ? priceSet.price : (priceSet.price - discount)) / 100;
         var priceList = priceSet.priceList;
         var maxNumber = priceSet.number || 0;
-        var curPayMethod;
+        var curPayMethod = 0;
         var allDiscount = +'${allAmountDiscount.value!0}';
         var preDiscount = +'${preAmountDiscount.value!0}';
 
@@ -365,9 +378,25 @@
         $('.add-people').click(function (e) {
             e.preventDefault();
             $('.departure').append($($('#info-tpl').html()));
+            $('.departure').children('dl:last').find('a').click(function (e) {
+                e.preventDefault();
+                $(this).closest('dl').remove();
+            });
         });
 
         $('.btnSubmit').click(function () {
+            var des = 0;
+            $('.departure').find('dl').each(function () {
+                if ($.trim($(this).find('.departureName').val()) && $.trim($(this).find('.departureCardId').val())) {
+                    des++;
+                }
+            });
+
+            if (des == 0) {
+                alert('请填写旅客信息');
+                return;
+            }
+
             if (curPayMethod == 0) {
                 alert('请选择支付方式');
                 return;
@@ -390,9 +419,11 @@
                     $('.departure').find('dl').each(function () {
                         var t = {};
                         t.type = $(this).find('[name="type"]').val();
-                        t.name = $(this).find('.departureName').val();
-                        t.code = $(this).find('.departureCardId').val();
-                        ts.push(t);
+                        t.name = $.trim($(this).find('.departureName').val());
+                        t.code = $.trim($(this).find('.departureCardId').val());
+                        if (t.name) {
+                            ts.push(t);
+                        }
                     });
                     return JSON.stringify(ts);
                 })(),

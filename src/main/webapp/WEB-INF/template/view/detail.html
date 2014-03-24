@@ -80,6 +80,8 @@
                     <ul class="last fr">
                         <!--# if(!empty('member') ){ -->
                         <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0}</span>)</li>
+                        <!--# } else { -->
+                        <li class="fav"><a href="${ctxPath}/login?redirect=/detail/${goods.id}">收藏产品</a>(<span class="fntRedBold">${goods.collect!0}</span>)</li>
                         <!--# } -->
                         <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0}</span>)</li>
                     </ul>
@@ -166,6 +168,8 @@
     </div>
     <div class="note" style="padding: 10px">${goods.note}</div>
 </div>
+<a id="commentsGoodsPages2Md"></a>
+
 <div class="blank"></div>
 <div class="blank"></div>
 <div class="commentsGoodsPages">

@@ -4,20 +4,15 @@
     <!--# include("/view/include/left.html"){}-->
     <div class="userCenterMain fr">
         <div class="userOrderListAll">
-            <div class="userCenterWhere clearfix"><a href="#" class="servicesSun">阳光客服</a><a href="#" class="orderRecycle">订单回收站</a> <span class="bold">交易管理</span> &gt; 我的收藏</div>
+            <div class="userCenterWhere clearfix"><a href="#" class="orderRecycle">订单回收站</a> <span class="bold">交易管理</span> &gt; 我的收藏</div>
             <div class="userOrderListTitle clearfix">
-                <ol class="left">
-                    产品名称：
-                    <input type="text" class="searchOrder" value="商品名称、商品编号、订单编号">
-                </ol>
-                <ol>
-                    收藏日期：从
-                    <input type="text" class="searchDate" id="dateBegin">
-                    日到
-                    <input type="text" class="searchDate" id="dateEnd">
-                    日
-                    <input type="button" value="查询" class="searchOrderBtn">
-                </ol>
+                <form action="${ctxPath}/user/collect">
+                    <ol class="left">
+                        产品名称：
+                        <input type="text" class="searchOrder" name="search" placeholder="商品名称">
+                        <input type="submit" value="查询" class="searchOrderBtn">
+                    </ol>
+                </form>
             </div>
             <div class="userOrderListGrid">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -146,7 +141,7 @@
         });
 
         $('.clearCookie').click(function () {
-            $.cookie.removeCookie('goodsViewList', {path: '/'});
+            $.removeCookie('goodsViewList', {path: '/'});
         });
     });
 </script>

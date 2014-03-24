@@ -1,7 +1,6 @@
 <!--# layout("/view/include/layout.html") { -->
 <div id="main" class="clearfix">
     <div class="blank"></div>
-    <div class="uhereUser"><a href="home.html">我的假日阳光</a></div>
     <!--# include("/view/include/left.html"){}-->
     <div class="userCenterMain fr">
         <div class="userOrderListAll">
@@ -123,7 +122,7 @@
         });
 
         $('.clearCookie').click(function () {
-            $.cookie.removeCookie('goodsViewList', {path: '/'});
+            $.removeCookie('goodsViewList', {path: '/'});
         });
     });
 </script>
