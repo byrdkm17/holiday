@@ -1,15 +1,15 @@
 <!--# layout("/view/include/layout.html", {cur: 'play'}) { -->
 <div id="main" class="clearfix">
     <div class="uhere dib"><a href="${ctxPath}">首页</a> &gt; <a href="${ctxPath}/play/${type}"><!--# if (type!'' == 'eat') { -->美食<!--# } --><!--# if (type!'' == 'go') { -->美景<!--# } --><!--# if (type!'' == 'buy') { -->人文<!--# } -->
-        <!--# if (type!'' == 'like') { -->特产<!--# } --></a> &gt; ${play.category.name}
+        <!--# if (type!'' == 'like') { -->特产<!--# } --></a> &gt; ${play.category.name!'其他'}
     </div>
     <div class="rimContentMain fl">
         <div class="rimContentMainPro">
-            <h1><i>【${play.category.name}】</i>${play.name}</h1>
+            <h1><i>【${play.category.name!'其他'}】</i>${play.name}</h1>
 
             <div class="rimContentBaseInfo"><img src="${ctxPath}/rest/image/${play.image!}" class="bigPic" width="500" height="330" alt=""/>
 
-                <h2>${play.category.name}</h2>
+                <h2>${play.category.name!'其他'}</h2>
                 <ul>
                     <li class="goodsNum"><!--# if (type!'' == 'eat') { -->想吃<!--# } --><!--# if (type!'' == 'go') { -->想玩<!--# } --><!--# if (type!'' == 'buy') { -->想买<!--# } -->
                         <!--# if (type!'' == 'like') { -->喜欢<!--# } --> : <i>${play.want!0}</i></li>
