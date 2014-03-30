@@ -62,7 +62,7 @@ public class OrderController extends Controller {
         Order order = OrderDao.dao.findOne(id);
 
         if (order.getMember().equals(getAttr("member"))) {
-            OrderDao.dao.unset(order, "member");
+            OrderDao.dao.set(order, "status", 3);
         }
 
         redirect("/user/order");

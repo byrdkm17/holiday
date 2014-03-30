@@ -1,0 +1,144 @@
+<!--# layout("/view/include/layout.html", {cur: "safeSet"}) { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <!--# include("/view/include/left.html"){}-->
+    <div class="userCenterMain fr">
+        <div class="userOrderListAll">
+            <div class="userCenterWhere clearfix"><span class="bold">账户管理</span> &gt; 个人信息</div>
+            <div class="pointsRecord">
+                <div class="addAddress">
+                    <ul class="baseInfo">
+                        <!--# if(type == 'password') { -->
+                        <form action="${ctxPath}/user/upPassword" method="post" class="upPassword">
+                            <li><span>原密码：</span>
+                                <input type="password" class="addressTxt" name="password">
+                            </li>
+                            <li><span>新密码：</span>
+                                <input type="password" class="addressTxt" name="newPassword">
+                            </li>
+                            <li><span>重复新密码：</span>
+                                <input type="password" class="addressTxt" name="newPassword2">
+                            </li>
+                            <li><span></span>
+                                <input type="submit" class="addressBtn" value="确定">
+                            </li>
+                        </form>
+                        <!--# } -->
+                        <!--# if(type == 'email') { -->
+                        <li><span>新邮箱：</span>
+                            <input type="email" class="addressTxt">
+                            <button>发送邮件</button>
+                        </li>
+                        <li><span></span>
+                            <input type="button" class="addressBtn" value="确定">
+                        </li>
+                        <!--# } -->
+                        <!--# if(type == 'mobile') { -->
+                        <li><span>手机号：</span>
+                            <input type="text" class="addressTxt">
+                            <button class="sendYzm" data-box="xsj">发送验证码</button>
+                        </li>
+                        <li style="display: none" class="xsj"><span></span>
+                            请填写收到的验证码：<input type="text" class="addressTxt">
+                            <button class="yz">验证</button>
+                        </li>
+                        <li><span></span>
+                            <input type="button" class="addressBtn" value="确定">
+                        </li>
+                        <!--# } -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <!--# include("/view/user/bottom.html"){}-->
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="../resource/js/plugin/slide.js"></script>
+<script src="../resource/js/jLamCatCustom.js"></script>
+<script src="../resource/js/juimin.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var userCenterSiderNavLinks = $("div.userCenterSider").find("a");
+        $(userCenterSiderNavLinks).each(function (i) {
+            var links = $(userCenterSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(userCenterSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+
+        $('.upPassword').submit(function () {
+            if (!$.trim($('[name="password"]').val())) {
+                alert("原密码不能为空");
+                return false;
+            }
+            if (!$.trim($('[name="newPassword"]').val())) {
+                alert("新密码不能为空");
+                return false;
+            }
+            if ($('[name="newPassword"]').val() != $('[name="newPassword2"]').val()) {
+                alert("两次输入的新密码不一致");
+                return false;
+            }
+        });
+
+        $('.sendYzm').click(function () {
+            var that = $(this);
+            var mobile = $.trim(that.prev().val());
+            if (!mobile) {
+                alert("手机号不能为空");
+                return false;
+            }
+            if (mobile.length != 11) {
+                alert("请填写正确的手机号");
+                return false;
+            }
+            that.attr('disabled', true).text('正在发送验证码');
+
+            $.ajax({
+                url: '${ctxPath}/user/sendYzm',
+                type: "POST",
+                data: {mobile: mobile},
+                success: function (res) {
+                    if (res.success) {
+                        that.text('验证码已发送');
+                        that.prev().attr('disabled', true);
+                        $('.' + that.data('box')).show().find('.yz').data('mobile', that.prev().val());
+                    }
+                }
+            });
+        });
+
+        $('.yz').click(function () {
+            var that = $(this);
+            if ($.trim(that.prev().val())) {
+                $.ajax({
+                    url: '${ctxPath}/user/yz',
+                    type: "POST",
+                    data: {
+                        mobile: that.data('mobile'),
+                        yzm: $.trim(that.prev().val()),
+                        bind: that.data('bind')
+                    },
+                    success: function (res) {
+                        if (res.success) {
+                            location.href = '${ctxPath}/user/safe';
+                        } else {
+                            alert(res.message);
+                        }
+                    }
+                });
+            }
+        });
+
+        if ('${error!''}') {
+            alert('${error!''}');
+        }
+    });
+</script>
+</body>
+</html>

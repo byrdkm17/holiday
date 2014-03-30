@@ -23,7 +23,7 @@ public class Order extends SimpleEntity {
     // 商品快照
     private String goodsJson;
 
-    // 状态
+    // 状态：0 购物车，1 待支付，2 已支付，3 删除
     private Integer status;
 
     // 商品规格

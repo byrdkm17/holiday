@@ -77,10 +77,14 @@ public class ImageRest extends Controller {
                 result.put("title", image.getName());
                 result.put("url", "/rest/image/" + image.getId());
                 result.put("state", "SUCCESS");
+                result.put("id", image.getId());
             }
 
             if ("ueditor".equals(getPara("from"))) {
                 renderJson(result);
+            } else if ("header".equals(getPara("from"))) {
+                setAttr("arg", result.get("id"));
+                render("/view/include/hideImg.html");
             } else {
                 renderJson(Result.exec(images));
             }

@@ -33,9 +33,38 @@ public class Member extends SimpleEntity {
     private Integer status;
 
     // 用户头像
-    private String headImgUrl;
+    @Ref
+    private Image header;
 
+    // 所在城市
     private String city;
+
+    // 真实姓名
+    private String realName;
+
+    // 性别：0 位置，1 男性，2 女性
+    private Integer sex;
+
+    // 邮箱
+    private String email;
+
+    // 邮箱绑定
+    private Integer bindEmail;
+
+    // 手机
+    private String mobile;
+
+    // 手机绑定
+    private Integer bindMobile;
+
+    // 证件类型：1 身份证
+    private Integer cardType;
+
+    // 证件号码
+    private String cardNo;
+
+    // 生日
+    private String birthday;
 
     @RefList
     private List<Goods> collect;
@@ -96,11 +125,83 @@ public class Member extends SimpleEntity {
         this.status = status;
     }
 
-    public String getHeadImgUrl() {
-        return headImgUrl;
+    public Image getHeader() {
+        return header;
     }
 
-    public void setHeadImgUrl(String headImgUrl) {
-        this.headImgUrl = headImgUrl;
+    public void setHeader(Image header) {
+        this.header = header;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Integer getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(Integer cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public Integer getBindEmail() {
+        return bindEmail;
+    }
+
+    public void setBindEmail(Integer bindEmail) {
+        this.bindEmail = bindEmail;
+    }
+
+    public Integer getBindMobile() {
+        return bindMobile;
+    }
+
+    public void setBindMobile(Integer bindMobile) {
+        this.bindMobile = bindMobile;
     }
 }

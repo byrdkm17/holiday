@@ -6,6 +6,7 @@ import cc.aliza.production.holiday.controller.SystemController;
 import cc.aliza.production.holiday.controller.view.LoginController;
 import cc.aliza.production.holiday.controller.view.LogoutController;
 import cc.aliza.production.holiday.controller.view.SignController;
+import cc.aliza.production.holiday.plugin.QuartzPlugin;
 import cc.aliza.production.holiday.route.ManageRoute;
 import cc.aliza.production.holiday.route.RestRoute;
 import cc.aliza.production.holiday.route.ViewRoute;
@@ -38,6 +39,8 @@ public class Config extends JFinalConfig {
 
     @Override
     public void configPlugin(Plugins me) {
+        QuartzPlugin qp = new QuartzPlugin();
+        me.add(qp);
     }
 
     @Override

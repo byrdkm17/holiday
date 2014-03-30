@@ -1,0 +1,122 @@
+<!--# layout("/view/include/layout.html", {cur: "baseInfo"}) { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <!--# include("/view/include/left.html"){}-->
+    <div class="userCenterMain fr">
+        <div class="userOrderListAll">
+            <div class="userCenterWhere clearfix"><span class="bold">账户管理</span> &gt; 个人信息</div>
+            <div class="pointsRecord">
+                <div class="addAddress">
+                    <ul class="baseInfo">
+                        <li><span>头像：</span>
+                            <img class="head" src="${ctxPath}/rest/image/${member.header!}"/><br>
+
+                            <form class="hidePost" action="${ctxPath}/rest/image/save" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                <input type="hidden" name="from" value="header">
+                                <span></span><input type="file" class="addressTxt headerImg" name="header">
+                            </form>
+                            <iframe name="hidden_frame" id="hidden_frame" style="display:none"></iframe>
+                        </li>
+                        <form action="${ctxPath}/user/saveInfo" method="post" id="postInfo">
+                            <input type="hidden" name="headerID">
+                            <li><span>用户名：</span><span class="username">${member.username!}</span></li>
+                            <li><span>真实姓名：</span>
+                                <input type="text" name="realName" disabled="disabled" class="addressTxt" value="${member.realName!}">
+                                <span class="username"><a href="javascript:void(0)">修改</a></span></li>
+                            <li><span>性别：</span>
+
+                                <input class="sex" type="radio" name="sex" value="1" id="RadioGroup1_0" <!--# if(member.sex!0 == 1) { print('checked'); } -->>
+                                <span class="sex">男</span>
+                                <input class="sex" type="radio" name="sex" value="2" id="RadioGroup1_1" <!--# if(member.sex!0 == 2) { print('checked'); } -->>
+                                <span class="sex">女</span>
+                                <input class="sex" type="radio" name="sex" value="0" id="RadioGroup1_2" <!--# if(member.sex!0 == 0) { print('checked'); } -->>
+                                <span class="sex">保密</span>
+                            </li>
+                            <li><span>邮箱：</span>
+                                <input type="email" name="email" disabled="disabled" class="addressTxt" value="${member.email!}">
+                                <span class="username"><a href="${ctxPath}/user/edit/email">修改</a></span></li>
+                            <li><span>手机：</span>
+                                <input type="text" name="mobile" disabled="disabled" class="addressTxt" value="${member.mobile!}">
+                                <span class="username"><a href="${ctxPath}/user/edit/mobile">修改</a></span></li>
+                            <li><span>证件类型：</span>
+                                <select name="cardType">
+                                    <option value="1" selected>身份证</option>
+                                </select>
+                            </li>
+                            <li><span>证件号码：</span>
+                                <input type="text" name="cardNo" class="addressTxt" value="${member.cardNo!}">
+                            </li>
+                            <li><span>出生年月：</span>
+                                <input type="text" class="addressTxt" name="birthday" id="birthday" value="${member.birthday!}">
+                            </li>
+                            <li><span>居住地址：</span>
+                                <select>
+                                    <option>请选择</option>
+                                </select>
+                                <select>
+                                    <option>请选择</option>
+                                </select>
+                                <select>
+                                    <option>请选择</option>
+                                </select>
+                            </li>
+                            <li><span></span>
+                                <input type="text" class="addressTxt addressTxtLong">
+                            </li>
+                            <li><span></span>
+                                <input type="submit" class="addressBtn" value="确定">
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <!--# include("/view/user/bottom.html"){}-->
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="../resource/js/plugin/slide.js"></script>
+<script src="../resource/js/jLamCatCustom.js"></script>
+<script src="../resource/js/juimin.js"></script>
+<script src="../resource/js/jquery.ui.datepicker-zh-CN.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var userCenterSiderNavLinks = $("div.userCenterSider").find("a");
+        $(userCenterSiderNavLinks).each(function (i) {
+            var links = $(userCenterSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(userCenterSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+        $(".uLikeWhat").slide({titCell: ".uLikeWhatTitle ul", mainCell: ".uLikeWhatScreen", effect: "leftLoop", autoPage: true, autoPlay: true});
+        $("#birthday").datepicker({
+            changeMonth: true
+        });
+        $(".username").each(function () {
+            $(this).click(function () {
+                $(this).prev().removeAttr("disabled")
+            });
+        });
+
+        $('.headerImg').change(function () {
+            if ($(this).val()) {
+                $('.hidePost').submit();
+            }
+        });
+
+        $('#postInfo').submit(function () {
+            $(this).find('input').removeAttr('disabled');
+        });
+    });
+
+    function setHeader(id) {
+        $('.head').attr('src', '${ctxPath}/rest/image/' + id);
+        $('[name="headerID"]').val(id);
+    }
+</script>
+</body>
+</html>

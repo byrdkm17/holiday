@@ -1,0 +1,78 @@
+<!--# layout("/view/include/layout.html", {cur: "safeSet"}) { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <!--# include("/view/include/left.html"){}-->
+    <div class="userCenterMain fr">
+        <div class="userOrderListAll">
+            <div class="userCenterWhere clearfix"><span class="bold">账户管理</span> &gt; 安全设置</div>
+            <div class="safeSetWrap">
+                <div class="safeSetItem clearfix">
+                    <i class="right">强度高</i>
+
+                    <h3>登录密码</h3>
+                    <ul>互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</ul>
+                    <a href="${ctxPath}/user/edit/password">修改</a>
+                </div>
+                <div class="safeSetItem clearfix">
+                    <!--# if (member.bindEmail!0 == 0) { -->
+                    <i class="warning">未绑定</i>
+                    <!--# } else { -->
+                    <i class="right">已绑定</i>
+                    <!--# } -->
+                    <h3>绑定邮箱</h3>
+                    <ul>验证后用于邮箱找回密码、接收订单提醒等，保障您的账户更加安全。</ul>
+                    <a href="${ctxPath}/user/edit/email">修改</a>
+                </div>
+                <div class="safeSetItem clearfix">
+                    <!--# if (member.bindMobile!0 == 0) { -->
+                    <i class="warning">未绑定</i>
+                    <!--# } else { -->
+                    <i class="right">已绑定</i>
+                    <!--# } -->
+                    <h3>绑定手机</h3>
+                    <ul>绑定后用于手机找回密码、接收手机动态验证码等，保障您的账户更加安全。</ul>
+                    <a href="${ctxPath}/user/edit/mobile">修改</a>
+                </div>
+                <div class="safeSetItem clearfix">
+                    <i class="warning">未设置</i>
+
+                    <h3>安保问题</h3>
+                    <ul>互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</ul>
+                    <a href="#">设置</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <!--# include("/view/user/bottom.html"){}-->
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="../resource/js/plugin/slide.js"></script>
+<script src="../resource/js/jLamCatCustom.js"></script>
+<script src="../resource/js/juimin.js"></script>
+<script src="../resource/js/jquery.ui.datepicker-zh-CN.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var userCenterSiderNavLinks = $("div.userCenterSider").find("a");
+        $(userCenterSiderNavLinks).each(function (i) {
+            var links = $(userCenterSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(userCenterSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+        $(".uLikeWhat").slide({titCell: ".uLikeWhatTitle ul", mainCell: ".uLikeWhatScreen", effect: "leftLoop", autoPage: true, autoPlay: true});
+        $("#birthday").datepicker({
+            changeMonth: true
+        });
+        $(".username").each(function () {
+            $(this).click(function () {
+                $(this).prev().removeAttr("disabled")
+            });
+        });
+    });
+</script>
+</body>
+</html>

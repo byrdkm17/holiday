@@ -42,7 +42,7 @@ public class OrderDao extends BuguDao<Order> {
         if (params.get("status") != null) {
             query.is("status", params.get("status"));
         } else {
-            query.notEquals("status", 0);
+            query.notEquals("status", 0).notEquals("status", 3);
         }
 
         if (params.get("orderKey") != null && !"商品名称".equals(params.get("orderKey"))) {
