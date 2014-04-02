@@ -5,6 +5,7 @@ import cc.aliza.production.holiday.dao.PlayCategoryDao;
 import cc.aliza.production.holiday.dao.PlayCommentDao;
 import cc.aliza.production.holiday.dao.PlayDao;
 import cc.aliza.production.holiday.dao.PlayOrderDao;
+import cc.aliza.production.holiday.entity.Member;
 import cc.aliza.production.holiday.entity.Play;
 import cc.aliza.production.holiday.entity.PlayComment;
 import cc.aliza.production.holiday.entity.PlayOrder;
@@ -145,6 +146,7 @@ public class PlayController extends Controller {
         PlayComment comment = new PlayComment();
         comment.setContent(content);
         comment.setMobile(mobile);
+        comment.setMember((Member) getAttr("member"));
         comment.setPlay(PlayDao.dao.findOne(id));
 
         PlayCommentDao.dao.save(comment);
@@ -161,7 +163,9 @@ public class PlayController extends Controller {
         String[] ids = StringUtils.split(idss, ",");
         List<Play> plays = new ArrayList<Play>();
         for (String id : ids) {
-            plays.add(PlayDao.dao.findOne(id));
+            Play play = PlayDao.dao.findOne(id);
+            PlayDao.dao.inc(play, "want", 1);
+            plays.add(play);
         }
 
         PlayOrder order = new PlayOrder();

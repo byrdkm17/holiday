@@ -11,7 +11,6 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +25,12 @@ public class HomeController extends Controller {
     public void index() {
         Map<String, Object> params = new HashMap<String, Object>();
 
-        params.put("time", sdf.format(new Date()));
         params.put("status", 1);
         params.put("discount", 0);
         params.put("pageSize", 9);
         setAttr("discountGoodsPage", GoodsDao.dao.findBy(params));
 
         params.clear();
-        params.put("time", sdf.format(new Date()));
         params.put("pageSize", 8);
         params.put("production", "line");
         params.put("status", 1);
@@ -58,21 +55,18 @@ public class HomeController extends Controller {
         setAttr("hotCarLabelPage", LabelDao.dao.findBy(params));
 
         params.clear();
-        params.put("time", sdf.format(new Date()));
         params.put("pageSize", 15);
         params.put("production", "hotel");
         params.put("status", 1);
         setAttr("hotHotelGoodsPage", GoodsDao.dao.findBy(params));
 
         params.clear();
-        params.put("time", sdf.format(new Date()));
         params.put("pageSize", 48);
         params.put("production", "ticket");
         params.put("status", 1);
         setAttr("hotTicketGoodsPage", GoodsDao.dao.findBy(params));
 
         params.clear();
-        params.put("time", sdf.format(new Date()));
         params.put("pageSize", 36);
         params.put("production", "car");
         params.put("status", 1);

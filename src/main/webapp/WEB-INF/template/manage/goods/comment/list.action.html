@@ -1,0 +1,12 @@
+<ul class="pagination pagination-sm pull-right">
+    <!--# if(commentPage.pageNumber!1 > 1) {-->
+    <li class="previous"><a href="${ctxPath}/manage/play/comment?type=${type!}&pageNumber=${commentPage.pageNumber - 1}">上一页</a></li>
+    <!--# } else { -->
+    <li class="previous disabled"><span>上一页</span></li>
+    <!--# } -->
+    <!--# if(commentPage.pageNumber < commentPage.totalPage) { -->
+    <li class="next"><a href="${ctxPath}/manage/play/comment?type=${type!}&pageNumber=${commentPage.pageNumber + 1}">下一页</a></li>
+    <!--# } else { -->
+    <li class="next disabled"><span>下一页</span></li>
+    <!--# } -->
+</ul>

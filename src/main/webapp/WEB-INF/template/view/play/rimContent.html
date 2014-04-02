@@ -47,13 +47,18 @@
             <div class="commentsGoodsPagesTitle">我来说说</div>
             <div class="commentsGoodsMain">
                 <!--# for(comment in play.comments![]) { -->
-                <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/resource/images/demo/user.jpg"/>
+                <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/rest/image/"/>
                     <ul class="userInfo clearfix">
                         <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
-                        <h5>${comment.mobile}</h5>
+                        <h5>${comment.member.username!'访客'}</h5>
                     </ul>
                     <div class="blank"></div>
                     <ul class="userComments"><i></i>${comment.content}</ul>
+                    <div class="blank"></div>
+                    <!--# if(comment.reply != null) { -->
+                    <h6 class="userCommentsReply">客服回复</h6>
+                    <ul class="userCommentsReply"><i></i>${comment.reply.content!}</ul>
+                    <!--# } -->
                 </div>
                 <!--# } -->
             </div>

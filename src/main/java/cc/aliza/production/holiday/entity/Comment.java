@@ -17,7 +17,7 @@ public class Comment extends SimpleEntity {
     private Goods goods;
 
     // 评价用户
-    @Ref
+    @Ref(cascade = "R")
     private Member member;
 
     private String phone;

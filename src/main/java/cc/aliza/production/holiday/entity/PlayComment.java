@@ -24,6 +24,29 @@ public class PlayComment extends SimpleEntity {
     @Ref
     private Play play;
 
+    @Ref(cascade = "R")
+    private Member member;
+
+    // 回复
+    @Ref(cascade = "R")
+    private PlayComment reply;
+
+    public PlayComment getReply() {
+        return reply;
+    }
+
+    public void setReply(PlayComment reply) {
+        this.reply = reply;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     public Date getTime() {
         return new Date(this.getTimestamp());
     }

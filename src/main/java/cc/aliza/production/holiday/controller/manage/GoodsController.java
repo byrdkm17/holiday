@@ -8,6 +8,7 @@ import com.bugull.mongo.BuguMapper;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
+import com.jfinal.plugin.activerecord.Page;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
@@ -89,6 +90,19 @@ public class GoodsController extends Controller {
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
 
         render("/manage/goods/store/index.html");
+    }
+
+    public void comment() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("pageNumber", getPara("pageNumber"));
+        Page<Comment> commentPage = CommentDao.dao.findBy(params);
+        setAttr("commentPage", commentPage);
+        render("/manage/goods/comment/index.html");
+    }
+
+    public void delComment() {
+        CommentDao.dao.remove(getPara(0));
+        redirect("/manage/goods/comment");
     }
 
 

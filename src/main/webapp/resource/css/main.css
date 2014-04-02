@@ -4,6 +4,13 @@ html {
     border: 0;
 }
 
+.wh {
+    background: url(../images/wh.jpg);
+    width: 1002px;
+    height: 768px;
+    margin-bottom: -30px;
+}
+
 body {
     font: 75%/1.5em "SimSun", Tahoma, Geneva, sans-serif;
     background: url(../images/bg.png) repeat-x left top white;

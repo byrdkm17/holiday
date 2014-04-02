@@ -30,21 +30,16 @@ public class CustomController extends Controller {
         Map<String, Object> filter = new HashMap<String, Object>();
         filter.put("type", "商务会议");
         setAttr("customPage", CustomDao.dao.findBy(filter));
-        render("/view/custom/meeting.html");
-    }
-
-    public void golf() {
-        Map<String, Object> filter = new HashMap<String, Object>();
-        filter.put("type", "高尔夫");
-        setAttr("customPage", CustomDao.dao.findBy(filter));
-        render("/view/custom/golf.html");
+        render("/view/include/wh.html");
+        //render("/view/custom/meeting.html");
     }
 
     public void travel() {
         Map<String, Object> filter = new HashMap<String, Object>();
         filter.put("type", "公司旅游");
         setAttr("customPage", CustomDao.dao.findBy(filter));
-        render("/view/custom/travel.html");
+        render("/view/include/wh.html");
+        //render("/view/custom/travel.html");
     }
 
     public void info() {

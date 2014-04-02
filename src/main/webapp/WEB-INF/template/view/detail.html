@@ -179,7 +179,7 @@
         <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/rest/image/"/>
             <ul class="userInfo clearfix">
                 <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
-                <h5>访客</h5>
+                <h5>${comment.member.username!'访客'}</h5>
             </ul>
             <div class="blank"></div>
             <ul class="userComments"><i></i>${comment.content}</ul>
@@ -245,7 +245,7 @@
             <!--# for(hotGoods in hotGoodsPage.list![]) { -->
             <!--# if(hotGoods_index < 5) { -->
             <ul class="clearfix">
-                <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
+                <a href="${ctxPath}/detail/${hotGoods.id}" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
 
                 <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
                 <li>￥${hotGoods.minRealPrice / 100}</li>
@@ -306,7 +306,8 @@ $(function () {
         onSelect: function () {
             countPrice();
         }
-        <!--# if (goods.priceType!0 == 2) { -->, minDate: '${goods.startTime}', maxDate: '${goods.endTime}'<!--# } -->
+        <!--# if (goods.startTime!'' != '') { -->, minDate: '${goods.startTime}'<!--# } -->
+        <!--# if (goods.endTime!'' != '') { -->, maxDate: '${goods.endTime}'<!--# } -->
     });
     if ($("#dateEnd").length) {
         $("#dateEnd").datepicker({
@@ -318,7 +319,8 @@ $(function () {
             onSelect: function () {
                 countPrice();
             }
-            <!--# if (goods.priceType!0 == 2) { -->, minDate: '${goods.startTime}', maxDate: '${goods.endTime}'<!--# } -->
+            <!--# if (goods.startTime!'' != '') { -->, minDate: '${goods.startTime}'<!--# } -->
+            <!--# if (goods.endTime!'' != '') { -->, maxDate: '${goods.endTime}'<!--# } -->
         });
     }
     var groupGoodsItem = $(".groupGoods>ul>li");

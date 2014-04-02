@@ -58,8 +58,9 @@ public class PlayController extends Controller {
         setAttr("labelPage", PlayLabelDao.dao.findBy(params));
 
         params.clear();
+        params.put("pageSize", 999);
         params.put("type", getPara(0));
-
+        setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
         render("/manage/play/add/index.html");
     }
 
@@ -70,7 +71,6 @@ public class PlayController extends Controller {
         BuguMapper.fetchCascade(play, "category", "labels");
 
         setAttr("play", play);
-
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pageSize", 999);

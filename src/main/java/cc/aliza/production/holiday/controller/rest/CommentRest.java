@@ -5,6 +5,7 @@ import cc.aliza.production.holiday.dao.CommentDao;
 import cc.aliza.production.holiday.dao.GoodsDao;
 import cc.aliza.production.holiday.entity.Comment;
 import cc.aliza.production.holiday.entity.Member;
+import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
@@ -12,7 +13,7 @@ import com.jfinal.ext.interceptor.POST;
 /**
  * Created by Jing on 14-2-2.
  */
-
+@Before(DataInterceptor.class)
 public class CommentRest extends Controller {
 
     @Before(POST.class)

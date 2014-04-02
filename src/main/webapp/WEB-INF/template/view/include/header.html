@@ -118,6 +118,7 @@
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
+                        <!--
                         <div class="topRecommend">
                             <ul class="clearfix">
                                 <li>双“蛋”优惠行动</li>
@@ -126,13 +127,14 @@
                                 <li>双“蛋”优惠行动</li>
                             </ul>
                         </div>
+                        -->
                         <div class="catListWrap">
                             <!--# var showLine = 0; -->
                             <!--# for(lineLabel in lineLabelPage.list![]) { -->
                             <!--# if(lineLabel.children.~size!0 > 0 && showLine < 6) { -->
                             <ul class="clearfix">
                                 <h4>${lineLabel.name}</h4>
-                                <li class="allCat"><a href="#">全部</a></li>
+                                <li class="allCat"><a href="${ctxPath}/line">全部</a></li>
                                 <!--# for(child in lineLabel.children![]) { -->
                                 <li><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
                                 <!--# } -->
@@ -154,6 +156,7 @@
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
+                        <!--
                         <div class="topRecommend">
                             <ul class="clearfix">
                                 <li>双“蛋”优惠行动</li>
@@ -162,13 +165,14 @@
                                 <li>双“蛋”优惠行动</li>
                             </ul>
                         </div>
+                        -->
                         <div class="catListWrap">
                             <!--# var showOther = 0; -->
                             <!--# for(otherLabel in otherLabelPage.list![]) { -->
                             <!--# if(otherLabel.children.~size!0 > 0 && showOther < 6) { -->
                             <ul class="clearfix">
                                 <h4>${otherLabel.name}</h4>
-                                <li class="allCat"><a href="#">全部</a></li>
+                                <li class="allCat"><a href="${ctxPath}/hotel">全部</a></li>
                                 <!--# for(child in otherLabel.children![]) { -->
                                 <li><a href="${ctxPath}/${child.production}/${child.name}">${child.name}</a></li>
                                 <!--# } -->
@@ -194,6 +198,7 @@
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
+                        <!--
                         <div class="topRecommend">
                             <ul class="clearfix">
                                 <li>双“蛋”优惠行动</li>
@@ -202,13 +207,14 @@
                                 <li>双“蛋”优惠行动</li>
                             </ul>
                         </div>
+                        -->
                         <div class="catListWrap">
                             <!--# var showTarget = 0; -->
                             <!--# for(target in targetPage.list![]) { -->
                             <!--# if(target.children.~size!0 > 0 && showTarget < 6) { -->
                             <ul class="clearfix">
                                 <h4>${target.name}</h4>
-                                <li class="allCat"><a href="#">全部</a></li>
+                                <li class="allCat"><a href="${ctxPath}/line">全部</a></li>
                                 <!--# for(child in target.children![]) { -->
                                 <li><a href="${ctxPath}/line?target=${child.name}">${child.name}</a></li>
                                 <!--# } -->

@@ -2,6 +2,7 @@ package cc.aliza.production.holiday.dao;
 
 import cc.aliza.production.holiday.entity.Comment;
 import com.bugull.mongo.BuguDao;
+import com.bugull.mongo.BuguMapper;
 import com.bugull.mongo.BuguQuery;
 import com.jfinal.plugin.activerecord.Page;
 
@@ -42,7 +43,7 @@ public class CommentDao extends BuguDao<Comment> {
         int totalRow = (int) query.count();
         int totalPage = (int) Math.ceil((double) totalRow / 10);
         List<Comment> commentList = query.results();
-
+        BuguMapper.fetchCascade(commentList, "member");
         return new Page<Comment>(commentList, pageNumber, pageSize, totalPage, totalRow);
     }
 }
