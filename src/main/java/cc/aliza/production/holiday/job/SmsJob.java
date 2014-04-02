@@ -19,9 +19,8 @@ import java.util.List;
  */
 public class SmsJob implements Job {
 
-    Client client = new Client();
-
     private static Boolean running = Boolean.FALSE;
+    Client client = new Client();
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -33,23 +32,26 @@ public class SmsJob implements Job {
             }
             running = Boolean.TRUE;
         }
-        List<Sms> smsList = SmsDao.dao.query().is("status", 0).results();
+        try {
+            List<Sms> smsList = SmsDao.dao.query().is("status", 0).results();
 
-        for (Sms sms : smsList) {
-            System.out.print("Send to " + sms.getMobile() + " : " + sms.getContent());
-            String result_mt = client.mt(sms.getMobile(), sms.getContent(), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
-            if (result_mt.startsWith("-") || result_mt.equals("")) {
-                SmsDao.dao.set(sms, "sendTag", result_mt);
-                SmsDao.dao.set(sms, "status", 2);
-                System.out.println("发送失败！返回值为 : " + result_mt);
-            } else {
-                SmsDao.dao.set(sms, "sendTag", result_mt);
-                SmsDao.dao.set(sms, "status", 1);
-                System.out.println("发送成功，返回值为 : " + result_mt);
+            for (Sms sms : smsList) {
+                System.out.print("Send to " + sms.getMobile() + " : " + sms.getContent());
+                String result_mt = client.mt(sms.getMobile(), sms.getContent(), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+                if (result_mt.startsWith("-") || result_mt.equals("")) {
+                    SmsDao.dao.set(sms, "sendTag", result_mt);
+                    SmsDao.dao.set(sms, "status", 2);
+                    System.out.println("发送失败！返回值为 : " + result_mt);
+                } else {
+                    SmsDao.dao.set(sms, "sendTag", result_mt);
+                    SmsDao.dao.set(sms, "status", 1);
+                    System.out.println("发送成功，返回值为 : " + result_mt);
+                }
             }
-        }
-        synchronized (SmsJob.class) {
-            running = Boolean.FALSE;
+        } finally {
+            synchronized (SmsJob.class) {
+                running = Boolean.FALSE;
+            }
         }
     }
 }

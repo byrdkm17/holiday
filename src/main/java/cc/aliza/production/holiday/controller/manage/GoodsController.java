@@ -116,6 +116,8 @@ public class GoodsController extends Controller {
             goods.setId(goodsID);
         }
 
+        goods.setHot(getParaToInt("hot"));
+
         Integer receipt = getParaToInt("receipt");
         goods.setReceipt(receipt);
 

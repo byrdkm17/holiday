@@ -45,5 +45,7 @@ public class DataInterceptor implements Interceptor {
 
         params.clear();
         controller.setAttr("navad", ADDao.dao.findOne("position", "NAV"));
+
+        controller.setAttr("cururl", ai.getActionKey() + "/" + ai.getController().getPara());
     }
 }

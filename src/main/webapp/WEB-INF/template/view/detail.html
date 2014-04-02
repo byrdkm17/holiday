@@ -234,7 +234,7 @@
 <div class="detailSider fr">
     <div class="banner218240">
         <a href="${ctxPath}/custom/index" target="_blank">
-        <img src="${ctxPath}/resource/images/demo/banner20140303.jpg" width="216" height="238" alt=""/>
+            <img src="${ctxPath}/resource/images/demo/banner20140303.jpg" width="216" height="238" alt=""/>
         </a>
     </div>
     <div class="blank"></div>
@@ -306,6 +306,7 @@ $(function () {
         onSelect: function () {
             countPrice();
         }
+        <!--# if (goods.priceType!0 == 2) { -->, minDate: '${goods.startTime}', maxDate: '${goods.endTime}'<!--# } -->
     });
     if ($("#dateEnd").length) {
         $("#dateEnd").datepicker({
@@ -317,6 +318,7 @@ $(function () {
             onSelect: function () {
                 countPrice();
             }
+            <!--# if (goods.priceType!0 == 2) { -->, minDate: '${goods.startTime}', maxDate: '${goods.endTime}'<!--# } -->
         });
     }
     var groupGoodsItem = $(".groupGoods>ul>li");

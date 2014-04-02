@@ -16,6 +16,7 @@ import com.jfinal.ext.interceptor.POST;
 import com.jfinal.plugin.activerecord.Page;
 import org.apache.commons.lang.StringUtils;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,11 @@ public class PlayController extends Controller {
         setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
 
         setAttr("type", type);
-        setAttr("category", getPara(0));
+        try {
+            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+        } catch (Exception e) {
+            System.out.print(e);
+        }
         setAttr("playPage", playPage);
         render("/view/play/rimCate.html");
     }
@@ -65,7 +70,11 @@ public class PlayController extends Controller {
         setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
 
         setAttr("type", type);
-        setAttr("category", getPara(0));
+        try {
+            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+        } catch (Exception e) {
+            System.out.print(e);
+        }
         setAttr("playPage", playPage);
         render("/view/play/rimCate.html");
     }
@@ -84,7 +93,11 @@ public class PlayController extends Controller {
         setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
 
         setAttr("type", type);
-        setAttr("category", getPara(0));
+        try {
+            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+        } catch (Exception e) {
+            System.out.print(e);
+        }
         setAttr("playPage", playPage);
         render("/view/play/rimCate.html");
     }
@@ -103,7 +116,11 @@ public class PlayController extends Controller {
         setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
 
         setAttr("type", type);
-        setAttr("category", getPara(0));
+        try {
+            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+        } catch (Exception e) {
+            System.out.print(e);
+        }
         setAttr("playPage", playPage);
         render("/view/play/rimCate.html");
     }
@@ -131,6 +148,8 @@ public class PlayController extends Controller {
         comment.setPlay(PlayDao.dao.findOne(id));
 
         PlayCommentDao.dao.save(comment);
+
+        renderJson(Result.exec());
     }
 
     @Before(POST.class)

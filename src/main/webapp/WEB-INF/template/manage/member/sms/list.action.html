@@ -1,0 +1,12 @@
+<ul class="pagination pagination-sm pull-right">
+    <!--# if(smsPage.pageNumber!1 > 1) {-->
+    <li class="previous"><a href="${ctxPath}/manage/member/sms?pageNumber=${smsPage.pageNumber - 1}">上一页</a></li>
+    <!--# } else { -->
+    <li class="previous disabled"><span>上一页</span></li>
+    <!--# } -->
+    <!--# if(smsPage.pageNumber < smsPage.totalPage) { -->
+    <li class="next"><a href="${ctxPath}/manage/member?pageNumber=${smsPage.pageNumber + 1}">下一页</a></li>
+    <!--# } else { -->
+    <li class="next disabled"><span>下一页</span></li>
+    <!--# } -->
+</ul>

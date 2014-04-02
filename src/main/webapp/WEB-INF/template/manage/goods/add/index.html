@@ -11,6 +11,7 @@
         <div class="col-xs-11">
             <form action="${ctxPath}/manage/goods/save" role="form" class="form-horizontal">
                 <input type="hidden" name="id" value="${goods.id!}">
+                <input type="hidden" name="hot" value="${goods.hot!0}">
                 <input type="hidden" name="production" value="${goods.production!production!''}">
                 <!--# include("/manage/goods/add/form.part1.html") {} -->
                 <!--# include("/manage/goods/add/form.part2.html") {} -->

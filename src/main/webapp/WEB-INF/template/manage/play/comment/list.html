@@ -1,0 +1,25 @@
+<div class="panel panel-default list">
+    <div class="panel-heading clearfix">
+        <!--# include("/manage/play/comment/list.action.html") {} -->
+    </div>
+    <div class="panel-body">
+        <!--# for(comment in commentPage.list![]) { -->
+        <div class="item clearfix" data-id="${comment.id}">
+            <div class="col-xs-9" style="width: 650px;">
+                <ul class="list-unstyled" style="line-height: 20px;">
+                    <li><span class="label label-primary">${comment.mobile}：${comment.content!}</span></li>
+                    <li style="margin-top: 10px"><a href="${ctxPath}/play/info/${comment.play.id}">${comment.play.name}</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-3" style="width: 176px; text-align: right;">
+                <a href="${ctxPath}/manage/play/delComment/${comment.id}" class="btn btn-default btn-sm">删除</a>
+            </div>
+        </div>
+        <!--# } elsefor { -->
+        <div class="empty"></div>
+        <!--# } -->
+    </div>
+    <div class="panel-footer clearfix">
+        <!--# include("/manage/play/comment/list.action.html") {} -->
+    </div>
+</div>

@@ -76,6 +76,15 @@ a img {
     visibility: hidden
 }
 
+.note p, .note img {
+    padding: 0;
+    margin: 0
+}
+
+.note p {
+    margin-top: -5px;
+}
+
 .clearfix {
     display: inline-block
 }

@@ -8,6 +8,7 @@ import com.bugull.mongo.BuguMapper;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
+import com.jfinal.plugin.activerecord.Page;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
@@ -126,6 +127,20 @@ public class PlayController extends Controller {
         setAttr("likePage", PlayLabelDao.dao.findBy(params));
 
         render("/manage/play/label/index.html");
+    }
+
+    public void comment() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("pageNumber", getPara("pageNumber"));
+        Page<PlayComment> commentPage = PlayCommentDao.dao.findBy(params);
+        BuguMapper.fetchCascade(commentPage.getList(), "play");
+        setAttr("commentPage", commentPage);
+        render("/manage/play/comment/index.html");
+    }
+
+    public void delComment() {
+        PlayCommentDao.dao.remove(getPara(0));
+        redirect("/manage/play/comment");
     }
 
     @Before(POST.class)

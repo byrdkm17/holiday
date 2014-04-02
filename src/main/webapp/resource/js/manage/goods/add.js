@@ -87,7 +87,7 @@ define(function (require, exports) {
             if (loop % 7 == 0) {
                 s = '<tr>';
             }
-            s = s + '<td><input type="text" class="form-control input-sm" title="' + formatDate(curTime) + '" value="' + (priceList[formatDate(curTime)] || 0) + '"></td>';
+            s = s + '<td><input type="text" class="form-control input-sm" title="' + formatDate(curTime) + '" value="' + ((priceList[formatDate(curTime)] || 0) / 100) + '"></td>';
             if (loop % 7 == 6) {
                 s = s + '</tr>';
                 tbody.append(s);
@@ -269,7 +269,7 @@ define(function (require, exports) {
 
     $('.label').hover(function () {
         $(this).addClass('label-success').removeClass('label-default');
-    },function () {
+    }, function () {
         if (!$(this).hasClass('selected')) {
             $(this).addClass('label-default').removeClass('label-success');
         }

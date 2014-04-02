@@ -20,7 +20,7 @@ public class Sms extends SimpleEntity {
 
     private String content;
 
-    // 状态：0 未发生，1 发送成功，2 发送失败
+    // 状态：0 未发送，1 发送成功，2 发送失败
     private Integer status;
 
     // 发送标记

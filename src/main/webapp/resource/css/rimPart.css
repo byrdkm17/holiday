@@ -38,8 +38,8 @@
 }
 
 .rimCatListGrid .rimCatListGridItem {
-    width: 304px;
-    height: 450px;
+    width: 300px;
+    height: 380px;
     padding: 6px;
     padding-bottom: 0;
     margin: 21px 21px 0 0;
@@ -51,8 +51,8 @@
 }
 
 .rimCatListGrid .rimCatListGridItem img.proPic {
-    width: 304px;
-    height: 304px;
+    width: 300px;
+    height: 198px;
     border: 0;
 }
 

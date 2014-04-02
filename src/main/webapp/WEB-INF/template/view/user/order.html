@@ -108,7 +108,7 @@
         }, function (res) {
             $.each(res.list, function () {
                 $('.cookielist').append(
-                        '<li>'
+                                '<li>'
                                 + '<a href="#">'
                                 + '<img class="proPic" src="${ctxPath}/rest/image/' + this.id + '"/>'
                                 + '</a>'
@@ -123,6 +123,7 @@
 
         $('.clearCookie').click(function () {
             $.removeCookie('goodsViewList', {path: '/'});
+            $('.cookielist').empty();
         });
     });
 </script>

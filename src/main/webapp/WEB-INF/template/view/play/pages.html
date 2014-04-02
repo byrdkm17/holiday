@@ -1,0 +1,21 @@
+<div class="pagesBottom">
+    <!--# if(playPage.pageNumber == 1) { -->
+    <a class="disable">&lt;</a>
+    <!--# } else { -->
+    <a class="prev" href="${ctxPath}/${cururl}?pageNumber=${playPage.pageNumber - 1}">上一页</a>
+    <!--# } -->
+    <!--# var index = 1; -->
+    <!--# while(index < playPage.totalPage) { -->
+    <!--# if(playPage.pageNumber == index) { -->
+    <a class="current" href="javascript:void(0)">${index}</a>
+    <!--# } else { -->
+    <a class="pNum" href="${ctxPath}/${cururl}?pageNumber=${index}">${index}</a>
+    <!--# } -->
+    <!--# index = index + 1; -->
+    <!--# } -->
+    <!--# if(playPage.pageNumber == playPage.totalPage || playPage.totalPage == 0) { -->
+    <a class="disable">&gt;</a>
+    <!--# } else { -->
+    <a class="next" href="${ctxPath}/${cururl}?pageNumber=${playPage.pageNumber + 1}">下一页</a>
+    <!--# } -->
+</div>
