@@ -76,7 +76,7 @@ define(function (require, exports) {
             if (i < startDay) {
                 tr.append('<td><input type="text" class="form-control input-sm" disabled></td>');
             } else {
-                tr.append('<td><input type="text" class="form-control input-sm" title="' + formatDate(curTime + 60 * 60 * 24 * 1000 * (i - startDay)) + '" value="' + (priceList[formatDate(curTime + 60 * 60 * 24 * 1000 * (i - startDay))] || 0) + '"></td>');
+                tr.append('<td><input type="text" class="form-control input-sm" title="' + formatDate(curTime + 60 * 60 * 24 * 1000 * (i - startDay)) + '" value="' + ((priceList[formatDate(curTime + 60 * 60 * 24 * 1000 * (i - startDay))] || 0) / 100) + '"></td>');
             }
         }
         tbody.append(tr);
