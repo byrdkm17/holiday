@@ -42,11 +42,22 @@ public class OrderDao extends BuguDao<Order> {
         if (params.get("status") != null) {
             query.is("status", params.get("status"));
         } else {
-            BuguQuery<Order> q1 = dao.query();
-            BuguQuery<Order> q2 = dao.query();
-            q1.is("status", 1);
-            q2.is("status", 2);
-            query.or(q1, q2);
+            if ("all".equals(params.get("_status"))) {
+                BuguQuery<Order> q1 = dao.query();
+                BuguQuery<Order> q2 = dao.query();
+                q1.is("status", 1);
+                q2.is("status", 2);
+                query.or(q1, q2);
+            }
+            if ("pay".equals(params.get("_status"))) {
+                query.is("status", 2);
+            }
+            if ("unpay".equals(params.get("_status"))) {
+                query.is("status", 1);
+            }
+            if ("remove".equals(params.get("_status"))) {
+                query.is("status", -1);
+            }
         }
 
         if (params.get("orderKey") != null && !"商品名称".equals(params.get("orderKey"))) {

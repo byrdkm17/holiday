@@ -211,10 +211,12 @@
             if (myURL.indexOf(links) != -1) {
                 $(floatWantPageWrapMainItemH3).eq(i).parents("div.floatWantPageWrapMainItem").addClass("floatWantPageWrapMainItemCurrent");
             }
-            $(this).parent().parent().toggle(function () {
+            $(this).parent().parent().hover(function () {
                 $(this).siblings().slideDown("fast");
             }, function () {
                 $(this).siblings().slideUp("fast");
+            }).click(function () {
+                location.href = $(this).data('target');
             });
 
         });
@@ -276,6 +278,10 @@
             }
             if (!tel) {
                 alert('请填写联系方式');
+                return;
+            }
+            if (tel.length < 11) {
+                alert("请填写正确的手机号");
                 return;
             }
             $.ajax({

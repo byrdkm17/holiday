@@ -30,7 +30,7 @@
     </div>
     <div id="conditionsWrap">
         <div class="statistics">
-            <h3>全部酒店<span>(共记${count!0}个)</span></h3>
+            <h3><a href="${ctxPath}/hotel">全部酒店</a><span>(共记${count!0}个)</span></h3>
         </div>
         <div id="conditionsList">
             <!--# for(label in labelPage.list![]) { -->
@@ -61,8 +61,19 @@
         <div id="closeOpenConditionsWrap"><a href="javascript:void(0)"></a></div>
     </div>
     <div class="productsListBar clearfix">
-        <div class="pagesTop fr"><span class="disable">&lt;</span><!--<a class="prev" href="#">上一页</a>--><span
-                class="pagesNumber">1/4</span><a class="next" href="#">下一页</a><!--<span class="disable">&gt;</span>--></div>
+        <div class="pagesTop fr">
+            <!--# if(goodsPage.pageNumber!1 == 1) { -->
+            <span class="disable">&lt;</span>
+            <!--# } else { -->
+            <a class="prev" href="${ctxPath}/hotel?pageNumber=${goodsPage.pageNumber!1 - 1}">上一页</a>
+            <!--# } -->
+            <span class="pagesNumber">${goodsPage.pageNumber!1}/${goodsPage.totalPage!1}</span>
+            <!--# if(goodsPage.pageNumber!1 == goodsPage.totalPage!1) { -->
+            <span class="disable">&gt;</span>
+            <!--# } else { -->
+            <a class="next" href="${ctxPath}/hotel?pageNumber=${goodsPage.pageNumber!1 + 1}">下一页</a>
+            <!--# } -->
+        </div>
         <div class="btnListStyle fr">
             <ul class="clearfix">
                 <!--            <li class="gridOn">图片式</li>-->

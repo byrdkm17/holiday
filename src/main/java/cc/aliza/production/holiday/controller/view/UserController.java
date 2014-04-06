@@ -3,10 +3,7 @@ package cc.aliza.production.holiday.controller.view;
 import cc.aliza.production.holiday.commons.Encrypt;
 import cc.aliza.production.holiday.commons.Result;
 import cc.aliza.production.holiday.dao.*;
-import cc.aliza.production.holiday.entity.Goods;
-import cc.aliza.production.holiday.entity.Member;
-import cc.aliza.production.holiday.entity.Sms;
-import cc.aliza.production.holiday.entity.Yzm;
+import cc.aliza.production.holiday.entity.*;
 import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
 import cc.aliza.production.holiday.interceptor.view.LoginInterceptor;
 import com.bugull.mongo.BuguMapper;
@@ -30,11 +27,13 @@ public class UserController extends Controller {
         params.put("pageSize", 5);
         params.put("orderKey", getPara("orderKey"));
         params.put("member", getAttr("member"));
+        params.put("_status", getPara("status", "all"));
         setAttr("orderPage", OrderDao.dao.findBy(params));
         params.clear();
         params.put("hot", 1);
         params.put("status", 1);
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
+        setAttr("status", getPara("status"));
         render("/view/user/order.html");
     }
 
@@ -81,6 +80,9 @@ public class UserController extends Controller {
     }
 
     public void address() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("member", getAttr("member"));
+        setAttr("addressPage", PeopleDao.dao.findBy(params));
         render("/view/user/address.html");
     }
 
@@ -120,6 +122,25 @@ public class UserController extends Controller {
             setSessionAttr("error", "原密码错误");
             redirect("/user/edit/password");
         }
+    }
+
+    @Before(POST.class)
+    public void saveAddress() {
+        People people = new People();
+        people.setUser((Member) getAttr("member"));
+        String name = getPara("name");
+        people.setName(name);
+        String mobile = getPara("mobile");
+        people.setMobile(mobile);
+        String address = getPara("address");
+        people.setAddress(address);
+        PeopleDao.dao.insert(people);
+        redirect("/user/address");
+    }
+
+    @Before(POST.class)
+    public void removeAddress() {
+        PeopleDao.dao.remove(getPara(0));
     }
 
     @Before(POST.class)

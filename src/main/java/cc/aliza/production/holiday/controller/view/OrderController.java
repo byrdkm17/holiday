@@ -44,6 +44,25 @@ public class OrderController extends Controller {
         setAttr("preAmountDiscount", SettingDao.dao.findOne("key", "pay.preAmountDiscount"));
     }
 
+    public void info() {
+
+        String id = getPara(0);
+
+        Order order = OrderDao.dao.findOne(id);
+
+        if (order.getMember() == null) {
+            OrderDao.dao.set(id, "member", getAttr("member"));
+        } else {
+            if (!order.getMember().equals(order.getMember())) {
+                redirect("/");
+                return;
+            }
+        }
+
+        setAttr("order", order);
+        render("/view/user/orderInfo.html");
+    }
+
     public void close() {
         String id = getPara(0);
 

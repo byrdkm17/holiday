@@ -1,6 +1,20 @@
 <!--# layout("/view/include/layout.html") { -->
 <div id="main" class="clearfix" data-type="${goods.production}">
-<div class="uhere dib"><a href="/">首页</a> &gt; <a href="#">云南跟团游</a> &gt; ${goods.name!}</div>
+<div class="uhere dib"><a href="/">首页</a> &gt;
+    <!--# if (goods.production!'line' == 'line') { -->
+    <a href="${ctxPath}/line">云南跟团游</a>
+    <!--# } -->
+    <!--# if (goods.production!'line' == 'hotel') { -->
+    <a href="${ctxPath}/hotel">云南酒店</a>
+    <!--# } -->
+    <!--# if (goods.production!'line' == 'car') { -->
+    <a href="${ctxPath}/car">云南自由行</a>
+    <!--# } -->
+    <!--# if (goods.production!'line' == 'ticket') { -->
+    <a href="${ctxPath}/ticket">云南门票</a>
+    <!--# } -->
+    &gt; ${goods.name!}
+</div>
 <div class="detailMain fl">
 <div class="goodsBaseInfo clearfix">
     <h1>${goods.name!}</h1>
@@ -44,7 +58,7 @@
                     <li class="date">
                         <input type="text" id="dateBegin" value="点击选择日历">
                     </li>
-                    <li>到</li>
+                    <li style="width: 15px">到</li>
                     <li class="date">
                         <input type="text" id="dateEnd" value="点击选择日历">
                     </li>
@@ -79,11 +93,11 @@
                     </ul>
                     <ul class="last fr">
                         <!--# if(!empty('member') ){ -->
-                        <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0}</span>)</li>
+                        <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0 + 10}</span>)</li>
                         <!--# } else { -->
-                        <li class="fav"><a href="${ctxPath}/login?redirect=/detail/${goods.id}">收藏产品</a>(<span class="fntRedBold">${goods.collect!0}</span>)</li>
+                        <li class="fav"><a href="${ctxPath}/login?redirect=/detail/${goods.id}">收藏产品</a>(<span class="fntRedBold">${goods.collect!0 + 10}</span>)</li>
                         <!--# } -->
-                        <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0}</span>)</li>
+                        <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0 + 10}</span>)</li>
                     </ul>
                 </div>
             </div>
@@ -92,7 +106,7 @@
             <h3>本产品由${goods.supplier.name!}为您服务</h3>
             <ul class="clearfix">
                 <!--# for(service in goods.services![]) { -->
-                <li class="ico1">${service.name}</li>
+                <li class="ico${(service_index % 3) + 1}">${service.name}</li>
                 <!--# } -->
             </ul>
             <dl class="clearfix">
@@ -239,7 +253,18 @@
     </div>
     <div class="blank"></div>
     <div class="detailSiderItem">
+        <!--# if(goods.production!'line' == 'line') { -->
         <h3>同类线路排行</h3>
+        <!--# } -->
+        <!--# if(goods.production!'line' == 'car') { -->
+        <h3>同类租车排行</h3>
+        <!--# } -->
+        <!--# if(goods.production!'line' == 'hotel') { -->
+        <h3>同类酒店排行</h3>
+        <!--# } -->
+        <!--# if(goods.production!'line' == 'ticket') { -->
+        <h3>同类景区排行</h3>
+        <!--# } -->
 
         <div class="lineSimilarRank">
             <!--# for(hotGoods in hotGoodsPage.list![]) { -->
@@ -257,7 +282,18 @@
     </div>
     <div class="blank"></div>
     <div class="detailSiderItem">
-        <h3>同类线路推荐</h3>
+        <!--# if(goods.production!'line' == 'line') { -->
+        <h3>同类线路排行</h3>
+        <!--# } -->
+        <!--# if(goods.production!'line' == 'car') { -->
+        <h3>同类租车排行</h3>
+        <!--# } -->
+        <!--# if(goods.production!'line' == 'hotel') { -->
+        <h3>同类酒店排行</h3>
+        <!--# } -->
+        <!--# if(goods.production!'line' == 'ticket') { -->
+        <h3>同类景区排行</h3>
+        <!--# } -->
 
         <div class="lineSimilarRec">
             <!--# for(hotGoods in hotGoodsPage.list![]) { -->
@@ -411,6 +447,7 @@ $(function () {
     };
 
     var findPrice = function (title, begin, end) {
+        var pp = +'${goods.minRealPrice!0 / 100}';
         var price = 0;
         begin = new XDate(begin);
         if (begin.toString() == 'Invalid Date') {
@@ -445,7 +482,7 @@ $(function () {
                 }
             }
         });
-        return price;
+        return price || pp;
     };
 
     $('.multi .plus').click(function () {

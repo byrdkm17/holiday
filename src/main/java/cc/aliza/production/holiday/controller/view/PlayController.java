@@ -35,95 +35,103 @@ import java.util.Map;
 public class PlayController extends Controller {
 
     public void eat() {
-        String type = "eat";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("type", type);
-        params.put("category", getPara(0));
-        Page<Play> playPage = PlayDao.dao.findBy(params);
-        BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
-
-        params.clear();
-        params.put("type", type);
-        params.put("pageSize", 999);
-        setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
-
-        setAttr("type", type);
         try {
-            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+            String type = "eat";
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("type", type);
+            params.put("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+            Page<Play> playPage = PlayDao.dao.findBy(params);
+            BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
+
+            params.clear();
+            params.put("type", type);
+            params.put("pageSize", 999);
+            setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
+
+            setAttr("type", type);
+
+            setAttr("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+
+            setAttr("playPage", playPage);
+            render("/view/play/rimCate.html");
         } catch (Exception e) {
-            System.out.print(e);
+            System.out.print(e.getMessage());
         }
-        setAttr("playPage", playPage);
-        render("/view/play/rimCate.html");
     }
 
     public void go() {
-        String type = "go";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("type", type);
-        params.put("category", getPara(0));
-        Page<Play> playPage = PlayDao.dao.findBy(params);
-        BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
-
-        params.clear();
-        params.put("type", type);
-        params.put("pageSize", 999);
-        setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
-
-        setAttr("type", type);
         try {
-            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+            String type = "go";
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("type", type);
+            params.put("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+            Page<Play> playPage = PlayDao.dao.findBy(params);
+            BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
+
+            params.clear();
+            params.put("type", type);
+            params.put("pageSize", 999);
+            setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
+
+            setAttr("type", type);
+
+            setAttr("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+
+            setAttr("playPage", playPage);
+            render("/view/play/rimCate.html");
         } catch (Exception e) {
-            System.out.print(e);
+            System.out.print(e.getMessage());
         }
-        setAttr("playPage", playPage);
-        render("/view/play/rimCate.html");
     }
 
     public void buy() {
-        String type = "buy";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("type", type);
-        params.put("category", getPara(0));
-        Page<Play> playPage = PlayDao.dao.findBy(params);
-        BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
-
-        params.clear();
-        params.put("type", type);
-        params.put("pageSize", 999);
-        setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
-
-        setAttr("type", type);
         try {
-            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+            String type = "buy";
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("type", type);
+            params.put("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+            Page<Play> playPage = PlayDao.dao.findBy(params);
+            BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
+
+            params.clear();
+            params.put("type", type);
+            params.put("pageSize", 999);
+            setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
+
+            setAttr("type", type);
+
+            setAttr("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+
+            setAttr("playPage", playPage);
+            render("/view/play/rimCate.html");
         } catch (Exception e) {
-            System.out.print(e);
+            System.out.print(e.getMessage());
         }
-        setAttr("playPage", playPage);
-        render("/view/play/rimCate.html");
     }
 
     public void like() {
-        String type = "like";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("type", type);
-        params.put("category", getPara(0));
-        Page<Play> playPage = PlayDao.dao.findBy(params);
-        BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
-
-        params.clear();
-        params.put("type", type);
-        params.put("pageSize", 999);
-        setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
-
-        setAttr("type", type);
         try {
-            setAttr("category", URLDecoder.decode(getPara(0), "UTF-8"));
+            String type = "like";
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("type", type);
+            params.put("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+            Page<Play> playPage = PlayDao.dao.findBy(params);
+            BuguMapper.fetchCascade(playPage.getList(), "labels", "category");
+
+            params.clear();
+            params.put("type", type);
+            params.put("pageSize", 999);
+            setAttr("categoryPage", PlayCategoryDao.dao.findBy(params));
+
+            setAttr("type", type);
+
+            setAttr("category", URLDecoder.decode(getPara(0, ""), "UTF-8"));
+
+            setAttr("playPage", playPage);
+            render("/view/play/rimCate.html");
         } catch (Exception e) {
-            System.out.print(e);
+            System.out.print(e.getMessage());
         }
-        setAttr("playPage", playPage);
-        render("/view/play/rimCate.html");
     }
 
     public void info() {

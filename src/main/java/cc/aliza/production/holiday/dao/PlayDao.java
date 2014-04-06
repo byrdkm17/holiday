@@ -4,6 +4,7 @@ import cc.aliza.production.holiday.entity.Play;
 import com.bugull.mongo.BuguDao;
 import com.bugull.mongo.BuguQuery;
 import com.jfinal.plugin.activerecord.Page;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class PlayDao extends BuguDao<Play> {
             query.is("type", params.get("type"));
         }
 
-        if (params.get("category") != null) {
+        if (StringUtils.isNotBlank(String.valueOf(params.get("category")))) {
             query.is("category", PlayCategoryDao.dao.findOne("name", params.get("category")));
         }
 

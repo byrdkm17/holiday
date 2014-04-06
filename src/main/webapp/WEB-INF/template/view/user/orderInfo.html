@@ -1,0 +1,101 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <div class="orderMainPay">
+        <div class="orderInfos">
+            <dl class="clearfix">
+                <dt>项目</dt>
+                <dt>日期</dt>
+                <dt>类型</dt>
+                <dt>单价</dt>
+                <dt>数量</dt>
+                <dt>优惠</dt>
+                <dt>总价</dt>
+                <dt>需支付</dt>
+            </dl>
+            <dl class="clearfix">
+                <dd><img src="${ctxPath}/rest/image/${order.goodsObject.master!}"/>
+
+                    <h3 style="overflow: hidden;height: 35px;"><a href="${ctxPath}/detail/${order.goodsObject.id}">${order.goodsObject.name}</a></h3>
+                </dd>
+                <dd>
+                    <span class="numberCosPay">${order.beginDate!}</span>
+                    <!--# if(order.endDate!'' != '') { -->
+                    <span class="numberCosPay">至</span>
+                    <span class="numberCosPay">${order.endDate}</span>
+                    <!--# } -->
+                </dd>
+                <dd>
+                    <span class="numberCosPay">${order.priceSetObject.title}</span>
+                </dd>
+                <dd>
+                    <span class="numberCosPay">${order.amount / 100}</span>
+                </dd>
+                <dd>
+                    <span class="numberCosPay">${order.number}</span>
+                </dd>
+                <dd>
+                    <!--# if(order.payMethod == 2) { -->
+                    <span class="numberCos">采用定金预定方式</span><span class="numberCos">优惠 <i>${order.discount / 100}元</i></span>
+                    <!--# } -->
+                    <!--# if(order.payMethod == 4) { -->
+                    <span class="numberCos">采用支付全款方式</span><span class="numberCos">优惠 <i>${order.discount / 100}元</i></span>
+                    <!--# } -->
+                </dd>
+                <dd>
+                    <span class="numberCos">原价: <i>${order.price / 100}元</i></span>
+                    <span class="numberCos">优惠后价格：</span>
+                    <span class="numberCos">${order.price / 100}-${order.discount / 100}=<i>${(order.price - order.discount) / 100}元</i></span>
+                </dd>
+                <dd>
+                    <!--# if(order.payMethod == 1) { -->
+                    <span class="numberCos"></span><span class="numberCos"><i>0元</i></span>
+                    <!--# } -->
+                    <!--# if(order.payMethod == 2) { -->
+                    <span class="numberCos">定金:</span><span class="numberCos">${(order.price - order.discount) / 100}x20%=<i>${order.payPrice / 100}元</i></span>
+                    <!--# } -->
+                    <!--# if(order.payMethod == 4) { -->
+                    <span class="numberCos">全款:</span><span class="numberCos"><i>${order.payPrice / 100}元</i></span>
+                    <!--# } -->
+                </dd>
+            </dl>
+        </div>
+        <div class="departure">
+            <h6>旅客信息</h6>
+            <ul class="clearfix">
+                <!--# for(traveler in order.travelers![]) { -->
+                <li>旅客${traveler_index + 1} 姓名:${traveler.name} 类型:${traveler.type} 身份证:${traveler.code}</li>
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="contactsInfos">
+            <h6>联系人信息</h6>
+            <ul class="pay">
+                姓名:${order.contactName} 电话:${order.contactPhone}
+            </ul>
+        </div>
+    </div>
+    <div class="blank"></div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".orderInfos>dl").each(function () {
+            $(this).children().each(function (i) {
+                $(this).addClass("itemP" + (i + 1))
+            });
+        });
+
+        $('.btnSubmit').click(function () {
+            location.href = '${ctxPath}/pay/doPay/${order.id}';
+        });
+
+
+    });
+</script>
+</body>
+</html>

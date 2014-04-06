@@ -4,10 +4,32 @@
     <!--# include("/view/include/left.html"){}-->
     <div class="userCenterMain fr">
         <div class="userOrderListAll">
-            <div class="userCenterWhere clearfix"><a href="#" class="orderRecycle">订单回收站</a> <span class="bold">交易管理</span> &gt; 我的订单</div>
+            <div class="userCenterWhere clearfix">
+                <!--# if(status!'all' == 'remove') { -->
+                <a href="${ctxPath}/user/order?status=all" class="orderRecycle">我的订单</a>
+                <!--# } else { -->
+                <a href="${ctxPath}/user/order?status=remove" class="orderRecycle">订单回收站</a>
+                <!--# } -->
+                <span class="bold">交易管理</span> &gt; <!--# if(status!'all' == 'remove') { -->订单回收站<!--# } else { -->我的订单<!--# } -->
+            </div>
+            <!--# if(status!'remove' != 'remove') { -->
             <div class="userOrderListTitle clearfix">
                 <ul class="clearfix">
+                    <!--# if(status!'all' == 'all') { -->
                     <li class="hasArrow">全部订单</li>
+                    <!--# } else { -->
+                    <li class="un-select"><a href="${ctxPath}/user/order?status=all">全部订单</a></li>
+                    <!--# } -->
+                    <!--# if(status!'all' == 'pay') { -->
+                    <li class="hasArrow">已付款</li>
+                    <!--# } else { -->
+                    <li class="un-select"><a href="${ctxPath}/user/order?status=pay">已付款</a></li>
+                    <!--# } -->
+                    <!--# if(status!'all' == 'unpay') { -->
+                    <li class="hasArrow">未付款</li>
+                    <!--# } else { -->
+                    <li class="un-select"><a href="${ctxPath}/user/order?status=unpay">未付款</a></li>
+                    <!--# } -->
                 </ul>
                 <ol>
                     <form action="${ctxPath}/user/order">
@@ -16,6 +38,7 @@
                     </form>
                 </ol>
             </div>
+            <!--# } -->
             <div class="userOrderListGrid">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -36,15 +59,29 @@
                             <!--# if(order.payMethod == 4) { print("支付全款"); } -->
                         </td>
                         <td>${order.createTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
-                        <!--# if (order.status == -1) {
-                            print('<td>已取消</td><td><a href="#">查看</a></td>');
-                        }
-                        if (order.status == 1) {
-                            print('<td class="holdon">等待付款</td><td><a href="' + ctxPath + '/pay/' + order.id + '" class="btnPay">付款</a><a href="#">查看</a><br><a href="' + ctxPath + '/order/close/' + order.id + '">取消订单</a></td>');
-                        }
-                        if (order.status == 2) {
-                            print('<td>已完成</td><td><a href="#">评价</a><span class="fntBlue">|</span><a href="#">查看</a><span class="fntBlue">|</span><a href="' + ctxPath + '/order/remove/' + order.id + '">删除</a><a href="' + ctxPath + '/detail/' + order.goodsObject.id + '" class="btnReBuy">还要买</a></td>');
-                        } -->
+                        <!--# if (order.status == -1) { -->
+                        <td>已取消</td>
+                        <td><a href=" ${ctxPath}/order/info/${order.id}">查看</a></td>
+                        <!--# }
+                        if (order.status == 1) { -->
+                        <td class="holdon">等待付款</td>
+                        <td>
+                            <a href="${ctxPath}/pay/${order.id}" class="btnPay">付款</a>
+                            <a href="${ctxPath}/order/info/${order.id}">查看</a><br>
+                            <a href="${ctxPath}/order/close/${order.id}">取消订单</a>
+                        </td>
+                        <!--# }
+                        if (order.status == 2) { -->
+                        <td>已完成</td>
+                        <td>
+                            <a href="#">评价</a>
+                            <span class="fntBlue">|</span>
+                            <a href="${ctxPath}/order/info/${order.id}">查看</a>
+                            <span class="fntBlue">|</span>
+                            <a href="${ctxPath}/order/remove/${order.id}">删除</a>
+                            <a href="${ctxPath}/detail/${order.goodsObject.id}" class="btnReBuy">还要买</a>
+                        </td>
+                        <!--# } -->
                     </tr>
                     <!--# } -->
                 </table>
@@ -54,21 +91,21 @@
                 <!--# if(orderPage.pageNumber == 1) { -->
                 <a class="disable">&lt;</a>
                 <!--# } else { -->
-                <a class="prev" href="${ctxPath}/user/order?pageNumber=${orderPage.pageNumber - 1}">上一页</a>
+                <a class="prev" href="${ctxPath}/user/order?status=${status}&pageNumber=${orderPage.pageNumber - 1}">上一页</a>
                 <!--# } -->
                 <!--# var index = 1; -->
                 <!--# while(index <= orderPage.totalPage) { -->
                 <!--# if(orderPage.pageNumber == index) { -->
                 <a class="current" href="javascript:void(0)">${index}</a>
                 <!--# } else { -->
-                <a class="pNum" href="${ctxPath}/user/order?pageNumber=${index}">${index}</a>
+                <a class="pNum" href="${ctxPath}/user/order?status=${status}&pageNumber=${index}">${index}</a>
                 <!--# } -->
                 <!--# index = index + 1; -->
                 <!--# } -->
                 <!--# if((orderPage.pageNumber == orderPage.totalPage) || orderPage.totalPage == 0) { -->
                 <a class="disable">&gt;</a>
                 <!--# } else { -->
-                <a class="next" href="${ctxPath}/user/order?pageNumber=${orderPage.pageNumber + 1}">下一页</a>
+                <a class="next" href="${ctxPath}/user/order?status=${status}&pageNumber=${orderPage.pageNumber + 1}">下一页</a>
                 <!--# } -->
             </div>
         </div>

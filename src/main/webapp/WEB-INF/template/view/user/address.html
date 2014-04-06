@@ -4,34 +4,25 @@
     <!--# include("/view/include/left.html"){}-->
     <div class="userCenterMain fr">
         <div class="userOrderListAll">
-            <div class="userCenterWhere clearfix"><a href="#" class="servicesSun">阳光客服</a><span class="bold">账户管理</span> &gt; 地址管理</div>
+            <div class="userCenterWhere clearfix"><span class="bold">账户管理</span> &gt; 地址管理</div>
             <div class="pointsRecord">
                 <div class="addAddress">
                     <h3>新增地址</h3>
                     <ul class="clearfix">
-                        <li><span><i>*</i>收货人</span>
-                            <input type="text" class="addressTxt">
-                        </li>
-                        <li><span><i>*</i>手机</span>
-                            <input type="text" class="addressTxt">
-                        </li>
-                        <li><span><i>*</i>地址</span>
-                            <select>
-                                <option>请选择</option>
-                            </select>
-                            <select>
-                                <option>请选择</option>
-                            </select>
-                            <select>
-                                <option>请选择</option>
-                            </select>
-                        </li>
-                        <li><span></span>
-                            <input type="text" class="addressTxt addressTxtLong">
-                        </li>
-                        <li><span></span>
-                            <input type="button" class="addressBtn" value="保存">
-                        </li>
+                        <form method="post" action="${ctxPath}/user/saveAddress">
+                            <li><span><i>*</i>收货人</span>
+                                <input type="text" class="addressTxt" name="name">
+                            </li>
+                            <li><span><i>*</i>手机</span>
+                                <input type="text" class="addressTxt" name="mobile">
+                            </li>
+                            <li><span><i>*</i>地址</span>
+                                <input type="text" class="addressTxt addressTxtLong" name="address">
+                            </li>
+                            <li><span></span>
+                                <input type="submit" class="addressBtn" value="保存">
+                            </li>
+                        </form>
                     </ul>
                 </div>
                 <div class="addressList">
@@ -43,16 +34,18 @@
                             <th width="50%">详细地址</th>
                             <th width="20%">操作</th>
                         </tr>
+                        <!--# for(address in addressPage.list![]) { -->
                         <tr>
-                            <td>张先生</td>
-                            <td>18888888888</td>
-                            <td>云南省昆明市西山区兴苑路188号</td>
-                            <td><a href="#">修改</a> | <a href="#">删除</a></td>
+                            <td>${address.name}</td>
+                            <td>${address.mobile}</td>
+                            <td>${address.address}</td>
+                            <td><a href="${ctxPath}/user/removeAddress/${address.id}">删除</a></td>
                         </tr>
-                        <!--if 无数据-->
+                        <!--# } elsefor { -->
                         <tr>
                             <td colspan="4">暂无相关数据</td>
                         </tr>
+                        <!--# } -->
                     </table>
                 </div>
             </div>
