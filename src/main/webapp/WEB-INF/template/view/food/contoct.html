@@ -1,0 +1,116 @@
+<!--# layout("/view/include/layout.html", {cur: 'food'}) { -->
+<script src="${ctxPath}/resource/css/jquery.min.js" type="text/javascript" language="javascript"></script>
+<div id="foodmain">
+    <div class="foodmainer">
+        <div class="Foodtext">
+            <div class="Foodtext_left">
+                <div class="Foodtext_title">
+                    <div class="newsinfo">
+                        <div class="foodtitle">【${play.category.name!'美食'}】${play.name}<br/><span>发布时间:${play.time,dateFormat='yyyy-MM-dd'}        - ${play.view!0} 人浏览</span>
+                        </div>
+                        <div class="infotext">${play.note}</div>
+                        <div class="tb">
+                            <ul>
+                                <li class="yh20">分享到：</li>
+                                <li><a href="#"><img src="${ctxPath}/resource/images/i_r2_c4.jpg" width="35"
+                                                     height="36"/></a></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c7.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c10.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c13.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c16.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c19.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c22.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c25.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c28.jpg" width="35" height="36"/></li>
+                                <li><img src="${ctxPath}/resource/images/i_r2_c34.jpg" width="35" height="36"/></li>
+                            </ul>
+                            <!--
+                            <ul>
+                              <li><span class="yh16">上一篇：</span><a href="#">汽车成为拉动我国居民消费第一引擎</a></li>
+                              <li><span class="yh16">下一篇：</span><a href="#">汽车成为拉动我国居民消费第一引擎</a></li>
+                            </ul>
+                            -->
+                        </div>
+                    </div>
+                    <div class="blank"></div>
+                    <div class="blank"></div>
+                    <div class="commentsGoodsPages">
+                        <div class="commentsGoodsPagesTitle">用户评论</div>
+                        <div class="commentsGoodsMain">
+                            <!--# for(comment in play.comments![]) { -->
+                            <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/rest/image/"/>
+                                <ul class="userInfo clearfix" style="width:576px">
+                                    <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
+                                    <h5>${comment.member.username!'访客'}</h5>
+                                </ul>
+                                <div class="blank"></div>
+                                <ul class="userComments"><i></i>${comment.content}</ul>
+                                <div class="blank"></div>
+                                <!--# if(comment.reply != null) { -->
+                                <h6 class="userCommentsReply">客服回复</h6>
+                                <ul class="userCommentsReply"><i></i>${comment.reply.content!}</ul>
+                                <!--# } -->
+                            </div>
+                            <!--# } -->
+                        </div>
+                    </div>
+                    <div class="commentsPostWrap">
+                        <h6>我的说说</h6>
+                        <ul>
+                            <li>联系电话
+                                <input type="text" class="commentPhone mobile">
+                                （非必填）
+                            </li>
+                            <li>我的留言</li>
+                            <li>
+                                <textarea></textarea>
+                            </li>
+                            <li>
+                                <input type="button" class="btnSubmit" value="提交">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="Foodtext_right">
+                <div class="secondright">
+                    <div class="banner"><img src="${ctxPath}/resource/images/samllbanner.jpg" width="300" height="90"/>
+                    </div>
+                    <div class="meishititle">
+                        <!--# if (type!'' == 'eat') { print('美食分类'); } -->
+                        <!--# if (type!'' == 'go') { print('美景分类'); } -->
+                        <!--# if (type!'' == 'buy') { print('特产分类'); } -->
+                        <!--# if (type!'' == 'like') { print('人文分类'); } -->
+                    </div>
+                    <ul>
+                        <!--# for(item in categoryPage.list![]) { -->
+                        <li><a href="#">${item.name}</a></li>
+                        <!--# } -->
+                    </ul>
+                </div>
+                <div class="fourright" style="margin:0px 0px; 20px 10px; padding:0px">
+                    <!--# include("/view/food/fourright.html") {} -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<script>$('.btnSubmit').click(function () {
+    var content = $('textarea').val();
+    var mobile = $('.mobile').val();
+    if (content) {
+        $.post('${ctxPath}/play/commentSave', {
+            play: '${play.id}',
+            content: content,
+            mobile: mobile
+        }, function () {
+            location.reload();
+        });
+    } else {
+        alert("请填写内容");
+    }
+});</script>

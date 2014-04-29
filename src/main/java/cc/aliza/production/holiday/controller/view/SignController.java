@@ -27,8 +27,10 @@ public class SignController extends Controller {
     public void index() {
         setAttr("error", getSessionAttr("error"));
         setAttr("username", getSessionAttr("username"));
+        setAttr("redirect", getPara("redirect", (String) getSessionAttr("redirect")));
         removeSessionAttr("error");
         removeSessionAttr("username");
+        removeSessionAttr("redirect");
 
         render("/view/user/sign.html");
     }
@@ -37,6 +39,7 @@ public class SignController extends Controller {
     public void doSign() {
         String username = getPara("username");
         String password = getPara("password");
+        String redirect = getPara("redirect", "/");
         try {
 
             if (!CaptchaRender.validate(this, StringUtils.upperCase(getPara("captcha")), RANDOM_CODE_KEY)) {
@@ -67,7 +70,7 @@ public class SignController extends Controller {
 
                 getSession().setAttribute("member", member.getId());
 
-                redirect("/");
+                redirect(redirect);
             } else {
                 throw new BusinessException("用户名已存在");
             }
@@ -76,6 +79,7 @@ public class SignController extends Controller {
         } catch (BusinessException e) {
             setSessionAttr("username", username);
             setSessionAttr("error", e.getMessage());
+            setSessionAttr("redirect", redirect);
             redirect("/sign");
         }
     }

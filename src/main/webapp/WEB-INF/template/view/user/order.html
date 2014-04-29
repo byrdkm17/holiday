@@ -98,14 +98,14 @@
                 <!--# if(orderPage.pageNumber == index) { -->
                 <a class="current" href="javascript:void(0)">${index}</a>
                 <!--# } else { -->
-                <a class="pNum" href="${ctxPath}/user/order?status=${status}&pageNumber=${index}">${index}</a>
+                <a class="pNum" href="${ctxPath}/user/order?status=${status!}&pageNumber=${index}">${index}</a>
                 <!--# } -->
                 <!--# index = index + 1; -->
                 <!--# } -->
                 <!--# if((orderPage.pageNumber == orderPage.totalPage) || orderPage.totalPage == 0) { -->
                 <a class="disable">&gt;</a>
                 <!--# } else { -->
-                <a class="next" href="${ctxPath}/user/order?status=${status}&pageNumber=${orderPage.pageNumber + 1}">下一页</a>
+                <a class="next" href="${ctxPath}/user/order?status=${status!}&pageNumber=${orderPage.pageNumber + 1}">下一页</a>
                 <!--# } -->
             </div>
         </div>

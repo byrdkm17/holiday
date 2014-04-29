@@ -30,7 +30,7 @@
     </div>
     <div id="conditionsWrap">
         <div class="statistics">
-            <h3><a href="${ctxPath}/line">全部自由行</a><span>(共记${count!0}个)</span></h3>
+            <h3><a href="${ctxPath}/car">全部自由行</a><span>(共记${count!0}个)</span></h3>
         </div>
         <div id="conditionsList">
             <!--# for(label in labelPage.list![]) { -->
@@ -38,7 +38,7 @@
                 <h3>${label.name}：</h3>
                 <ul class="clearfix">
                     <!--# for(child in label.children![]){ -->
-                    <li class="<!--# if(child.name == queryLabel!'') {print('selectBox');} -->"><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
+                    <li class="<!--# if(child.name == queryLabel!'') {print('selectBox');} -->"><a href="${ctxPath}/car?label=${child.name}">${child.name}</a></li>
                     <!--# }-->
                 </ul>
             </div>

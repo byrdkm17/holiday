@@ -2,14 +2,8 @@ package cc.aliza.production.holiday.controller.rest;
 
 import cc.aliza.production.holiday.commons.HolidayConstants;
 import cc.aliza.production.holiday.commons.Result;
-import cc.aliza.production.holiday.dao.GoodsDao;
-import cc.aliza.production.holiday.dao.MemberDao;
-import cc.aliza.production.holiday.dao.OrderDao;
-import cc.aliza.production.holiday.dao.SettingDao;
-import cc.aliza.production.holiday.entity.Goods;
-import cc.aliza.production.holiday.entity.Order;
-import cc.aliza.production.holiday.entity.Setting;
-import cc.aliza.production.holiday.entity.Traveler;
+import cc.aliza.production.holiday.dao.*;
+import cc.aliza.production.holiday.entity.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jfinal.aop.Before;
@@ -20,10 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Jing on 14-2-1.
@@ -54,17 +45,79 @@ public class OrderRest extends Controller {
         order.setPrice(price);
 
         String id = getSessionAttr("member");
-
+        int total = 0;
         if (StringUtils.isBlank(id)) {
             OrderDao.dao.save(order);
+            List<Order> orders = getSessionAttr("cart");
+            if (orders == null) {
+                orders = new ArrayList<Order>();
+            }
+            orders.add(order);
+            setSessionAttr("cart", orders);
+            total = orders.size();
         } else {
             order.setMember(MemberDao.dao.findOne(id));
             OrderDao.dao.save(order);
+            if (getParaToBoolean("pre")) {
+                MemberDao.dao.push(id, "cart", order);
+            }
+            Member member = MemberDao.dao.findOne(id);
+            List<Order> oo = member.getCart();
+            if (oo != null) {
+                total = oo.size();
+            } else {
+                total = 0;
+            }
         }
-        renderJson(Result.exec(order));
+        if (getParaToBoolean("pre")) {
+            Map<String, Object> r = new HashMap<String, Object>();
+            r.put("success", true);
+            r.put("total", total);
+            renderJson(r);
+        } else {
+            renderJson(Result.exec(order));
+        }
     }
 
     @Before(POST.class)
+    public void updateCart() {
+        String OrdersJson = getPara("orders");
+        Type type = new TypeToken<List<Order>>() {
+        }.getType();
+        List<Order> ol = new Gson().fromJson(OrdersJson, type);
+        List<Order> list = new ArrayList<Order>();
+        Integer total = 0;
+        String id = getSessionAttr("member");
+        Member member = MemberDao.dao.findOne(id);
+        String travelerJson = getPara("traveler");
+
+        Type travelerListType = new TypeToken<List<Traveler>>() {
+        }.getType();
+
+        List<Traveler> travelers = new Gson().fromJson(travelerJson, travelerListType);
+
+        for (Order o : ol) {
+            Order oo = OrderDao.dao.findOne(o.getId());
+            oo = upOrder(oo, travelers, o.getNumber(), getPara("contactName"), getPara("contactPhone"), getPara("message"), getParaToInt("payMethod"));
+            OrderDao.dao.save(oo);
+            list.add(oo);
+            total += oo.getPrice() * oo.getNumber();
+        }
+
+        Cart cart = new Cart();
+        cart.setOrders(list);
+        cart.setMember(member);
+        cart.setStatus(1);
+        cart.setPayPrice(total);
+
+        CartDao.dao.insert(cart);
+
+        renderJson(Result.exec(cart));
+
+    }
+
+    @Before(POST.class)
+    @SuppressWarnings("unchecked")
     public void update() {
         String id = getPara("orderID");
 
@@ -77,15 +130,22 @@ public class OrderRest extends Controller {
 
         List<Traveler> travelers = new Gson().fromJson(travelerJson, travelerListType);
 
-        order.setNumber(getParaToInt("number", 0));
+        order = upOrder(order, travelers, getParaToInt("number", 0), getPara("contactName"), getPara("contactPhone"), getPara("message"), getParaToInt("payMethod"));
+        OrderDao.dao.save(order);
+        renderJson(Result.exec());
+    }
+
+    private Order upOrder(Order order, List<Traveler> travelers, Integer number, String contactName, String contactPhone, String message, Integer payMethod) {
+
+        order.setNumber(number);
 
         order.setTravelers(travelers);
 
-        order.setContactName(getPara("contactName"));
-        order.setContactPhone(getPara("contactPhone"));
+        order.setContactName(contactName);
+        order.setContactPhone(contactPhone);
 
-        order.setMessage(getPara("message"));
-        order.setPayMethod(getParaToInt("payMethod"));
+        order.setMessage(message);
+        order.setPayMethod(payMethod);
 
         Map priceSet = order.getPriceSetObject();
 
@@ -120,19 +180,31 @@ public class OrderRest extends Controller {
                 for (int i = 0; i < day; i++) {
                     Calendar cur = (Calendar) calendar.clone();
                     cur.add(Calendar.DATE, i);
-                    price = price + list.get(sdf.format(cur.getTime()));
+                    if (list.containsKey(sdf.format(cur.getTime()))) {
+                        price = price + list.get(sdf.format(cur.getTime()));
+                    } else {
+                        price = price + 0;
+                    }
+
                 }
                 order.setAmount(price.intValue());
                 price = price * order.getNumber();
             }
         }
         order.setPrice(price.intValue());
-        order.setStatus(1);
-        if (order.getPayMethod() == 1) {
+        if (order.getPayMethod() != null) {
+            order.setStatus(1);
+            String id = getSessionAttr("member");
+            Member member = MemberDao.dao.findOne(id);
+            MemberDao.dao.pull(member, "cart", order);
+        }
+        if (order.getPayMethod() == null) {
             order.setDiscount(0);
             order.setPayPrice(0);
-        }
-        if (order.getPayMethod() == 2) {
+        } else if (order.getPayMethod() == 1) {
+            order.setDiscount(0);
+            order.setPayPrice(0);
+        } else if (order.getPayMethod() == 2) {
             Setting s = SettingDao.dao.findOne("key", "pay.preAmountDiscount");
             double discount = 0;
             if (s != null) {
@@ -140,8 +212,7 @@ public class OrderRest extends Controller {
             }
             order.setDiscount((int) Math.round(order.getPrice() * discount / 100) * 100);
             order.setPayPrice((int) Math.round((order.getPrice() - order.getDiscount()) * 0.2 / 100) * 100);
-        }
-        if (order.getPayMethod() == 4) {
+        } else if (order.getPayMethod() == 4) {
             Setting s = SettingDao.dao.findOne("key", "pay.allAmountDiscount");
             double discount = 0;
             if (s != null) {
@@ -151,8 +222,7 @@ public class OrderRest extends Controller {
             order.setPayPrice(order.getPrice() - order.getDiscount());
         }
 
-        OrderDao.dao.save(order);
-        renderJson(Result.exec());
+        return order;
     }
 
 }

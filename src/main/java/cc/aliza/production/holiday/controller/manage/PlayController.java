@@ -181,6 +181,9 @@ public class PlayController extends Controller {
         PlayCategory s = PlayCategoryDao.dao.findOne(category);
         play.setCategory(s);
 
+        String info = getPara("info");
+        play.setInfo(info);
+
         String note = getPara("note");
         play.setNote(note);
 

@@ -1,4 +1,4 @@
-<!--# layout("/view/include/layout.html") { -->
+<!--# layout("/view/include/layout.html", {cur: 'detail'}) { -->
 <div id="main" class="clearfix" data-type="${goods.production}">
 <div class="uhere dib"><a href="/">首页</a> &gt;
     <!--# if (goods.production!'line' == 'line') { -->
@@ -41,7 +41,9 @@
     </div>
     <div class="goodsInfo fl">
         <div class="goodsInfoContent">
-            <div class="goodsPrice"><i class="symbol">￥</i><span class="price" data-price="${goods.minRealPrice!0 / 100}">${goods.minRealPrice!0 / 100}</span><i>元<span class="qi">起</span></i></div>
+            <div class="goodsPrice"><i class="symbol">￥</i><span class="price"
+                                                                 data-price="${goods.minRealPrice!0 / 100}">${goods.minRealPrice!0 / 100}</span><i>元<span
+                    class="qi">起</span></i></div>
             <div class="propertyChoice clearfix">
                 <!--# if(goods.saleType == 1) { -->
                 <h6>消费时间：</h6>
@@ -74,15 +76,19 @@
                 <!--# } -->
                 <h6 style="padding-top: 3px;">购买数量：</h6>
                 <ul class="multi clearfix">
-                    <span><i class="reduce">-</i><i class="numberInput"><input type="text" class="number" value="1"></i><i class="plus">+</i></span>
+                    <span><i class="reduce">-</i><i class="numberInput"><input type="text" class="number" value="1"></i><i
+                            class="plus">+</i></span>
                 </ul>
                 <script type="text/plain" id="priceSet">${goods.priceSet}</script>
             </div>
             <div class="goodsHandle">
                 <div class="btnGoodsSales clearfix">
                     <ul>
-                        <li style="text-align: center">
+                        <li style="float: left">
                             <input type="button" class="btnGotoCart" value="立即购买">
+                        </li>
+                        <li style="float: left;margin-left: 20px;">
+                            <input type="button" class="btnGotoSale" value="加入购物车">
                         </li>
                     </ul>
                 </div>
@@ -93,11 +99,15 @@
                     </ul>
                     <ul class="last fr">
                         <!--# if(!empty('member') ){ -->
-                        <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0 + 10}</span>)</li>
+                        <li class="fav"><a href="javascript:void(0)" class="collect">收藏产品</a>(<span class="fntRedBold">${goods.collect!0 + 10}</span>)
+                        </li>
                         <!--# } else { -->
-                        <li class="fav"><a href="${ctxPath}/login?redirect=/detail/${goods.id}">收藏产品</a>(<span class="fntRedBold">${goods.collect!0 + 10}</span>)</li>
+                        <li class="fav"><a href="${ctxPath}/login?redirect=/detail/${goods.id}">收藏产品</a>(<span
+                                class="fntRedBold">${goods.collect!0 + 10}</span>)
+                        </li>
                         <!--# } -->
-                        <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0 + 10}</span>)</li>
+                        <li class="like"><a href="javascript:void(0)" class="like">喜欢宝贝</a>(<span class="fntRedBold">${goods.like!0 + 10}</span>)
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -270,7 +280,8 @@
             <!--# for(hotGoods in hotGoodsPage.list![]) { -->
             <!--# if(hotGoods_index < 5) { -->
             <ul class="clearfix">
-                <a href="${ctxPath}/detail/${hotGoods.id}" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
+                <a href="${ctxPath}/detail/${hotGoods.id}" target="_blank"><img
+                        src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
 
                 <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
                 <li>￥${hotGoods.minRealPrice / 100}</li>
@@ -302,8 +313,10 @@
                 <a href="#" target="_blank"><img src="${ctxPath}/rest/image/${hotGoods.master!}"/></a>
 
                 <h2><a href="${ctxPath}/detail/${hotGoods.id}" target="_blank">${hotGoods.name}</a></h2>
-                <li><span>原价:<i class="delLine">￥${hotGoods.minPrice!0 / 100}</i></span><span>现价:<i class="fntRed">￥${(hotGoods.minRealPrice!0) / 100}</i></span></li>
-                <li class="last"><span>折扣:${(hotGoods.discount!0 / hotGoods.minPrice!0) / 10}折</span><span><i class="fntRed"><b>${hotGoods.sales!0}</b></i>人已购买</span></li>
+                <li><span>原价:<i class="delLine">￥${hotGoods.minPrice!0 / 100}</i></span><span>现价:<i class="fntRed">￥${(hotGoods.minRealPrice!0) / 100}</i></span>
+                </li>
+                <li class="last"><span>折扣:${(hotGoods.discount!0 / hotGoods.minPrice!0) / 10}折</span><span><i
+                        class="fntRed"><b>${hotGoods.sales!0}</b></i>人已购买</span></li>
                 <a class="btnView" href="${ctxPath}/detail/${hotGoods.id}" target="_blank">去看看</a>
             </ul>
             <!--# } -->
@@ -328,10 +341,10 @@ $(function () {
             $(this).val("").css("color", "#999")
         }
     }).blur(function () {
-        if ($(this).val() == '') {
-            $(this).val(this.defaultValue).css("color", "#999")
-        }
-    });
+                if ($(this).val() == '') {
+                    $(this).val(this.defaultValue).css("color", "#999")
+                }
+            });
     $("#dateBegin").datepicker({
         changeMonth: true,
         onClose: function (selectedDate) {
@@ -504,7 +517,8 @@ $(function () {
         countPrice();
     });
 
-    $('.btnGotoCart').click(function () {
+    $('.btnGotoCart, input.btnGotoSale').click(function () {
+        var pre = $(this).hasClass('btnGotoSale');
         if ($('#dateBegin').val() == '点击选择日历' || !$('#dateBegin').val()) {
             alert('请选择消费时间');
             return;
@@ -526,9 +540,15 @@ $(function () {
                 number: +$('.number').val(),
                 beginDate: $('#dateBegin').val() || (new XDate()).toString('yyyy-MM-dd'),
                 endDate: $('#dateEnd').val() || $('#dateBegin').val() || (new XDate()).toString('yyyy-MM-dd'),
-                price: +$('.goodsPrice .price').text() * 100
+                price: +$('.goodsPrice .price').text() * 100,
+                pre: pre
             }, function (res) {
-                location.href = '${ctxPath}/order/' + res.order.id;
+                if (pre) {
+                    $('.cartTotal').text(res.total);
+                    alert("已经加入购物车");
+                } else {
+                    location.href = '${ctxPath}/order/' + res.order.id;
+                }
             });
         }
     });

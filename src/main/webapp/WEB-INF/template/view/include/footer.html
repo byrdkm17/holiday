@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="footer" style="width: 1002px; margin: 0 auto">
     <div class="helpCenter clearfix">
         <dl>
             <dt>消费者保障</dt>
@@ -74,7 +74,8 @@
     <ul>
         <li class="txt fntYh"><i class="fntRed"><i class="fntSize12">7x24</i>小时</i>客户热线<span>${ui400.value!}</span></li>
         <li class="clearfix">
-            <a href="javascript:void(0)" onclick="javascript:window.open('http://bizapp.qq.com/webc.htm?new=0&sid=4008488099&eid=&o=www.51puer.com&q=7', '_self', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"></a>
+            <a href="javascript:void(0)"
+               onclick="javascript:window.open('http://bizapp.qq.com/webc.htm?new=0&sid=4008488099&eid=&o=www.51puer.com&q=7', '_self', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"></a>
         </li>
         <li class="goTop">返回顶部</li>
     </ul>
@@ -83,17 +84,25 @@
 <span id="cnzz_stat_icon_1000296157"></span>
 <script src="http://w.cnzz.com/q_stat.php?id=1000296157" type="text/javascript"></script>;
 <!--js public load-->
+<!--# if (cur!'' != 'food') { -->
 <script src="${ctxPath}/resource/js/jquery.js"></script>
+<!--# } -->
 <script src="${ctxPath}/resource/js/jquery.cookie.js"></script>
 <script src="${ctxPath}/resource/js/support/prefixfree.js"></script>
 <script src="${ctxPath}/resource/js/jLamCustom.js"></script>
 <script src="${ctxPath}/resource/js/autoZoom.js"></script>
 <script src="${ctxPath}/resource/js/xdate.js"></script>
+<!--# if(cur!'' != 'detail') { -->
+<script src="${ctxPath}/resource/js/jquery.lazyload.min.js"></script>
+<!--# } -->
 <script>
     $(function () {
         //$('a').attr('target', '_blank');
         $('.searchFormInputTxt li').click(function () {
             $('#queryInput').attr('action', '${ctxPath}/' + $(this).data('target'));
         });
+        <!--# if(cur!'' != 'detail') { -->
+        $("img.lazy").lazyload();
+        <!--# } -->
     });
 </script>

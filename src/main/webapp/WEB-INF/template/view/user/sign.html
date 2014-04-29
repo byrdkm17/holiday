@@ -11,7 +11,8 @@
             <form method="post" action="${ctxPath}/sign/doSign">
                 <ul class="signupForm">
                     <li><span>* 账户名:</span>
-                        <input name="username" type="text" class="signupTxt" value="邮箱/用户名/手机号" id="userId" value="${username!''}">
+                        <input name="username" type="text" class="signupTxt" value="邮箱/用户名/手机号" id="userId"
+                               value="${username!''}">
                         <!--# if(error!"" != "") { -->
                         <i>${error}</i>
                         <!--# } -->
@@ -32,6 +33,7 @@
                         我已阅读并同意《<a href="javascript:void(0)" id="protocolBtn">阳光用户注册协议</a>》
                     </li>
                     <li>
+                        <input name="redirect" type="hidden" value="${redirect!'/'}">
                         <input type="submit" value="立即注册" class="signupBtn">
                     </li>
                 </ul>
@@ -66,10 +68,10 @@
                 $(this).val("").css("color", "#656565")
             }
         }).blur(function () {
-            if ($(this).val() == '') {
-                $(this).val(this.defaultValue).css("color", "#656565")
-            }
-        });
+                    if ($(this).val() == '') {
+                        $(this).val(this.defaultValue).css("color", "#656565")
+                    }
+                });
 
         $('.refresh').click(function () {
             var src = '${ctxPath}/captcha?randomCodeKey=sign&_dc=';

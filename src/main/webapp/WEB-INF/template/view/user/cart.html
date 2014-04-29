@@ -1,0 +1,238 @@
+<!--# layout("/view/include/layout.html", {cur: 'cart'}) { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <div class="uhereCart">
+        <div class="cartTopOperation fr">已选商品：￥<i class="totalPrice">0</i>
+            <!--# if(empty('member') ){ -->
+            <a href="${ctxPath}/login?redirect=/cart" class="paymentBtn">结算</a>
+            <!--# } else { -->
+            <a href="#" class="paymentBtn js">结算</a>
+            <!--# } -->
+        </div>
+        <div class="cartNum fl">购物车商品总数：${orderList.~size!0}</div>
+    </div>
+    <div class="userCartListAll">
+        <div class="userCartListGrid">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th width="5%">全选</th>
+                    <th width="30%">商品</th>
+                    <th width="25%">商品信息</th>
+                    <th width="10%">单价</th>
+                    <th width="10%">数量</th>
+                    <th width="10%">小计</th>
+                    <th width="10%">操作</th>
+                </tr>
+                <tr>
+                    <td width="5%"><input type="checkbox" class="selectAll"></td>
+                    <td width="95%" colspan="6" class="userCartListGridTopTip">产品提供商：云南假日风光国际旅行社</td>
+                </tr>
+                <tr>
+                    <td colspan="7" class="userCartListGridMain">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               class="userCartListGridMainTable">
+                            <!--# for(order in orderList) { -->
+                            <tr data-price="${order.priceSetObject.price!0 / 100}" data-id="${order.id}">
+                                <td width="5%"><input type="checkbox"></td>
+                                <td width="30%" class="title"><img
+                                        src="${ctxPath}/rest/image/${order.goodsObject.master!}"/>${order.goodsObject.name}
+                                </td>
+                                <td width="25%">${order.priceSetObject.title!}</td>
+                                <td width="10%" class="unit">${order.priceSetObject.price!0 / 100}</td>
+                                <td width="10%" class="amount"><i class="reduce" style="border: none">-</i><i
+                                        class="numberInput" style="border: none"><input type="text" class="number"
+                                                                                        value="${order.number!0}"
+                                                                                        style="padding:0;"></i><i
+                                        class="plus"
+                                        style="border: none">+</i>
+                                </td>
+                                <td width="10%" class="unit unitRed">
+                                    ${(order.priceSetObject.price!0 / 100) * order.number!0}
+                                </td>
+                                <td width="10%"><a href="${ctxPath}/cart/add/${order.id}">移入收藏夹</a><br>
+                                    <a href="${ctxPath}/cart/remove/${order.id}">删除</a></td>
+                            </tr>
+                            <!--# } -->
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="userCartListGridBottom" colspan="7">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="5%" class="center"><input type="checkbox" class="selectAll"></td>
+                                <td width="55%" class="handle">全选
+                                    <a href="#" class="removeAll">删除</a>
+                                    <!--# if(empty('member')) { -->
+                                    <a href="${ctxPath}/login?redirect=/cart">批量移入收藏夹</a>
+                                    <!--# } else { -->
+                                    <a href="#" class="addAll">批量移入收藏夹</a>
+                                    <!--# } -->
+                                </td>
+                                <td width="30%" class="userCartListGridBottomInfo">已选商品<i
+                                        class="amount totalNumber">0</i>件<span>合计：<i>￥<b
+                                        class="totalPrice">0</b></i></span>
+                                </td>
+                                <td width="10%" class="paymentBtn">
+                                    <!--# if(empty('member')) { -->
+                                    <a href="${ctxPath}/login?redirect=/cart">结算</a>
+                                    <!--# } else { -->
+                                    <a href="#" class="js">结算</a>
+                                    <!--# } -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <!--# include("/view/user/bottom.html"){}-->
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        var userCenterSiderNavLinks = $("div.userCenterSider").find("a");
+        $(userCenterSiderNavLinks).each(function (i) {
+            var links = $(userCenterSiderNavLinks).eq(i).attr("href"), myURL = document.URL;
+            if (myURL.indexOf(links) != -1) {
+                $(userCenterSiderNavLinks).eq(i).parent().addClass("current");
+            }
+        });
+        $(".uLikeWhat").slide({titCell: ".uLikeWhatTitle ul", mainCell: ".uLikeWhatScreen", effect: "leftLoop", autoPage: true, autoPlay: true});
+        var searchOrder = $("input.searchOrder");
+        $(searchOrder).focus(function () {
+            if ($(this).val() == this.defaultValue) {
+                $(this).val("").css("color", "#000")
+            }
+        }).blur(function () {
+                    if ($(this).val() == '') {
+                        $(this).val(this.defaultValue).css("color", "#000")
+                    }
+                });
+
+        $.cookie.json = true;
+        $.post('${ctxPath}/rest/goods/cookie', {
+            list: ($.cookie('goodsViewList') || []).reverse().join(',')
+        }, function (res) {
+            $.each(res.list, function () {
+                $('.cookielist').append(
+                        '<li>'
+                                + '<a href="#">'
+                                + '<img class="proPic" src="${ctxPath}/rest/image/' + this.id + '"/>'
+                                + '</a>'
+                                + '<h3 style="height: 36px; overflow: hidden;">'
+                                + '<a href="#" target="_blank">' + this.name + '</a>'
+                                + '</h3>'
+                                + '<span>￥' + ((this.minPrice || 0) / 100) + '</span>'
+                                + '</li>');
+            });
+
+        });
+
+        $('.clearCookie').click(function () {
+            $.removeCookie('goodsViewList', {path: '/'});
+            $('.cookielist').empty();
+        });
+
+        var count = function () {
+            var total = 0;
+            var n = 0;
+            $('.userCartListGridMainTable').find('tr').each(function () {
+                var price = +$(this).data('price');
+                var number = +$(this).find('.number').val() || 0;
+
+                $(this).find('.unitRed').text(price * number);
+                if ($(this).find('[type="checkbox"]').prop('checked')) {
+                    total += price * number;
+                    n += 1;
+                }
+            });
+            $('.totalPrice').text(total);
+            $('.totalNumber').text(n);
+        };
+
+        $('.reduce').click(function () {
+            var $input = $(this).closest('td').find('input');
+            var n = (+$input.val() || 0) - 1;
+            $input.val(n >= 0 ? n : 0);
+            count();
+        });
+        $('.plus').click(function () {
+            var $input = $(this).closest('td').find('input');
+            $input.val((+$input.val() || 0) + 1);
+            count();
+        });
+
+        $('.userCartListGridMainTable').find('[type="checkbox"]').change(function () {
+            count();
+        });
+
+        $('.js').click(function (e) {
+            e.preventDefault();
+            var orders = [];
+            $('.userCartListGridMainTable').find('tr').each(function () {
+                if ($(this).find('[type="checkbox"]').prop('checked')) {
+                    orders.push({
+                        id: $(this).data('id'),
+                        number: +$(this).find('.number').val() || 0
+                    });
+                }
+            });
+            $.post('${ctxPath}/rest/order/updateCart', {orders: JSON.stringify(orders)}, function (res) {
+                if (res.success) {
+                    location.href = '${ctxPath}/order/cart-' + res.cart.id;
+                }
+            });
+        });
+
+        $('.removeAll').click(function (e) {
+            e.preventDefault();
+
+            var ids = [];
+            $('.userCartListGridMainTable').find('tr').each(function () {
+                if ($(this).find('[type="checkbox"]').prop('checked')) {
+                    ids.push({
+                        id: $(this).data('id')
+                    });
+                }
+            });
+            $.post('${ctxPath}/cart/removeAll', {ids: ids.join(",")}, function (res) {
+                if (res.success) {
+                    location.href = '${ctxPath}/cart';
+                }
+            });
+        });
+
+        $('.addAll').click(function (e) {
+            e.preventDefault();
+
+            var ids = [];
+            $('.userCartListGridMainTable').find('tr').each(function () {
+                if ($(this).find('[type="checkbox"]').prop('checked')) {
+                    ids.push({
+                        id: $(this).data('id')
+                    });
+                }
+            });
+            $.post('${ctxPath}/cart/addAll', {ids: ids.join(",")}, function (res) {
+                if (res.success) {
+                    location.href = '${ctxPath}/cart';
+                }
+            });
+        });
+
+        $('.selectAll').click(function () {
+            $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
+            count();
+        });
+    });
+</script>
+</body>
+</html>

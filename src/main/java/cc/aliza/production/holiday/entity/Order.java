@@ -1,6 +1,6 @@
 package cc.aliza.production.holiday.entity;
 
-import com.bugull.mongo.SimpleEntity;
+import cc.aliza.production.holiday.commons.ext.HolidayEntity;
 import com.bugull.mongo.annotations.EmbedList;
 import com.bugull.mongo.annotations.Entity;
 import com.bugull.mongo.annotations.Ref;
@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by Jing on 14-2-18.
  */
 @Entity
-public class Order extends SimpleEntity {
+public class Order extends HolidayEntity {
 
     // 关联商品
     @Ref

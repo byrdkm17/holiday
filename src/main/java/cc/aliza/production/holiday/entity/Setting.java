@@ -52,4 +52,12 @@ public class Setting extends SimpleEntity {
     public void setValue(Object value) {
         this.value = value;
     }
+
+    public Double getValueToFloat() {
+        try {
+            return Double.valueOf(this.value.toString());
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
 }

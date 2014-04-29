@@ -1,0 +1,102 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <div class="orderCrumbs orderStep2"></div>
+    <div class="blank"></div>
+    <div class="orderMainPay">
+        <h6>确认并支付</h6>
+
+        <div class="orderInfos">
+            <dl class="clearfix">
+                <dt>项目</dt>
+                <dt>日期</dt>
+                <dt>类型</dt>
+            </dl>
+            <!--# for(order in cart.orders![]) { -->
+            <dl class="clearfix">
+                <dd><img src="${ctxPath}/rest/image/${order.goodsObject.master!}"/>
+
+                    <h3 style="overflow: hidden;height: 35px;">${order.goodsObject.name}</h3>
+                </dd>
+                <dd>
+                    <span class="numberCosPay">${order.beginDate!}</span>
+                    <!--# if(order.endDate!'' != '') { -->
+                    <span class="numberCosPay">至</span>
+                    <span class="numberCosPay">${order.endDate}</span>
+                    <!--# } -->
+                </dd>
+                <dd>
+                    <span class="numberCosPay">${order.priceSetObject.title}</span>
+                </dd>
+            </dl>
+            <!--# } -->
+        </div>
+    </div>
+    <div class="blank"></div>
+    <div class="payPagesInfo">
+        <ul class="ordersInfo">
+            订单类型：
+            <span>支付全款</span> 待支付金额：<span>￥${cart.payPrice / 100}元</span>
+        </ul>
+        <h6>友情提示：</h6>
+        <ul class="listIntro">
+            <li>您所选购的是定金预定，参加旅行时需支付剩余费用。</li>
+            <li>为保障资金安全，请务必使用在线支付，切勿通过搜索引擎或拨打来路不明的400电话进行银行ATM机转帐。</li>
+            <li>如支付后出现代理商不安排旅行、加价旅行等情况，请您立即拨打假日风光网客服电话<b>400-848-8099</b>进行投诉，<br>
+                假日风光网将执行“赔计划”保证100%铁定出行。
+            </li>
+        </ul>
+    </div>
+    <div class="blank"></div>
+    <div class="payment">
+        <div class="onlinePayment">
+            <h3>在线支付（安全、快捷有保障，强烈建议使用此支付方式）</h3>
+            <ul class="clearfix">
+                <input name="payment" type="radio" checked>
+                <img src="${ctxPath}/resource/images/payment/alipay.gif"/>
+                <li>免手续费</li>
+                <li>全面支持各种网银、支付宝余额及余额宝支付</li>
+            </ul>
+        </div>
+        <div class="offlinePayment">
+            <h3>其它方式（银行汇款）热线电话：<span>400-848-8099</span></h3>
+            <ul class="clearfix">
+                <input type="radio" name="payment">
+                <img src="${ctxPath}/resource/images/payment/gh.gif"/>
+                <li>中国工商银行昆明市工行银通支行</li>
+                <li class="name">张兴平</li>
+                <li class="cardid">2502 0105 0101 2176 566</li>
+            </ul>
+            <ul class="clearfix">
+                <input type="radio" name="payment">
+                <img src="${ctxPath}/resource/images/payment/nh.gif"/>
+                <li>中国农业银行昆明市双龙支行城南分理处</li>
+                <li class="name">张兴平</li>
+                <li class="cardid">95599 8086 84175 66817</li>
+            </ul>
+        </div>
+        <div class="paymentBtn"><input type="button" class="btnSubmit" value="确认支付"></div>
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".orderInfos>dl").each(function () {
+            $(this).children().each(function (i) {
+                $(this).addClass("itemP" + (i + 1))
+            });
+        });
+
+        $('.btnSubmit').click(function () {
+            location.href = '${ctxPath}/pay/doPayCart/${cart.id}';
+        });
+
+
+    });
+</script>
+</body>
+</html>

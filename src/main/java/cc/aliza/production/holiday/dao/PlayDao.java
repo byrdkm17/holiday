@@ -4,7 +4,6 @@ import cc.aliza.production.holiday.entity.Play;
 import com.bugull.mongo.BuguDao;
 import com.bugull.mongo.BuguQuery;
 import com.jfinal.plugin.activerecord.Page;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -25,9 +24,8 @@ public class PlayDao extends BuguDao<Play> {
         if (params.get("type") != null) {
             query.is("type", params.get("type"));
         }
-
-        if (StringUtils.isNotBlank(String.valueOf(params.get("category")))) {
-            query.is("category", PlayCategoryDao.dao.findOne("name", params.get("category")));
+        if (params.get("category") != null) {
+            query.is("category", params.get("category"));
         }
 
         if (params.get("order") != null) {
@@ -56,7 +54,7 @@ public class PlayDao extends BuguDao<Play> {
         query.pageSize(pageSize);
 
         int totalRow = (int) query.count();
-        int totalPage = (int) Math.ceil((double) totalRow / 10);
+        int totalPage = (int) Math.ceil((double) totalRow / pageSize);
         List<Play> playList = query.results();
 
         return new Page<Play>(playList, pageNumber, pageSize, totalPage, totalRow);

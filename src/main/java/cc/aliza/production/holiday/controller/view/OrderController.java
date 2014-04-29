@@ -1,12 +1,18 @@
 package cc.aliza.production.holiday.controller.view;
 
+import cc.aliza.production.holiday.dao.CartDao;
 import cc.aliza.production.holiday.dao.OrderDao;
 import cc.aliza.production.holiday.dao.SettingDao;
+import cc.aliza.production.holiday.entity.Cart;
 import cc.aliza.production.holiday.entity.Order;
 import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
 import cc.aliza.production.holiday.interceptor.view.LoginInterceptor;
+import com.bugull.mongo.BuguMapper;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jing on 14-2-8.
@@ -15,29 +21,28 @@ import com.jfinal.core.Controller;
 public class OrderController extends Controller {
 
     public void index() {
+        String id = getPara(0);
+        if ("cart".equals(id)) {
+            String cartID = getPara(1);
+            Cart cart = CartDao.dao.findOne(cartID);
+            BuguMapper.fetchCascade(cart, "orders");
+            setAttr("orderList", cart.getOrders());
+            render("/view/payInfo.html");
+        } else {
+            Order order = OrderDao.dao.findOne(id);
 
-        Order order = OrderDao.dao.findOne(getPara(0));
-
-        if (order.getStatus() == 0) {
-            setAttr("order", order);
-            if ("line".equals(order.getGoodsObject().getProduction())) {
-                render("/view/line/info.html");
+            if (order.getStatus() == 0) {
+                List<Order> l = new ArrayList<Order>();
+                l.add(order);
+                setAttr("orderList", l);
+                render("/view/payInfo.html");
             }
-            if ("hotel".equals(order.getGoodsObject().getProduction())) {
-                render("/view/hotel/info.html");
+            if (order.getStatus() == 1) {
+                redirect("/pay/" + order.getId());
             }
-            if ("car".equals(order.getGoodsObject().getProduction())) {
-                render("/view/car/info.html");
+            if (order.getStatus() == 2) {
+                redirect("/user/order");
             }
-            if ("ticket".equals(order.getGoodsObject().getProduction())) {
-                render("/view/ticket/info.html");
-            }
-        }
-        if (order.getStatus() == 1) {
-            redirect("/pay/" + order.getId());
-        }
-        if (order.getStatus() == 2) {
-            redirect("/user/order");
         }
 
         setAttr("allAmountDiscount", SettingDao.dao.findOne("key", "pay.allAmountDiscount"));

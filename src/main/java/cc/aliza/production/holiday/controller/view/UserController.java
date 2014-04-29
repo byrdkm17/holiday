@@ -23,17 +23,16 @@ public class UserController extends Controller {
     public void order() {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("member", getAttr("member"));
-        params.put("pageNumber", getAttr("pageNumber"));
+        params.put("pageNumber", getPara("pageNumber"));
         params.put("pageSize", 5);
         params.put("orderKey", getPara("orderKey"));
-        params.put("member", getAttr("member"));
         params.put("_status", getPara("status", "all"));
         setAttr("orderPage", OrderDao.dao.findBy(params));
         params.clear();
         params.put("hot", 1);
         params.put("status", 1);
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
-        setAttr("status", getPara("status"));
+        setAttr("status", getPara("status", "all"));
         render("/view/user/order.html");
     }
 

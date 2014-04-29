@@ -6,6 +6,7 @@ import com.bugull.mongo.annotations.Entity;
 import com.bugull.mongo.annotations.Ref;
 import com.bugull.mongo.annotations.RefList;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,6 +49,9 @@ public class Play extends SimpleEntity {
 
     // 想要
     private Integer want;
+
+    // 信息
+    private String info;
 
     public String getName() {
         return name;
@@ -123,5 +127,17 @@ public class Play extends SimpleEntity {
 
     public List<PlayComment> getComments() {
         return PlayCommentDao.dao.query().is("play", this).results();
+    }
+
+    public Date getTime() {
+        return new Date(getTimestamp());
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }

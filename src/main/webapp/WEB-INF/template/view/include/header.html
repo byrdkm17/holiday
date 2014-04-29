@@ -16,6 +16,12 @@
     <!--# if (cur!'' == 'play') { -->
     <link href="${ctxPath}/resource/css/rimPart.css" rel="stylesheet" type="text/css">
     <!--# } -->
+    <!--# if (cur!'' == 'cart') { -->
+    <link href="${ctxPath}/resource/css/cart.css" rel="stylesheet" type="text/css">
+    <!--# } -->
+    <!--# if (cur!'' == 'food') { -->
+    <link href="${ctxPath}/resource/css/style.css" rel="stylesheet" type="text/css">
+    <!--# } -->
     <link href="${ctxPath}/resource/css/ui/juimin.css" rel="stylesheet" type="text/css">
     <link href="${ctxPath}/resource/css/square/orange.css" rel="stylesheet" type="text/css">
 </head>
@@ -59,10 +65,20 @@
         <ul>
             <li>
                 <!--# if(empty('member') ){ -->
-                <a href="${ctxPath}/login">[登陆]</a> <a href="${ctxPath}/sign">[注册]</a>
+                <a href="${ctxPath}/login">[登陆]</a>
+                <!--# if(cur!'' == 'home') { -->
+                <a href="${ctxPath}/sign?redirect=/user/info">[注册]</a>
                 <!--# } else { -->
-                <a href="${ctxPath}/user/order">${member.username}</a> | <a href="${ctxPath}/user/order" class="fntGray">查询订单</a>| <a
-                    href="${ctxPath}/logout">[退出]</a>
+                <a href="${ctxPath}/sign?redirect=${cururl}">[注册]</a>
+                <!--# } -->
+                <a href="${ctxPath}/cart" class="cartTop fntGray">购物车</a><i
+                    class="cartTotal">${cartList.~size!0}</i>
+                <!--# } else { -->
+                <a href="${ctxPath}/user/order">${member.username}</a> |
+                <a href="${ctxPath}/user/order" class="fntGray">查询订单</a> |
+                <a href="${ctxPath}/cart" class="cartTop fntGray">购物车</a><i class="cartTotal">${member.cart.~size!0}</i>
+                |
+                <a href="${ctxPath}/logout">[退出]</a>
                 <!--#  }-->
             </li>
         </ul>
@@ -86,22 +102,7 @@
         <!--# } -->
     </div>
 </div>
-<div class="topTip fr">
-    <ul>
-        <li>为您设计<br>
-            出游计划
-        </li>
-        <li>精选百家<br>
-            优质旅社
-        </li>
-        <li>专注云南<br>
-            所以专业
-        </li>
-        <li>合作产品<br>
-            性价最优
-        </li>
-    </ul>
-</div>
+<div class="topTipNew fr"></div>
 <div class="menu clearfix">
     <div class="menuCat fl" id="menuCat">
         <h6>全部旅游产品分类</h6>
@@ -129,9 +130,7 @@
                         </div>
                         -->
                         <div class="catListWrap">
-                            <!--# var showLine = 0; -->
                             <!--# for(lineLabel in lineLabelPage.list![]) { -->
-                            <!--# if(lineLabel.children.~size!0 > 0 && showLine < 6) { -->
                             <ul class="clearfix">
                                 <h4>${lineLabel.name}</h4>
                                 <li class="allCat"><a href="${ctxPath}/line">全部</a></li>
@@ -139,8 +138,6 @@
                                 <li><a href="${ctxPath}/line?label=${child.name}">${child.name}</a></li>
                                 <!--# } -->
                             </ul>
-                            <!--# showLine = showLine + 1; -->
-                            <!--# } -->
                             <!--# } -->
                         </div>
                     </div>
@@ -152,7 +149,8 @@
             <div class="siderCatItem">
                 <h3>云南自由行</h3>
                 <ol>
-                    <a href="${ctxPath}/hotel">酒店</a> <a href="${ctxPath}/hotel">客栈</a> <a href="${ctxPath}/ticket">门票</a> <!--<a href="${ctxPath}/car">租车</a>-->
+                    <a href="${ctxPath}/hotel">酒店</a> <a href="${ctxPath}/hotel">客栈</a> <a
+                        href="${ctxPath}/ticket">门票</a> <!--<a href="${ctxPath}/car">租车</a>-->
                 </ol>
                 <div class="siderCatItemMain clearfix">
                     <div class="siderCatItemMainLeft fl">
@@ -167,18 +165,14 @@
                         </div>
                         -->
                         <div class="catListWrap">
-                            <!--# var showOther = 0; -->
                             <!--# for(otherLabel in otherLabelPage.list![]) { -->
-                            <!--# if(otherLabel.children.~size!0 > 0 && showOther < 6) { -->
                             <ul class="clearfix">
                                 <h4>${otherLabel.name}</h4>
                                 <li class="allCat"><a href="${ctxPath}/hotel">全部</a></li>
                                 <!--# for(child in otherLabel.children![]) { -->
-                                <li><a href="${ctxPath}/${child.production}/${child.name}">${child.name}</a></li>
+                                <li><a href="${ctxPath}/${otherLabel.production}?label=${child.name}">${child.name}</a></li>
                                 <!--# } -->
                             </ul>
-                            <!--# showOther = showOther + 1; -->
-                            <!--# } -->
                             <!--# } -->
                         </div>
                     </div>
@@ -209,9 +203,7 @@
                         </div>
                         -->
                         <div class="catListWrap">
-                            <!--# var showTarget = 0; -->
                             <!--# for(target in targetPage.list![]) { -->
-                            <!--# if(target.children.~size!0 > 0 && showTarget < 6) { -->
                             <ul class="clearfix">
                                 <h4>${target.name}</h4>
                                 <li class="allCat"><a href="${ctxPath}/line">全部</a></li>
@@ -219,8 +211,6 @@
                                 <li><a href="${ctxPath}/line?target=${child.name}">${child.name}</a></li>
                                 <!--# } -->
                             </ul>
-                            <!--# showTarget = showTarget + 1; -->
-                            <!--# } -->
                             <!--# } -->
                         </div>
                     </div>

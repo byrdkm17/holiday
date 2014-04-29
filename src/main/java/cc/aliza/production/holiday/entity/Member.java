@@ -15,6 +15,9 @@ import java.util.List;
 @Entity
 @EnsureIndex("{username:1, unique:true}")
 public class Member extends SimpleEntity {
+    // 购物车
+    @RefList
+    private List<Order> cart;
 
     // 用户组
     @Ref
@@ -68,6 +71,14 @@ public class Member extends SimpleEntity {
 
     @RefList
     private List<Goods> collect;
+
+    public List<Order> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Order> cart) {
+        this.cart = cart;
+    }
 
     public List<Goods> getCollect() {
         return collect;

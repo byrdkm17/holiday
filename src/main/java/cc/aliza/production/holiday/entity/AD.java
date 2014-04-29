@@ -107,6 +107,30 @@ public class AD extends SimpleEntity {
         if ("HOTELBLOCK".equals(this.position)) {
             return "酒店子广告";
         }
+        if ("JD1".equals(this.position)) {
+            return "首页酒店 1";
+        }
+        if ("JD2".equals(this.position)) {
+            return "首页酒店 2";
+        }
+        if ("JD3".equals(this.position)) {
+            return "首页酒店 3";
+        }
+        if ("JD4".equals(this.position)) {
+            return "首页酒店 4";
+        }
+        if ("FOOD11".equals(this.position)) {
+            return "美食横幅";
+        }
+        if ("FOOD21".equals(this.position)) {
+            return "美景横幅";
+        }
+        if ("FOOD31".equals(this.position)) {
+            return "特产横幅";
+        }
+        if ("FOOD41".equals(this.position)) {
+            return "人文横幅";
+        }
         return StringUtils.EMPTY;
     }
 }

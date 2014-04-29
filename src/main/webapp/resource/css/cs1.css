@@ -1,0 +1,871 @@
+/*********************************/
+#topad, .content, .hh1 {
+    width: 960px;
+    padding: 0px 0px 20px 0px;
+    margin: 0px;
+    float: left
+}
+
+.content {
+    margin-top: 20px;
+    padding: 20px 15px;
+}
+
+.hh1 {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    padding: 10px 0px;
+    margin: 0px
+}
+
+.hh1 span {
+    color: #f60;
+}
+
+.bgfff {
+    background: #fff;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.content1 {
+    width: 990px;
+    margin: 0 auto;
+}
+
+.leftar, .rightar {
+    width: 20px;
+    float: right;
+    height: 17px;
+    cursor: pointer;
+    display: inline;
+}
+
+.rightar {
+    background: url(http://static.meishichina.com/res/web/images/hr.gif) no-repeat;
+    margin-right: 50px;
+}
+
+.leftar {
+    margin-right: 8px;
+    background: url(http://static.meishichina.com/res/web/images/nohl.gif) no-repeat;
+}
+
+#topad .picinfo {
+    height: 240px;
+    padding: 20px 20px 0px 20px
+}
+
+#topad .picinfo p {
+    font-size: 14px;
+    font-weight: bold;
+    height: 190px;
+    overflow: hidden
+}
+
+.hh2 {
+    font-size: 20px;
+    margin-right: 20px;
+    float: left;
+    color: #333;
+    text-align: left;
+}
+
+.hh2 span {
+    font-size: 12px;
+    color: #999;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.hh3 {
+    font-size: 14px;
+    color: #999;
+    text-align: left;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.hh3 b {
+    color: #333;
+    padding: 0 5px;
+}
+
+.hh3 span {
+    float: left;
+}
+
+.hh3 .lr {
+    width: 45px;
+    float: right;
+    display: block;
+}
+
+.Lmain {
+    width: 660px;
+    float: left;
+}
+
+.Rmain {
+    width: 300px;
+    float: left
+}
+
+.Lmain .left {
+    width: 300px;
+    float: left;
+}
+
+.Lmain .right {
+    width: 360px;
+    float: left;
+}
+
+.lbox {
+    width: 300px;
+    float: left;
+}
+
+.Pl {
+    width: 280px;
+    background: #EEE;
+    padding: 11px 10px;
+    text-align: left;
+    display: block;
+    line-height: 20px;
+}
+
+.Pl h4 {
+    clear: both;
+    font-size: 14px;
+    color: #333;
+    height: 28px;
+}
+
+.Pl h4 a:link, .Pl h4 a:visited {
+    color: #333;
+}
+
+.Pl h4 a:hover, .Pl h4 a:active {
+    color: #f30;
+}
+
+.Pl p {
+    color: #666;
+    line-height: 25px
+}
+
+.line {
+    border-top: 1px solid #EFEFF1;
+    float: left;
+    width: 615px;
+    margin: 10px 0px 15px;
+    display: inline;
+    line-height: 1px;
+}
+
+.detail {
+    float: left
+}
+
+.detail p {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 240px;
+    height: 20px
+}
+
+.hs {
+    float: left;
+    display: inline;
+    width: 300px;
+    height: 32px;
+}
+
+.hs_input {
+    float: left;
+    display: inline;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 7px;
+    background: none;
+    color: #C1C1C1;
+    font-size: 14px;
+    border: 1px solid #D9D9D9;
+    width: 215px;
+}
+
+.hs_btn {
+    float: left;
+    display: inline;
+    width: 65px;
+    height: 30px;
+    border: none;
+    background: #E9E9E9;
+    border: 1px solid #D9D9D9;
+    border-left: none;
+}
+
+.cbox {
+    float: left;
+    margin-bottom: 5px;
+    margin-left: 11px;
+    display: inline;
+}
+
+.Cmainarea {
+    width: 330px;
+    margin: 0 auto;
+}
+
+.m3list {
+    float: left;
+    width: 330px;
+}
+
+.m3list h4 {
+    clear: both;
+    float: left;
+    width: 240px;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+.m3list h4 a:link, .m3list h4 a:visited {
+    color: #333;
+}
+
+.m3list h4 a:hover, .m3list h4 a:active {
+    color: #f30;
+}
+
+.m3list li {
+    width: 330px;
+    height: 80px;
+    padding-bottom: 3px;
+    margin-bottom: 12px;
+    float: left;
+}
+
+.m3list li.nobr {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    height: 70px;
+}
+
+.m3list li .pic {
+    float: left;
+    width: 80px;
+    text-align: left;
+}
+
+.m3list li .detail {
+    float: left;
+    width: 240px;
+    color: #666;
+    text-align: left;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.m3list li .detail span {
+    margin-right: 3px;
+}
+
+.m3list li .detail p a {
+    margin: 0 5px;
+}
+
+.m3list li .detail span a:link, .m3list li .detail span a:visited, .m3list li .detail span a:hover, .m3list li .detail span a:active {
+    color: white;
+}
+
+.m3list li .detail p a:link, .m3list li .detail p a:visited {
+    color: #666;
+}
+
+.m3list li .detail p a:hover, .m3list li .detail p a:active {
+    color: #f30;
+}
+
+.wredbg, .worangebg, .wgreenbg, .wgraybg {
+    background: #F55F4B;
+    padding: 0 5px;
+    height: 18px;
+    display: block;
+    text-align: center;
+    float: left;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.hotlist {
+    width: 300px;
+    float: left
+}
+
+.hotlist a {
+    border: 1px solid #E7E7E7;
+    background-color: #F7F7F7;
+    text-decoration: none;
+    padding: 1px 6px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    float: left;
+    color: #666;
+    display: block;
+    white-space: nowrap;
+}
+
+.hotlist a:hover, .hotlist a:active {
+    border: 1px solid #ffc6ae;
+    background-color: #fef3ed;
+    color: #f30;
+    text-decoration: none;
+}
+
+.ex {
+    padding: 15px;
+    float: left;
+    display: inline;
+    width: 960px;
+    background: white;
+    margin-top: 20px;
+}
+
+.exr {
+    padding-top: 9px;
+    float: left;
+}
+
+.m4list {
+    width: 640px;
+    float: left;
+    margin-left: 10px;
+}
+
+.m4list li {
+    float: left;
+    width: 155px;
+    text-align: center;
+    line-height: 180%;
+    margin-bottom: 10px;
+}
+
+.m4list li a {
+    font-size: 14px;
+}
+
+.m4list li a span {
+    width: 155px;
+    text-align: center;
+    overflow: hidden;
+    display: block;
+    height: 26px;
+    line-height: 30px;
+}
+
+.m4list li a.m4uname {
+    width: 155px;
+    float: left;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    display: block;
+    height: 25px;
+    overflow: hidden;
+}
+
+#relist {
+    clear: both;
+    float: left;
+    width: 300px;
+}
+
+#relist .simg {
+    background: none;
+}
+
+#relist li {
+    clear: both;
+    width: 100%;
+    line-height: 20px;
+    padding: 10px 0 5px;
+    float: left;
+}
+
+#relist strong {
+    color: #F30;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+    float: left
+}
+
+#relist .simg a {
+    float: left;
+    text-align: left;
+    display: inline-block;
+    color: #666;
+    margin-right: 11px;
+    white-space: nowrap;
+    line-height: 24px
+}
+
+#relist .simg a.w55 {
+    color: #333
+}
+
+#relist .simg a:hover, #relist .simg a:active {
+    color: #f30
+}
+
+.m4info {
+    width: 988px;
+    margin: 0 auto;
+}
+
+.m4info li {
+    width: 247px;
+    float: left;
+    text-align: center;
+    color: #666;
+    line-height: 22px;
+    padding: 5px 0;
+}
+
+.m4info li img {
+    margin-bottom: 5px;
+}
+
+.m4info li .picname {
+    overflow: hidden;
+    width: 210px;
+    height: 20px;
+    display: block;
+}
+
+.m4info li span {
+    width: 217px;
+    display: block;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.m4info li span a:link, .m4info li span a:visited {
+    color: #2C629E;
+    font-size: 14px;
+}
+
+.m4info li span a:hover, .m4info li span a:active {
+    color: #f30;
+}
+
+.m5info {
+    width: 987px;
+    margin: 0 auto;
+}
+
+.m5info li {
+    width: 238px;
+    height: 288px;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    float: left;
+}
+
+.m5info li span {
+    height: 40px;
+    clear: both;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    left: 10px;
+    background: black;
+    color: #FFF;
+    font-weight: bold;
+    opacity: 0.7;
+    top: 0px;
+    width: 213px;
+    float: left;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 7px;
+    padding-top: 5px;
+    left: 0px;
+}
+
+.m5info li span p {
+    font-size: 14px;
+    color: #FFF;
+    line-height: 35px;
+}
+
+.m5info li a {
+    position: relative;
+    display: block;
+    color: #FFF;
+    height: 288px;
+    width: 220px;
+    margin: 0px;
+    overflow: hidden
+}
+
+.fourtextweirt a {
+    color: #FFF;
+}
+
+.m5info li img {
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 12px;
+    color: #666;
+    font-weight: 100;
+}
+
+.title a {
+    margin: 0 5px;
+}
+
+.m9list {
+    float: left;
+    width: 320px;
+}
+
+.m9listarea {
+    width: 320px;
+    background: #fff;
+}
+
+.mr .m9listarea {
+    margin-left: 20px;
+}
+
+.m6info {
+    margin-left: 5px
+}
+
+.m6info li {
+    float: left;
+    text-align: left;
+    color: #999;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px dashed #eee;
+}
+
+.m6info li.hth {
+    height: 90px;
+}
+
+.m6info li a:link, .m6info li a:visited {
+    color: #999;
+}
+
+.m6info li a:hover, .m6info li a:active {
+    color: #f30;
+}
+
+.m6info li span {
+    display: block;
+    float: left;
+}
+
+.m6info li span.blue a:link, .m6info li span.blue a:visited {
+    color: #2C629E;
+}
+
+.m6info li span.blue a:hover, .m6info li span.blue a:active {
+    color: #f30;
+}
+
+.m6info li span.gray a:link, .m6info li span.gray a:visited {
+    color: #666;
+}
+
+.m6info li span.gray a:hover, .m6info li span.gray a:active {
+    color: #f30;
+}
+
+.m6list {
+    float: left;
+    width: 275px;
+}
+
+.m6list li {
+    text-align: left;
+    color: #333;
+    height: 28px;
+    line-height: 20px;
+}
+
+.m6list li#no1 {
+    line-height: 28px;
+    overflow: hidden
+}
+
+.m6list li div.pic {
+    width: 110px;
+    float: left
+}
+
+.m6list li div a {
+    font-size: 14px;
+    color: #2C629E
+}
+
+.m6list li.hth {
+    height: 90px;
+}
+
+.m6list li div a:hover, .m6info li div a:active {
+    color: #f30;
+}
+
+.m6list li div.detail p {
+    width: 165px
+}
+
+.m6list li span {
+    display: block;
+    float: left;
+    text-align: left
+}
+
+.m6list li#no1 span.gray {
+    margin-left: 5px
+}
+
+.m6list li#no1 span.gray a {
+    color: #666
+}
+
+.case1 {
+    width: 275px;
+    height: 70px;
+    background: #f2f2f2;
+    padding: 10px;
+    float: left;
+}
+
+.case1 .pic {
+    width: 80px;
+    float: left;
+}
+
+.case1 .detail {
+    float: left;
+    width: 180px;
+    color: #333;
+    text-align: left;
+}
+
+.case1 .detail h4 {
+    clear: both;
+    float: left;
+    width: 180px;
+    font-size: 12px;
+    line-height: 22px;
+    margin-bottom: 3px;
+    overflow: hidden;
+    height: 22px;
+}
+
+.case1 .detail h4 a:link, .case1 .detail h4 a:visited {
+    color: #2C629E;
+}
+
+.case1 .detail h4 a:hover, .case1 .detail h4 a:active {
+    color: #f30;
+}
+
+.case1 p, .case1 p {
+    clear: both;
+    float: left;
+    width: 180px;
+    color: #666;
+    line-height: 22px;
+}
+
+.case1 p b {
+    color: #f60;
+}
+
+.wth1 {
+    width: 115px;
+    overflow: hidden;
+    height: 28px;
+    line-height: 28px
+}
+
+.wth2 {
+    width: 100px;
+    overflow: hidden;
+    height: 28px;
+    line-height: 28px
+}
+
+.wth3 {
+    width: 75px;
+    text-align: right;
+    overflow: hidden;
+    height: 28px
+}
+
+.wth4 {
+    width: 58px;
+}
+
+.wth5 {
+    width: 148px;
+}
+
+.wth6 {
+    width: 69px;
+}
+
+.userlist {
+    float: left;
+    margin-bottom: 15px;
+}
+
+.userlist li {
+    float: left;
+    width: 79px;
+    height: 100px;
+}
+
+.userlist li span {
+    width: 79px;
+    height: 35px;
+    float: left;
+    line-height: 35px;
+    overflow: hidden;
+}
+
+.hd1 {
+    float: left;
+    margin-bottom: 15px;
+    width: 100%
+}
+
+.hd1 h2 {
+    clear: both;
+    color: #333;
+    margin-bottom: 5px;
+    float: left;
+    font-family: "微软雅黑", "黑体", "宋体", Verdana, Geneva, sans-serif;
+    height: 20px;
+    line-height: 20px;
+    font-size: 18px;
+}
+
+.hd1 h2 a:link, .hd1 h2 a:visited {
+    color: #333;
+}
+
+.hd1 h2 a:hover, .hd1 h2 a:active {
+    color: #f30;
+}
+
+.hd1 .more {
+    float: right;
+    margin-right: 20px
+}
+
+.hd1 a.all {
+    float: left;
+    line-height: 28px;
+    color: red;
+    font-weight: bold;
+}
+
+.tabs1 {
+    float: left;
+    color: #999;
+}
+
+.tabs1 span {
+    padding: 1px 6px;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.tabs1 span a:link, .tabs1 span a:visited, .tabs1 span a:hover, .tabs1 span a:active {
+    color: #fff;
+}
+
+.tabs1 span.gray a:link, .tabs1 span.gray a:visited, .tabs1 span.gray a:hover, .tabs1 span.gray a:active {
+    color: #666;
+}
+
+.hd1 .rt {
+    float: right;
+}
+
+.hd1 #chg {
+    margin-right: 45px;
+    display: inline
+}
+
+.hd1 #chg1 {
+    margin-right: 45px;
+    display: inline
+}
+
+.hd1 #chg2 {
+    margin-right: 45px;
+    display: inline
+}
+
+.wredbg, .worangebg, .wgreenbg, .wgraybg {
+    background: #f55f4b;
+    padding: 0 5px;
+    height: 18px;
+    display: block;
+    text-align: center;
+    float: left;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.worangebg {
+    background: #f59600;
+}
+
+.wgreenbg {
+    background: #9ba041;
+}
+
+.wgraybg {
+    background: #f2f2f2;
+}
+
+#meishichufang ul {
+    float: left;
+    width: 960px;
+}
+
+#meishichufang li {
+    float: left;
+    height: 110px;
+    margin: 0 7px;
+    overflow: hidden;
+    width: 120px;
+}
+
+.Menu {
+    float: left;
+}
+
+#meishichufang .Menu a {
+    line-height: 28px;
+}

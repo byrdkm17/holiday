@@ -1,0 +1,97 @@
+<!--# layout("/view/include/layout.html", {cur: 'food'}) { -->
+<script src="${ctxPath}/resource/css/jquery.min.js" type="text/javascript" language="javascript"></script>
+<div id="foodmain">
+    <div class="foodmainer">
+        <div class="five">
+            <!--# if(!empty("FOOD1")) { -->
+            <div class="banner"><a href="${FOOD1.url!'#'}" target="_blank">
+                <img src="${ctxPath}/rest/image/${FOOD1.image!}" width="960" height="90"/>
+            </a></div>
+            <!--# } -->
+            <div class="fourleft">
+                <div class="fourtitle">
+                    <div class="fivetitle">
+                        <div class="fiveclass">
+                            <!--# if (type!'' == 'eat') { -->
+                            <div class="fivesmallclass">特色美食</div>
+                            共有 <samp>${playPage.totalRow!0}</samp> 篇特色美食
+                            <!--# } -->
+                            <!--# if (type!'' == 'go') { -->
+                            <div class="fivesmallclass">特色美景</div>
+                            共有 <samp>${playPage.totalRow!0}</samp> 篇特色美景
+                            <!--# } -->
+                            <!--# if (type!'' == 'buy') { -->
+                            <div class="fivesmallclass">特色特产</div>
+                            共有 <samp>${playPage.totalRow!0}</samp> 篇特色特产
+                            <!--# } -->
+                            <!--# if (type!'' == 'like') { -->
+                            <div class="fivesmallclass">特色人文</div>
+                            共有 <samp>${playPage.totalRow!0}</samp> 篇特色人文
+                            <!--# } -->
+                        </div>
+                        <div class="fivelist">
+                            <ul>
+                                <!--# for(category in categoryPage.list![]) { -->
+                                <!--# if(curCategory.id == category.id) { -->
+                                <li><a href="${ctxPath}/play/list/${type}-${category.id}"><span>${category.name}</span></a>
+                                </li>
+                                <!--# } else { -->
+                                <li><a href="${ctxPath}/play/list/${type}-${category.id}">${category.name}</a></li>
+                                <!--# } -->
+                                <!--# } -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="new2right">
+                    <!--# for(play in playPage.list![]) { -->
+                    <dl>
+                        <dt style="overflow: hidden">
+                        <div class="pic">
+                            <a href="${ctxPath}/play/info/${play.id}">
+                                <img class="autoZoom" src="${ctxPath}/rest/image/${play.image!}" width="154"
+                                     height="103"/>
+                            </a>
+                        </div>
+                        <dd>
+                            <div class="pictitle">
+                                <a href="${ctxPath}/play/info/${play.id}">
+                                    <img src="${ctxPath}/resource/images/t.jpg"/>
+                                    <span>${play.name}</span>
+                                </a>
+                            </div>
+                            <p>
+                                <a href="${ctxPath}/play/info/${play.id}">${play.info!}[详细信息]</a>
+                            </p>
+                            <span>- ${play.view!0} 人浏览</span>
+                        </dd>
+                        </dt>
+                    </dl>
+                    <!--# } -->
+                </div>
+                <div class="pagesTop">
+                    <!--# if(playPage.pageNumber!1 == 1) { -->
+                    <span class="disable">&lt;</span>
+                    <!--# } else { -->
+                    <a class="prev" href="${ctxPath + cururl}-${playPage.pageNumber!1 - 1}">上一页</a>
+                    <!--# } -->
+                    <span class="pagesNumber">${playPage.pageNumber!1}/${playPage.totalPage!1}</span>
+                    <!--# if(playPage.pageNumber!1 == playPage.totalPage!1) { -->
+                    <span class="disable">&gt;</span>
+                    <!--# } else { -->
+                    <a class="next" href="${ctxPath +  cururl}-${playPage.pageNumber!1 + 1}">下一页</a>
+                    <!--# } -->
+                </div>
+            </div>
+
+            <div class="fourright">
+                <!--# include("/view/food/fourright.html") {} -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>

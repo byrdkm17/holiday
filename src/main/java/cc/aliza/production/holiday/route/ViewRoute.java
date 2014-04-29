@@ -15,6 +15,8 @@ public class ViewRoute extends Routes {
         add("/pay", PayController.class);
         add("/user", UserController.class);
 
+        add("/cart", CartController.class);
+
         add("/line", LineController.class);
         add("/car", CarController.class);
         add("/hotel", HotelController.class);
@@ -23,7 +25,9 @@ public class ViewRoute extends Routes {
 
         add("/custom", CustomController.class);
 
-        add("/play", PlayController.class);
+        //add("/play", PlayController.class);
+
+        add("/play", NewPlayController.class);
 
         add("/help", HelpController.class);
 

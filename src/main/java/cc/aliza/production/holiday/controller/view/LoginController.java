@@ -5,6 +5,7 @@ import cc.aliza.production.holiday.commons.Encrypt;
 import cc.aliza.production.holiday.dao.GroupDao;
 import cc.aliza.production.holiday.dao.MemberDao;
 import cc.aliza.production.holiday.entity.Member;
+import cc.aliza.production.holiday.entity.Order;
 import cc.aliza.production.holiday.interceptor.view.DataInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
@@ -13,6 +14,7 @@ import com.jfinal.ext.render.CaptchaRender;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Jing on 14-1-27.
@@ -57,9 +59,17 @@ public class LoginController extends Controller {
             }
 
             member.setLastLoginTime(new Date());
-            MemberDao.dao.save(member);
+
+            List<Order> orders = getSessionAttr("cart");
+            if (orders != null) {
+                for (Order order : orders) {
+                    MemberDao.dao.push(member, "cart", order);
+                }
+            }
+            removeSessionAttr("cart");
 
             getSession().setAttribute("member", member.getId());
+
 
             redirect(getPara("redirect", "/"));
         } catch (BusinessException e) {

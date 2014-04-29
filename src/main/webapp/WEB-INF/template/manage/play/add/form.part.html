@@ -64,16 +64,26 @@
                 <div class="pull-left">
                     <label>
                         <!--# if(play.image.id!"" == "") { -->
-                        <img src="holder.js/120x90" class="img-thumbnail" style="margin: 0 10px; width: 120px; height: 90px">
+                        <img src="holder.js/120x90" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
                         <!--# } else { -->
-                        <img src="${ctxPath}/rest/image/${play.image.id}" class="img-thumbnail" style="margin: 0 10px; width: 120px; height: 90px">
+                        <img src="${ctxPath}/rest/image/${play.image.id}" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
                         <!--# } -->
                         <input type="file" style="display: none">
                     </label>
 
-                    <p class="text-center" style="font-size: 12px"><a href="#" class="clean" style="display: none">清除</a></p>
+                    <p class="text-center" style="font-size: 12px"><a href="#" class="clean"
+                                                                      style="display: none">清除</a></p>
                     <input type="hidden" name="image" value="${play.image.id!}">
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">简介</label>
+
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="info" value="${play.info!}">
             </div>
         </div>
         <div class="form-group">

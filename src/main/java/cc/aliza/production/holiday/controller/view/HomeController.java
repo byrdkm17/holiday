@@ -61,7 +61,7 @@ public class HomeController extends Controller {
         setAttr("hotHotelGoodsPage", GoodsDao.dao.findBy(params));
 
         params.clear();
-        params.put("pageSize", 48);
+        params.put("pageSize", 12);
         params.put("production", "ticket");
         params.put("status", 1);
         setAttr("hotTicketGoodsPage", GoodsDao.dao.findBy(params));
@@ -79,6 +79,11 @@ public class HomeController extends Controller {
         setAttr("HF1AD", ADDao.dao.findOne("position", "HF1"));
         setAttr("HF2AD", ADDao.dao.findOne("position", "HF2"));
         setAttr("HF3AD", ADDao.dao.findOne("position", "HF3"));
+
+        setAttr("JD1AD", ADDao.dao.findOne("position", "JD1"));
+        setAttr("JD2AD", ADDao.dao.findOne("position", "JD2"));
+        setAttr("JD3AD", ADDao.dao.findOne("position", "JD3"));
+        setAttr("JD4AD", ADDao.dao.findOne("position", "JD4"));
 
         render("/view/index.html");
     }

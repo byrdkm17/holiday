@@ -26,7 +26,7 @@ public class OrderDao extends BuguDao<Order> {
 
         Integer pageNumber = 1;
         if (params.get("pageNumber") != null) {
-            pageNumber = (Integer) params.get("pageNumber");
+            pageNumber = Integer.valueOf(String.valueOf(params.get("pageNumber")));
         }
         query.pageNumber(pageNumber);
 
@@ -67,8 +67,8 @@ public class OrderDao extends BuguDao<Order> {
         }
 
         int totalRow = (int) query.count();
-        int totalPage = (int) Math.ceil((double) totalRow / 10);
-        List<Order> orderList = query.results();
+        int totalPage = (int) Math.ceil((double) totalRow / pageSize);
+        List<Order> orderList = query.sort("{_id: -1}").results();
 
         return new Page<Order>(orderList, pageNumber, pageSize, totalPage, totalRow);
     }

@@ -1,0 +1,456 @@
+<!--# layout("/view/include/layout.html") { -->
+<div id="main" class="clearfix">
+    <div class="blank"></div>
+    <div class="orderCrumbs orderStep1"></div>
+    <div class="blank"></div>
+    <div class="orderMain fl">
+        <!--# for(order in orderList![]) { -->
+        <h6>请填写订单信息</h6>
+
+        <div class="orderInfos" data-id="${order.id}" data-discount="${order.GoodsObject.discount!0}"
+             data-pricetype="${order.goodsObject.priceType}">
+            <dl class="clearfix">
+                <dt>项目</dt>
+                <dt>出游日期</dt>
+                <dt>数量</dt>
+                <dt>总价</dt>
+            </dl>
+            <dl class="clearfix">
+                <dd><img src="${ctxPath}/rest/image/${order.goodsObject.master!}"/>
+
+                    <h3 style="overflow: hidden;height: 35px;">${order.goodsObject.name}</h3>
+                </dd>
+                <dd><span class="title">出发时间：</span>
+                    <input type="text" id="dateBegin" class="dateInput dateBegin" value="${order.beginDate!'点击选择日历'}">
+                </dd>
+                <dd>
+                    <span class="numberCos">
+                        <i>${order.priceSetObject.title} 单价:</i><i class="price dj">￥<span>${order.priceSetObject.price!0 / 100}</span>元</i>
+                        <br>
+                        <i style="line-height: 32px;margin-right: 15px;">数量:</i><span class="reduce">-</span><input
+                            type="text" class="number" value="${order.number}"><span class="plus">+</span>
+                    </span>
+                </dd>
+                <dd>
+                    <span class="priceTotal">总计：<i>
+                        ￥<span>${(order.priceSetObject.price!0 / 100) * order.number!0}</span>元</i></span>
+                </dd>
+            </dl>
+        </div>
+        <!--# } -->
+        <div class="departure">
+            <h6>旅客信息<a href="#" class="add-people" style="float: right">增加旅客信息</a></h6>
+            <dl class="clearfix">
+                <dd><select>
+                    <option>成人</option>
+                    <option>儿童</option>
+                </select></dd>
+                <dd><i>*</i>姓名：</dd>
+                <dd><input type="text" class="departureName"></dd>
+                <dd><i>*</i>证件号码：</dd>
+                <dd><select>
+                    <option>身份证</option>
+                </select></dd>
+                <dd><input type="text" class="departureCardId"></dd>
+            </dl>
+        </div>
+        <div class="contactsInfos">
+            <h6>联系人信息</h6>
+            <ul class="clearfix">
+                <li><span><i>*</i>联系人姓名</span>
+                    <input type="text" class="addressTxt" id="contactName">
+                </li>
+                <li><span><i>*</i>手机号码</span>
+                    <input type="text" class="addressTxt" id="contactPhone">
+                </li>
+                <li><span><i>*</i>订单留言</span>
+                    <textarea class="contactsFeedback" id="message"></textarea>
+                </li>
+                <li class="intro">我们将通过此号码与您联系，请务必正确填写，确保能让您顺利的享受服务。您也可以使用此手机号码作为账户登录假日阳光查看、管理订单。</li>
+            </ul>
+        </div>
+        <div class="orderMethod clearfix">
+            <h6>预定方式</h6>
+            <ul class="methodWrap fl">
+                <!--# for(payMethod in orderList[0].goodsObject.payMethod![]) { -->
+                <!--# if(payMethod == 1) { -->
+                <li>
+                    <input type="radio" name="payment" value="1"> 普通预定
+                </li>
+                <!--# } -->
+                <!--# if(payMethod == 2) { -->
+                <li>
+                    <input type="radio" name="payment" value="2"> 定金预定<i class="point5"></i>
+                </li>
+                <!--# } -->
+                <!--# if(payMethod == 4) { -->
+                <li>
+                    <input type="radio" name="payment" value="4"> 支付全款<i class="point7"></i>
+                </li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+            <ul class="fl">
+                <!--# for(payMethod in orderList[0].goodsObject.payMethod![]) { -->
+                <!--# if(payMethod == 1) { -->
+                <li data-method="1">(不交纳定金，出行前3天内我们将电话与您确认能否出行，若不能出行，本站概不负责)</li>
+                <!--# } -->
+                <!--# if(payMethod == 2) { -->
+                <li data-method="2">(支付金额20%定金,我们为您预留行程，保证铁定出游)<br>
+                    即日起选择定金预定，立返全款的${preAmountDiscount.value!0 * 100}%现金
+                </li>
+                <!--# } -->
+                <!--# if(payMethod == 4) { -->
+                <li data-method="4">(支付全部费用，我们为您预留行程，保证铁定出游)<br>
+                    即日起选择定金预定，立返全款的${allAmountDiscount.value!0 * 100}%现金
+                </li>
+                <!--# } -->
+                <!--# } -->
+            </ul>
+        </div>
+        <div class="orderVerifyInfo">
+            <div class="orderVerifyInfoTxt" style="text-align:left; padding-left:10px;"></div>
+            <div class="orderVerifyInfoForm"><i>
+                <input type="checkbox" checked>
+            </i><i>我已阅读并接受<a href="javascript:void(0)" id="protocolBtn">合同条款/补充条款及保险条款</a></i><br>
+                <input type="button" class="btnSubmit" value="确认支付">
+            </div>
+        </div>
+    </div>
+    <div class="orderSider fr">
+        <h3>支付信息</h3>
+        <ul>
+            <img src="${ctxPath}/rest/image/${orderList[0].goodsObject.master!}"/>
+            <!--# if(orderList.~size!0 > 1) { -->
+            <li>旅游多选套餐服务整合</li>
+            <!--# } else { -->
+            <li>旅游团费</li>
+            <!--# } -->
+            <!--# for(order in orderList![]) { -->
+            <li class="orderHotelItem" data-id="${order.id}">
+                <i class="price zj">￥<span></span>元</i>
+                ${order.priceSetObject.title!} x <span class="sl">${order.number!0}</span>
+            </li>
+            <!--# } -->
+            <li class="orderHotelItem dj"></li>
+            <li class="totalTxt">总价：</li>
+            <li class="total">￥<span></span>元</li>
+            <li class="totalLine"></li>
+        </ul>
+    </div>
+</div>
+<!--# include('/view/include/xy.html') {} -->
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<script src="${ctxPath}/resource/js/juimin.js"></script>
+<script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
+<script src="${ctxPath}/resource/js/icheck.min.js"></script>
+<!--js pages part-->
+<script>
+    $(function () {
+        $(".orderInfos>dl").each(function () {
+            $(this).children().each(function (i) {
+                $(this).addClass("itemT" + (i + 1))
+            });
+        });
+        $(".discountTerm>dl").each(function () {
+            $(this).children().each(function (i) {
+                $(this).addClass("item" + (i + 1))
+            });
+        });
+        $(".dateBegin").datepicker({
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                $(".dateEnd").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $(".dateEnd").datepicker({
+            defaultDate: "+3d",
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                $(".dateBegin").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+        $(".btnNoUsed").each(function () {
+            $(this).toggle(function () {
+                $(this).addClass("btnUsed");
+            }, function () {
+                $(this).removeClass("btnUsed")
+            });
+        });
+        $(".methodWrap,.orderVerifyInfoForm").find("input").iCheck({
+            checkboxClass: 'icheckbox_square-orange',
+            radioClass: 'iradio_square-orange',
+            increaseArea: '20%' // optional
+        });
+        $("input.phoneIntroInput").iCheck({
+            checkboxClass: 'icheckbox_square-orange',
+            radioClass: 'iradio_square-orange',
+            increaseArea: '20%' // optional
+        });
+        var protocolBtn = $("#protocolBtn"),
+                protocolModal = $("#protocolModal");
+        $(protocolModal).dialog({
+            resizable: false,
+            autoOpen: false,
+            title: "合同条款/补充条款及保险条款",
+            height: 580,
+            width: 680,
+            modal: true,
+            position: ["center", "center"]
+        });
+        $(protocolBtn).click(function () {
+            $(protocolModal).dialog("open");
+        });
+        $("#photoNumber").click(function () {
+            $("#phoneIntro").show();
+        });
+        $(".leftAreaCodeBtn").click(function () {
+            $(".rightArea").show()
+        });
+
+    });
+</script>
+
+<script type="text/template" id="info-tpl">
+    <dl class="clearfix">
+        <dd><select name="type">
+            <option>成人</option>
+            <option>儿童</option>
+        </select></dd>
+        <dd><i>*</i>姓名：</dd>
+        <dd><input type="text" class="departureName"></dd>
+        <dd><i>*</i>证件号码：</dd>
+        <dd><select>
+            <option>身份证</option>
+        </select></dd>
+        <dd><input type="text" class="departureCardId"></dd>
+        <dd><a href="#" class="removeDeparture">删除</a></dd>
+    </dl>
+</script>
+<!--# for(order in orderList![]) { -->
+<script type="text/plain" class="priceSetData" data-id="${order.id}">${order.priceSet}</script>
+<!--# } -->
+<script>
+$(function () {
+    var priceSetList = {};
+    $('.priceSetData').each(function () {
+        var ps = JSON.parse($(this).html());
+        priceSetList[$(this).data('id')] = ps;
+        var $order = $('.orderInfos[data-id="' + $(this).data('id') + '"]');
+
+        $order.data('maxnumber', ps.number || 0)
+                .data('pricelist', ps.priceList)
+                .data('price', ((ps.price - +$order.data('discount')) < 0 ? ps.price : (ps.price - +$order.data('discount'))) / 100);
+    });
+    var curPayMethod = 0;
+    var allDiscount = +'${allAmountDiscount.value!0}';
+    var preDiscount = +'${preAmountDiscount.value!0}';
+
+    var getPrice = function ($order) {
+        var p = 0;
+        var begin = new XDate($order.find('#dateBegin').val() || '');
+        if (begin.toString() == 'Invalid Date' || isNaN(begin)) {
+            begin = new XDate().clearTime();
+        }
+        var end = new XDate($order.find('#dateEnd') && $order.find('#dateEnd').val() || '');
+        if (end.toString() == 'Invalid Date' || isNaN(end)) {
+            end = begin;
+        }
+        if (+$order.data('pricetype') == 1) {
+            p = $order.data('price') * (begin.diffDays(end) + 1);
+        } else {
+            for (var i = 0, l = begin.diffDays(end) + 1; i < l; i++) {
+                p = p + ($order.data('pricelist')[begin.clone().addDays(i).toString('yyyy-MM-dd')] || 0) / 100;
+            }
+        }
+        return p;
+    };
+
+    var getTotal = function ($order) {
+        var $num = $order.find('.number');
+        if (+$num.val() < 1) {
+            $num.val(1);
+        }
+        $order.find('span.sl').text($num.val());
+        return getPrice($order) * +$num.val();
+    };
+
+    $('.plus').click(function () {
+        var $order = $(this).closest('.orderInfos');
+        var input = $order.find('input.number');
+        var value = +input.val();
+        if (value < +$order.data('maxnumber') || +$order.data('maxnumber') == 0) {
+            input.val(value + 1);
+            countPrice();
+        }
+    });
+    $('.reduce').click(function () {
+        var $order = $(this).closest('.orderInfos');
+        var input = $order.find('.number');
+        var value = +input.val();
+        input.val(value - 1 < 1 ? 1 : (value - 1));
+        countPrice();
+    });
+
+    var countPrice = function () {
+        var ttt = 0;
+        $('.orderInfos').each(function () {
+            var total = getTotal($(this));
+            $('.orderHotelItem[data-id="' + $(this).data('id') + '"]').find('.zj span').text(total);
+            $(this).find('.priceTotal span').text(total);
+
+            ttt += total;
+        });
+        var $totalS = $('.total span');
+        $totalS.text(ttt);
+
+        if (curPayMethod == 1) {
+            $('.orderVerifyInfoTxt').html('你选择普通预定方式:请您支付 <span>0</span> 元');
+            $('.orderHotelItem.dj').html('');
+            $('.real').html('');
+            $('.totalLine').html('出行支付<span>' + ttt + '元</span>');
+        }
+        if (curPayMethod == 2) {
+            $('.orderVerifyInfoTxt').html('你选择定金预定方式:可减免 <span>'
+                    + ttt + 'X' + Math.round(preDiscount * 100) + '%=' + Math.round(ttt * preDiscount)
+                    + '</span> 元，优惠后总价为: <span>'
+                    + ttt + '-' + Math.round(ttt * preDiscount) + '=' + (ttt - Math.round(ttt * preDiscount))
+                    + '</span> 元<br>请您支付 <span>'
+                    + Math.round(ttt * (1 - preDiscount)) + 'x20%=' + Math.round(ttt * (1 - preDiscount) * 0.2)
+                    + '</span> 元定金，出行再支付剩余 <span>'
+                    + (ttt - Math.round(ttt * preDiscount) - Math.round(ttt * (1 - preDiscount) * 0.2))
+                    + '</span> 元');
+
+            $('.orderHotelItem.dj').html('<i class="price">-￥' + Math.round(ttt * preDiscount) + '元</i>定金预定优惠');
+
+            $('.totalLine').html('定金='
+                    + Math.round(ttt * (1 - preDiscount))
+                    + 'x20%=<span>'
+                    + Math.round(ttt * (1 - preDiscount) * 0.2)
+                    + '元</span><br>出行支付<span>'
+                    + (ttt - Math.round(ttt * preDiscount) - Math.round(ttt * (1 - preDiscount) * 0.2))
+                    + '元</span>');
+
+            $totalS.text(ttt - Math.round(ttt * preDiscount));
+            $('.priceTotal span').text(ttt);
+        }
+        if (curPayMethod == 4) {
+            $('.orderVerifyInfoTxt').html('你选择支付全款方式:可减免 <span>'
+                    + ttt + 'X' + Math.round(allDiscount * 100) + '%=' + Math.round(ttt * allDiscount)
+                    + '</span> 元，优惠后总价为: <span>'
+                    + ttt + '-' + Math.round(ttt * allDiscount) + '=' + (ttt - Math.round(ttt * allDiscount))
+                    + '</span> 元<br>请您支付 <span>'
+                    + (ttt - Math.round(ttt * allDiscount))
+                    + '</span> 元');
+            $('.orderHotelItem.dj').html('');
+            $('.totalLine').html('支付=<span>'
+                    + (ttt - Math.round(ttt * allDiscount))
+                    + '元</span><br>出行支付<span>0元</span>');
+            $totalS.text(ttt - Math.round(ttt * allDiscount));
+            $('.priceTotal span').text(ttt);
+        }
+    };
+
+    $('[name="payment"]').on('ifChecked', function () {
+        curPayMethod = +$(this).val();
+        countPrice();
+    });
+    $('[name="payment"]:last').closest('li').addClass('last');
+    $('[data-method]:first').addClass('first');
+    $('[data-method]:last').addClass('last');
+
+    $('.add-people').click(function (e) {
+        e.preventDefault();
+        var $d = $('.departure');
+        $d.append($($('#info-tpl').html()));
+        $d.children('dl:last').find('a').click(function (e) {
+            e.preventDefault();
+            $(this).closest('dl').remove();
+        });
+    });
+
+    $('.btnSubmit').click(function () {
+        var des = 0;
+        $('.departure').find('dl').each(function () {
+            if ($.trim($(this).find('.departureName').val()) && $.trim($(this).find('.departureCardId').val())) {
+                des++;
+            }
+        });
+
+        if (des == 0) {
+            alert('请填写旅客信息');
+            return;
+        }
+
+        if (curPayMethod == 0) {
+            alert('请选择支付方式');
+            return;
+        }
+        var $contactN = $('#contactName')
+                , $contactP = $('#contactPhone');
+        if (!$.trim($contactN.val())) {
+            alert('请填写联系人姓名');
+            return;
+        }
+        if (!$.trim($contactP.val()) || $.trim($contactP.val()).length != 11) {
+            alert('请填写正确的联系人电话');
+            return;
+        }
+
+        var data = {
+            traveler: (function () {
+                var ts = [];
+                $('.departure').find('dl').each(function () {
+                    var t = {};
+                    t.type = $(this).find('[name="type"]').val();
+                    t.name = $.trim($(this).find('.departureName').val());
+                    t.code = $.trim($(this).find('.departureCardId').val());
+                    if (t.name) {
+                        ts.push(t);
+                    }
+                });
+                return JSON.stringify(ts);
+            })(),
+            contactName: $contactN.val(),
+            contactPhone: $contactP.val(),
+            message: $('#message').val(),
+            payMethod: curPayMethod
+        };
+
+        <!--# if(orderList.~size!0 > 1) { -->
+        var orders = [];
+        $('.orderInfos').each(function () {
+            orders.push({
+                id: $(this).data('id'),
+                number: +$(this).find('.number').val() || 0,
+                beginDate: $(this).find('.dateBegin').val(),
+                endDate: $(this).find('.dateEnd').val() || $(this).find('.dateBegin').val()
+            });
+        });
+        data.orders = JSON.stringify(orders);
+        $.post('${ctxPath}/rest/order/updateCart', data, function (res) {
+            if (res.success) {
+                location.href = '${ctxPath}/pay/cart/' + res.cart.id;
+            }
+        });
+        <!--# } else { -->
+        data.orderID = '${orderList[0].id}';
+        data.number = +$('.number').val();
+        data.beginDate = $('#dateBegin').val();
+        data.endDate = $('#dateEnd').val() || data.beginDate;
+        $.post('${ctxPath}/rest/order/update', data, function (res) {
+            if (res.success) {
+                location.href = '${ctxPath}/pay/${orderList[0].id}'
+            }
+        });
+        <!--# } -->
+    });
+
+    countPrice();
+});
+</script>
+</body>
+</html>

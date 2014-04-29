@@ -57,11 +57,7 @@ public class GoodsDao extends BuguDao<Goods> {
         }
 
         if (params.get("target") != null) {
-            BuguQuery<Goods> query1 = query();
-            BuguQuery<Goods> query2 = query();
-            query1.in("target", TargetDao.dao.findOne("name", params.get("target")));
-            query2.in("target", TargetDao.dao.findOne("name", params.get("target")).getChildren());
-            query.or(query1, query2);
+            query.in("target", TargetDao.dao.findOne("name", params.get("target")));
         }
 
         if (params.get("key") != null) {
@@ -99,7 +95,7 @@ public class GoodsDao extends BuguDao<Goods> {
         query.pageSize(pageSize);
 
         int totalRow = (int) query.count();
-        int totalPage = (int) Math.ceil((double) totalRow / 10);
+        int totalPage = (int) Math.ceil((double) totalRow / pageSize);
         List<Goods> goodsList = query.results();
 
         return new Page<Goods>(goodsList, pageNumber, pageSize, totalPage, totalRow);
