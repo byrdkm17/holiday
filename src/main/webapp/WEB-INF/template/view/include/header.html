@@ -170,7 +170,8 @@
                                 <h4>${otherLabel.name}</h4>
                                 <li class="allCat"><a href="${ctxPath}/hotel">全部</a></li>
                                 <!--# for(child in otherLabel.children![]) { -->
-                                <li><a href="${ctxPath}/${otherLabel.production}?label=${child.name}">${child.name}</a></li>
+                                <li><a href="${ctxPath}/${otherLabel.production}?label=${child.name}">${child.name}</a>
+                                </li>
                                 <!--# } -->
                             </ul>
                             <!--# } -->
@@ -233,7 +234,7 @@
     </div>
     <div class="menuMain fl">
         <ul class="clearfix fntYh">
-            <li class="<!--# if(cur!'' == 'home') { print('current'); } -->"><a href="${ctxPath}">首页</a></li>
+            <li class="<!--# if(cur!'' == 'home') { print('current'); } -->"><a href="${ctxPath}/">首页</a></li>
             <li class="<!--# if(cur!'' == 'line') { print('current'); } -->"><a href="${ctxPath}/line">跟团游</a></li>
             <li class="<!--# if(cur!'' == 'car') { print('current'); } -->"><a href="${ctxPath}/car">自由行</a></li>
             <li class="<!--# if(cur!'' == 'ticket') { print('current'); } -->"><a href="${ctxPath}/ticket">门票</a></li>

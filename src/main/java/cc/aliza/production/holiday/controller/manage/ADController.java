@@ -21,7 +21,8 @@ public class ADController extends Controller {
 
     public void index() {
         Map<String, Object> params = new HashMap<String, Object>();
-
+        Integer pageNumber = getParaToInt(0);
+        params.put("pageNumber", pageNumber);
         setAttr("adPage", ADDao.dao.findBy(params));
         render("/manage/ad/index.html");
     }

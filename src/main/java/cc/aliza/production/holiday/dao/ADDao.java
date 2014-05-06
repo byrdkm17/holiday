@@ -33,7 +33,7 @@ public class ADDao extends BuguDao<AD> {
         }
         query.pageNumber(pageNumber);
 
-        Integer pageSize = 10;
+        Integer pageSize = 5;
         if (params.get("pageSize") != null) {
             pageSize = (Integer) params.get("pageSize");
         }
@@ -42,7 +42,7 @@ public class ADDao extends BuguDao<AD> {
         query.sort("{id: -1}");
 
         int totalRow = (int) query.count();
-        int totalPage = (int) Math.ceil((double) totalRow / 10);
+        int totalPage = (int) Math.ceil((double) totalRow / pageSize);
         List<AD> adList = query.results();
 
         return new Page<AD>(adList, pageNumber, pageSize, totalPage, totalRow);

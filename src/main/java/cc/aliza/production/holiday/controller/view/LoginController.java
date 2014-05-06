@@ -68,7 +68,7 @@ public class LoginController extends Controller {
             }
             removeSessionAttr("cart");
 
-            getSession().setAttribute("member", member.getId());
+            setSessionAttr("member", member.getId());
 
 
             redirect(getPara("redirect", "/"));

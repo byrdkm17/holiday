@@ -1985,7 +1985,7 @@ a img {
     display: block;
     width: 114px;
     height: 136px;
-    background: url(../images/bgQQ.png) no-repeat 1px 20px;
+    background: url(../images/bgQQ.gif) no-repeat 1px 20px;
     text-indent: -10000px;
     overflow: hidden;
 }
@@ -2003,7 +2003,7 @@ a img {
     color: #FF2F2F;
     font-weight: bold;
     font-family: "SimHei", Tahoma, Geneva, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     display: block;
 }
 
@@ -7683,26 +7683,125 @@ a img {
     clear: both;
 }
 
-.banner218240{width:218px;height:267px;border:#D9D9D9 1px solid;}
-.banner218240 img{border:0;width:218px;height:267px;}
-.bannerAdClound{width:544px; height:268px; margin:0 10px;border-left:#D9D9D9 1px solid;border-top:#D9D9D9 1px solid;}
+.banner218240 {
+    width: 218px;
+    height: 267px;
+    border: #D9D9D9 1px solid;
+}
 
+.banner218240 img {
+    border: 0;
+    width: 218px;
+    height: 267px;
+}
 
-.bannerAdCloundPic{/*border:#E1E1E1 1px solid; border-bottom:none; border-right:none; height:198px;*/}
-.bannerAdCloundPic ul li{border-bottom:#D9D9D9 1px solid;border-right:#D9D9D9 1px solid;height:133px; width:270px; float:left; _overflow:hidden}
-.bannerAdCloundPic ul li img{border:none;height:133px; width:270px;}
+.bannerAdClound {
+    width: 544px;
+    height: 268px;
+    margin: 0 10px;
+    border-left: #D9D9D9 1px solid;
+    border-top: #D9D9D9 1px solid;
+}
 
-.toolsBar{width:215px; height:267px; border:#D9D9D9 1px solid;}
-.toolsBar h3{height:33px; line-height:33px; font-size:14px; color:#5095E7; background:#F5F5F5; padding:0 10px}
-.toolsBar ul.toolList li{width:77px; height:35px; line-height:35px; padding-left:30px; background:url(../images/icoTools.gif) no-repeat -10000px -10000px; float:left}
-.toolsBar ul.toolList li.map{background-position:10px 7px;}
-.toolsBar ul.toolList li.weather{background-position:6px -113px;padding-left:35px;width:72px;}
-.toolsBar ul.toolList li.bus{background-position:10px -51px;}
-.toolsBar ul.toolList li.tips{background-position:10px -171px;padding-left:35px;width:72px;}
-.toolsBar h4{width:133px; height:33px;background:url(../images/toolsBtn.gif) no-repeat; padding-left:54px; margin:0 auto; font-size:14px; line-height:33px; color:#333}
-.toolsBar ul.toolsEW{padding:10px 0}
-.toolsBar ul.toolsEW li{width:107px; height:111px;background:url(../images/toolsEW.png) no-repeat -10000px -10000px; float:left; text-align:center; color:#878787; line-height:26px;}
-.toolsBar ul.toolsEW li.wx{background-position:11px 26px;}
-.toolsBar ul.toolsEW li.zx{background-position:11px -174px;}
+.bannerAdCloundPic {
+    /*border:#E1E1E1 1px solid; border-bottom:none; border-right:none; height:198px;*/
+}
 
-.topTipNew{width:280px; height:78px; padding:17px 10px 17px 0; background:url(../images/topTipNew.png) no-repeat center 17px}
+.bannerAdCloundPic ul li {
+    border-bottom: #D9D9D9 1px solid;
+    border-right: #D9D9D9 1px solid;
+    height: 133px;
+    width: 270px;
+    float: left;
+    _overflow: hidden
+}
+
+.bannerAdCloundPic ul li img {
+    border: none;
+    height: 133px;
+    width: 270px;
+}
+
+.toolsBar {
+    width: 215px;
+    height: 267px;
+    border: #D9D9D9 1px solid;
+}
+
+.toolsBar h3 {
+    height: 33px;
+    line-height: 33px;
+    font-size: 14px;
+    color: #5095E7;
+    background: #F5F5F5;
+    padding: 0 10px
+}
+
+.toolsBar ul.toolList li {
+    width: 77px;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 30px;
+    background: url(../images/icoTools.gif) no-repeat -10000px -10000px;
+    float: left
+}
+
+.toolsBar ul.toolList li.map {
+    background-position: 10px 7px;
+}
+
+.toolsBar ul.toolList li.weather {
+    background-position: 6px -113px;
+    padding-left: 35px;
+    width: 72px;
+}
+
+.toolsBar ul.toolList li.bus {
+    background-position: 10px -51px;
+}
+
+.toolsBar ul.toolList li.tips {
+    background-position: 10px -171px;
+    padding-left: 35px;
+    width: 72px;
+}
+
+.toolsBar h4 {
+    width: 133px;
+    height: 33px;
+    background: url(../images/toolsBtn.gif) no-repeat;
+    padding-left: 54px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 33px;
+    color: #333
+}
+
+.toolsBar ul.toolsEW {
+    padding: 10px 0
+}
+
+.toolsBar ul.toolsEW li {
+    width: 107px;
+    height: 111px;
+    background: url(../images/toolsEW.png) no-repeat -10000px -10000px;
+    float: left;
+    text-align: center;
+    color: #878787;
+    line-height: 26px;
+}
+
+.toolsBar ul.toolsEW li.wx {
+    background-position: 11px 26px;
+}
+
+.toolsBar ul.toolsEW li.zx {
+    background-position: 11px -174px;
+}
+
+.topTipNew {
+    width: 280px;
+    height: 78px;
+    padding: 17px 10px 17px 0;
+    background: url(../images/topTipNew.png) no-repeat center 17px
+}

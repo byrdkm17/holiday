@@ -6,12 +6,13 @@
         <!--# for(member in memberPage.list![]) { -->
         <div class="item clearfix" data-id="${member.id}">
             <ul class="list-inline pull-left">
-                <li><img data-src="${member.headImgUrl!'holder.js/48x48/sky/text:Head'}" class="img-thumbnail" style="width: 48px; height: 48px"></li>
+                <li><img data-src="${member.header!'holder.js/48x48/sky/text:Head'}" class="img-thumbnail"
+                         style="width: 48px; height: 48px"></li>
                 <li>${member.username}</li>
             </ul>
             <ul class="list-inline pull-right" style="line-height: 48px">
                 <li>
-                    <button type="button" class="btn btn-default btn-sm">编辑</button>
+                    <button type="button" class="btn btn-default btn-sm editManage">编辑</button>
                 </li>
             </ul>
         </div>

@@ -41,7 +41,7 @@ public class MemberDao extends BuguDao<Member> {
         }
 
         int totalRow = (int) query.count();
-        int totalPage = (int) Math.ceil((double) totalRow / 10);
+        int totalPage = (int) Math.ceil((double) totalRow / pageSize);
         List<Member> members = query.pageNumber(pageNumber).pageSize(pageSize).results();
 
         BuguMapper.fetchCascade(members, "group");

@@ -38,9 +38,9 @@
                     src="${ctxPath}/resource/images/bannerAdCloundPic1.png" width="271" height="133" alt=""/></a></li>
             <li><a href="${ctxPath}/play/go" target="_blank"><img
                     src="${ctxPath}/resource/images/bannerAdCloundPic2.png" width="271" height="133" alt=""/></a></li>
-            <li><a href="${ctxPath}/play/buy" target="_blank"><img
-                    src="${ctxPath}/resource/images/bannerAdCloundPic3.png" width="271" height="133" alt=""/></a></li>
             <li><a href="${ctxPath}/play/like" target="_blank"><img
+                    src="${ctxPath}/resource/images/bannerAdCloundPic3.png" width="271" height="133" alt=""/></a></li>
+            <li><a href="${ctxPath}/play/buy" target="_blank"><img
                     src="${ctxPath}/resource/images/bannerAdCloundPic4.png" width="271" height="133" alt=""/></a></li>
         </ul>
     </div>
@@ -240,6 +240,7 @@
 
         <div class="ticketListItem clearfix">
             <!--# for(goods in hotTicketGoodsPage.list![]) { -->
+            <!--# if(goods_index < 3) { -->
             <div class="ticketListChildItem">
                 <ul class="clearfix">
                     <!--# var pi = 0; -->
@@ -272,6 +273,7 @@
                     <!--# } -->
                 </ul>
             </div>
+            <!--# } -->
             <!--# } -->
         </div>
     </div>
