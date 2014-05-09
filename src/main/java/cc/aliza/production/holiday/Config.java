@@ -40,7 +40,7 @@ public class Config extends JFinalConfig {
     @Override
     public void configPlugin(Plugins me) {
         loadPropertyFile("/classes/holiday.properties");
-        BuguConnection.getInstance().connect(getProperty("mongo.url"), getPropertyToInt("mongo.port"), getProperty("mongo.db"));
+        BuguConnection.getInstance().connect(getProperty("mongo.url"), getPropertyToInt("mongo.port"), getProperty("mongo.db"), "holiday", "apple807");
 
         QuartzPlugin qp = new QuartzPlugin();
         me.add(qp);
