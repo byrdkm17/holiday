@@ -95,7 +95,7 @@
                 <div class="goodsHandleIntro clearfix">
                     <ul class="fl">
                         <span class="saliedNumber">${goods.sales!0}</span>人已购买<br>
-                        <span class="saliedNumber">${commonPage.totalRow!0}</span>人已评论
+                        <span class="saliedNumber">${commentPage.totalRow!0}</span>人已评论
                     </ul>
                     <ul class="last fr">
                         <!--# if(!empty('member') ){ -->
@@ -137,34 +137,6 @@
     </div>
 </div>
 <div class="blank"></div>
-<!--
-<div class="groupGoods clearfix">
-    <h3>一起预定更优惠！</h3>
-    <a class="closeGroupGoods" href="javascript:void(0)" id="closeGroupGoods"></a>
-    <ul class="clearfix fl">
-        <li><a href="#"><img class="proPic" src="${ctxPath}/resource/images/demo/236188.jpg"/></a> <span
-                class="price"><i>已有<b>10</b>人购买</i>¥899</span>
-
-            <h2><a href="#" target="_blank">北京至韩国济州岛4晚5天度假...</a></h2>
-        </li>
-        <li><a href="#"><img class="proPic" src="${ctxPath}/resource/images/demo/236188.jpg"/></a> <span
-                class="price"><i>已有<b>10</b>人购买</i>¥899</span>
-
-            <h2><a href="#" target="_blank">北京至韩国济州岛4晚5天度假...</a></h2>
-        </li>
-        <li><a href="#"><img class="proPic" src="${ctxPath}/resource/images/demo/236188.jpg"/></a> <span
-                class="price"><i>已有<b>10</b>人购买</i>¥899</span>
-
-            <h2><a href="#" target="_blank">北京至韩国济州岛4晚5天度假...</a></h2>
-        </li>
-    </ul>
-    <ol class="fl">
-        <span class="fntBold">套餐价格：<i class="fntRed">￥1200.00</i></span> <span>节省:<i>￥240.00</i></span> <a href="#"
-                                                                                                           target="_blank">查看套餐</a>
-    </ol>
-</div>
--->
-<div class="blank"></div>
 <div class="featureIntro">
     <h3>必选理由</h3>
     ${goods.feature!}
@@ -200,7 +172,7 @@
     <div class="commentsGoodsPagesTitle">访者咨询</div>
     <div class="commentsGoodsMain">
         <!--# for(comment in commentPage.list![]) { -->
-        <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/rest/image/"/>
+        <div class="commentsGoodsMainItem clearfix"><img src="${ctxPath}/rest/image/${comment.member.header!}"/>
             <ul class="userInfo clearfix">
                 <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
                 <h5>${comment.member.username!'访客'}</h5>
@@ -219,21 +191,21 @@
             <!--# if(commentPage.pageNumber == 1) { -->
             <a class="disable">&lt;</a>
             <!--# } else { -->
-            <a class="prev" href="javascript:void(0)">上一页</a>
+            <a class="prev cmPage" href="javascript:void(0)" data-page="${commentPage.pageNumber - 1}">上一页</a>
             <!--# } -->
             <!--# var index = 1; -->
-            <!--# while(index < commentPage.totalPage) { -->
+            <!--# while(index <= commentPage.totalPage) { -->
             <!--# if(commentPage.pageNumber == index) { -->
             <a class="current" href="javascript:void(0)">${index}</a>
             <!--# } else { -->
-            <a class="pNum" href="javascript:void(0)">${index}</a>
+            <a class="pNum cmPage" href="javascript:void(0)" data-page="${index}">${index}</a>
             <!--# } -->
             <!--# index = index + 1; -->
             <!--# } -->
             <!--# if(commentPage.pageNumber == commentPage.totalPage || commentPage.totalPage == 0) { -->
             <a class="disable">&gt;</a>
             <!--# } else { -->
-            <a class="next" href="javascript:void(0)">下一页</a>
+            <a class="next cmPage" href="javascript:void(0)" data-page="${commentPage.pageNumber + 1}">下一页</a>
             <!--# } -->
         </div>
     </div>
@@ -332,6 +304,22 @@
 <script src="${ctxPath}/resource/js/juimin.js"></script>
 <script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
 <!--js pages part-->
+<script id="comment_template" type="application/template">
+    <div class="commentsGoodsMainItem clearfix"><img
+            src="${ctxPath}/rest/image/<%= (comment.member && comment.member && comment.member.header.id) || '' %>"/>
+        <ul class="userInfo clearfix">
+            <i class="postTime">点评时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
+            <h5>${comment.member.username!'访客'}</h5>
+        </ul>
+        <div class="blank"></div>
+        <ul class="userComments"><i></i>${comment.content}</ul>
+        <div class="blank"></div>
+        <!--# if(comment.reply != null) { -->
+        <h6 class="userCommentsReply">客服回复</h6>
+        <ul class="userCommentsReply"><i></i>${comment.reply.content!}</ul>
+        <!--# } -->
+    </div>
+</script>
 <script>
 $(function () {
     $(".goodsThumb").slide({mainCell: ".bd ul", effect: "leftLoop", delayTime: 500});
@@ -564,6 +552,10 @@ $(function () {
                 location.reload();
             });
         }
+    });
+
+    $('.pagesBottom').on('click', '.cmPage', function () {
+
     });
 
     $('a.collect').click(function () {

@@ -127,7 +127,7 @@ public class GoodsController extends Controller {
         Goods goods = new Goods();
         String goodsID = getPara("id");
         if (StringUtils.isNotBlank(goodsID)) {
-            goods.setId(goodsID);
+            goods = GoodsDao.dao.findOne(goodsID);
         }
 
         goods.setHot(getParaToInt("hot"));
