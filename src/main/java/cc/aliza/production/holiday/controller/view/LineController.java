@@ -35,6 +35,7 @@ public class LineController extends Controller {
         setAttr("desc", getPara("desc", null));
         setAttr("queryLabel", getPara("label", null));
         setAttr("queryTarget", getPara("target", null));
+        setAttr("pageNumber", getParaToInt("pageNumber", 1));
         setAttr("goodsPage", GoodsDao.dao.findBy(params));
 
         params.clear();
