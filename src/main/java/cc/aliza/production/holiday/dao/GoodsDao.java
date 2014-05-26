@@ -4,6 +4,7 @@ import cc.aliza.production.holiday.entity.Goods;
 import com.bugull.mongo.BuguDao;
 import com.bugull.mongo.BuguQuery;
 import com.jfinal.plugin.activerecord.Page;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class GoodsDao extends BuguDao<Goods> {
             query.is("hot", params.get("hot"));
         }
 
-        if (params.get("production") != null) {
+        if (StringUtils.isNotBlank((String) params.get("production"))) {
             query.is("production", params.get("production"));
         }
 
@@ -93,6 +94,7 @@ public class GoodsDao extends BuguDao<Goods> {
             pageSize = (Integer) params.get("pageSize");
         }
         query.pageSize(pageSize);
+
 
         int totalRow = (int) query.count();
         int totalPage = (int) Math.ceil((double) totalRow / pageSize);

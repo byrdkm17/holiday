@@ -269,17 +269,17 @@ define(function (require, exports) {
 
     $('.label').hover(function () {
         $(this).addClass('label-success').removeClass('label-default');
-    }, function () {
+    },function () {
         if (!$(this).hasClass('selected')) {
             $(this).addClass('label-default').removeClass('label-success');
         }
     }).click(function () {
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected label-success').addClass('label-default');
-        } else {
-            $(this).addClass('selected');
-        }
-    });
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected label-success').addClass('label-default');
+            } else {
+                $(this).addClass('selected');
+            }
+        });
 
     $('.priceSet .btn-success').click(function () {
         $(this).blur();
@@ -315,7 +315,7 @@ define(function (require, exports) {
         $('[name="priceGroup"]').val(JSON.stringify(priceGroup));
 
         var priceSet = [];
-        var minPrice = 0;
+        var minPrice = 0, maxPrice = 0;
         $('.priceSet').each(function (index) {
             if (index > 0) {
                 var s = {};
@@ -326,11 +326,15 @@ define(function (require, exports) {
                 if (minPrice == 0 || minPrice > s.price) {
                     minPrice = s.price;
                 }
+                if (maxPrice == 0 || maxPrice < s.price) {
+                    maxPrice = s.price;
+                }
                 priceSet.push(s);
             }
         });
         $('[name="priceSet"]').val(JSON.stringify(priceSet));
         $('[name="minPrice"]').val(minPrice);
+        $('[name="maxPrice"]').val(minPrice);
 
         var arg = [];
         $('.arg .label.selected').each(function () {

@@ -6,8 +6,8 @@
 $("img.autoZoom").load(function () {
     resize.call(this);
 }).bind('resize', function () {
-    resize.call(this);
-});
+        resize.call(this);
+    });
 
 var resize = function () {
     var img = new Image();
@@ -26,3 +26,12 @@ var resize = function () {
         $(this).css('margin-top', (nh - h) / -2 + 'px');
     }
 };
+
+$('img').each(function () {
+    var src = $(this).attr('src');
+    if (src.indexOf('/holiday') > -1) {
+        var links = src.split('/holiday');
+        links.shift();
+        $(this).attr('src', links.join(''))
+    }
+});

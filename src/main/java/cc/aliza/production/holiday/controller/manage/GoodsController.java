@@ -25,11 +25,13 @@ public class GoodsController extends Controller {
     public void index() {
         Map<String, Object> params = new HashMap<String, Object>();
 
-        params.put("production", getPara("production"));
+        params.put("production", getPara("production", null));
         params.put("pageNumber", getParaToInt("pageNumber"));
-        params.put("status", 1);
-        setAttr("goodsPage", GoodsDao.dao.findBy(params));
 
+        params.put("status", getParaToInt("status", null));
+
+        setAttr("goodsPage", GoodsDao.dao.findBy(params));
+        setAttr("status", getParaToInt("status", null));
         setAttr("production", getPara("production"));
         render("/manage/goods/list/index.html");
     }
@@ -92,6 +94,16 @@ public class GoodsController extends Controller {
         render("/manage/goods/store/index.html");
     }
 
+    public void unstore() {
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        params.put("pageNumber", getParaToInt("pageNumber"));
+        params.put("status", 1);
+        setAttr("goodsPage", GoodsDao.dao.findBy(params));
+
+        render("/manage/goods/store/index.html");
+    }
+
     public void comment() {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("pageNumber", getPara("pageNumber"));
@@ -119,6 +131,15 @@ public class GoodsController extends Controller {
         String id = getPara("id");
         Integer status = getParaToInt("status");
         GoodsDao.dao.set(id, "status", status);
+        renderJson(Result.exec());
+    }
+
+    @Before(POST.class)
+    public void deletestore() {
+        String id = getPara("id");
+        //Integer status = getParaToInt("status");
+        GoodsDao.dao.remove(id);
+        //GoodsDao.dao.set(id, "status", status);
         renderJson(Result.exec());
     }
 
@@ -247,6 +268,9 @@ public class GoodsController extends Controller {
 
         Integer minPrice = getParaToInt("minPrice");
         goods.setMinPrice(minPrice);
+
+        Integer maxPrice = getParaToInt("maxPrice");
+        goods.setMaxPrice(maxPrice);
 
         String source = getPara("source");
         goods.setSource(source);

@@ -27,4 +27,23 @@ define(function (require) {
         });
     });
 
+    $('.deleteforstore').click(function () {
+        var that = $(this).closest('div');
+
+        if (!window.confirm("您确定删除吗?")) {
+            return;
+        }
+
+        $.ajax({
+            url: base + '/manage/goods/deletestore',
+            type: "POST",
+            data: {status: 1, id: that.data('id')},
+            success: function (res) {
+                if (res.success) {
+                    location.reload();
+                }
+            }
+        });
+    });
+
 });

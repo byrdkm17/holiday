@@ -109,6 +109,9 @@ public class Goods extends SimpleEntity {
     // 最低价格
     private Integer minPrice;
 
+    // 最低价格
+    private Integer maxPrice;
+
     // 最低折扣价
     private Integer minRealPrice;
 
@@ -410,10 +413,22 @@ public class Goods extends SimpleEntity {
     }
 
     public Integer getMinRealPrice() {
-        return (this.minPrice - this.discount) < 0 ? this.minPrice : (this.minPrice - this.discount);
+        if (this.maxPrice == null || this.maxPrice == 0) {
+            return (this.minPrice - this.discount) < 0 ? this.minPrice : (this.minPrice - this.discount);
+        } else {
+            return this.maxPrice;
+        }
     }
 
     public long getCommentsSize() {
         return CommentDao.dao.count("goods", this);
+    }
+
+    public Integer getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(Integer maxPrice) {
+        this.maxPrice = maxPrice;
     }
 }

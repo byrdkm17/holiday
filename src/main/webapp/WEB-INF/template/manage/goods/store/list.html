@@ -7,12 +7,16 @@
         <div class="item clearfix" data-id="${goods.id}">
             <ul class="list-inline pull-left">
                 <li><input type="checkbox"></li>
-                <li><img src="${ctxPath}/rest/image/${goods.master!}" class="img-thumbnail" style="width: 120px; height: 90px"></li>
+                <li><img src="${ctxPath}/rest/image/${goods.master!}" class="img-thumbnail"
+                         style="width: 120px; height: 90px"></li>
                 <li>${goods.name!}</li>
             </ul>
             <ul class="list-inline pull-right" style="line-height: 90px">
                 <li>
                     <button type="button" class="btn btn-default btn-sm store">上架</button>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm deleteforstore">删除</button>
                 </li>
             </ul>
         </div>

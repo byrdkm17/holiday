@@ -25,6 +25,7 @@ public class ArgDao extends BuguDao<Arg> {
 
         if (params.get("production") != null) {
             query.is("production", params.get("production"));
+
         }
 
         int totalRow = (int) query.count();

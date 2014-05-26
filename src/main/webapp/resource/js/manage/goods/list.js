@@ -28,6 +28,21 @@ define(function (require, exports) {
         });
     });
 
+    $('.unstore').click(function () {
+        $(this).blur();
+        var that = $(this).closest('.item');
+        $.ajax({
+            url: base + '/manage/goods/status',
+            type: "POST",
+            data: {status: 1, id: that.data('id')},
+            success: function (res) {
+                if (res.success) {
+                    location.reload();
+                }
+            }
+        });
+    });
+
     $('.hot').click(function () {
         $(this).blur();
         var that = $(this).closest('.item');

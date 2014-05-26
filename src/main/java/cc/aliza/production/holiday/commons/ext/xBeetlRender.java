@@ -61,7 +61,7 @@ public class xBeetlRender extends Render {
 
             template.set("servlet", webVariable);
             template.set("request", request);
-            //template.set("ctxPath", request.getContextPath());
+//            template.set("ctxPath", request.getContextPath());
             template.set("ctxPath", "");
 
             StringBuffer url = request.getRequestURL();
