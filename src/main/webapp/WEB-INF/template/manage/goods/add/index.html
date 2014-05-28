@@ -15,7 +15,15 @@
                 <input type="hidden" name="production" value="${goods.production!production!''}">
                 <!--# include("/manage/goods/add/form.part1.html") {} -->
                 <!--# include("/manage/goods/add/form.part2.html") {} -->
+                <!--# if(goods.production!production!'' == 'line') { -->
+                <!--# include("/manage/goods/add/form.part3.line1.html") {} -->
+                <!--# include("/manage/goods/add/form.part3.line2.html") {} -->
+                <!--# include("/manage/goods/add/form.part3.line3.html") {} -->
+                <!--# include("/manage/goods/add/form.part3.line4.html") {} -->
+                <!--# include("/manage/goods/add/form.part3.line5.html") {} -->
+                <!--# } else { -->
                 <!--# include("/manage/goods/add/form.part3.html") {} -->
+                <!--# } -->
                 <!--# include("/manage/goods/add/form.part4.html") {} -->
                 <!--# include("/manage/goods/add/modal.html"){} -->
                 <button type="button" class="btn btn-primary btn-block save" style="margin: 20px 0">保存</button>
@@ -29,7 +37,9 @@
 <script type="text/javascript" charset="utf-8" src="${ctxPath}/resource/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 <script>
-    UE.getEditor('note');
-    UE.getEditor('feature');
+    if ('${goods.production!production!''}' != 'line') {
+        UE.getEditor('note');
+        UE.getEditor('feature');
+    }
 </script>
 <!--# } -->

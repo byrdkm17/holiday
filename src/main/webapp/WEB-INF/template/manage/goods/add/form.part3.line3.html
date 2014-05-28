@@ -1,0 +1,140 @@
+<!--# var day = 0; var max = 2;-->
+<!--# while(day < max) { -->
+<!--# if (day < (goods.XC!1)) { -->
+<div class="panel panel-default" data-day="${day+1}">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">第 ${day + 1} 天 · 描述</label>
+
+            <div class="col-xs-10">
+                <textarea class="form-control" rows="3"
+                          name="lineXCContent_${day}">${goods.lineXCContent[day]!''}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">第 ${day + 1} 天 · 图片</label>
+
+            <div class="col-xs-10">
+                <!--# var index = 0; -->
+                <!--# while(index < 5) { -->
+                <div class="pull-left">
+                    <label>
+                        <!--# if(goods.lineXCPics[day].~size!0 > index) { -->
+                        <!--# if(goods.lineXCPics[day][index]!"" == "") { -->
+                        <img src="holder.js/120x90" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <!--# } else { -->
+                        <img src="${ctxPath}/rest/image/${goods.lineXCPics[day][index]}" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <!--# } -->
+                        <input type="file" style="display: none">
+                        <!--# } else { -->
+                        <img src="holder.js/120x90" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <input type="file" style="display: none">
+                        <!--# } -->
+                    </label>
+
+                    <!--# if(goods.lineXCPics[day].~size!0 > index) { -->
+                    <p class="text-center" style="font-size: 12px">
+                        <a href="#" class="clean"<!--# if(goods.lineXCPics[day][index]!"" == "") { print(' style="display: none"'); } -->
+                        >清除</a>
+                    </p>
+                    <input type="hidden" name="lineXCPics_${day}" value="${goods.lineXCPics[day][index]!}">
+                    <!--# } else { -->
+                    <p class="text-center" style="font-size: 12px">
+                        <a href="#" class="clean" style="display: none">清除</a>
+                    </p>
+                    <input type="hidden" name="lineXCPics_${day}">
+                    <!--# } -->
+                </div>
+                <!--# index = index + 1; -->
+                <!--# } -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">第 ${day + 1} 天 · 其他</label>
+
+            <div class="col-xs-10">
+                <div class="input-group">
+                    <span class="input-group-addon">用餐</span>
+                    <input type="text" class="form-control" placeholder="用餐" name="lineXCOther_YC_${day}"
+                           value="${goods.lineXCOther[day]['YC']!''}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">交通</span>
+                    <input type="text" class="form-control" placeholder="交通" name="lineXCOther_JT_${day}"
+                           value="${goods.lineXCOther[day]['JT']!''}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">住宿</span>
+                    <input type="text" class="form-control" placeholder="住宿" name="lineXCOther_ZS_${day}"
+                           value="${goods.lineXCOther[day]['ZS']!''}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--# } else { -->
+<div class="panel panel-default" data-day="${day+1}"
+     style="display: none">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">第 ${day + 1} 天 · 描述</label>
+
+            <div class="col-xs-10">
+                <textarea class="form-control" rows="3"
+                          name="lineXCContent_${day}"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">第 ${day + 1} 天 · 图片</label>
+
+            <div class="col-xs-10">
+                <!--# var index = 0; -->
+                <!--# while(index < 5) { -->
+                <div class="pull-left">
+                    <label>
+                        <img src="holder.js/120x90" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <input type="file" style="display: none">
+                    </label>
+
+                    <p class="text-center" style="font-size: 12px">
+                        <a href="#" class="clean" style="display: none">清除</a>
+                    </p>
+                    <input type="hidden" name="lineXCPics_${day}">
+                </div>
+                <!--# index = index + 1; -->
+                <!--# } -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">第 ${day + 1} 天 · 其他</label>
+
+            <div class="col-xs-10">
+                <div class="input-group">
+                    <span class="input-group-addon">用餐</span>
+                    <input type="text" class="form-control" placeholder="用餐" name="lineXCOther_YC_${day}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">交通</span>
+                    <input type="text" class="form-control" placeholder="交通" name="lineXCOther_JT_${day}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">住宿</span>
+                    <input type="text" class="form-control" placeholder="住宿" name="lineXCOther_ZS_${day}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--# } -->
+<!--# day = day + 1; -->
+<!--# } -->
+<!--# if(day < max) { -->
+<div style="text-align: center; margin-bottom: 20px">
+    <button class="btn btn-info addXC">新增行程</button>
+    <input type="hidden" name="XC" value="${goods.XC!1}" data-max="${max}">
+</div>
+<!--# } -->

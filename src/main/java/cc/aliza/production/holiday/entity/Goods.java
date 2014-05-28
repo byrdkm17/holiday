@@ -133,6 +133,35 @@ public class Goods extends SimpleEntity {
     // 推荐指数
     private Integer recommend;
 
+
+    // 线路特色·描述
+    private String lineTSContent;
+
+    // 线路特色·图片
+    @RefList
+    private List<Image> lineTSPics;
+
+    // 行程说明·描述
+    private List<String> lineXCContent;
+
+    // 行程说明·图片
+    private List<String[]> lineXCPics;
+
+    // 行程说明·其他
+    private List<Map<String, String>> lineXCOther;
+
+    // 行程天数
+    private Integer XC;
+
+    // 温馨提示
+    private String lineTip;
+
+    // 预订流程
+    private String lineFlow;
+
+    // 费用说明
+    private Map<String, Map<String, Object>> lineList;
+
     public Integer getRecommend() {
         return recommend;
     }
@@ -430,5 +459,81 @@ public class Goods extends SimpleEntity {
 
     public void setMaxPrice(Integer maxPrice) {
         this.maxPrice = maxPrice;
+    }
+
+    public void setMinRealPrice(Integer minRealPrice) {
+        this.minRealPrice = minRealPrice;
+    }
+
+    public String getLineTSContent() {
+        return lineTSContent;
+    }
+
+    public void setLineTSContent(String lineTSContent) {
+        this.lineTSContent = lineTSContent;
+    }
+
+    public List<Image> getLineTSPics() {
+        return lineTSPics;
+    }
+
+    public void setLineTSPics(List<Image> lineTSPics) {
+        this.lineTSPics = lineTSPics;
+    }
+
+    public List<String> getLineXCContent() {
+        return lineXCContent;
+    }
+
+    public void setLineXCContent(List<String> lineXCContent) {
+        this.lineXCContent = lineXCContent;
+    }
+
+    public List<String[]> getLineXCPics() {
+        return lineXCPics;
+    }
+
+    public void setLineXCPics(List<String[]> lineXCPics) {
+        this.lineXCPics = lineXCPics;
+    }
+
+    public List<Map<String, String>> getLineXCOther() {
+        return lineXCOther;
+    }
+
+    public void setLineXCOther(List<Map<String, String>> lineXCOther) {
+        this.lineXCOther = lineXCOther;
+    }
+
+    public String getLineTip() {
+        return lineTip;
+    }
+
+    public void setLineTip(String lineTip) {
+        this.lineTip = lineTip;
+    }
+
+    public String getLineFlow() {
+        return lineFlow;
+    }
+
+    public void setLineFlow(String lineFlow) {
+        this.lineFlow = lineFlow;
+    }
+
+    public Integer getXC() {
+        return XC;
+    }
+
+    public void setXC(Integer XC) {
+        this.XC = XC;
+    }
+
+    public Map<String, Map<String, Object>> getLineList() {
+        return lineList;
+    }
+
+    public void setLineList(Map<String, Map<String, Object>> lineList) {
+        this.lineList = lineList;
     }
 }

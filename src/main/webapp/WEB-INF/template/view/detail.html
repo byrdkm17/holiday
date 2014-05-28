@@ -304,22 +304,6 @@
 <script src="${ctxPath}/resource/js/juimin.js"></script>
 <script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
 <!--js pages part-->
-<script id="comment_template" type="application/template">
-    <div class="commentsGoodsMainItem clearfix"><img
-            src="${ctxPath}/rest/image/<%= (comment.member && comment.member && comment.member.header.id) || '' %>"/>
-        <ul class="userInfo clearfix">
-            <i class="postTime">咨询时间：${comment.time, dateFormat="yyyy年MM月dd日"}</i>
-            <h5>${comment.member.username!'访客'}</h5>
-        </ul>
-        <div class="blank"></div>
-        <ul class="userComments"><i></i>${comment.content}</ul>
-        <div class="blank"></div>
-        <!--# if(comment.reply != null) { -->
-        <h6 class="userCommentsReply">客服回复</h6>
-        <ul class="userCommentsReply"><i></i>${comment.reply.content!}</ul>
-        <!--# } -->
-    </div>
-</script>
 <script>
 $(function () {
     $(".goodsThumb").slide({mainCell: ".bd ul", effect: "leftLoop", delayTime: 500});

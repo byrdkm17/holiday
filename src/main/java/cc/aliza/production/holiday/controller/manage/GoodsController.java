@@ -180,7 +180,7 @@ public class GoodsController extends Controller {
         String name = getPara("name");
         goods.setName(name);
 
-        String feature = getPara("feature");
+        String feature = getPara("feature", "");
         goods.setFeature(feature);
 
         Integer coupon = getParaToInt("coupon");
@@ -190,7 +190,7 @@ public class GoodsController extends Controller {
         Supplier s = SupplierDao.dao.findOne(supplier);
         goods.setSupplier(s);
 
-        String note = getPara("note");
+        String note = getPara("note", "");
         goods.setNote(note);
 
         Integer recommend = getParaToInt("recommend");
@@ -247,6 +247,93 @@ public class GoodsController extends Controller {
         }
         goods.setPics(picList);
         goods.setMaster(master);
+
+        String lineTSContent = getPara("lineTSContent");
+        goods.setLineTSContent(lineTSContent);
+
+        String[] lineTSPics = getParaValues("lineTSPics");
+        List<Image> lineTSPicsList = new ArrayList<Image>();
+        for (String id : lineTSPics) {
+            Image a = ImageDao.dao.findOne(id);
+            lineTSPicsList.add(a);
+        }
+        goods.setLineTSPics(lineTSPicsList);
+
+        int xc = getParaToInt("XC", 0);
+        goods.setXC(xc);
+        List<String> lineXCContentMap = new ArrayList<String>();
+        List<String[]> lineXCPicsMap = new ArrayList<String[]>();
+        List<Map<String, String>> lineXCOtherMap = new ArrayList<Map<String, String>>();
+
+        for (int i = 0; i < xc; i++) {
+            lineXCContentMap.add(getPara("lineXCContent_" + String.valueOf(i), ""));
+
+            String[] lineXCPics = getParaValues("lineXCPics_" + String.valueOf(i));
+            lineXCPicsMap.add(lineXCPics);
+
+            Map<String, String> other = new HashMap<String, String>();
+            other.put("YC", getPara("lineXCOther_YC_" + String.valueOf(i), ""));
+            other.put("JT", getPara("lineXCOther_JT_" + String.valueOf(i), ""));
+            other.put("ZS", getPara("lineXCOther_ZS_" + String.valueOf(i), ""));
+            lineXCOtherMap.add(other);
+        }
+        goods.setLineXCContent(lineXCContentMap);
+        goods.setLineXCPics(lineXCPicsMap);
+        goods.setLineXCOther(lineXCOtherMap);
+
+        Map<String, Map<String, Object>> lineList = new HashMap<String, Map<String, Object>>();
+        Map<String, Object> JD = new HashMap<String, Object>();
+        JD.put("status", getParaToInt("lineListStatusJD", 0));
+        JD.put("content", getPara("lineListContentJD"));
+        lineList.put("JD", JD);
+
+        Map<String, Object> CY = new HashMap<String, Object>();
+        CY.put("status", getParaToInt("lineListStatusCY", 0));
+        CY.put("content", getPara("lineListContentCY"));
+        lineList.put("CY", CY);
+
+        Map<String, Object> JT = new HashMap<String, Object>();
+        JT.put("status", getParaToInt("lineListStatusJT", 0));
+        JT.put("content", getPara("lineListContentJT"));
+        lineList.put("JT", JT);
+
+        Map<String, Object> MP = new HashMap<String, Object>();
+        MP.put("status", getParaToInt("lineListStatusMP", 0));
+        MP.put("content", getPara("lineListContentMP"));
+        lineList.put("MP", MP);
+
+        Map<String, Object> DY = new HashMap<String, Object>();
+        DY.put("status", getParaToInt("lineListStatusDY", 0));
+        DY.put("content", getPara("lineListContentDY"));
+        lineList.put("DY", DY);
+
+        Map<String, Object> BX = new HashMap<String, Object>();
+        BX.put("status", getParaToInt("lineListStatusBX", 0));
+        BX.put("content", getPara("lineListContentBX"));
+        lineList.put("BX", BX);
+
+        Map<String, Object> OTHER1 = new HashMap<String, Object>();
+        OTHER1.put("status", getParaToInt("lineListStatusOther1", 0));
+        OTHER1.put("content", getPara("lineListContentOther1"));
+        lineList.put("OTHER1", OTHER1);
+
+        Map<String, Object> OTHER2 = new HashMap<String, Object>();
+        OTHER2.put("status", getParaToInt("lineListStatusOther2", 0));
+        OTHER2.put("content", getPara("lineListContentOther2"));
+        lineList.put("OTHER2", OTHER2);
+
+        Map<String, Object> OTHER3 = new HashMap<String, Object>();
+        OTHER3.put("status", getParaToInt("lineListStatusOther3", 0));
+        OTHER3.put("content", getPara("lineListContentOther3"));
+        lineList.put("OTHER3", OTHER3);
+
+        goods.setLineList(lineList);
+
+        String lineTip = getPara("lineTip");
+        goods.setLineTip(lineTip);
+
+        String lineFlow = getPara("lineFlow");
+        goods.setLineFlow(lineFlow);
 
         String service = getPara("service");
         String[] services = StringUtils.split(service, ",");

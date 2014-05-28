@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">线路特色 · 描述</label>
+
+            <div class="col-xs-10">
+                <textarea class="form-control" rows="3" name="lineTSContent">${goods.lineTSContent!''}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">线路特色 · 图片</label>
+
+            <div class="col-xs-10">
+                <!--# var index = 0; -->
+                <!--# while(index < 5) { -->
+                <div class="pull-left">
+                    <label>
+                        <!--# if(goods.lineTSPics.~size!0 > index) { -->
+                        <!--# if(goods.lineTSPics[index].id!"" == "") { -->
+                        <img src="holder.js/120x90" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <!--# } else { -->
+                        <img src="${ctxPath}/rest/image/${goods.lineTSPics[index].id}" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <!--# } -->
+                        <input type="file" style="display: none">
+                        <!--# } else { -->
+                        <img src="holder.js/120x90" class="img-thumbnail"
+                             style="margin: 0 10px; width: 120px; height: 90px">
+                        <input type="file" style="display: none">
+                        <!--# } -->
+                    </label>
+
+                    <!--# if(goods.lineTSPics.~size!0 > index) { -->
+                    <p class="text-center" style="font-size: 12px">
+                        <a href="#" class="clean"<!--# if(goods.lineTSPics[index].id!"" == "") { print(' style="display: none"'); } -->
+                        >清除</a>
+                    </p>
+                    <input type="hidden" name="lineTSPics" value="${goods.lineTSPics[index].id!}">
+                    <!--# } else { -->
+                    <p class="text-center" style="font-size: 12px">
+                        <a href="#" class="clean" style="display: none">清除</a>
+                    </p>
+                    <input type="hidden" name="lineTSPics">
+                    <!--# } -->
+                </div>
+                <!--# index = index + 1; -->
+                <!--# } -->
+            </div>
+        </div>
+    </div>
+</div>

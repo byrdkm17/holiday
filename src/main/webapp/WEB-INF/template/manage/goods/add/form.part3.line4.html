@@ -1,0 +1,156 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">费用说明</label>
+
+            <div class="col-xs-10">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">酒店</span>
+                            <input type="text" class="form-control" name="lineListContentJD"
+                                   value="${goods.lineList['JD']['content']!}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default <!--# if(goods.lineList.JD.status!0 == 1) {print('btn-success');} -->"
+                                        type="button" data-status="1">包含
+                                </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.JD.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusJD" value="${goods.lineList.JD.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">餐饮</span>
+                            <input type="text" class="form-control" name="lineListContentCY"
+                                   value="${goods.lineList.CY.content!}">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-default <!--# if(goods.lineList.CY.status!0 == 1) {print('btn-success');} -->"
+                                         type="button" data-status="1">包含
+                                 </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.CY.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusCY" value="${goods.lineList.CY.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">交通</span>
+                            <input type="text" class="form-control" name="lineListContentJT"
+                                   value="${goods.lineList.JT.content!}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default <!--# if(goods.lineList.JT.status!0 == 1) {print('btn-success');} -->"
+                                        type="button" data-status="1">包含
+                                </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.JT.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusJT" value="${goods.lineList.JT.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">门票</span>
+                            <input type="text" class="form-control" name="lineListContentMP"
+                                   value="${goods.lineList.MP.content!}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default <!--# if(goods.lineList.MP.status!0 == 1) {print('btn-success');} -->"
+                                        type="button" data-status="1">包含
+                                </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.MP.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusMP" value="${goods.lineList.MP.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">导游</span>
+                            <input type="text" class="form-control" name="lineListContentDY"
+                                   value="${goods.lineList.DY.content!}">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-default <!--# if(goods.lineList.DY.status!0 == 1) {print('btn-success');} -->"
+                                         type="button" data-status="1">包含
+                                 </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.DY.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusDY" value="${goods.lineList.DY.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">保险</span>
+                            <input type="text" class="form-control" name="lineListContentBX"
+                                   value="${goods.lineList.BX.content!}">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-default <!--# if(goods.lineList.BX.status!0 == 1) {print('btn-success');} -->"
+                                         type="button" data-status="1">包含
+                                 </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.BX.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusBX" value="${goods.lineList.BX.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">其他1</span>
+                            <input type="text" class="form-control" name="lineListContentOther1"
+                                   value="${goods.lineList.OTHER1.content!}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default <!--# if(goods.lineList.OTHER1.status!0 == 1) {print('btn-success');} -->"
+                                        type="button" data-status="1">包含
+                                </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.OTHER1.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusOther1" value="${goods.lineList.OTHER1.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">其他2</span>
+                            <input type="text" class="form-control" name="lineListContentOther2"
+                                   value="${goods.lineList.OTHER2.content!}">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-default <!--# if(goods.lineList.OTHER2.status!0 == 1) {print('btn-success');} -->"
+                                         type="button" data-status="1">包含
+                                 </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.OTHER2.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusOther2" value="${goods.lineList.OTHER2.status!0}">
+                    </li>
+                    <li>
+                        <div class="input-group">
+                            <span class="input-group-addon">其他3</span>
+                            <input type="text" class="form-control" name="lineListContentOther3"
+                                   value="${goods.lineList.OTHER3.content!}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default <!--# if(goods.lineList.OTHER3.status!0 == 1) {print('btn-success');} -->"
+                                        type="button" data-status="1">包含
+                                </button>
+                                <button class="btn btn-default <!--# if(goods.lineList.OTHER3.status!0 == 2) {print('btn-success');} -->"
+                                        type="button" data-status="2">不包含
+                                </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="lineListStatusOther3" value="${goods.lineList.OTHER3.status!0}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

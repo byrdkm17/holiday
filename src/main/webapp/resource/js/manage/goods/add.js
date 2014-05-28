@@ -218,7 +218,7 @@ define(function (require, exports) {
             ps.find('button.btn-success').text(t);
 
             $.each(priceSet, function () {
-                if (t == this.title) {
+                if (t == $.trim(this.title)) {
                     ps.find('input:eq(0)').val(+this.price / 100);
                     ps.find('input:eq(1)').val(this.number);
                     ps.data('priceList', this.priceList);
@@ -292,6 +292,29 @@ define(function (require, exports) {
         return false;
     });
 
+    var $xc = $('[name="XC"]');
+    if ($xc.length) {
+        $('.addXC').click(function () {
+            var cur = +$xc.val() + 1;
+            $('[data-day="' + cur + '"]').show();
+            $xc.val(cur);
+            if (cur >= +$xc.data('max')) {
+                $(this).hide();
+            }
+        });
+    }
+
+    $('[data-status]').click(function () {
+        $(this).siblings().removeClass('btn-success');
+        $(this).toggleClass('btn-success');
+        var $success = $(this).closest('li').find('.btn-success');
+        if ($success.length) {
+            $(this).closest('li').find('[type="hidden"]').val($success.data('status'));
+        } else {
+            $(this).closest('li').find('[type="hidden"]').val(0);
+        }
+    });
+
     $('.save').click(function () {
         var service = [];
         $('.service .label.selected').each(function () {
@@ -319,7 +342,7 @@ define(function (require, exports) {
         $('.priceSet').each(function (index) {
             if (index > 0) {
                 var s = {};
-                s.title = $(this).find('button.btn-success').text();
+                s.title = $.trim($(this).find('button.btn-success').text());
                 s.price = Math.round((+$(this).find('.price').val() || 0) * 100);
                 s.priceList = $(this).data('priceList');
                 s.number = $(this).find('.number').val();
@@ -342,8 +365,13 @@ define(function (require, exports) {
         });
         $('[name="arg"]').val(arg.join(','));
 
-        $('[name="feature"]').val(UE.getEditor('feature').getContent());
-        $('[name="note"]').val(UE.getEditor('note').getContent());
+
+        if ($('[name="production"]').val() != 'line') {
+            $('[name="feature"]').val(UE.getEditor('feature').getContent());
+            $('[name="note"]').val(UE.getEditor('note').getContent());
+        } else {
+
+        }
 
         var label = [];
         $('.labels .label.selected').each(function () {
@@ -379,6 +407,9 @@ define(function (require, exports) {
 
         $.each(priceGroup, function () {
             var ps = $('.panel.price:first').clone(true);
+            if ($('[name="production"]').val() == 'line') {
+                ps.addClass('hide');
+            }
             ps.find('.title').text(this.name);
             $.each(this.names, function (index) {
                 ps.find(':checkbox:eq(' + index + ')').prop('checked', true);
@@ -419,8 +450,10 @@ define(function (require, exports) {
             $('[data-id="' + this + '"]').addClass('selected label-success').remove('label-default');
         });
 
-        UE.getEditor('feature').setContent($('#featureText').html());
-        UE.getEditor('note').setContent($('#noteText').html());
+        if ($('[name="production"]').val() != 'line') {
+            UE.getEditor('feature').setContent($('#featureText').html());
+            UE.getEditor('note').setContent($('#noteText').html());
+        }
     }
 
 });
