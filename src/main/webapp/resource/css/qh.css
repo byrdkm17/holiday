@@ -1,0 +1,102 @@
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline
+}
+
+ol, ul, li {
+    list-style: none
+}
+
+.goodsThumb {
+    width: 400px;
+    height: 430px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.goodsThumb .hd {
+    height: 80px;
+    overflow: hidden;
+    padding: 6px 0 0 0;
+    overflow: hidden;
+}
+
+.goodsThumb .hd ul {
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+}
+
+.goodsThumb .hd ul li {
+    float: left;
+    padding: 0px 7px 0 0;
+    width: 95px;
+    height: 80px;
+    position: relative;
+    cursor: pointer
+}
+
+.goodsThumb .hd ul li img {
+    width: 95px;
+    height: 80px;
+    border: none;
+}
+
+.goodsThumb .hd ul li i {
+    display: block;
+    width: 95px;
+    height: 80px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.goodsThumb .hd ol {
+    width: 95px;
+    height: 80px;
+    padding: 6px 0 0 0;
+    float: left;
+}
+
+.goodsThumb .hd ol a.more {
+    display: block;
+    width: 95px;
+    height: 80px;
+    background: #D0D0D0;
+    color: #747474;
+    line-height: 100px;
+    text-align: center;
+}
+
+.goodsThumb .bd {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    height: 340px;
+}
+
+.goodsThumb .bd li {
+    zoom: 1;
+    vertical-align: middle;
+}
+
+.goodsThumb .bd img {
+    width: 400px;
+    height: 340px;
+    display: block;
+    border: #EAEAEA 1px solid;
+}
+
+.goodsThumb.fl .tempWrap {
+    margin: 0;
+}

@@ -1,0 +1,1061 @@
+
+body {
+    white;
+    color: #656565;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-text-size-adjust: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    background: url(../images/bg.png) repeat-x left top white;
+    color: #656565;
+}
+
+div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline
+}
+
+ol, ul, li {
+    list-style: none
+}
+
+i {
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    _font-size: 12px;
+}
+
+article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+
+table, th, td {
+    vertical-align: middle;
+}
+
+input {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    blr: expression(this.onFocus=this.blur());
+    color: #656565;
+}
+
+a:hover {
+    color: #E99A03;
+}
+
+.meishititle {
+    font-size: 18px;
+    margin: 10px 0px;
+    color: #2d2d2d
+}
+
+.meishititle img {
+    float: left
+}
+
+a img {
+    border: none
+}
+
+/*头部*/
+#foodtop {
+    overflow: hidden;
+    width: 100% px;
+    height: auto
+}
+
+.foodtoper {
+    background: url(../images/bgAddressInput.png);
+    height: 38px;
+}
+
+.toper {
+    width: 1000px;
+    line-height: 38px;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+.topleft {
+    width: 700px;
+    overflow: hidden;
+    float: left
+}
+
+.topleft ul li {
+    float: left;
+    margin: 0px 5px;
+    font-size: 12px
+}
+
+.topleft ul li img {
+    float: left;
+    margin: 10px 5px 0px 5px
+}
+
+.topmian {
+    padding-left: 50px;
+    float: left;
+    line-height: 38px;
+}
+
+.topright {
+    width: 200px;
+    overflow: hidden;
+    float: right
+}
+
+.topright ul li {
+    float: left;
+    margin: 0px 5px;
+    font-size: 12px
+}
+
+.topmain {
+    width: 1000px;
+    height: 112px;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.Logo {
+    overflow: hidden;
+    float: left;
+    margin: 15px 0px 0px 10px;
+}
+
+.search {
+    float: left;
+    width: 388px;
+    margin: 0px 0px 0px 50px;
+}
+
+.searchbox {
+    width: 388px;
+    height: 35px;
+    overflow: hidden;
+    background-color: #ffa800;
+}
+
+.search {
+    height: 71px;
+    padding-top: 30px;
+    width: 392px;
+}
+
+.searchForm {
+    height: 30px;
+    background: #FFA800;
+    padding: 3px;
+    padding-right: 0;
+}
+
+.searchFormInputTxt {
+    width: 310px;
+    background: #FFF;
+    float: left;
+}
+
+.searchFormInputTxt ul {
+    width: 62px;
+    float: left;
+    height: 29px;
+    position: relative;
+    border-top: #FFF 1px solid;
+    z-index: 99
+}
+
+.searchFormInputTxt ul.hover {
+    border-top: #E3E3E3 1px solid;
+}
+
+.searchFormInputTxt ul li {
+    border: #E3E3E3 1px solid;
+    border-top: none;
+    height: 28px;
+    width: 60px;
+    line-height: 28px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+    background: #FFF;
+    position: absolute;
+    left: 0
+}
+
+.searchFormInputTxt ul li.item1 {
+    background-image: url(../images/bgElement.png);
+    *background-image: url(../images/bgElement.png);
+    _background-image: url(../images/bgElement.gif);
+    background-repeat: no-repeat;
+    background-position: 49px -189px;
+    background-color: #FFF;
+    top: 0;
+}
+
+.searchFormInputTxt ul li.item1Hov {
+    background-position: -151px -189px;
+}
+
+.searchFormInputTxt ul li.item2 {
+    top: 29px;
+    display: none
+}
+
+.searchFormInputTxt ul li.item3 {
+    top: 58px;
+    display: none
+}
+
+.searchFormInputTxt ul li.item4 {
+    top: 87px;
+    display: none
+}
+
+.inputSearch {
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 9px;
+    *padding: 0 9px;
+    _padding: 0 7px;
+    border: none;
+    background: none;
+    font-size: 1em;
+    color: #C5C4C4;
+}
+
+.btnSearch {
+    width: 77px;
+    *width: 77px;
+    _width: 74px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    float: left
+}
+
+.searchKeywords {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px 0 18px;
+    color: #999;
+}
+
+.searchKeywords a {
+    color: #999;
+}
+
+.searchKeywords a:hover {
+    color: #E99A03;
+}
+
+.topTip {
+    width: 280px;
+    float: right;
+    height: 78px;
+    padding: 17px 10px 17px 0;
+}
+
+.topTip ul {
+    background: url(../images/bgElement.png) no-repeat -390px 0px;
+    *background: url(../images/bgElement.png) no-repeat -390px 0px;
+    _background: url(../images/bgElement.gif) no-repeat -390px 0px;
+    padding-top: 44px;;
+    font-size: 12px
+}
+
+.topTip ul li {
+    height: 30px;
+    line-height: 15px;
+    text-align: center;
+    width: 50px;
+    padding: 4px 10px 0 10px;
+    float: left
+}
+
+.topnav {
+    width: 1000px;
+    height: auto;
+    line-height: 55px;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.topnavleft {
+    width: 218px;
+    height: auto;
+    overflow: hidden;
+    float: left
+}
+
+.topnavright {
+    width: 781px;
+    height: auto;
+    overflow: hidden;
+    float: right
+}
+
+.topnavright ul li {
+    float: left;
+    padding: 0px 25px;
+    color: #FFF;
+    font-size: 16px
+}
+
+#productmain {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 5px 0px
+}
+
+.producttitle {
+    line-height: 24px;
+    height: auto;
+    overflow: hidden;
+    border-bottom: solid 1px #cbcbcb;
+    font-family: "新宋体";
+    padding-left: 10px;
+    color: #333333
+}
+
+.productshow {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 15px 0px
+}
+
+.showleft {
+    width: 400px;
+    height: auto;
+    overflow: hidden;
+    float: left
+}
+
+.bigimg {
+    width: 400px;
+    height: 340px;
+    overflow: hidden
+}
+
+.samllimg {
+    width: 400px;
+    height: auto;
+    overflow: hidden;
+    margin-top: 10px
+}
+
+.samllimg ul li {
+    float: left;
+    width: 95px;
+    height: 80px;
+    padding-right: 6px
+}
+
+.showright {
+    width: 580px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+    line-height: 36px;
+    font-family: "微软雅黑";
+}
+
+.yh20 {
+    font-size: 27px;
+    color: #333;
+}
+
+.yh20 p {
+    font-size: 13px;
+    color: #333
+}
+
+.monney {
+    width: 580px;
+    height: auto;
+    overflow: hidden;
+    background-color: #ed5565;
+    padding: 10px 5px
+}
+
+.monney .jg {
+    width: 320px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    line-height: 30px;
+    font-size: 16px;
+    color: #FFF
+}
+
+.monney .jg p {
+    margin-left: 50px;
+    font-size: 12px;
+    color: #74340a;
+    text-decoration: line-through
+}
+
+.monney .sm {
+    float: right;
+    width: auto;
+    margin-right: 10px;
+    height: auto;
+    overflow: hidden;
+    color: #FFF
+}
+
+.monney .sm a {
+    color: #FFF;
+    text-decoration: underline
+}
+
+.xq {
+    width: 580px;
+    height: auto;
+    overflow: hidden;
+    border-bottom: dashed 1px #999999;
+    font-size: 14px
+}
+
+.xq li {
+    float: left;
+    overflow: hidden;
+    width: 170px;
+    padding: 5px 0px;
+    text-align: center;
+    line-height: 35px
+}
+
+.xq li img {
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+    float: left
+}
+
+.xc {
+    width: 580px;
+    height: auto;
+    overflow: hidden;
+    line-height: 35px;
+    padding-left: 10px
+}
+
+.xc li {
+    float: left;
+    margin: 7px 30px 0px 0px
+}
+
+.rq {
+    width: 580px;
+    height: auto;
+    overflow: hidden;
+    padding: 10px 0px;
+    line-height: 35px;
+    border-bottom: dashed 1px #999999;
+}
+
+.rq samp {
+    float: right;
+    margin: 3px 0px 0px -6px
+}
+
+.minus, .plus {
+    width: 16px;
+    height: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #ed5565;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: -293px -58px;
+    color: #000;
+}
+
+.rq li {
+    margin: 0px 10px;
+    height: auto;
+    float: left;
+    overflow: hidden
+}
+
+.rq li span {
+    float: right;
+    margin: 0px 30px;
+    text-decoration: underline
+}
+
+.zf {
+    width: 580px;
+    height: auto;
+    overflow: hidden;
+    line-height: 26px
+}
+
+.zf span {
+    float: right;
+    margin-right: 10px;
+    color: #333;
+    font-weight: bold
+}
+
+.zf img {
+    margin: 0px 10px
+}
+
+.zf strong {
+    font-weight: bold
+}
+
+.but1 {
+    width: 152px;
+    height: 35px;
+    overflow: hidden;
+    background-color: #ff2e37;
+    border: none;
+    color: #FFF;
+    font-size: 16px;
+    margin: 20px 50px;
+    font-weight: bold;
+    font-family: "黑体"
+}
+
+.but2 {
+    width: 152px;
+    height: 35px;
+    overflow: hidden;
+    background-color: #ffa800;
+    color: #FFF;
+    border: none;
+    font-size: 16px;
+    margin: 5px 0px;
+    font-weight: bold;
+    font-family: "黑体"
+}
+
+.text2 {
+    height: 24px;
+    background: none;
+    width: 190px;
+    border: none;
+    line-height: 24px;
+    height: 24px;
+    position: relative;
+    margin: 0px 5px
+}
+
+.selBG {
+    width: 177px;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    display: block;
+    background: url(../image/xl.jpg) no-repeat;
+    float: right;
+    margin: 5px 0px
+}
+
+.text1 {
+    border: solid 1px #ed5565;
+    height: 26px;
+    width: 60px;
+    text-align: center;
+    line-height: 24px;
+    margin: 0px 5px
+}
+
+.yh30, .yh30 a {
+    font-size: 34px;
+    color: #FFF;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+.yh10, .yh10 a {
+    font-size: 34px;
+    color: #FFF;
+    font-weight: bolder;
+    font-family: "微软雅黑"
+}
+
+.details {
+    width: 1000px;
+    height: auto;
+    overflow: hidden
+}
+
+.detailsleft {
+    width: 180px;
+    height: auto;
+    overflow: hidden;
+    float: left
+}
+
+.detailsright {
+    width: 810px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+    line-height: 24px;
+    border: solid 1px #e2e2e2
+}
+
+.detilsfrist {
+    width: 178px;
+    height: auto;
+    overflow: hidden;
+    border: solid 1px #ff8a00
+}
+
+.detailstitle {
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    color: #FFF;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    background: url(../image/lefttitle.jpg);
+    background-color: #999
+}
+
+.detailssecond {
+    width: 180px;
+    height: auto;
+    overflow: hidden;
+    margin: 10px 0px;
+    line-height: 24px
+}
+
+.detailssecond ul {
+    width: 180px;
+    overflow: hidden;
+    height: auto;
+    margin: 10px 0px
+}
+
+.detailssecond ul li {
+    width: 180px;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    background-color: #f0f2f5;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px
+}
+
+.detailssecond ul li img {
+    max-width: 180px;
+    max-height: 120px;
+    overflow: hidden;
+    margin-bottom: 5px
+}
+
+.detailssecond ul li p, .detailssecond ul li p a {
+    font-size: 12px
+}
+
+.detailssecond ul li .xhjg, .detailssecond ul li xhjg a {
+    color: #ff9601;
+    font-size: 16px;
+    margin: 5px 0px;
+    border-top: solid 1px #FFF
+}
+
+.tablist {
+    width: 810px;
+    height: auto;
+    overflow: hidden;
+    border-bottom: solid 1px #ff9601
+}
+
+.tablist ul li {
+    float: left;
+    margin: 0px 2px 0px 0px;
+    background: url(../image/righttitle.jpg);
+    height: 36px;
+    line-height: 36px;
+    color: #FFF;
+    font-size: 14px;
+    width: 160px;
+    text-align: center
+}
+
+.features {
+    width: 780px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.features ul li {
+    width: 360px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    border: solid 1px #e2e2e2;
+    padding: 10px;
+    margin-right: 5px;
+    line-height: 30px
+}
+
+.tablisttitle {
+    width: 810px;
+    height: auto;
+    line-height: 24px;
+    overflow: hidden;
+    margin: 20px 0px
+}
+
+.Trip {
+    background: url(../image/day.jpg) no-repeat;
+    width: 810px;
+    height: 57px;
+    overflow: hidden
+}
+
+.ts {
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    text-align: right;
+    color: #ffce54
+}
+
+.ts span {
+    font-size: 40px
+}
+
+.ts samp {
+    margin-right: 20px;
+    font-size: 14px
+}
+
+.sz {
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    float: left
+}
+
+.dd {
+    width: 640px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+    color: #FFF;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 17px
+}
+
+.xcsm {
+    width: 780px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.xcsmtext {
+    width: 780px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 5px 0px
+}
+
+.xcsm ul li {
+    float: left;
+    margin-right: 10px
+}
+
+.xcsm ul li img {
+    max-width: 380px;
+    max-height: 300px;
+    overflow: hidden
+}
+
+.xcsmer {
+    width: 780px;
+    max-width: 771px;
+    height: auto;
+    overflow: hidden;
+    margin: 10px 0px;
+    border: solid 1px #dcdcdc;
+    border-right: none
+}
+
+.xcsmertitle1 {
+    background: url(../image/zs.jpg);
+    width: 256px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 18px;
+    color: #FFF
+}
+
+.xcsmertitle2 {
+    background: url(../image/jd.jpg);
+    width: 256px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 18px;
+    color: #FFF
+}
+
+.xcsmertitle3 {
+    background: url(../image/cz.jpg);
+    width: 256px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 18px;
+    color: #FFF
+}
+
+.xcsmertitle1 img, .xcsmertitle2 img, .xcsmertitle3 img {
+    float: left;
+    margin: 2px 10px
+}
+
+.xcsmerleft {
+    width: 256px;
+    height: 160px;
+    overflow: hidden;
+    float: left;
+    border-right: solid 1px #dcdcdc
+}
+
+.xcsmerleft ul {
+    width: 220px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 36px
+}
+
+.fyzx {
+    width: 810px;
+    height: auto;
+    overflow: hidden
+}
+
+.tabMessage {
+    width: 780px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.tabMessage ul li {
+    border-bottom: solid 1px #d2d2d2;
+    padding: 10px 0px
+}
+
+.tabMessage ul li td {
+    background-color: #f1f1f1;
+    line-height: 30px;
+    padding: 5px
+}
+
+.tabMessage ul li td img {
+    float: left;
+    width: 14px;
+    height: 14px;
+    margin: 10px 0px 10px 20px
+}
+
+.tips {
+    width: 810px;
+    height: auto;
+    overflow: hidden
+}
+
+.tipser {
+    width: 500px;
+    height: auto;
+    overflow: hidden;
+    color: #FFF;
+    margin: 20px 10px 0px 10px;
+    padding: 25px;
+    float: left;
+    background-color: #4fc1e9
+}
+
+.tipserimg {
+    width: auto;
+    height: auto;
+    float: right
+}
+
+.ydzn {
+    width: 774px;
+    height: auto;
+    margin: 0 auto
+}
+
+.ydzner {
+    width: 550px;
+    height: auto;
+    overflow: hidden;
+    color: #666666;
+    margin: 20px 10px 0px 30px;
+    padding: 0px;
+    float: left;
+}
+
+.ydzntitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0px
+}
+
+.fysm {
+    width: 780px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.fysmtitle {
+    border: solid 1px #e3e4e8;
+    background-color: #f1f1f1;
+    line-height: 40px;
+    font-size: 16px;
+    color: #666666;
+    padding-left: 40px
+}
+
+.fysmup {
+    width: 780px;
+    height: auto;
+    overflow: hidden
+}
+
+.fysmup ul li {
+    border: dashed 1px #f1f1f1;
+    line-height: 30px;
+    padding-left: 40px;
+    font-size: 14px
+}
+
+.fysmup ul li span {
+    margin-right: 50px
+}
+
+/*字体*/
+
+.cs12, .cs12 a {
+    color: #E99A03
+}
+
+.red {
+    color: #ed5565
+}
+
+/*浮动*/
+.main {
+    position: relative;
+    width: 990px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 0px
+}
+
+#AdLayer {
+    position: absolute;
+    width: 20px;
+    display: none;
+    height: 59px;
+    top: 0px;
+    right: -30px;
+}
+
+.fudong {
+    width: 25px;
+    height: auto;
+    overflow: hidden;
+    line-height: 24px;
+    cursor: hourd
+}
+
+.fudonger {
+    width: 24px;
+    height: 57px;
+    font-size: 14px;
+    background: url(../image/f2.jpg) no-repeat;
+    margin: 2px 0px;
+    padding: 0px 3px;
+    color: #FFF;
+}
+
+.fudongup {
+    width: 24px;
+    height: 72px;
+    overflow: hidden;
+    background: url(../image/f8.jpg) no-repeat;
+    display: block;
+    padding: 0px 3px;
+    font-size: 14px;
+    overflow: hidden;
+    color: #FFF;
+    margin: 2px 0px;
+    vertical-align: middle;
+}
+
+.fudongdown {
+    width: 24px;
+    height: 72px;
+    overflow: hidden;
+    background: url(../image/f9.jpg) no-repeat;
+    margin: 2px 0px;
+    padding: 0px 3px;
+    display: block;
+    font-size: 14px;
+    color: #FFF
+}
+
+.fudongup span {
+    margin-top: 12px;
+    width: 24px;
+    height: auto;
+    display: block
+}
+
+.fudongdown span {
+    margin-top: 5px;
+    width: 24px;
+    height: auto;
+    display: block
+}
+

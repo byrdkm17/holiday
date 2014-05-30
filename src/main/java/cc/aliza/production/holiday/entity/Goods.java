@@ -135,7 +135,10 @@ public class Goods extends SimpleEntity {
 
 
     // 线路特色·描述
-    private String lineTSContent;
+    private String lineTSContent1;
+
+    // 线路特色·描述
+    private String lineTSContent2;
 
     // 线路特色·图片
     @RefList
@@ -465,12 +468,20 @@ public class Goods extends SimpleEntity {
         this.minRealPrice = minRealPrice;
     }
 
-    public String getLineTSContent() {
-        return lineTSContent;
+    public String getLineTSContent1() {
+        return lineTSContent1;
     }
 
-    public void setLineTSContent(String lineTSContent) {
-        this.lineTSContent = lineTSContent;
+    public void setLineTSContent1(String lineTSContent1) {
+        this.lineTSContent1 = lineTSContent1;
+    }
+
+    public String getLineTSContent2() {
+        return lineTSContent2;
+    }
+
+    public void setLineTSContent2(String lineTSContent2) {
+        this.lineTSContent2 = lineTSContent2;
     }
 
     public List<Image> getLineTSPics() {

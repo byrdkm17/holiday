@@ -1,0 +1,339 @@
+<!--# layout("/view/include/layout.html", {cur:"detail-line"}) { -->
+<div id="productmain">
+<div class="producttitle"> 首页 > 跟团游 > 丽江</div>
+<div class="productshow">
+    <div class="showleft">
+
+
+        <div class="goodsThumb">
+            <div class="bd">
+                <div class="tempWrap" style="overflow:hidden; position:relative; width:400px">
+                    <ul style="width: 2532px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -400px; ">
+                        <li class="clone" style="float:left; width:400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <li class="clone" style="float: left; width: 400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <li class="clone" style="float: left; width: 400px; "><a href="#" target="_blank"><img
+                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="hd">
+                <ul>
+                    <li class="on"><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s1.jpg"></a></li>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s2.jpg"></a></li>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s3.jpg"></a></li>
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s4.jpg"></a></li>
+
+                </ul>
+                <ol>
+                    <a class="more" href="#" target="_blank">查看全部</a>
+                </ol>
+            </div>
+        </div>
+
+
+        <script src="${ctxPath}/resource/css/sy.js"></script>
+        <script src="${ctxPath}/resource/css/slide.js"></script>
+        <script>
+            $(function () {
+                $(".goodsThumb").slide({mainCell: ".bd ul", effect: "leftLoop", delayTime: 500});
+                var dateInput = $("#dateBegin,#dateEnd");
+                $(dateInput).focus(function () {
+                    if ($(this).val() == this.defaultValue) {
+                        $(this).val("").css("color", "#999")
+                    }
+                }).blur(function () {
+                            if ($(this).val() == '') {
+                                $(this).val(this.defaultValue).css("color", "#999")
+                            }
+                        });
+
+            });
+        </script>
+
+
+    </div>
+
+    <div class="showright">
+        <div class="yh20"><a href="#">至尊瑧品昆明大理丽江西双版纳8天</a>
+
+            <p><a href="#">很好的旅游产品 很好的旅游产品 很好的旅游产品</a></p>
+        </div>
+        <div class="monney">
+            <div class="jg">促销价<span class="yh10">￥</span><span class="yh30">580 </span>暑假特惠
+                <p>市场价：￥1024元</p></div>
+            <div class="sm"><br/>
+                <a href="#">起价说明</a></div>
+        </div>
+        <ul class="xq">
+            <li><img src="${ctxPath}/resource/image/t1.jpg" width="25" height="25"/>销量：109</li>
+            <li><img src="${ctxPath}/resource/image/t2.jpg" width="25" height="25"/>评价：90</li>
+            <li><img src="${ctxPath}/resource/image/t3.jpg" width="25" height="25"/>收藏：207</li>
+        </ul>
+        <ul class="xc">
+            <li>时间：<span class="selBG"><select name="" class="text2">
+                <option>2014年06月21日</option>
+            </select></span></li>
+            <li><span class="red"><strong>出发城市：</strong></span>昆明</li>
+            <li><span class="red"><strong>行程天数：</strong></span>6</li>
+        </ul>
+        <ul class="rq">
+            <li>人数：<input name="" type="text" class="text1" value="1" maxlength="8"/><samp><em class="minus"><img
+                    src="${ctxPath}/resource/image/down.jpg" width="16" height="12"/></em><em class="plus"><img
+                    src="${ctxPath}/resource/image/sown.jpg"
+                    width="16"
+                    height="12"/></em></samp>
+            </li>
+            <li>成人 <strong>￥1200</strong>：<input name="" type="text" class="text1" value="0" maxlength="8"/><samp><em
+                    class="minus"><img src="${ctxPath}/resource/image/down.jpg" width="16" height="12"/></em><em
+                    class="plus"><img
+                    src="${ctxPath}/resource/image/sown.jpg" width="16" height="12"/></em></samp></li>
+            <li>儿童<strong> ￥1200</strong><span>儿童标准</span></li>
+        </ul>
+
+
+        <div><input name="" class="but1" type="button" value="立即购买"/><input name="" class="but2" type="button"
+                                                                            value="加入购物车"/></div>
+        <div class="zf"><strong>支付方式：</strong><img src="${ctxPath}/resource/image/zfb.jpg" width="14" height="14"/>支付宝&nbsp;&nbsp;&nbsp;&nbsp;<strong>服务承诺：</strong>100%发团
+            100%如实描述
+        </div>
+        <div class="zf">本产品由假日风光旅行社有限公司为您服务 &nbsp;&nbsp;&nbsp;&nbsp;<strong>服务电话：400-848-8099</strong></div>
+    </div>
+</div>
+
+<div class="details">
+    <div class="detailsleft">
+        <div class="detailsfrist">
+            <div class="detailstitle">
+                云南旅游
+            </div>
+        </div>
+
+        <div class="detailssecond">
+            <div class="detailstitle">
+                猜你喜欢的
+            </div>
+            <ul>
+                <li><img src="${ctxPath}/resource/image/samll.jpg" width="180" height="120"/>丽江玉龙雪山一日游<p class="yh12">
+                    小包车、大索道、小九寨</p>
+
+                    <div class="xhjg">￥588起</div>
+                </li>
+                <li><img src="${ctxPath}/resource/image/samll.jpg" width="180" height="120"/>丽江玉龙雪山一日游<p class="yh12">
+                    小包车、大索道、小九寨</p>
+
+                    <div class="xhjg">￥588起</div>
+                </li>
+                <li><img src="${ctxPath}/resource/image/samll.jpg" width="180" height="120"/>丽江玉龙雪山一日游<p class="yh12">
+                    小包车、大索道、小九寨</p>
+
+                    <div class="xhjg">￥588起</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="detailsright">
+        <div class="tablist">
+            <ul>
+                <li onmousemove="style.background='url(${ctxPath}/resource/image/a_02.jpg)'"
+                    onmouseout="style.background='url(${ctxPath}/resource/image/a_01.jpg)'">线路特色
+                </li>
+                <li onmousemove="style.background='url(${ctxPath}/resource/image/a_03.jpg)'"
+                    onmouseout="style.background='url(${ctxPath}/resource/image/a_01.jpg)'">行程说明
+                </li>
+                <li onmousemove="style.background='url(${ctxPath}/resource/image/a_04.jpg)'"
+                    onmouseout="style.background='url(${ctxPath}/resource/image/a_01.jpg)'">费用说明
+                </li>
+                <li onmousemove="style.background='url(${ctxPath}/resource/image/a_05.jpg)'"
+                    onmouseout="style.background='url(${ctxPath}/resource/image/a_01.jpg)'">温馨提示
+                </li>
+                <li onmousemove="style.background='url(${ctxPath}/resource/image/a_06.jpg)'"
+                    onmouseout="style.background='url(${ctxPath}/resource/image/a_01.jpg)'">预订指南
+                </li>
+            </ul>
+        </div>
+        <div class="tablisttitle"><img src="${ctxPath}/resource/image/te.jpg" width="810" height="40"/></div>
+        <div class="features">
+            <ul>
+                <li>一段文字说明，对某一行程特色进行描述，可以是吃、住、行、景的各种优势。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。<img
+                        src="${ctxPath}/resource/image/teleft.jpg" width="360" height="265"/></li>
+                <li style="float:right; margin:0px">
+                    一段文字说明，对某一行程特色进行描述，可以是吃、住、行、景的各种优势。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。<img
+                        src="${ctxPath}/resource/image/teright.jpg" width="360" height="265"/></li>
+            </ul>
+        </div>
+        <div class="tablisttitle"><img src="${ctxPath}/resource/image/xc.jpg" width="810" height="40"/></div>
+        <div class="Trip">
+            <div class="ts"><samp>第一天</samp><span class="sz">1</span></div>
+            <div class="dd">昆明</div>
+        </div>
+        <div class="xcsm">
+            <div class="xcsmtext">
+                一段文字说明，对某一行程特色进行描述，可以是吃、住、行、景的各种优势。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。
+            </div>
+            <ul>
+                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
+                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
+                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
+                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
+            </ul>
+            <div class="xcsmer">
+                <div class="xcsmerleft">
+                    <div class="xcsmertitle1"><img src="${ctxPath}/resource/image/zs.png" width="30" height="32"/>住宿
+                    </div>
+                    <ul class="xcsmul">
+                        <li>五星级大酒店</li>
+                    </ul>
+                </div>
+                <div class="xcsmerleft">
+                    <div class="xcsmertitle2"><img src="${ctxPath}/resource/image/jd.png" width="30" height="32"/>住宿
+                    </div>
+                    <ul class="xcsmul">
+                        <li>空调旅游车</li>
+                    </ul>
+                </div>
+                <div class="xcsmerleft">
+                    <div class="xcsmertitle3"><img src="${ctxPath}/resource/image/cz.png" width="36" height="27"/>住宿
+                    </div>
+                    <ul class="xcsmul">
+                        <li>早餐：酒店自助</li>
+                        <li>早餐：酒店自助</li>
+                        <li>早餐：酒店自助</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="fyzx">
+            <div class="tablisttitle"><img src="${ctxPath}/resource/image/fy.jpg" width="810" height="40"/></div>
+            <div class="fysm">
+                <div class="fysmup">
+                    <div class="fysmtitle">费用包含</div>
+                    <ul>
+                        <li><span>★ 酒 店</span></li>
+                        <li><span>★ 餐 饮</span></li>
+                        <li><span>★ 交 通</span></li>
+                        <li><span>★ 门 票</span></li>
+                        <li><span>★ 导 游</span></li>
+                        <li><span>★ 保 险</span></li>
+                    </ul>
+                </div>
+                <div class="fysmup">
+                    <div class="fysmtitle">费用包含</div>
+                    <ul>
+                        <li><span>★ 酒 店</span></li>
+                        <li><span>★ 餐 饮</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tablisttitle"><img src="${ctxPath}/resource/image/wx.jpg" width="810" height="40"/></div>
+        <div class="tips">
+            <div class="tipser">
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+            </div>
+            <div class="tipserimg">
+                <img src="${ctxPath}/resource/image/tipsimg.jpg" width="220" height="234"/></div>
+        </div>
+        <div class="tablisttitle"><img src="${ctxPath}/resource/image/yd.jpg" width="810" height="40"/></div>
+        <div class="ydzn">
+            <img src="${ctxPath}/resource/image/yder.jpg" width="774" height="133"/></div>
+        <div class="tips">
+            <div class="ydzner">
+                <div class="ydzntitle">注意事项</div>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+            </div>
+            <div class="tipserimg">
+                <img src="${ctxPath}/resource/image/ydimg.jpg" width="199" height="234"/></div>
+        </div>
+        <div class="tablisttitle"><img src="${ctxPath}/resource/image/zx.jpg" width="810" height="40"/></div>
+        <div class="tabMessage">
+            <ul>
+                <li>
+                    <table width="100%">
+                        <tr>
+                            <td width="16%" align="center"><img src="${ctxPath}/resource/image/ure.jpg" width="14"
+                                                                height="14"/>咨询问题：
+                            </td>
+                            <td width="84%">即时预定产品与现询预订产品有什么区别？</td>
+                        </tr>
+                        <tr class="red">
+                            <td align="center" valign="top"><img src="${ctxPath}/resource/image/ureer.jpg" width="14"
+                                                                 height="14"/>客服回复：
+                            </td>
+                            <td>您好，即时预订产品位置、价格等信息已确定，可直接进行在线预订。现询预订产品位置，价格等信息待进一步核实，需要商家进行二次确认。</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <table width="100%">
+                        <tr>
+                            <td width="16%" align="center"><img src="${ctxPath}/resource/image/ure.jpg" width="14"
+                                                                height="14"/>咨询问题：
+                            </td>
+                            <td width="84%">即时预定产品与现询预订产品有什么区别？</td>
+                        </tr>
+                        <tr class="red">
+                            <td align="center" valign="top"><img src="${ctxPath}/resource/image/ureer.jpg" width="14"
+                                                                 height="14"/>客服回复：
+                            </td>
+                            <td>您好，即时预订产品位置、价格等信息已确定，可直接进行在线预订。现询预订产品位置，价格等信息待进一步核实，需要商家进行二次确认。</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div id="AdLayer">
+    <div class="fudong">
+
+        <div class="fudongup" onmousemove="style.background='url(${ctxPath}/resource/image/f1.jpg)'"
+             onmouseout="style.background='url(${ctxPath}/resource/image/f8.jpg)'"><span>特色</span></div>
+        <div class="fudonger" onmousemove="style.background='url(${ctxPath}/resource/image/f3.jpg)'"
+             onmouseout="style.background='url(${ctxPath}/resource/image/f2.jpg)'">行程
+        </div>
+        <div class="fudonger" onmousemove="style.background='url(${ctxPath}/resource/image/f4.jpg)'"
+             onmouseout="style.background='url(${ctxPath}/resource/image/f2.jpg)'">费用
+        </div>
+        <div class="fudonger" onmousemove="style.background='url(${ctxPath}/resource/image/f5.jpg)'"
+             onmouseout="style.background='url(${ctxPath}/resource/image/f2.jpg)'">提示
+        </div>
+        <div class="fudongdown" onmousemove="style.background='url(${ctxPath}/resource/image/f7.jpg)'"
+             onmouseout="style.background='url(${ctxPath}/resource/image/f9.jpg)'"><span>预定</span></div>
+
+    </div>
+
+</div>
+<!--# } -->
+<!--js pages load-->
+<script src="${ctxPath}/resource/js/plugin/slide.js"></script>
+<script src="${ctxPath}/resource/js/jLamCatCustom.js"></script>
+<script src="${ctxPath}/resource/js/juimin.js"></script>
+<script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
+<!--js pages part-->
+<script language="JavaScript" type="text/javascript" src="${ctxPath}/resource/css/lanrentuku.js"></script>
+</body>
+</html>

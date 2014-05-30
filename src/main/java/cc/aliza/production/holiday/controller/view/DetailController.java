@@ -36,7 +36,11 @@ public class DetailController extends Controller {
             params.put("status", 1);
             setAttr("hotGoodsPage", GoodsDao.dao.findBy(params));
 
-            render("/view/detail.html");
+            if (goods.getProduction().equals("line")) {
+                render("/view/detail_line.html");
+            } else {
+                render("/view/detail.html");
+            }
         } catch (Exception e) {
             redirect("/");
         }

@@ -248,8 +248,11 @@ public class GoodsController extends Controller {
         goods.setPics(picList);
         goods.setMaster(master);
 
-        String lineTSContent = getPara("lineTSContent");
-        goods.setLineTSContent(lineTSContent);
+        String lineTSContent1 = getPara("lineTSContent1");
+        goods.setLineTSContent1(lineTSContent1);
+
+        String lineTSContent2 = getPara("lineTSContent2");
+        goods.setLineTSContent2(lineTSContent2);
 
         String[] lineTSPics = getParaValues("lineTSPics");
         List<Image> lineTSPicsList = new ArrayList<Image>();
