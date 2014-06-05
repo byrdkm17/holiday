@@ -1,65 +1,352 @@
 
-body{white;color:#656565;margin:0;padding:0;border:0;-webkit-text-size-adjust:none;margin:0;padding:0;border:0; font-size:12px; font-family:"微软雅黑"; background:url(../images/bg.png)repeat-x left top white;color:#656565}
-div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,nav,section{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}
-ol,ul,li{list-style:none}
-i{font-style:normal;}
-h1,h2,h3,h4,h5,h6{font-weight:normal; _font-size:12px;}
-article,aside,details,figcaption,figure,dialog,footer,header,hgroup,menu,nav,section{display:block}
-table,th,td{vertical-align:middle;}input{margin:0px;padding:0px;}
-a{text-decoration:none;outline:none;blr:expression(this.onFocus=this.blur());color:#656565;}
-a:hover{color:#E99A03;}
-.meishititle{font-size:18px; margin:10px 0px; color:#2d2d2d}
-.meishititle img{float:left}
-a img{border:none}
+body {
+    white;
+    color: #656565;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-text-size-adjust: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    background: url(../images/bg.png) repeat-x left top white;
+    color: #656565
+}
+
+div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline
+}
+
+ol, ul, li {
+    list-style: none
+}
+
+i {
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    _font-size: 12px;
+}
+
+article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+
+table, th, td {
+    vertical-align: middle;
+}
+
+input {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    blr: expression(this.onFocus=this.blur());
+    color: #656565;
+}
+
+a:hover {
+    color: #E99A03;
+}
+
+.meishititle {
+    font-size: 18px;
+    margin: 10px 0px;
+    color: #2d2d2d
+}
+
+.meishititle img {
+    float: left
+}
+
+a img {
+    border: none
+}
 
 /*头部*/
-#foodtop{overflow:hidden; width:100%px; height:auto}
-.foodtoper{background:url(../images/bgAddressInput.png); height:38px;}
-.toper{width:1000px; line-height:38px; margin:0 auto; overflow:hidden}
-.topleft{width:700px; overflow:hidden; float:left}
-.topleft ul li{float:left; margin:0px 5px; font-size:12px}
-.topleft ul li img{float:left; margin:10px 5px 0px 5px} 
-.topmian{padding-left:50px; float:left;line-height:38px;}
-.topright{width:200px; overflow:hidden; float:right}
-.topright ul li{float:left; margin:0px 5px; font-size:12px}
+#foodtop {
+    overflow: hidden;
+    width: 100% px;
+    height: auto
+}
 
+.foodtoper {
+    background: url(../images/bgAddressInput.png);
+    height: 38px;
+}
 
-.topmain{width:1000px; height:112px; overflow:hidden; margin:0 auto}
-.Logo{overflow:hidden; float:left; margin:15px 0px 0px 10px;}
-.search{float:left; width:388px;margin: 0;}
-.searchbox{width:388px; height:35px; overflow:hidden; background-color:#ffa800;}
-.search{height:71px; padding-top:30px; width:392px;}
-.searchForm{height:30px; background:#FFA800; padding:3px; padding-right:0;}
-.searchFormInputTxt{width:310px; background:#FFF; float:left;}
-.searchFormInputTxt ul{width:62px; float:left; height:29px; position:relative;border-top:#FFF 1px solid; z-index:99}
-.searchFormInputTxt ul.hover{border-top:#E3E3E3 1px solid;}
-.searchFormInputTxt ul li{border:#E3E3E3 1px solid; border-top:none;height:28px; width:60px; line-height:28px; text-align:center; color:#999; cursor:pointer; background:#FFF; position:absolute; left:0}
-.searchFormInputTxt ul li.item1{background-image:url(../images/bgElement.png);*background-image:url(../images/bgElement.png);_background-image:url(../images/bgElement.gif); background-repeat:no-repeat; background-position:49px -189px; background-color:#FFF; top:0;}
-.searchFormInputTxt ul li.item1Hov{background-position:-151px -189px;}
-.searchFormInputTxt ul li.item2{top:29px;display:none}
-.searchFormInputTxt ul li.item3{top:58px;display:none}
-.searchFormInputTxt ul li.item4{top:87px;display:none}
-.inputSearch{width:230px; height:30px; line-height:30px; padding:0 9px;*padding:0 9px;_padding:0 7px; border:none; background:none; font-size:1em; color:#C5C4C4;}
-.btnSearch{width:77px;*width:77px;_width:74px; height:30px; line-height:30px; text-align:center; color:#FFF; font-size:14px; font-weight:bold; background:none; border:none; cursor:pointer; float:left}
-.searchKeywords{height:35px; line-height:35px; padding:0 10px 0 18px; color:#999;}
-.searchKeywords a{color:#999;}
-.searchKeywords a:hover{color:#E99A03;}
-.topTip{width:280px; float:right; height:78px; padding:17px 10px 17px 0;}
-.topTip ul{background:url(../images/bgElement.png) no-repeat -390px 0px;*background:url(../images/bgElement.png) no-repeat -390px 0px;_background:url(../images/bgElement.gif) no-repeat -390px 0px;padding-top:44px;; font-size:12px}
-.topTip ul li{height:30px; line-height:15px; text-align:center; width:50px; padding:4px 10px 0 10px; float:left}
+.toper {
+    width: 1000px;
+    line-height: 38px;
+    margin: 0 auto;
+    overflow: hidden
+}
 
+.topleft {
+    width: 700px;
+    overflow: hidden;
+    float: left
+}
 
-.topnav{width:1000px; height:auto; line-height:55px; overflow:hidden; margin:0 auto}
-.topnavleft{width:218px; height:auto; overflow:hidden; float:left}
-.topnavright{width:781px; height:auto; overflow:hidden; float:right}
-.topnavright ul li{float:left; padding:0px 25px; color:#FFF; font-size:16px}
+.topleft ul li {
+    float: left;
+    margin: 0px 5px;
+    font-size: 12px
+}
 
+.topleft ul li img {
+    float: left;
+    margin: 10px 5px 0px 5px
+}
 
+.topmian {
+    padding-left: 50px;
+    float: left;
+    line-height: 38px;
+}
 
+.topright {
+    width: 200px;
+    overflow: hidden;
+    float: right
+}
 
-#foodmain{background:url(../images/bg0.gif); margin-top:10px}
-.foodmainer{width:1000px; overflow:hidden; height:auto; margin:0 auto; padding:10px 0px;}
-.frist{width:1000px; height:auto; overflow:hidden; background-color:#FFF; padding:10px 0px}
+.topright ul li {
+    float: left;
+    margin: 0px 5px;
+    font-size: 12px
+}
+
+.topmain {
+    width: 1000px;
+    height: 112px;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.Logo {
+    overflow: hidden;
+    float: left;
+    margin: 15px 0px 0px 10px;
+}
+
+.search {
+    float: left;
+    width: 388px;
+    margin: 0;
+}
+
+.searchbox {
+    width: 388px;
+    height: 35px;
+    overflow: hidden;
+    background-color: #ffa800;
+}
+
+.search {
+    height: 71px;
+    padding-top: 30px;
+    width: 382px;
+}
+
+.searchForm {
+    height: 30px;
+    background: #FFA800;
+    padding: 3px;
+    padding-right: 0;
+}
+
+.searchFormInputTxt {
+    width: 300px;
+    background: #FFF;
+    float: left;
+}
+
+.searchFormInputTxt ul {
+    width: 62px;
+    float: left;
+    height: 29px;
+    position: relative;
+    border-top: #FFF 1px solid;
+    z-index: 99
+}
+
+.searchFormInputTxt ul.hover {
+    border-top: #E3E3E3 1px solid;
+}
+
+.searchFormInputTxt ul li {
+    border: #E3E3E3 1px solid;
+    border-top: none;
+    height: 28px;
+    width: 60px;
+    line-height: 28px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+    background: #FFF;
+    position: absolute;
+    left: 0
+}
+
+.searchFormInputTxt ul li.item1 {
+    background-image: url(../images/bgElement.png);
+    *background-image: url(../images/bgElement.png);
+    _background-image: url(../images/bgElement.gif);
+    background-repeat: no-repeat;
+    background-position: 49px -189px;
+    background-color: #FFF;
+    top: 0;
+}
+
+.searchFormInputTxt ul li.item1Hov {
+    background-position: -151px -189px;
+}
+
+.searchFormInputTxt ul li.item2 {
+    top: 29px;
+    display: none
+}
+
+.searchFormInputTxt ul li.item3 {
+    top: 58px;
+    display: none
+}
+
+.searchFormInputTxt ul li.item4 {
+    top: 87px;
+    display: none
+}
+
+.inputSearch {
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 9px;
+    *padding: 0 9px;
+    _padding: 0 7px;
+    border: none;
+    background: none;
+    font-size: 1em;
+    color: #C5C4C4;
+}
+
+.btnSearch {
+    width: 77px;
+    *width: 77px;
+    _width: 74px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    float: left
+}
+
+.searchKeywords {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px 0 18px;
+    color: #999;
+}
+
+.searchKeywords a {
+    color: #999;
+}
+
+.searchKeywords a:hover {
+    color: #E99A03;
+}
+
+.topTip {
+    width: 280px;
+    float: right;
+    height: 78px;
+    padding: 17px 10px 17px 0;
+}
+
+.topTip ul {
+    background: url(../images/bgElement.png) no-repeat -390px 0px;
+    *background: url(../images/bgElement.png) no-repeat -390px 0px;
+    _background: url(../images/bgElement.gif) no-repeat -390px 0px;
+    padding-top: 44px;;
+    font-size: 12px
+}
+
+.topTip ul li {
+    height: 30px;
+    line-height: 15px;
+    text-align: center;
+    width: 50px;
+    padding: 4px 10px 0 10px;
+    float: left
+}
+
+.topnav {
+    width: 1000px;
+    height: auto;
+    line-height: 55px;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.topnavleft {
+    width: 218px;
+    height: auto;
+    overflow: hidden;
+    float: left
+}
+
+.topnavright {
+    width: 781px;
+    height: auto;
+    overflow: hidden;
+    float: right
+}
+
+.topnavright ul li {
+    float: left;
+    padding: 0px 25px;
+    color: #FFF;
+    font-size: 16px
+}
+
+#foodmain {
+    background: url(../images/bg0.gif);
+    margin-top: 10px
+}
+
+.foodmainer {
+    width: 1000px;
+    overflow: hidden;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px 0px;
+}
+
+.frist {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    background-color: #FFF;
+    padding: 10px 0px
+}
+
 /*.fristleft{width:40px; height:auto; overflow:hidden; float:left; margin-top:120px}
 .fristright{width:40px; height:auto; overflow:hidden; float:right; margin-top:120px}
 .frist ul{width:920px; height:310px; overflow:hidden; float:left}
@@ -69,66 +356,361 @@ a img{border:none}
 -moz-opacity:0.5;
 opacity:0.5; line-height:30px; position:relative; top:275px; text-align:left; width:220px}
 .textweirt{color:#FFF; font-size:14px; padding-left:2px; z-index:1; display:block}*/
-.second{width:1000px; height:auto; overflow:hidden; background-color:#FFF; margin:10px 0px 20px 0px}
-.secondleft{width:640px; height:auto; overflow:hidden; float:left; padding:10px}
-.tjleft{width:300px; height:auto; overflow:hidden; float:left; background-color:#f5f6f8; line-height:24px; padding-bottom:10px}
-.tjlefttext{width:98%; margin:0 auto}
-.title{font-size:14px; color:#2d2d2d; margin:5px 0px}
-.title2,.title2 a{font-size:14px; color:#E99A03; margin:0px 0px 5px 0px}
-.tjlist{width:320px; height:auto; overflow:hidden; float:right}
-.tjlist .tjimg{float:left; width:95px; height:65px; overflow:hidden}
-.tjlist .tjtext{float:right; width:210px; height:65px; overflow:hidden; line-height:18px}
-.tjlist ul li{margin:0px 0px 23px 0px; overflow:hidden; height:auto}
-.secondright{width:310px; height:auto; overflow:hidden; float:right;  padding:10px}
-.secondright ul{width:310px; height:auto; overflow:hidden}
-.secondright ul li{background-color:#f2f5f5; border:dashed 1px #E99A03; color:#666666; line-height:24px; float:left; margin:0px 5px 10px 5px; padding:2px 10px}
+.second {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    background-color: #FFF;
+    margin: 10px 0px 20px 0px
+}
 
+.secondleft {
+    width: 640px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    padding: 10px
+}
 
-.banner{height:auto; margin:10px 0px; text-align:center; overflow:hidden}
-.thrid{width:1000px; height:auto; overflow:hidden; background-color:#FFF; margin:20px 0px}
-.four{width:1000px; height:auto; overflow:hidden; background-color:#FFF; margin:10px 0px 20px 0px; padding:10px}
-.fourleft{width:640px; height:auto; overflow:hidden; float:left}
-.fourtitle{width:640px; height:auto; overflow:hidden}
-.all{float:left;font-size:18px; margin:10px 0px; color:#2d2d2d}
-.allclass{float:left; margin:10px 0px; line-height:30px; padding-left:20px}
-.allclass ul li{float:left; width:100px; height:34px; text-align:center}
-.Srtab{background:url(../images/d.jpg) no-repeat center; color:#FFF}
-.allproud{width:640px; height:auto; margin:10px 0px; overflow:hidden}
-.allproud ul li{width:300px; height:200px; overflow:hidden; float:left; margin:0px 10px 20px 5px}
-.dis{display:block}
-.undis{display:none}
-.fourright{width:320px; height:auto; overflow:hidden; float:right; padding:0px 10px}
-.foursina{width:320px; overflow:hidden; height:auto; padding-top:20px}
-.fourimg{width:60px; height:60px; overflow:hidden; float:left}
-.fourtext{width:250px; height:auto; overflow:hidden; float:right; line-height:30px}
-.VX{background:url(../images/VX.jpg) no-repeat; overflow:hidden; height:auto; overflow:hidden; padding-top:120px; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:30px; margin-top:20px}
+.tjleft {
+    width: 300px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    background-color: #f5f6f8;
+    line-height: 24px;
+    padding-bottom: 10px
+}
 
-.fourerimg{width:300px; height:200px; overflow:hidden; position:absolute}
-.fourertext{background-color:#000;filter:alpha(opacity=80);-moz-opacity:0.8; opacity:0.8;line-height:30px; position:relative; top:170px; z-index:1; text-align:left; width:300px; display:block}
-.fourtextweirt{color:#FFF !important; font-size:14px; padding-left:2px; z-index:2; display:inline-block}
+.tjlefttext {
+    width: 98%;
+    margin: 0 auto
+}
 
+.title {
+    font-size: 14px;
+    color: #2d2d2d;
+    margin: 5px 0px
+}
 
-.Foodtext{width:1000px; height:auto; overflow:hidden; background-color:#FFF}
-.Foodtext_left{width:640px; height:auto; overflow:hidden; float:left; padding:20px 0px}
-.newsinfo{width:620px; margin:0 auto; overflow:hidden; line-height:24px; font-size:14px}
-.newsinfo p{line-height:30px; color:#666;}
-.foodtitle{ font-size:18px;font-family:"微软雅黑"; color:#000; text-align:center; border-bottom:1px solid #e3e3e3; padding-bottom:10px; }
-.foodtitle span{ font-size:12px; color:#999; font-weight:normal; margin-top:5px; line-height:30px;}
-.tb ul{width:640px; margin:10px 0px 0px 0px; overflow:hidden}
-.infotext{font-size:14px; border-bottom:1px solid #e3e3e3; padding:20px 0px; line-height:30px}
-.tb ul li{float:left; padding:2px; text-align:center}
-.new_t{overflow: hidden; margin:10px 5px; line-height:24px}
-.new_t ul li{line-height:24px; float:left; width:405px}
-.yh20{font-size:18px; line-height:36px; color:#000}
-.yh16{font-size:16px; line-height:36px; color:#000}
+.title2, .title2 a {
+    font-size: 14px;
+    color: #E99A03;
+    margin: 0px 0px 5px 0px
+}
 
+.tjlist {
+    width: 320px;
+    height: auto;
+    overflow: hidden;
+    float: right
+}
 
-.Foodtext_right{width:340px; height:auto; overflow:hidden; float:right}
+.tjlist .tjimg {
+    float: left;
+    width: 95px;
+    height: 65px;
+    overflow: hidden
+}
 
+.tjlist .tjtext {
+    float: right;
+    width: 210px;
+    height: 65px;
+    overflow: hidden;
+    line-height: 18px
+}
+
+.tjlist ul li {
+    margin: 0px 0px 23px 0px;
+    overflow: hidden;
+    height: auto
+}
+
+.secondright {
+    width: 310px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+    padding: 10px
+}
+
+.secondright ul {
+    width: 310px;
+    height: auto;
+    overflow: hidden
+}
+
+.secondright ul li {
+    background-color: #f2f5f5;
+    border: dashed 1px #E99A03;
+    color: #666666;
+    line-height: 24px;
+    float: left;
+    margin: 0px 5px 10px 5px;
+    padding: 2px 10px
+}
+
+.banner {
+    height: auto;
+    margin: 10px 0px;
+    text-align: center;
+    overflow: hidden
+}
+
+.thrid {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    background-color: #FFF;
+    margin: 20px 0px
+}
+
+.four {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    background-color: #FFF;
+    margin: 10px 0px 20px 0px;
+    padding: 10px
+}
+
+.fourleft {
+    width: 640px;
+    height: auto;
+    overflow: hidden;
+    float: left
+}
+
+.fourtitle {
+    width: 640px;
+    height: auto;
+    overflow: hidden
+}
+
+.all {
+    float: left;
+    font-size: 18px;
+    margin: 10px 0px;
+    color: #2d2d2d
+}
+
+.allclass {
+    float: left;
+    margin: 10px 0px;
+    line-height: 30px;
+    padding-left: 20px
+}
+
+.allclass ul li {
+    float: left;
+    width: 100px;
+    height: 34px;
+    text-align: center
+}
+
+.Srtab {
+    background: url(../images/d.jpg) no-repeat center;
+    color: #FFF
+}
+
+.allproud {
+    width: 640px;
+    height: auto;
+    margin: 10px 0px;
+    overflow: hidden
+}
+
+.allproud ul li {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    float: left;
+    margin: 0px 10px 20px 5px
+}
+
+.dis {
+    display: block
+}
+
+.undis {
+    display: none
+}
+
+.fourright {
+    width: 320px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+    padding: 0px 10px
+}
+
+.foursina {
+    width: 320px;
+    overflow: hidden;
+    height: auto;
+    padding-top: 20px
+}
+
+.fourimg {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    float: left
+}
+
+.fourtext {
+    width: 250px;
+    height: auto;
+    overflow: hidden;
+    float: right;
+    line-height: 30px
+}
+
+.VX {
+    background: url(../images/VX.jpg) no-repeat;
+    overflow: hidden;
+    height: auto;
+    overflow: hidden;
+    padding-top: 120px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 30px;
+    margin-top: 20px
+}
+
+.fourerimg {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    position: absolute
+}
+
+.fourertext {
+    background-color: #000;
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+    line-height: 30px;
+    position: relative;
+    top: 170px;
+    z-index: 1;
+    text-align: left;
+    width: 300px;
+    display: block
+}
+
+.fourtextweirt {
+    color: #FFF !important;
+    font-size: 14px;
+    padding-left: 2px;
+    z-index: 2;
+    display: inline-block
+}
+
+.Foodtext {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    background-color: #FFF
+}
+
+.Foodtext_left {
+    width: 640px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    padding: 20px 0px
+}
+
+.newsinfo {
+    width: 620px;
+    margin: 0 auto;
+    overflow: hidden;
+    line-height: 24px;
+    font-size: 14px
+}
+
+.newsinfo p {
+    line-height: 30px;
+    color: #666;
+}
+
+.foodtitle {
+    font-size: 18px;
+    font-family: "微软雅黑";
+    color: #000;
+    text-align: center;
+    border-bottom: 1px solid #e3e3e3;
+    padding-bottom: 10px;
+}
+
+.foodtitle span {
+    font-size: 12px;
+    color: #999;
+    font-weight: normal;
+    margin-top: 5px;
+    line-height: 30px;
+}
+
+.tb ul {
+    width: 640px;
+    margin: 10px 0px 0px 0px;
+    overflow: hidden
+}
+
+.infotext {
+    font-size: 14px;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 20px 0px;
+    line-height: 30px
+}
+
+.tb ul li {
+    float: left;
+    padding: 2px;
+    text-align: center
+}
+
+.new_t {
+    overflow: hidden;
+    margin: 10px 5px;
+    line-height: 24px
+}
+
+.new_t ul li {
+    line-height: 24px;
+    float: left;
+    width: 405px
+}
+
+.yh20 {
+    font-size: 18px;
+    line-height: 36px;
+    color: #000
+}
+
+.yh16 {
+    font-size: 16px;
+    line-height: 36px;
+    color: #000
+}
+
+.Foodtext_right {
+    width: 340px;
+    height: auto;
+    overflow: hidden;
+    float: right
+}
 
 /*  评论   */
-.commentsGoodsPages {border: #EAEAEA 1px solid;border-top: #FFA800 2px solid;}
-.commentsGoodsPagesTitle {    margin-left: 4px;
+.commentsGoodsPages {
+    border: #EAEAEA 1px solid;
+    border-top: #FFA800 2px solid;
+}
+
+.commentsGoodsPagesTitle {
+    margin-left: 4px;
     width: 77px;
     height: 36px;
     line-height: 36px;
@@ -179,7 +761,11 @@ opacity:0.5; line-height:30px; position:relative; top:275px; text-align:left; wi
     padding: 0 0 0 40px;
 }
 
-.commentsPostWrap{border: #EAEAEA 1px solid; border-top: none;}
+.commentsPostWrap {
+    border: #EAEAEA 1px solid;
+    border-top: none;
+}
+
 .commentsPostWrap {
     padding: 10px;
     color: #999;
@@ -352,29 +938,140 @@ opacity:0.5; line-height:30px; position:relative; top:275px; text-align:left; wi
 }
 
 /* 标签列表 */
-.five{width:1000px; height:auto; overflow:hidden; background-color:#FFF; margin:5px 0px 20px 0px; padding:10px}
-.fivetitle{width:100%; height:auto; overflow:hidden; font-family:Arial, Helvetica, sans-serif; font-size:14px; padding:10px 0px}
-.fiveclass{width:100%; height:34px; line-height:34px; margin-right:20px; overflow:hidden}
-.fivesmallclass{color:#FFF; background:url(../images/d.jpg) no-repeat; text-align:center; width:80px; height:34px; line-height:34px; float:left; margin-right:20px}
-.fivelist{width:100%; height:auto; overflow:hidden; font-family:Arial, Helvetica, sans-serif; line-height:34px}
-.fivelist ul{width:100%; height:auto; overflow:hidden; border-bottom:dashed 1px #DFDFDF}
-.fivelist ul li{float:left; padding:0px 15px}
-.fivelist ul li span, .fivelist ul li span a{color:#ffa801; text-decoration:none}
-.fivetitle samp{color:#ffa801}
+.five {
+    width: 1000px;
+    height: auto;
+    overflow: hidden;
+    background-color: #FFF;
+    margin: 5px 0px 20px 0px;
+    padding: 10px
+}
 
+.fivetitle {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 10px 0px
+}
 
-.new2right{width:640px; height:auto; overflow:hidden; margin:0 auto}
-.new2right dl{width:640px; height:120px; margin:0 auto; padding-bottom:20px; border-bottom:dashed 1px #DFDFDF; margin-top:15px;}
-.new2right dt{width:154px; height:103px; float:left; margin-left:15px;}
-.pic{ float:left; width:154px;}
-.new2right dd{ padding-left:30px; width:380px; float:left; font-size:12px; line-height:20px;}
-.new2right dd p{ padding-bottom:10px;}
-.new2right dd img{float:left; text-align:left}
-.new2right dd .h4{ font-size:14px !important; font-weight:bold; padding-bottom:10px;}
-.pictitle{font-size:16px; color:#ffa801; line-height:24px}
-.pictitle img{float:left; margin-right:15px}
-.pictitle span,.pictitle span a{color:#ffa801}
+.fiveclass {
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    margin-right: 20px;
+    overflow: hidden
+}
+
+.fivesmallclass {
+    color: #FFF;
+    background: url(../images/d.jpg) no-repeat;
+    text-align: center;
+    width: 80px;
+    height: 34px;
+    line-height: 34px;
+    float: left;
+    margin-right: 20px
+}
+
+.fivelist {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 34px
+}
+
+.fivelist ul {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-bottom: dashed 1px #DFDFDF
+}
+
+.fivelist ul li {
+    float: left;
+    padding: 0px 15px
+}
+
+.fivelist ul li span, .fivelist ul li span a {
+    color: #ffa801;
+    text-decoration: none
+}
+
+.fivetitle samp {
+    color: #ffa801
+}
+
+.new2right {
+    width: 640px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto
+}
+
+.new2right dl {
+    width: 640px;
+    height: 120px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: dashed 1px #DFDFDF;
+    margin-top: 15px;
+}
+
+.new2right dt {
+    width: 154px;
+    height: 103px;
+    float: left;
+    margin-left: 15px;
+}
+
+.pic {
+    float: left;
+    width: 154px;
+}
+
+.new2right dd {
+    padding-left: 30px;
+    width: 380px;
+    float: left;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.new2right dd p {
+    padding-bottom: 10px;
+}
+
+.new2right dd img {
+    float: left;
+    text-align: left
+}
+
+.new2right dd .h4 {
+    font-size: 14px !important;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.pictitle {
+    font-size: 16px;
+    color: #ffa801;
+    line-height: 24px
+}
+
+.pictitle img {
+    float: left;
+    margin-right: 15px
+}
+
+.pictitle span, .pictitle span a {
+    color: #ffa801
+}
 
 /*字体*/
 
-.cs12,.cs12 a{color:#E99A03}
+.cs12, .cs12 a {
+    color: #E99A03
+}

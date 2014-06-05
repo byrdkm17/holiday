@@ -299,7 +299,7 @@ a img {
 .search {
     height: 71px;
     padding-top: 30px;
-    width: 392px;
+    width: 382px;
 }
 
 .searchForm {
@@ -310,7 +310,7 @@ a img {
 }
 
 .searchFormInputTxt {
-    width: 310px;
+    width: 300px;
     background: #FFF;
     float: left;
 }
@@ -5863,7 +5863,7 @@ a img {
 
 .tempWrap {
     width: 964px;
-    margin: 0 20px;
+    margin: 0 0px;
 }
 
 .orderInfos dl dd.itemT3 i input.number {

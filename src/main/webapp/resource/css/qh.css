@@ -39,8 +39,8 @@ ol, ul, li {
 
 .goodsThumb .hd ul li {
     float: left;
-    padding: 0px 7px 0 0;
-    width: 95px;
+    padding: 0px 10px 0 0;
+    width: 90px;
     height: 80px;
     position: relative;
     cursor: pointer

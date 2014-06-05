@@ -338,7 +338,7 @@ define(function (require, exports) {
         $('[name="priceGroup"]').val(JSON.stringify(priceGroup));
 
         var priceSet = [];
-        var minPrice = 0, maxPrice = 0;
+        var minPrice = 0, maxPrice = 0, linePrice1 = 0, linePrice2 = 0;
         $('.priceSet').each(function (index) {
             if (index > 0) {
                 var s = {};
@@ -352,12 +352,20 @@ define(function (require, exports) {
                 if (maxPrice == 0 || maxPrice < s.price) {
                     maxPrice = s.price;
                 }
+                if (s.title == '成人') {
+                    linePrice1 = s.price;
+                }
+                if (s.title == '儿童') {
+                    linePrice2 = s.price;
+                }
                 priceSet.push(s);
             }
         });
         $('[name="priceSet"]').val(JSON.stringify(priceSet));
         $('[name="minPrice"]').val(minPrice);
-        $('[name="maxPrice"]').val(minPrice);
+        $('[name="maxPrice"]').val(maxPrice);
+        $('[name="linePrice1"]').val(linePrice1);
+        $('[name="linePrice2"]').val(linePrice2);
 
         var arg = [];
         $('.arg .label.selected').each(function () {
@@ -405,18 +413,19 @@ define(function (require, exports) {
         var priceGroup = JSON.parse($('#priceGroupPlain').html());
         var priceSet = JSON.parse($('#priceSetPlain').html());
 
-        $.each(priceGroup, function () {
-            var ps = $('.panel.price:first').clone(true);
-            if ($('[name="production"]').val() == 'line') {
+        if ($('[name="production"]').val() != 'line') {
+            $.each(priceGroup, function () {
+                var ps = $('.panel.price:first').clone(true);
+
                 ps.addClass('hide');
-            }
-            ps.find('.title').text(this.name);
-            $.each(this.names, function (index) {
-                ps.find(':checkbox:eq(' + index + ')').prop('checked', true);
-                ps.find(':checkbox:eq(' + index + ')').closest('div').find('input').val(this);
-                $addBtn.before(ps.show());
+                ps.find('.title').text(this.name);
+                $.each(this.names, function (index) {
+                    ps.find(':checkbox:eq(' + index + ')').prop('checked', true);
+                    ps.find(':checkbox:eq(' + index + ')').closest('div').find('input').val(this);
+                    $addBtn.before(ps.show());
+                });
             });
-        });
+        }
 
         renderPriceSet(priceSet);
 

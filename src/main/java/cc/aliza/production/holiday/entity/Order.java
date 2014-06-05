@@ -32,6 +32,12 @@ public class Order extends HolidayEntity {
     // 数量
     private Integer number;
 
+    // 数量，线路类，成人数
+    private Integer number1;
+
+    // 数量，线路类，儿童数
+    private Integer number2;
+
     // 单价
     private Integer amount;
 
@@ -70,9 +76,36 @@ public class Order extends HolidayEntity {
     // 结束日期
     private String endDate;
 
+    // 日期，线路类
+    private String date;
+
     // 交易记录
     @EmbedList
     private List<Map<String, String>> trades;
+
+    public Integer getNumber1() {
+        return number1;
+    }
+
+    public void setNumber1(Integer number1) {
+        this.number1 = number1;
+    }
+
+    public Integer getNumber2() {
+        return number2;
+    }
+
+    public void setNumber2(Integer number2) {
+        this.number2 = number2;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public List<Map<String, String>> getTrades() {
         return trades;
@@ -224,6 +257,10 @@ public class Order extends HolidayEntity {
 
     public Map getPriceSetObject() {
         return new Gson().fromJson(this.priceSet, Map.class);
+    }
+
+    public List getPriceSetObjectList() {
+        return new Gson().fromJson(this.priceSet, List.class);
     }
 
     public String getNo() {

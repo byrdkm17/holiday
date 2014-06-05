@@ -30,8 +30,11 @@ public class OrderRest extends Controller {
 
         String priceSet = getPara("priceSet");
         Integer number = getParaToInt("number");
+        Integer number1 = getParaToInt("number1");
+        Integer number2 = getParaToInt("number2");
         String beginDate = getPara("beginDate");
         String endDate = getPara("endDate");
+        String date = getPara("date");
         Integer price = getParaToInt("price");
 
         Order order = new Order();
@@ -39,13 +42,16 @@ public class OrderRest extends Controller {
         order.setGoods(goods);
         order.setPriceSet(priceSet);
         order.setNumber(number);
+        order.setNumber1(number1);
+        order.setNumber2(number2);
         order.setStatus(0);
         order.setBeginDate(beginDate);
         order.setEndDate(endDate);
+        order.setDate(date);
         order.setPrice(price);
 
         String id = getSessionAttr("member");
-        int total = 0;
+        int total;
         if (StringUtils.isBlank(id)) {
             OrderDao.dao.save(order);
             List<Order> orders = getSessionAttr("cart");
@@ -75,6 +81,7 @@ public class OrderRest extends Controller {
             r.put("total", total);
             renderJson(r);
         } else {
+            order.setGoods(null);
             renderJson(Result.exec(order));
         }
     }

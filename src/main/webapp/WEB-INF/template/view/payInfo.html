@@ -24,16 +24,32 @@
                     <input type="text" id="dateBegin" class="dateInput dateBegin" value="${order.beginDate!'点击选择日历'}">
                 </dd>
                 <dd>
+                    <!--# if(order.goodsObject.production!'' == 'line') { -->
+                    <!--# for(item in order.priceSetObjectList![]) { -->
+                    <span class="numberCos">
+                        <i>${item.title!} 单价:</i><i class="price dj">￥<span>${item.price!0 / 100}</span>元</i>
+                        <br>
+                        <!--# if(item.title!'' == '成人') { -->
+                        <i style="line-height: 32px;margin-right: 15px;">数量:</i><span class="reduce">-</span><input
+                            type="text" class="number" value="${order.number1}"><span class="plus">+</span>
+                        <!--# } else { -->
+                        <i style="line-height: 32px;margin-right: 15px;">数量:</i><span class="reduce">-</span><input
+                            type="text" class="number" value="${order.number2}"><span class="plus">+</span>
+                        <!--# } -->
+                    </span>
+                    <!--# } -->
+                    <!--# } else { -->
                     <span class="numberCos">
                         <i>${order.priceSetObject.title} 单价:</i><i class="price dj">￥<span>${order.priceSetObject.price!0 / 100}</span>元</i>
                         <br>
                         <i style="line-height: 32px;margin-right: 15px;">数量:</i><span class="reduce">-</span><input
                             type="text" class="number" value="${order.number}"><span class="plus">+</span>
                     </span>
+                    <!--# } -->
                 </dd>
                 <dd>
                     <span class="priceTotal">总计：<i>
-                        ￥<span>${(order.priceSetObject.price!0 / 100) * order.number!0}</span>元</i></span>
+                        ￥<span>${order.price!0 / 100}</span>元</i></span>
                 </dd>
             </dl>
         </div>
@@ -129,7 +145,12 @@
             <!--# for(order in orderList![]) { -->
             <li class="orderHotelItem" data-id="${order.id}">
                 <i class="price zj">￥<span></span>元</i>
+                <!--# if(order.goodsObject.production!'' == 'line') { -->
+                成人 x <span class="sl">${order.number1!0}</span>
+                儿童 x <span class="sl">${order.number2!0}</span>
+                <!--# } else { -->
                 ${order.priceSetObject.title!} x <span class="sl">${order.number!0}</span>
+                <!--# } -->
             </li>
             <!--# } -->
             <li class="orderHotelItem dj"></li>

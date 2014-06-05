@@ -1,37 +1,31 @@
 <!--# layout("/view/include/layout.html", {cur:"detail-line"}) { -->
 <div id="productmain">
-<div class="producttitle"> 首页 > 跟团游 > 丽江</div>
+<div class="producttitle"> 首页 > 跟团游 > ${goods.name!}</div>
 <div class="productshow">
     <div class="showleft">
-
-
         <div class="goodsThumb">
             <div class="bd">
                 <div class="tempWrap" style="overflow:hidden; position:relative; width:400px">
                     <ul style="width: 2532px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -400px; ">
-                        <li class="clone" style="float:left; width:400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
-                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
-                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
-                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
-                        <li style="float: left; width: 400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
-                        <li class="clone" style="float: left; width: 400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
-                        <li class="clone" style="float: left; width: 400px; "><a href="#" target="_blank"><img
-                                src="${ctxPath}/resource/image/xcsm.jpg"></a></li>
+                        <!--# for(img in goods.pics![]) { -->
+                        <li class="clone" style="float:left; width:400px; ">
+                            <a href="#" target="_blank">
+                                <img src="${ctxPath}/rest/image/${img.id!}">
+                            </a>
+                        </li>
+                        <!--# } -->
                     </ul>
                 </div>
             </div>
             <div class="hd">
                 <ul>
-                    <li class="on"><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s1.jpg"></a></li>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s2.jpg"></a></li>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s3.jpg"></a></li>
-                    <li><a href="#" target="_blank"><img src="${ctxPath}/resource/image/s4.jpg"></a></li>
+                    <!--# for(img in goods.pics![]) { -->
+                    <!--# if(img_index == 0) { -->
+                    <li class="on"><a href="#" target="_blank"><img src="${ctxPath}/rest/image/${img.id!}"></a></li>
+                    <!--# } else { -->
+                    <li><a href="#" target="_blank"><img src="${ctxPath}/rest/image/${img.id!}"></a></li>
+                    <!--# } -->
+                    <!--# } -->
 
                 </ul>
                 <ol>
@@ -39,8 +33,6 @@
                 </ol>
             </div>
         </div>
-
-
         <script src="${ctxPath}/resource/css/sy.js"></script>
         <script src="${ctxPath}/resource/css/slide.js"></script>
         <script>
@@ -59,54 +51,62 @@
 
             });
         </script>
-
-
     </div>
-
     <div class="showright">
-        <div class="yh20"><a href="#">至尊瑧品昆明大理丽江西双版纳8天</a>
+        <div class="yh20"><a href="#">${goods.name!}</a>
 
-            <p><a href="#">很好的旅游产品 很好的旅游产品 很好的旅游产品</a></p>
+            <p><a href="#">${goods.caption!}</a></p>
         </div>
         <div class="monney">
-            <div class="jg">促销价<span class="yh10">￥</span><span class="yh30">580 </span>暑假特惠
-                <p>市场价：￥1024元</p></div>
+            <!--# if(goods.SCPrice!'' == '') { -->
+            <div class="jg"><span class="yh10">￥</span><span class="yh30">${goods.minRealPrice!0 / 100} </span></div>
+            <!--# } else { -->
+            <div class="jg">促销价<span class="yh10">￥</span><span class="yh30">${goods.minRealPrice!0 / 100} </span>暑假特惠
+                <p>市场价：￥${goods.SCPrice!'0'}元</p></div>
+            <!--# } -->
             <div class="sm"><br/>
                 <a href="#">起价说明</a></div>
         </div>
         <ul class="xq">
-            <li><img src="${ctxPath}/resource/image/t1.jpg" width="25" height="25"/>销量：109</li>
-            <li><img src="${ctxPath}/resource/image/t2.jpg" width="25" height="25"/>评价：90</li>
-            <li><img src="${ctxPath}/resource/image/t3.jpg" width="25" height="25"/>收藏：207</li>
+            <li><img src="${ctxPath}/resource/image/t1.jpg" width="25" height="25"/>销量：${goods.sales!0}</li>
+            <li><img src="${ctxPath}/resource/image/t2.jpg" width="25" height="25"/>评价：${commentPage.totalRow!0}</li>
+            <li><img src="${ctxPath}/resource/image/t3.jpg" width="25" height="25"/>收藏：${goods.collect!0}</li>
         </ul>
         <ul class="xc">
-            <li>时间：<span class="selBG"><select name="" class="text2">
-                <option>2014年06月21日</option>
+            <li>时间：<span class="selBG"><select name="date" class="text2">
+                <!--# for(date in dates) { -->
+                <option value="${date}">${date}</option>
+                <!--# } -->
             </select></span></li>
-            <li><span class="red"><strong>出发城市：</strong></span>昆明</li>
-            <li><span class="red"><strong>行程天数：</strong></span>6</li>
+            <li><span class="red"><strong>出发城市：</strong></span>${goods.start!''}</li>
+            <li><span class="red"><strong>行程天数：</strong></span>${goods.XC!0}</li>
         </ul>
         <ul class="rq">
-            <li>人数：<input name="" type="text" class="text1" value="1" maxlength="8"/><samp><em class="minus"><img
-                    src="${ctxPath}/resource/image/down.jpg" width="16" height="12"/></em><em class="plus"><img
-                    src="${ctxPath}/resource/image/sown.jpg"
-                    width="16"
-                    height="12"/></em></samp>
+            <li>人数：
+                <input name="成人" type="text" class="text1" value="1" maxlength="8"/><samp>
+                    <em class="minus"><img src="${ctxPath}/resource/image/down.jpg" width="16" height="12"
+                                           style="display: block"/></em>
+                    <em class="plus" style="padding: 0"><img src="${ctxPath}/resource/image/sown.jpg" width="16"
+                                                             height="12" style="display: block"/></em>
+                </samp>
             </li>
-            <li>成人 <strong>￥1200</strong>：<input name="" type="text" class="text1" value="0" maxlength="8"/><samp><em
-                    class="minus"><img src="${ctxPath}/resource/image/down.jpg" width="16" height="12"/></em><em
-                    class="plus"><img
-                    src="${ctxPath}/resource/image/sown.jpg" width="16" height="12"/></em></samp></li>
-            <li>儿童<strong> ￥1200</strong><span>儿童标准</span></li>
+            <li>成人 <strong>￥${goods.linePrice1!0 / 100}</strong>：
+                <input name="儿童" type="text" class="text1" value="0" maxlength="8"/><samp>
+                    <em class="minus"><img src="${ctxPath}/resource/image/down.jpg" width="16" height="12"
+                                           style="display: block"/></em>
+                    <em class="plus" style="padding: 0"><img src="${ctxPath}/resource/image/sown.jpg" width="16"
+                                                             height="12" style="display: block"/></em>
+                </samp>
+            </li>
+            <li>儿童<strong> ￥${goods.linePrice2!0 / 100}</strong><span>儿童标准</span></li>
         </ul>
-
-
         <div><input name="" class="but1" type="button" value="立即购买"/><input name="" class="but2" type="button"
                                                                             value="加入购物车"/></div>
         <div class="zf"><strong>支付方式：</strong><img src="${ctxPath}/resource/image/zfb.jpg" width="14" height="14"/>支付宝&nbsp;&nbsp;&nbsp;&nbsp;<strong>服务承诺：</strong>100%发团
             100%如实描述
         </div>
-        <div class="zf">本产品由假日风光旅行社有限公司为您服务 &nbsp;&nbsp;&nbsp;&nbsp;<strong>服务电话：400-848-8099</strong></div>
+        <div class="zf">本产品由${goods.supplier.name!}为您服务 &nbsp;&nbsp;&nbsp;&nbsp;<strong>服务电话：${ui400.value!}</strong>
+        </div>
     </div>
 </div>
 
@@ -123,21 +123,11 @@
                 猜你喜欢的
             </div>
             <ul>
-                <li><img src="${ctxPath}/resource/image/samll.jpg" width="180" height="120"/>丽江玉龙雪山一日游<p class="yh12">
-                    小包车、大索道、小九寨</p>
-
-                    <div class="xhjg">￥588起</div>
+                <!--# for(hotGoods in hotGoodsPage.list![]) { -->
+                <li><img src="${ctxPath}/rest/image/${hotGoods.master!}" width="180" height="120"/>${hotGoods.name!''}
+                    <div class="xhjg">￥${hotGoods.maxPrice!0 / 100}起</div>
                 </li>
-                <li><img src="${ctxPath}/resource/image/samll.jpg" width="180" height="120"/>丽江玉龙雪山一日游<p class="yh12">
-                    小包车、大索道、小九寨</p>
-
-                    <div class="xhjg">￥588起</div>
-                </li>
-                <li><img src="${ctxPath}/resource/image/samll.jpg" width="180" height="120"/>丽江玉龙雪山一日游<p class="yh12">
-                    小包车、大索道、小九寨</p>
-
-                    <div class="xhjg">￥588起</div>
-                </li>
+                <!--# } -->
             </ul>
         </div>
     </div>
@@ -164,54 +154,56 @@
         <div class="tablisttitle"><img src="${ctxPath}/resource/image/te.jpg" width="810" height="40"/></div>
         <div class="features">
             <ul>
-                <li>一段文字说明，对某一行程特色进行描述，可以是吃、住、行、景的各种优势。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。<img
-                        src="${ctxPath}/resource/image/teleft.jpg" width="360" height="265"/></li>
-                <li style="float:right; margin:0px">
-                    一段文字说明，对某一行程特色进行描述，可以是吃、住、行、景的各种优势。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。<img
-                        src="${ctxPath}/resource/image/teright.jpg" width="360" height="265"/></li>
+                <li>${goods.lineTSContent1!''}<img src="${ctxPath}/rest/image/${goods.lineTSPics[0]!''}" width="360"
+                                                   height="265"/></li>
+                <li style="float:right; margin:0px">${goods.lineTSContent2!''}<img
+                        src="${ctxPath}/rest/image/${goods.lineTSPics[1]!''}" width="360" height="265"/></li>
             </ul>
         </div>
         <div class="tablisttitle"><img src="${ctxPath}/resource/image/xc.jpg" width="810" height="40"/></div>
+        <!--# var day = 0; -->
+        <!--# while(day < goods.XC!0) { -->
         <div class="Trip">
-            <div class="ts"><samp>第一天</samp><span class="sz">1</span></div>
-            <div class="dd">昆明</div>
+            <div class="ts"><img src="${ctxPath}/resource/image/time.jpg" width="130" height="57"/></div>
+            <div class="dd">${goods.lineXCSite[day]!''}</div>
         </div>
         <div class="xcsm">
-            <div class="xcsmtext">
-                一段文字说明，对某一行程特色进行描述，可以是吃、住、行、景的各种优势。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。文字范例文字范例文字范例文字范例文字范例文字范例文字范文字范例文字范例文字范例，文字范例文字范例文字范例文字范例文字范例文字范例。
-            </div>
+            <div class="xcsmtext">${goods.lineXCContent[day]!''}</div>
             <ul>
-                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
-                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
-                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
-                <li><img src="${ctxPath}/resource/image/xcsm.jpg" width="380" height="300"/></li>
+                <!--# for(img in goods.lineXCPics!{}) { -->
+                <!--# if(strutil.startWith(img.key!'', 'lineXCPics_' + day + '_')) { -->
+                <!--# if(img.value!'' != '') { -->
+                <li><img src="${ctxPath}/rest/image/${img.value!''}" width="380" height="300"/></li>
+                <!--# } -->
+                <!--# } -->
+                <!--# } -->
             </ul>
             <div class="xcsmer">
                 <div class="xcsmerleft">
                     <div class="xcsmertitle1"><img src="${ctxPath}/resource/image/zs.png" width="30" height="32"/>住宿
                     </div>
                     <ul class="xcsmul">
-                        <li>五星级大酒店</li>
+                        <li>${goods.lineXCOther[day]['ZS']!''}</li>
                     </ul>
                 </div>
                 <div class="xcsmerleft">
                     <div class="xcsmertitle2"><img src="${ctxPath}/resource/image/jd.png" width="30" height="32"/>住宿
                     </div>
                     <ul class="xcsmul">
-                        <li>空调旅游车</li>
+                        <li>${goods.lineXCOther[day]['JT']!''}</li>
                     </ul>
                 </div>
                 <div class="xcsmerleft">
                     <div class="xcsmertitle3"><img src="${ctxPath}/resource/image/cz.png" width="36" height="27"/>住宿
                     </div>
                     <ul class="xcsmul">
-                        <li>早餐：酒店自助</li>
-                        <li>早餐：酒店自助</li>
-                        <li>早餐：酒店自助</li>
+                        <li>${goods.lineXCOther[day]['YC']!''}</li>
                     </ul>
                 </div>
             </div>
         </div>
+        <!--# day = day + 1; -->
+        <!--# } -->
 
         <div class="fyzx">
             <div class="tablisttitle"><img src="${ctxPath}/resource/image/fy.jpg" width="810" height="40"/></div>
@@ -219,33 +211,28 @@
                 <div class="fysmup">
                     <div class="fysmtitle">费用包含</div>
                     <ul>
-                        <li><span>★ 酒 店</span></li>
-                        <li><span>★ 餐 饮</span></li>
-                        <li><span>★ 交 通</span></li>
-                        <li><span>★ 门 票</span></li>
-                        <li><span>★ 导 游</span></li>
-                        <li><span>★ 保 险</span></li>
+                        <!--# for (item in goods.lineList!{}) { -->
+                        <!--# if(item.value['status']!0 == 1) { -->
+                        <li><span>★ ${item.value['name']!''}</span></li>
+                        <!--# } -->
+                        <!--# } -->
                     </ul>
                 </div>
                 <div class="fysmup">
                     <div class="fysmtitle">费用包含</div>
                     <ul>
-                        <li><span>★ 酒 店</span></li>
-                        <li><span>★ 餐 饮</span></li>
+                        <!--# for (item in goods.lineList!{}) { -->
+                        <!--# if(item.value['status']!0 == 2) { -->
+                        <li><span>★ ${item.value['name']!''}</span></li>
+                        <!--# } -->
+                        <!--# } -->
                     </ul>
                 </div>
             </div>
         </div>
         <div class="tablisttitle"><img src="${ctxPath}/resource/image/wx.jpg" width="810" height="40"/></div>
         <div class="tips">
-            <div class="tipser">
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-            </div>
+            <div class="tipser">${goods.lineTip!''}</div>
             <div class="tipserimg">
                 <img src="${ctxPath}/resource/image/tipsimg.jpg" width="220" height="234"/></div>
         </div>
@@ -255,12 +242,7 @@
         <div class="tips">
             <div class="ydzner">
                 <div class="ydzntitle">注意事项</div>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
-                ·文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例文字范例。<br/>
+                ${goods.lineFlow}
             </div>
             <div class="tipserimg">
                 <img src="${ctxPath}/resource/image/ydimg.jpg" width="199" height="234"/></div>
@@ -268,38 +250,26 @@
         <div class="tablisttitle"><img src="${ctxPath}/resource/image/zx.jpg" width="810" height="40"/></div>
         <div class="tabMessage">
             <ul>
+                <!--# for(comment in commentPage.list![]) { -->
                 <li>
                     <table width="100%">
                         <tr>
                             <td width="16%" align="center"><img src="${ctxPath}/resource/image/ure.jpg" width="14"
                                                                 height="14"/>咨询问题：
                             </td>
-                            <td width="84%">即时预定产品与现询预订产品有什么区别？</td>
+                            <td width="84%">${comment.content!''}</td>
                         </tr>
+                        <!--# if(comment.reply.content!'' != '') { -->
                         <tr class="red">
                             <td align="center" valign="top"><img src="${ctxPath}/resource/image/ureer.jpg" width="14"
                                                                  height="14"/>客服回复：
                             </td>
-                            <td>您好，即时预订产品位置、价格等信息已确定，可直接进行在线预订。现询预订产品位置，价格等信息待进一步核实，需要商家进行二次确认。</td>
+                            <td>${comment.reply.content!''}</td>
                         </tr>
+                        <!--# } -->
                     </table>
                 </li>
-                <li>
-                    <table width="100%">
-                        <tr>
-                            <td width="16%" align="center"><img src="${ctxPath}/resource/image/ure.jpg" width="14"
-                                                                height="14"/>咨询问题：
-                            </td>
-                            <td width="84%">即时预定产品与现询预订产品有什么区别？</td>
-                        </tr>
-                        <tr class="red">
-                            <td align="center" valign="top"><img src="${ctxPath}/resource/image/ureer.jpg" width="14"
-                                                                 height="14"/>客服回复：
-                            </td>
-                            <td>您好，即时预订产品位置、价格等信息已确定，可直接进行在线预订。现询预订产品位置，价格等信息待进一步核实，需要商家进行二次确认。</td>
-                        </tr>
-                    </table>
-                </li>
+                <!--# } -->
             </ul>
         </div>
     </div>
@@ -335,5 +305,65 @@
 <script src="${ctxPath}/resource/js/jquery.ui.datepicker-zh-CN.js"></script>
 <!--js pages part-->
 <script language="JavaScript" type="text/javascript" src="${ctxPath}/resource/css/lanrentuku.js"></script>
+<script type="text/plain" id="priceSet">${goods.priceSet}</script>
+<script>
+    $(function () {
+        var priceSet = JSON.parse($('#priceSet').html());
+
+        var countPrice = function () {
+            var price = 0;
+            $.each(priceSet, function () {
+                price += this.price * (+$('[name="' + this.title + '"]').val() || 0)
+            });
+            return price;
+        };
+
+        var updatePrice = function () {
+            var price = countPrice();
+            $('.yh30').text((price / 100) + ' ');
+        };
+
+
+        $('.plus').on('click', function () {
+            var $el = $(this).closest('li').find('input');
+            var n = +$el.val() || 0;
+            if (n > 0) {
+                n = n - 1;
+            }
+            $el.val(n);
+
+            updatePrice();
+        });
+        $('.minus').on('click', function () {
+            var $el = $(this).closest('li').find('input');
+            var n = +$el.val() || 0;
+            $el.val(n + 1);
+
+            updatePrice();
+        });
+
+
+        $('.but1, .but2').click(function () {
+            var pre = $(this).hasClass('but2');
+
+            $.post('${ctxPath}/rest/order/save', {
+                goodsID: '${goods.id}',
+                priceSet: JSON.stringify(priceSet),
+                number1: +$('[name="成人"]').val() || 0,
+                number2: +$('[name="儿童"]').val() || 0,
+                date: $('.text2').val(),
+                price: countPrice(),
+                pre: pre
+            }, function (res) {
+                if (pre) {
+                    $('.cartTotal').text(res.total);
+                    alert("已经加入购物车");
+                } else {
+                    location.href = '${ctxPath}/order/' + res.order.id;
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

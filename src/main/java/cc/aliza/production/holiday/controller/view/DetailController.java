@@ -8,8 +8,8 @@ import com.bugull.mongo.BuguMapper;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Jing on 14-2-16.
@@ -36,7 +36,36 @@ public class DetailController extends Controller {
             params.put("status", 1);
             setAttr("hotGoodsPage", GoodsDao.dao.findBy(params));
 
+
             if (goods.getProduction().equals("line")) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, 0);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Calendar e = null;
+                List<String> dates = new ArrayList<String>();
+                try {
+                    Date b = sdf.parse(goods.getStartTime());
+                    if (calendar.before(b)) {
+                        calendar.setTime(b);
+                    }
+                } catch (Exception ex) {
+                    calendar.clone();
+                }
+
+                try {
+                    e = (Calendar) calendar.clone();
+                    e.setTime(sdf.parse(goods.getEndTime()));
+                } catch (Exception ex) {
+                    e = (Calendar) calendar.clone();
+                }
+                e.add(Calendar.DAY_OF_MONTH, 1);
+                while (calendar.before(e)) {
+                    dates.add(sdf.format(calendar.getTime()));
+                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                }
+                setAttr("dates", dates);
                 render("/view/detail_line.html");
             } else {
                 render("/view/detail.html");

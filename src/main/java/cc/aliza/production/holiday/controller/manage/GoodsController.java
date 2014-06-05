@@ -265,14 +265,21 @@ public class GoodsController extends Controller {
         int xc = getParaToInt("XC", 0);
         goods.setXC(xc);
         List<String> lineXCContentMap = new ArrayList<String>();
-        List<String[]> lineXCPicsMap = new ArrayList<String[]>();
+        List<String> lineXCSiteMap = new ArrayList<String>();
+        Map<String, String> lineXCPicsMap = new HashMap<String, String>();
         List<Map<String, String>> lineXCOtherMap = new ArrayList<Map<String, String>>();
 
         for (int i = 0; i < xc; i++) {
             lineXCContentMap.add(getPara("lineXCContent_" + String.valueOf(i), ""));
 
+            lineXCSiteMap.add(getPara("lineXCSite_" + String.valueOf(i), ""));
+
             String[] lineXCPics = getParaValues("lineXCPics_" + String.valueOf(i));
-            lineXCPicsMap.add(lineXCPics);
+            int n = 0;
+            for (String id : lineXCPics) {
+                lineXCPicsMap.put("lineXCPics_" + String.valueOf(i) + '_' + String.valueOf(n), id);
+                n = n + 1;
+            }
 
             Map<String, String> other = new HashMap<String, String>();
             other.put("YC", getPara("lineXCOther_YC_" + String.valueOf(i), ""));
@@ -283,51 +290,61 @@ public class GoodsController extends Controller {
         goods.setLineXCContent(lineXCContentMap);
         goods.setLineXCPics(lineXCPicsMap);
         goods.setLineXCOther(lineXCOtherMap);
+        goods.setLineXCSite(lineXCSiteMap);
 
         Map<String, Map<String, Object>> lineList = new HashMap<String, Map<String, Object>>();
         Map<String, Object> JD = new HashMap<String, Object>();
         JD.put("status", getParaToInt("lineListStatusJD", 0));
         JD.put("content", getPara("lineListContentJD"));
+        JD.put("name", "酒店");
         lineList.put("JD", JD);
 
         Map<String, Object> CY = new HashMap<String, Object>();
         CY.put("status", getParaToInt("lineListStatusCY", 0));
         CY.put("content", getPara("lineListContentCY"));
+        CY.put("name", "餐饮");
         lineList.put("CY", CY);
 
         Map<String, Object> JT = new HashMap<String, Object>();
         JT.put("status", getParaToInt("lineListStatusJT", 0));
         JT.put("content", getPara("lineListContentJT"));
+        JT.put("name", "交通");
         lineList.put("JT", JT);
 
         Map<String, Object> MP = new HashMap<String, Object>();
         MP.put("status", getParaToInt("lineListStatusMP", 0));
         MP.put("content", getPara("lineListContentMP"));
+        MP.put("name", "门票");
         lineList.put("MP", MP);
 
         Map<String, Object> DY = new HashMap<String, Object>();
         DY.put("status", getParaToInt("lineListStatusDY", 0));
         DY.put("content", getPara("lineListContentDY"));
+        DY.put("name", "导游");
         lineList.put("DY", DY);
 
         Map<String, Object> BX = new HashMap<String, Object>();
         BX.put("status", getParaToInt("lineListStatusBX", 0));
         BX.put("content", getPara("lineListContentBX"));
+        BX.put("name", "保险");
         lineList.put("BX", BX);
 
         Map<String, Object> OTHER1 = new HashMap<String, Object>();
         OTHER1.put("status", getParaToInt("lineListStatusOther1", 0));
         OTHER1.put("content", getPara("lineListContentOther1"));
+        OTHER1.put("name", "其他 1");
         lineList.put("OTHER1", OTHER1);
 
         Map<String, Object> OTHER2 = new HashMap<String, Object>();
         OTHER2.put("status", getParaToInt("lineListStatusOther2", 0));
         OTHER2.put("content", getPara("lineListContentOther2"));
+        OTHER2.put("name", "其他 2");
         lineList.put("OTHER2", OTHER2);
 
         Map<String, Object> OTHER3 = new HashMap<String, Object>();
         OTHER3.put("status", getParaToInt("lineListStatusOther3", 0));
         OTHER3.put("content", getPara("lineListContentOther3"));
+        OTHER3.put("name", "其他 3");
         lineList.put("OTHER3", OTHER3);
 
         goods.setLineList(lineList);
@@ -356,11 +373,20 @@ public class GoodsController extends Controller {
         Integer preSale = getParaToInt("preSale");
         goods.setPreSale(preSale);
 
+        String SCPrice = getPara("SCPrice");
+        goods.setSCPrice(SCPrice);
+
         Integer minPrice = getParaToInt("minPrice");
         goods.setMinPrice(minPrice);
 
         Integer maxPrice = getParaToInt("maxPrice");
         goods.setMaxPrice(maxPrice);
+
+        Integer linePrice1 = getParaToInt("linePrice1");
+        goods.setLinePrice1(linePrice1);
+
+        Integer linePrice2 = getParaToInt("linePrice2");
+        goods.setLinePrice2(linePrice2);
 
         String source = getPara("source");
         goods.setSource(source);

@@ -168,7 +168,7 @@ a img {
 }
 
 .searchFormInputTxt {
-    width: 310px;
+    width: 300px;
     background: #FFF;
     float: left;
 }
@@ -759,6 +759,22 @@ a img {
 .ts samp {
     margin-right: 20px;
     font-size: 14px
+}
+
+.ts {
+    width: 130px;
+    height: 57px;
+    overflow: hidden;
+    float: left;
+    text-align: right;
+    color: #ffce54;
+    margin-left: 30px
+}
+
+.ts img {
+    max-width: 140px;
+    max-height: 57px;
+    overflow: hidden
 }
 
 .sz {

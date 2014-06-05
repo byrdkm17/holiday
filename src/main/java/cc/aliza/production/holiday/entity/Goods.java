@@ -115,6 +115,9 @@ public class Goods extends SimpleEntity {
     // 最低折扣价
     private Integer minRealPrice;
 
+    // 市场价
+    private Integer price;
+
     // 热门线路
     private Integer hot;
 
@@ -147,11 +150,17 @@ public class Goods extends SimpleEntity {
     // 行程说明·描述
     private List<String> lineXCContent;
 
+    // 行程说明·所在地
+    private List<String> lineXCSite;
+
     // 行程说明·图片
-    private List<String[]> lineXCPics;
+    private Map<String, String> lineXCPics;
 
     // 行程说明·其他
     private List<Map<String, String>> lineXCOther;
+
+    // 出发城市
+    private String start;
 
     // 行程天数
     private Integer XC;
@@ -164,6 +173,55 @@ public class Goods extends SimpleEntity {
 
     // 费用说明
     private Map<String, Map<String, Object>> lineList;
+
+    // 成人票价
+    private Integer linePrice1;
+
+    // 儿童票价
+    private Integer linePrice2;
+
+    // 市场价格
+    private String SCPrice;
+
+    public String getSCPrice() {
+        return SCPrice;
+    }
+
+    public void setSCPrice(String SCPrice) {
+        this.SCPrice = SCPrice;
+    }
+
+    public Integer getLinePrice1() {
+        return linePrice1;
+    }
+
+    public void setLinePrice1(Integer linePrice1) {
+        this.linePrice1 = linePrice1;
+    }
+
+    public Integer getLinePrice2() {
+        return linePrice2;
+    }
+
+    public void setLinePrice2(Integer linePrice2) {
+        this.linePrice2 = linePrice2;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
 
     public Integer getRecommend() {
         return recommend;
@@ -500,11 +558,12 @@ public class Goods extends SimpleEntity {
         this.lineXCContent = lineXCContent;
     }
 
-    public List<String[]> getLineXCPics() {
+
+    public Map<String, String> getLineXCPics() {
         return lineXCPics;
     }
 
-    public void setLineXCPics(List<String[]> lineXCPics) {
+    public void setLineXCPics(Map<String, String> lineXCPics) {
         this.lineXCPics = lineXCPics;
     }
 
@@ -546,5 +605,13 @@ public class Goods extends SimpleEntity {
 
     public void setLineList(Map<String, Map<String, Object>> lineList) {
         this.lineList = lineList;
+    }
+
+    public List<String> getLineXCSite() {
+        return lineXCSite;
+    }
+
+    public void setLineXCSite(List<String> lineXCSite) {
+        this.lineXCSite = lineXCSite;
     }
 }
